@@ -5,10 +5,10 @@ Welcome to the RuntimeCounterTerrorist COS214 Project
 ## Style Guide
 
 ### Naming
-Variables & Parameters - Snake Case (snake_case)
-Functions - Lower Camel Case (lowerCamelCase)
-Classes - Upper Camel Case (UpperCamelCase)
-Constat Variables - Upper Case (UPPER_CASE)
+- Variables & Parameters - Snake Case (snake_case)
+- Functions - Lower Camel Case (lowerCamelCase)
+- Classes - Upper Camel Case (UpperCamelCase)
+- Constant Variables - Upper Case (UPPER_CASE)
 
 Be descriptive when naming (E.g. instead of int x for a counter, rather have int student_counter)
 
