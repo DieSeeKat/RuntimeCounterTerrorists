@@ -4,8 +4,8 @@
 #include <string>
 
 
-#include "Army.h"
-#include "ArmyRatio.h"
+#include "../Army.h"
+#include "../ArmyRatio.h"
 
 #include "Aggregate.h"
 #include "NodeIterator.h"
