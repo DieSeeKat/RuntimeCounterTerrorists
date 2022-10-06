@@ -88,3 +88,6 @@ fabric.properties
 *.xml
 *.iml
 CMakeLists.txt
+Makefile
+obj
+bin
