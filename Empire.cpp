@@ -1,5 +1,15 @@
 #include "Empire.h"
 
+#include <utility>
+
+#include "Attack.h"
+
+Empire::Empire(std::string name)
+{
+  this->name      = name;
+  this->war_stage = new Attack();
+}
+
 void Empire::algorithm()
 {
   // TODO - implement Empire::algorithm
@@ -18,10 +28,16 @@ void Empire::action()
   throw "Not yet implemented";
 }
 
-Army Empire::recruit()
+void Empire::recruit()
 {
-  // TODO - implement Empire::recruit
-  throw "Not yet implemented";
+  for (auto &owned_node : owned_nodes)
+  {
+    int population       = owned_node->getPopulation();
+    ArmyRatio army_ratio = war_style_policy->createArmyRatio();
+    int army_size        = recruitment_policy->calculateRecruits(population);
+
+    Army army = owned_node->recruit(army_ratio, army_size);
+  }
 }
 
 void Empire::takeTurn()

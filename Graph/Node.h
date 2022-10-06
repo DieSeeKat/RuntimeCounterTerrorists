@@ -20,7 +20,6 @@ class Empire;
 
 class Node : Aggregate, Subject
 {
-
   private:
   Mediator *mediator;
   int resources;
@@ -30,16 +29,12 @@ class Node : Aggregate, Subject
 
   public:
   NodeIterator *createIterator();
-
   void changed();
-
   virtual std::string getState() = 0;
-
-  Army recruit(ArmyRatio ratio);
-
+  Army recruit(ArmyRatio ratio, int num_recruits);
   virtual void colonise(Empire *colonising_empire) = 0;
-
   void repopulate();
+  int getPopulation();
 };
 
 #endif

@@ -5,9 +5,10 @@
 
 #include "RecruitmentPolicy.h"
 
-class HeavyWar : RecruitmentPolicy {
-public:
-	void calculateRecruits(int town_population);
+class HeavyWar : RecruitmentPolicy
+{
+  public:
+  int calculateRecruits(int town_population);
 };
 
 #endif

@@ -4,7 +4,7 @@
 class RecruitmentPolicy
 {
   public:
-  virtual void calculateRecruits(int town_population) = 0;
+  virtual int calculateRecruits(int town_population) = 0;
 };
 
 #endif

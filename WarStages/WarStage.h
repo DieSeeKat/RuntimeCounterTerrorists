@@ -3,15 +3,18 @@
 
 class Empire;
 
-class WarStage {
+class WarStage
+{
 
-private:
-	Empire* empire;
+  private:
+  Empire *empire;
 
-public:
-	virtual void takeTurn() = 0;
+  public:
+  WarStage();
 
-	WarStage(Empire* empire);
+  virtual void takeTurn() = 0;
+
+  WarStage(Empire *empire);
 };
 
 #endif

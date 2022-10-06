@@ -3,9 +3,11 @@
 
 #include "WarStage.h"
 
-class Invasion : WarStage {
-public:
-	void takeTurn();
+class Attack : public WarStage
+{
+  public:
+  Attack();
+  void takeTurn();
 };
 
 #endif

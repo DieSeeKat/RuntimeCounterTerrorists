@@ -1,9 +1,9 @@
 #ifndef PATH_H
 #define PATH_H
 
-#include "Node.h"
-
 #include "../Army.h"
+
+class Node;
 
 class Path
 {

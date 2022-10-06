@@ -1,6 +1,9 @@
 #ifndef EMPIRE_H
 #define EMPIRE_H
 
+#include <string>
+#include <vector>
+
 #include "Alliance/Alliance.h"
 #include "Alliance/AllianceComponent.h"
 
@@ -14,10 +17,12 @@
 
 #include "WarStages/WarStage.h"
 
-class Empire : AllianceComponent
+class Empire : public AllianceComponent
 {
 
   private:
+  std::vector<Node *> owned_nodes;
+  std::string name;
   ColonyPolicy *colony_policy;
   WarStylePolicy *war_style_policy;
   RecruitmentPolicy *recruitment_policy;
@@ -25,13 +30,15 @@ class Empire : AllianceComponent
   Alliance **alliances;
 
   public:
+  Empire(std::string name);
+
   void algorithm();
 
   void request();
 
   void action();
 
-  Army recruit();
+  void recruit();
 
   void takeTurn();
 

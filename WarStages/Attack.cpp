@@ -1,6 +1,11 @@
 #include "Attack.h"
 
-void Invasion::takeTurn() {
-	// TODO - implement Invasion::takeTurn
-	throw "Not yet implemented";
+
+void Attack::takeTurn()
+{
+  // TODO - implement Invasion::takeTurn
+  throw "Not yet implemented";
+}
+Attack::Attack() : WarStage()
+{
 }
