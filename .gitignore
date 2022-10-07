@@ -91,3 +91,4 @@ CMakeLists.txt
 Makefile
 obj
 bin
+.vscode
