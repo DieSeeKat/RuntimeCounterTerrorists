@@ -1,9 +1,14 @@
 #include "NodeIterator.h"
+#include "Path.h"
+
+NodeIterator::NodeIterator(Path **_paths, int num_paths)
+{
+  paths = _paths;
+}
 
 void NodeIterator::first()
 {
-  // TODO - implement NodeIterator::first
-  throw "Not yet implemented";
+  Node **all_end_points = paths[0]->getEndPoints();
 }
 
 void NodeIterator::next()
@@ -20,6 +25,5 @@ bool NodeIterator::isDone()
 
 Node *NodeIterator::currentNode()
 {
-  // TODO - implement NodeIterator::currentNode
-  throw "Not yet implemented";
+  return current_node;
 }
