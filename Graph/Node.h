@@ -40,11 +40,14 @@ class Node : Aggregate, Subject
   virtual void colonise(Empire *colonising_empire) = 0;
   void repopulate();
   int getPopulation();
-  Node *recursivelyFindClosestEnemy(int depth, int max_depth);
+
   Node *nextStepTo(Node *node);
-  Node *getClosestEnemy();
-  std::vector<Node *> findShortestPathTo(Node *node);
   std::vector<Path *> getPaths();
+
+  Empire *getOwnerEmpire();
+  std::vector<Node *> findShortestPathTo(std::vector<Node *> nodes, Node *node);
+  bool connectedToCapital(std::vector<Node *> nodes, Node *capital);
+
 };
 
 #endif
