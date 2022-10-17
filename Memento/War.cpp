@@ -11,3 +11,7 @@ void War::setWarRollback(WarRollback war_rollback)
   // TODO - implement War::setWarRollback
   throw "Not yet implemented";
 }
+std::vector<Empire *> War::getEmpires()
+{
+  return empires;
+}
