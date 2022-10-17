@@ -5,7 +5,7 @@
 
 NodeIterator *Node::createIterator()
 {
-  return new NodeIterator(paths, num_paths);
+  return new NodeIterator(paths, this);
 }
 
 void Node::changed()

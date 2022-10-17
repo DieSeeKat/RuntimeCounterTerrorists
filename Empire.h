@@ -43,6 +43,7 @@ class Empire : public AllianceComponent
   void joinAlliance(Empire *empire);
   void add(AllianceComponent *alliance_component);
   void remove(AllianceComponent *alliance_component);
+  bool isAlly(Empire * empire);
 
   AllianceComponent *getChild(int index);
 };

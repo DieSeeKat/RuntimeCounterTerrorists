@@ -3,23 +3,23 @@
 
 int path_index = 0;
 
-NodeIterator::NodeIterator(Path **_paths, int num_paths)
+NodeIterator::NodeIterator(std::vector<Path*> _paths, Node* start)
 {
   paths = _paths;
-  path_count = num_paths;
+  path_count = paths.size();
+  current_node = NULL;
+  start_node = start;
 }
 
 void NodeIterator::first()
 {
-  Node **first_end_points = paths[path_index]->getEndPoints();
-  current_node = first_end_points[1];
+  current_node = paths.at(path_index)->getOppositeEnd(start_node);
   path_index++;
 }
 
 void NodeIterator::next()
 {
-  Node **next_end_points = paths[path_index]->getEndPoints();
-  current_node = next_end_points[1];
+  current_node = paths.at(path_index)->getOppositeEnd(start_node);
   path_index++;
 }
 

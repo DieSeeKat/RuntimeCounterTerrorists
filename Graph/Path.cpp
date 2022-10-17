@@ -17,7 +17,3 @@ Node *Path::getOppositeEnd(Node *node)
   }
 }
 
-Node** Path::getEndPoints()
-{
-  return end_points;
-}
