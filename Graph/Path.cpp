@@ -16,3 +16,4 @@ Node *Path::getOppositeEnd(Node *node)
     return end_points[0];
   }
 }
+

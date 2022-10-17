@@ -1,25 +1,41 @@
 #include "NodeIterator.h"
+#include "Node.h"
+
+int path_index = 0;
+
+NodeIterator::NodeIterator(Node* start)
+{
+  start_node = start;
+  paths = start_node->getPaths();
+  path_count = paths.size();
+  current_node = NULL;
+}
 
 void NodeIterator::first()
 {
-  // TODO - implement NodeIterator::first
-  throw "Not yet implemented";
+  current_node = paths.at(path_index)->getOppositeEnd(start_node);
+  path_index++;
 }
 
 void NodeIterator::next()
 {
-  // TODO - implement NodeIterator::next
-  throw "Not yet implemented";
+  current_node = paths.at(path_index)->getOppositeEnd(start_node);
+  path_index++;
 }
 
 bool NodeIterator::isDone()
 {
-  // TODO - implement NodeIterator::isDone
-  throw "Not yet implemented";
+  if(path_index == this->path_count)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
 
 Node *NodeIterator::currentNode()
 {
-  // TODO - implement NodeIterator::currentNode
-  throw "Not yet implemented";
+  return current_node;
 }

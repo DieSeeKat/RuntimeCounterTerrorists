@@ -2,7 +2,7 @@
 #define NODE_H
 
 #include <string>
-#include <vector>
+
 
 #include "../Army.h"
 #include "../ArmyRatio.h"
@@ -40,9 +40,14 @@ class Node : Aggregate, Subject
   virtual void colonise(Empire *colonising_empire) = 0;
   void repopulate();
   int getPopulation();
+
+  Node *nextStepTo(Node *node);
+  std::vector<Path *> getPaths();
+
   Empire *getOwnerEmpire();
   std::vector<Node *> findShortestPathTo(std::vector<Node *> nodes, Node *node);
   bool connectedToCapital(std::vector<Node *> nodes, Node *capital);
+
 };
 
 #endif

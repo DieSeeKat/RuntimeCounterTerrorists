@@ -3,13 +3,18 @@
 
 #include "Iterator.h"
 
+#include <vector>
+
 class Node;
+class Path;
 
 class NodeIterator : Iterator
 {
 
   public:
   Node *current_node;
+
+  NodeIterator( Node* start);
 
   void first();
 
@@ -18,6 +23,11 @@ class NodeIterator : Iterator
   bool isDone();
 
   Node *currentNode();
+
+  private:
+  std::vector<Path*> paths;
+  int path_count;
+  Node* start_node;
 };
 
 #endif

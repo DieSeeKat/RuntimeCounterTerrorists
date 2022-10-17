@@ -1,12 +1,13 @@
 #include <vector>
+#include <cmath>
+#include <algorithm>
 
 #include "Empire.h"
 #include "Node.h"
 
 NodeIterator *Node::createIterator()
 {
-  // TODO - implement Node::createIterator
-  throw "Not yet implemented";
+  return new NodeIterator(this);
 }
 
 void Node::changed()
@@ -106,4 +107,9 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
   }
 
   return capital->prev != nullptr;
+}
+
+std::vector<Path*> Node::getPaths()
+{
+  return paths;
 }
