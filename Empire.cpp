@@ -1,4 +1,5 @@
 #include "Empire.h"
+#include "War.h"
 
 #include <utility>
 
@@ -47,10 +48,16 @@ void Empire::advanceArmies()
 {
   for (int army_index = 0; army_index < armies.size(); army_index++)
   {
-    Node *current_town = armies[army_index].getPosition();
-    // TODO - Find closest enemy town to current_town
-    Node *closest_enemy_town = current_town;
-    armies[army_index].moveToTown(closest_enemy_town);
+    Node *current_town            = armies[army_index].getPosition();
+    std::vector<Empire *> empires = war->getEmpires();
+    for (auto empire : empires)
+    {
+      if (!isAlly(empire))
+      {
+        armies[army_index].moveToTown(current_town->findShortestPathTo(empire->getCapital())[0]);
+        break;
+      }
+    }
   }
 }
 
@@ -59,9 +66,14 @@ void Empire::retreatArmies()
   for (int army_index = 0; army_index < armies.size(); army_index++)
   {
     Node *current_town = armies[army_index].getPosition();
-    // TODO - Find closest enemy town to current_town
-    Node *closest_ally_town = current_town;
-    armies[army_index].moveToTown(closest_ally_town);
+    if (current_town->getOwnerEmpire() == this)
+    {
+      armies[army_index].moveToTown(current_town);
+    }
+    else
+    {
+      armies[army_index].moveToTown(current_town->findShortestPathTo(capital)[0]);
+    }
   }
 }
 
@@ -106,4 +118,13 @@ void Empire::remove(AllianceComponent *alliance_component)
 AllianceComponent *Empire::getChild(int index)
 {
   return nullptr;
+}
+bool Empire::isAlly(Empire *empire)
+{
+  // TODO - Determine if empire is an ally
+  return false;
+}
+Node *Empire::getCapital()
+{
+  return capital;
 }

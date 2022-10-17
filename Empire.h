@@ -17,6 +17,8 @@
 
 #include "WarStages/WarStage.h"
 
+class War;
+
 class Empire : public AllianceComponent
 {
   private:
@@ -28,6 +30,8 @@ class Empire : public AllianceComponent
   WarStage *war_stage;
   Alliance **alliances;
   std::vector<Army> armies;
+  War *war;
+  Node *capital;
 
   public:
   Empire(std::string name);
@@ -43,8 +47,9 @@ class Empire : public AllianceComponent
   void joinAlliance(Empire *empire);
   void add(AllianceComponent *alliance_component);
   void remove(AllianceComponent *alliance_component);
-
+  bool isAlly(Empire *empire);
   AllianceComponent *getChild(int index);
+  Node *getCapital();
 };
 
 #endif
