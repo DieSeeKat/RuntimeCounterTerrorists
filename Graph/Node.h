@@ -47,6 +47,7 @@ class Node : Aggregate, Subject
   Empire *getOwnerEmpire();
   std::vector<Node *> findShortestPathTo(std::vector<Node *> nodes, Node *node);
   bool connectedToCapital(std::vector<Node *> nodes, Node *capital);
+  void onAttacked(); //A method that gets triggered when a town get attacked
 
 };
 
