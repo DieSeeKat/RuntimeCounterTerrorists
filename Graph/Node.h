@@ -29,6 +29,9 @@ class Node : Aggregate, Subject
   std::vector<Path *> paths;
 
   public:
+  int dist;
+  Node *prev = nullptr;
+
   NodeIterator *createIterator();
   void changed();
   void rechargeResources();
@@ -40,6 +43,7 @@ class Node : Aggregate, Subject
   Node *recursivelyFindClosestEnemy(int depth, int max_depth);
   Node *nextStepTo(Node *node);
   Node *getClosestEnemy();
+  std::vector<Node *> findShortestPathTo(Node *node);
 };
 
 #endif
