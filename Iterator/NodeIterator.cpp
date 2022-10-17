@@ -1,4 +1,5 @@
 #include "NodeIterator.h"
+#include "Node.h"
 
 int path_index = 0;
 

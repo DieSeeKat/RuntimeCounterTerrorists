@@ -2,7 +2,7 @@
 #define NODEITERATOR_H
 
 #include "Iterator.h"
-#include "Node.h"
+
 #include <vector>
 
 class Node;
