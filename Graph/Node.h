@@ -2,7 +2,7 @@
 #define NODE_H
 
 #include <string>
-
+#include <vector>
 
 #include "../Army.h"
 #include "../ArmyRatio.h"
@@ -25,7 +25,7 @@ class Node : Aggregate, Subject
   int resources;
   int population;
   Empire *population_empire;
-  Path **paths;
+  std::vector<Path *> paths;
 
   public:
   NodeIterator *createIterator();
@@ -36,6 +36,9 @@ class Node : Aggregate, Subject
   virtual void colonise(Empire *colonising_empire) = 0;
   void repopulate();
   int getPopulation();
+  Node *findClosestEnemy();
+  Node *nextStepTo(Node *node);
+  Node *getAdjacentEnemy();
 };
 
 #endif

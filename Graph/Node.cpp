@@ -27,3 +27,16 @@ int Node::getPopulation()
 {
   return 0;
 }
+Node *Node::findClosestEnemy()
+{
+  return nullptr;
+}
+Node *Node::nextStepTo(Node *node)
+{
+  return nullptr;
+}
+Node *Node::getAdjacentEnemy()
+{
+  for ()
+    return nullptr;
+}
