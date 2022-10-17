@@ -8,23 +8,26 @@
 class Node;
 class Empire;
 
-class Army : Observer {
+class Army : Observer
+{
 
-private:
-	std::string observer_state;
-	Node* subject;
-	Node* position;
-	int resources;
-	Empire* empire;
+  private:
+  std::string observer_state;
+  Node *subject;
+  Node *position;
+  int resources;
+  Empire *empire;
 
-public:
-	void update();
+  public:
+  void update();
 
-	void attackTown(Node* town);
+  void attackTown(Node *town);
 
-	void moveToTown(Node* town);
+  void moveToTown(Node *town);
 
-	void defendTown(Node* town);
+  void defendTown(Node *town);
+
+  Node *getPosition();
 };
 
 #endif

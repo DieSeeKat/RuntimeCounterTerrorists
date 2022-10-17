@@ -2,8 +2,5 @@
 
 WarStage::WarStage(Empire *empire)
 {
-  // TODO - implement WarStage::WarStage
-}
-WarStage::WarStage()
-{
+  this->empire = empire;
 }

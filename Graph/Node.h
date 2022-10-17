@@ -4,8 +4,8 @@
 #include <string>
 
 
-#include "Army.h"
-#include "ArmyRatio.h"
+#include "../Army.h"
+#include "../ArmyRatio.h"
 
 #include "Aggregate.h"
 #include "NodeIterator.h"
@@ -30,6 +30,7 @@ class Node : Aggregate, Subject
   public:
   NodeIterator *createIterator();
   void changed();
+  void rechargeResources();
   virtual std::string getState() = 0;
   Army recruit(ArmyRatio ratio, int num_recruits);
   virtual void colonise(Empire *colonising_empire) = 0;

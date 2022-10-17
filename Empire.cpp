@@ -7,7 +7,8 @@
 Empire::Empire(std::string name)
 {
   this->name      = name;
-  this->war_stage = new Attack();
+  this->war_stage = new Attack(this);
+  this->armies    = std::vector<Army>();
 }
 
 void Empire::algorithm()
@@ -37,19 +38,55 @@ void Empire::recruit()
     int army_size        = recruitment_policy->calculateRecruits(population);
 
     Army army = owned_node->recruit(army_ratio, army_size);
+
+    armies.push_back(army);
+  }
+}
+
+void Empire::advanceArmies()
+{
+  for (int army_index = 0; army_index < armies.size(); army_index++)
+  {
+    Node *current_town = armies[army_index].getPosition();
+    // TODO - Find closest enemy town to current_town
+    Node *closest_enemy_town = current_town;
+    armies[army_index].moveToTown(closest_enemy_town);
+  }
+}
+
+void Empire::retreatArmies()
+{
+  for (int army_index = 0; army_index < armies.size(); army_index++)
+  {
+    Node *current_town = armies[army_index].getPosition();
+    // TODO - Find closest enemy town to current_town
+    Node *closest_ally_town = current_town;
+    armies[army_index].moveToTown(closest_ally_town);
+  }
+}
+
+void Empire::restoreTowns()
+{
+  for (int node_index = 0; node_index < owned_nodes.size(); node_index++)
+  {
+    // TODO - Find out if town is connected
+    bool town_is_connected = true;
+    if (town_is_connected)
+    {
+      owned_nodes[node_index]->rechargeResources();
+      owned_nodes[node_index]->repopulate();
+    }
   }
 }
 
 void Empire::takeTurn()
 {
-  // TODO - implement Empire::takeTurn
-  throw "Not yet implemented";
+  war_stage->takeTurn();
 }
 
 void Empire::addTown(Node *town)
 {
-  // TODO - implement Empire::addTown
-  throw "Not yet implemented";
+  owned_nodes.push_back(town);
 }
 
 void Empire::joinAlliance(Empire *empire)

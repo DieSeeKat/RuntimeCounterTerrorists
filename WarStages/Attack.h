@@ -3,10 +3,12 @@
 
 #include "WarStage.h"
 
+#include "Empire.h"
+
 class Attack : public WarStage
 {
   public:
-  Attack();
+  Attack(Empire *empire);
   void takeTurn();
 };
 

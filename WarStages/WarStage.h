@@ -6,12 +6,10 @@ class Empire;
 class WarStage
 {
 
-  private:
+  protected:
   Empire *empire;
 
   public:
-  WarStage();
-
   virtual void takeTurn() = 0;
 
   WarStage(Empire *empire);
