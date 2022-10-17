@@ -25,17 +25,25 @@ class Node : Aggregate, Subject
   int resources;
   int population;
   Empire *population_empire;
-  Path **paths;
-  int num_paths; //Simple counter to keep track of the number of paths connected
+  Empire *ownerEmpire;
+  std::vector<Path *> paths;
 
   public:
+  int dist;
+  Node *prev = nullptr;
+
   NodeIterator *createIterator();
   void changed();
+  void rechargeResources();
   virtual std::string getState() = 0;
   Army recruit(ArmyRatio ratio, int num_recruits);
   virtual void colonise(Empire *colonising_empire) = 0;
   void repopulate();
   int getPopulation();
+  Node *recursivelyFindClosestEnemy(int depth, int max_depth);
+  Node *nextStepTo(Node *node);
+  Node *getClosestEnemy();
+  std::vector<Node *> findShortestPathTo(Node *node);
 };
 
 #endif

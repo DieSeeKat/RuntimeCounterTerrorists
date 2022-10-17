@@ -1,11 +1,12 @@
 #include "Attack.h"
 
-
 void Attack::takeTurn()
 {
-  // TODO - implement Invasion::takeTurn
-  throw "Not yet implemented";
+  empire->restoreTowns();
+  empire->recruit();
+  empire->advanceArmies();
+  // TODO - If certain conditions are met, switch to Defense.
 }
-Attack::Attack() : WarStage()
+Attack::Attack(Empire *empire) : WarStage(empire)
 {
 }
