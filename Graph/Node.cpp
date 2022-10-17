@@ -1,11 +1,13 @@
 #include <vector>
+#include <cmath>
+#include <algorithm>
 
 #include "Empire.h"
 #include "Node.h"
 
 NodeIterator *Node::createIterator()
 {
-  return new NodeIterator(paths, this);
+  return new NodeIterator(this);
 }
 
 void Node::changed()
@@ -121,4 +123,9 @@ std::vector<Node *> Node::findShortestPathTo(Node *end_node)
   }
 
   return return_vector;
+}
+
+std::vector<Path*> Node::getPaths()
+{
+  return paths;
 }

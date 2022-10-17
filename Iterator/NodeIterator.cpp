@@ -1,14 +1,13 @@
 #include "NodeIterator.h"
-#include "Path.h"
 
 int path_index = 0;
 
-NodeIterator::NodeIterator(std::vector<Path*> _paths, Node* start)
+NodeIterator::NodeIterator(Node* start)
 {
-  paths = _paths;
+  start_node = start;
+  paths = start_node->getPaths();
   path_count = paths.size();
   current_node = NULL;
-  start_node = start;
 }
 
 void NodeIterator::first()

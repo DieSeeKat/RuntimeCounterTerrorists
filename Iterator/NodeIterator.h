@@ -2,6 +2,7 @@
 #define NODEITERATOR_H
 
 #include "Iterator.h"
+#include "Node.h"
 #include <vector>
 
 class Node;
@@ -13,7 +14,7 @@ class NodeIterator : Iterator
   public:
   Node *current_node;
 
-  NodeIterator(std::vector<Path*> _paths, Node* start);
+  NodeIterator( Node* start);
 
   void first();
 

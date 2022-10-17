@@ -44,6 +44,7 @@ class Node : Aggregate, Subject
   Node *nextStepTo(Node *node);
   Node *getClosestEnemy();
   std::vector<Node *> findShortestPathTo(Node *node);
+  std::vector<Path *> getPaths();
 };
 
 #endif
