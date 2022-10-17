@@ -29,59 +29,11 @@ int Node::getPopulation()
 {
   return population;
 }
-Node *Node::nextStepTo(Node *node)
-{
-  // TODO - use shortest path algorithm
-  return nullptr;
-}
-Node *Node::getClosestEnemy()
-{
-  int max_depth = 0;
-  while (max_depth < 200)
-  {
-    for (auto &path : paths)
-    {
-      Node *node = path->getOppositeEnd(this)->recursivelyFindClosestEnemy(0, max_depth);
-      if (node != nullptr)
-      {
-        return node;
-      }
-    }
-    max_depth++;
-  }
-  return nullptr;
-}
 void Node::rechargeResources()
 {
   resources = population;
 }
-Node *Node::recursivelyFindClosestEnemy(int depth, int max_depth)
-{
-  if (depth < max_depth)
-  {
-    for (auto &path : paths)
-    {
-      Node *node = path->getOppositeEnd(this)->recursivelyFindClosestEnemy(0, max_depth);
-      if (node != nullptr)
-      {
-        return node;
-      }
-    }
-  }
-  else
-  {
-    for (auto &path : paths)
-    {
-      Node *node = path->getOppositeEnd(this);
-      if (!ownerEmpire->isAlly(node->ownerEmpire))
-      {
-        return node;
-      }
-    }
-  }
 
-  return nullptr;
-}
 std::vector<Node *> Node::findShortestPathTo(Node *end_node)
 {
   std::vector<Node *> to_be_checked;
