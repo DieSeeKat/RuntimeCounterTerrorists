@@ -54,7 +54,7 @@ void Empire::advanceArmies()
     {
       if (!isAlly(empire))
       {
-        armies[army_index].moveToTown(current_town->findShortestPathTo(empire->getCapital())[0]);
+        armies[army_index].moveToTown(current_town->findShortestPathTo(war->getNodes(), empire->getCapital())[0]);
         break;
       }
     }
@@ -72,7 +72,7 @@ void Empire::retreatArmies()
     }
     else
     {
-      armies[army_index].moveToTown(current_town->findShortestPathTo(capital)[0]);
+      armies[army_index].moveToTown(current_town->findShortestPathTo(war->getNodes(), capital)[0]);
     }
   }
 }
@@ -81,9 +81,7 @@ void Empire::restoreTowns()
 {
   for (int node_index = 0; node_index < owned_nodes.size(); node_index++)
   {
-    // TODO - Find out if town is connected
-    bool town_is_connected = true;
-    if (town_is_connected)
+    if (owned_nodes[node_index]->connectedToCapital(war->getNodes(), capital))
     {
       owned_nodes[node_index]->rechargeResources();
       owned_nodes[node_index]->repopulate();
