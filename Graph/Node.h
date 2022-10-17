@@ -25,6 +25,7 @@ class Node : Aggregate, Subject
   int resources;
   int population;
   Empire *population_empire;
+  Empire *ownerEmpire;
   std::vector<Path *> paths;
 
   public:
@@ -36,9 +37,9 @@ class Node : Aggregate, Subject
   virtual void colonise(Empire *colonising_empire) = 0;
   void repopulate();
   int getPopulation();
-  Node *findClosestEnemy();
+  Node *recursivelyFindClosestEnemy(int depth, int max_depth);
   Node *nextStepTo(Node *node);
-  Node *getAdjacentEnemy();
+  Node *getClosestEnemy();
 };
 
 #endif

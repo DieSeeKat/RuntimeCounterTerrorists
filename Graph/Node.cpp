@@ -1,4 +1,5 @@
 #include "Node.h"
+#include "Empire.h"
 
 NodeIterator *Node::createIterator()
 {
@@ -20,23 +21,62 @@ Army Node::recruit(ArmyRatio ratio, int num_recruits)
 
 void Node::repopulate()
 {
-  // TODO - implement Node::repopulate
-  throw "Not yet implemented";
+  population = round(population * 1.1);
 }
 int Node::getPopulation()
 {
-  return 0;
-}
-Node *Node::findClosestEnemy()
-{
-  return nullptr;
+  return population;
 }
 Node *Node::nextStepTo(Node *node)
 {
+  // TODO - use shortest path algorithm
   return nullptr;
 }
-Node *Node::getAdjacentEnemy()
+Node *Node::getClosestEnemy()
 {
-  for ()
-    return nullptr;
+  int max_depth = 0;
+  while (max_depth < 200)
+  {
+    for (auto &path : paths)
+    {
+      Node *node = path->getOppositeEnd(this)->recursivelyFindClosestEnemy(0, max_depth);
+      if (node != nullptr)
+      {
+        return node;
+      }
+    }
+    max_depth++;
+  }
+  return nullptr;
+}
+void Node::rechargeResources()
+{
+  resources = population;
+}
+Node *Node::recursivelyFindClosestEnemy(int depth, int max_depth)
+{
+  if (depth < max_depth)
+  {
+    for (auto &path : paths)
+    {
+      Node *node = path->getOppositeEnd(this)->recursivelyFindClosestEnemy(0, max_depth);
+      if (node != nullptr)
+      {
+        return node;
+      }
+    }
+  }
+  else
+  {
+    for (auto &path : paths)
+    {
+      Node *node = path->getOppositeEnd(this);
+      if (!ownerEmpire->isAlly(node->ownerEmpire))
+      {
+        return node;
+      }
+    }
+  }
+
+  return nullptr;
 }
