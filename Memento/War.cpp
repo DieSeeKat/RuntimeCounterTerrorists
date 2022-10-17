@@ -15,3 +15,7 @@ std::vector<Empire *> War::getEmpires()
 {
   return empires;
 }
+std::vector<Node *> War::getNodes()
+{
+  return nodes;
+}

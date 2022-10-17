@@ -24,6 +24,7 @@ class War
   void setWarRollback(WarRollback war_rollback);
 
   std::vector<Empire *> getEmpires();
+  std::vector<Node *> getNodes();
 };
 
 #endif
