@@ -26,6 +26,7 @@ class Node : Aggregate, Subject
   int population;
   Empire *population_empire;
   Path **paths;
+  int num_paths; //Simple counter to keep track of the number of paths connected
 
   public:
   NodeIterator *createIterator();

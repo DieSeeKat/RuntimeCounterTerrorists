@@ -2,8 +2,7 @@
 
 NodeIterator *Node::createIterator()
 {
-  // TODO - implement Node::createIterator
-  throw "Not yet implemented";
+  return new NodeIterator(paths, num_paths);
 }
 
 void Node::changed()
