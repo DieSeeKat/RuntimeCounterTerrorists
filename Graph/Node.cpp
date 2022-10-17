@@ -113,3 +113,9 @@ std::vector<Path*> Node::getPaths()
 {
   return paths;
 }
+
+void Node::onAttacked()
+{
+  // TODO - implement Node::onAttacked
+  throw "Not yet implemented";
+}
