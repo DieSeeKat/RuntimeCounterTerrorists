@@ -13,6 +13,7 @@ class Path
   int distance;
 
   public:
+  Path(Node *first_node, Node *last_node);
   void calculate_losses(Army *army);
   Node *getOppositeEnd(Node *);
 };
