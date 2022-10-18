@@ -22,10 +22,15 @@ class Node : Aggregate, Subject
 {
   private:
   Mediator *mediator;
+  /// The number of resources a Node holds
   int resources;
+  /// The total population of a Node
   int population;
+  /// The original empire of population of the Node
   Empire *population_empire;
+  /// The current controlling power
   Empire *ownerEmpire;
+  /// All paths connecting to other Nodes
   std::vector<Path *> paths;
 
   public:
@@ -33,6 +38,7 @@ class Node : Aggregate, Subject
   int dist;
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm
   Node *prev = nullptr;
+  Node();
   NodeIterator *createIterator();
   void changed();
   /**

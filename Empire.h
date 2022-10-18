@@ -22,16 +22,26 @@ class War;
 class Empire : public AllianceComponent
 {
   private:
+  /// A vector of all Nodes controlled by the Empire
   std::vector<Node *> owned_nodes;
+  /// Name of the Empire
   std::string name;
+  /// Policy determining what to do with captured towns
   ColonyPolicy *colony_policy;
+  /// Policy determining the ratio of different troops in this Empire's armies
   WarStylePolicy *war_style_policy;
+  /// Policy determining the number of recruits based on a towns population
   RecruitmentPolicy *recruitment_policy;
+  /// The current stage of war (Attacking or Defending)
   WarStage *war_stage;
   Alliance **alliances;
+  /// A vector of all controlled armies
   std::vector<Army> armies;
+  /// A pointer to the War object, which hold information on all other entities in the war
   War *war;
+  /// The Empire's capital Node
   Node *capital;
+  /// The number of controlled nodes in the the previous round
   int prev_num_nodes = 0;
 
   public:
@@ -70,6 +80,12 @@ class Empire : public AllianceComponent
   void joinAlliance(Empire *empire);
   void add(AllianceComponent *alliance_component);
   void remove(AllianceComponent *alliance_component);
+  /**
+   * @brief Determine if an Empire is an ally
+   *
+   * @param empire The empire to test
+   * @return Return a boolean value
+   */
   bool isAlly(Empire *empire);
   /**
    * @brief A getter for all the Nodes the Empire owns

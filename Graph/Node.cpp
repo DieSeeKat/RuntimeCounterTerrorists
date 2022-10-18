@@ -86,7 +86,7 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
     node->dist = INT_MAX;
     to_be_checked.push_back(this);
   }
-  
+
   while (!to_be_checked.empty())
   {
     Node *curr = to_be_checked.back();
@@ -111,4 +111,7 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 std::vector<Path *> Node::getPaths()
 {
   return paths;
+}
+Node::Node()
+{
 }
