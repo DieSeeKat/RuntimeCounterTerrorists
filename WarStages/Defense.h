@@ -5,7 +5,7 @@
 
 #include "WarStage.h"
 
-class Defense : WarStage
+class Defense : public WarStage
 {
   public:
   Defense(Empire *empire);

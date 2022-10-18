@@ -126,3 +126,19 @@ Node *Empire::getCapital()
 {
   return capital;
 }
+std::vector<Node *> Empire::getNodes()
+{
+  return owned_nodes;
+}
+int Empire::getPrevNumNodes()
+{
+  return prev_num_nodes;
+}
+void Empire::setState(WarStage *state)
+{
+  this->war_stage = state;
+}
+void Empire::setPrevNumNodes(int num_nodes)
+{
+  prev_num_nodes = num_nodes;
+}

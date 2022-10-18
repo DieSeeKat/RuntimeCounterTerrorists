@@ -1,4 +1,5 @@
 #include "Defense.h"
+#include "Attack.h"
 
 void Defense::takeTurn()
 {
@@ -6,7 +7,11 @@ void Defense::takeTurn()
   empire->recruit();
   // TODO - Peace offerings
   empire->retreatArmies();
-  // TODO - If certain conditions are met, switch to Attack
+  if (empire->getPrevNumNodes() <= empire->getNodes().size())
+  {
+    empire->setState(new Attack(empire));
+  }
+  empire->setPrevNumNodes(empire->getNodes().size());
 }
 Defense::Defense(Empire *empire) : WarStage(empire)
 {

@@ -32,6 +32,7 @@ class Empire : public AllianceComponent
   std::vector<Army> armies;
   War *war;
   Node *capital;
+  int prev_num_nodes = 0;
 
   public:
   Empire(std::string name);
@@ -47,9 +48,13 @@ class Empire : public AllianceComponent
   void joinAlliance(Empire *empire);
   void add(AllianceComponent *alliance_component);
   void remove(AllianceComponent *alliance_component);
-  bool isAlly(Empire * empire);
+  bool isAlly(Empire *empire);
+  std::vector<Node *> getNodes();
   AllianceComponent *getChild(int index);
   Node *getCapital();
+  int getPrevNumNodes();
+  void setPrevNumNodes(int num_nodes);
+  void setState(WarStage *state);
 };
 
 #endif
