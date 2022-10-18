@@ -24,6 +24,5 @@ void Alliance::remove(AllianceComponent* alliance_component)
 }
 
 AllianceComponent* Alliance::getChild(int index) {
-	// TODO - implement Alliance::getChild
-	throw "Not yet implemented";
+  return children.at(index);
 }
