@@ -2,12 +2,13 @@
 #define ALLIANCE_H
 
 #include "AllianceComponent.h"
+#include <vector>
 
 class Alliance : AllianceComponent
 {
 
   public:
-  AllianceComponent *children;
+  std::vector<AllianceComponent *> children;
 
   void add(AllianceComponent *alliance_component);
 
