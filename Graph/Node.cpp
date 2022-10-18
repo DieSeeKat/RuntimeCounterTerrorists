@@ -1,6 +1,6 @@
-#include <vector>
-#include <cmath>
 #include <algorithm>
+#include <cmath>
+#include <vector>
 
 #include "Empire.h"
 #include "Node.h"
@@ -83,12 +83,10 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 
   for (auto node : nodes)
   {
-    node->dist = INFINITY;
-    node->prev = nullptr;
+    node->dist = INT_MAX;
+    to_be_checked.push_back(this);
   }
-  this->dist = 0;
-  to_be_checked.push_back(this);
-
+  
   while (!to_be_checked.empty())
   {
     Node *curr = to_be_checked.back();
@@ -109,7 +107,8 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
   return capital->prev != nullptr;
 }
 
-std::vector<Path*> Node::getPaths()
+
+std::vector<Path *> Node::getPaths()
 {
   return paths;
 }
