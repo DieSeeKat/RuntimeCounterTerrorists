@@ -1,6 +1,14 @@
 #include "Town.h"
 
-void Town::colonise(Empire* colonising_empire) {
-	// TODO - implement Town::colonise
-	throw "Not yet implemented";
+void Town::colonise(Empire *colonising_empire)
+{
+}
+
+Town::Town() : Node()
+{
+}
+
+std::string Town::getState()
+{
+  return "NULL";
 }

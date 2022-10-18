@@ -5,10 +5,12 @@
 
 #include "../Empire.h"
 
-class Town : Node
+class Town : public Node
 {
   public:
-  void colonise(Empire *colonising_empire);
+  Town();
+  void colonise(Empire *colonising_empire) override;
+  std::string getState() override;
 };
 
 #endif
