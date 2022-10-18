@@ -40,6 +40,8 @@ class Node : Aggregate, Subject
   Node *prev = nullptr;
   Node();
   NodeIterator *createIterator();
+  void addPathTo(Node *node);
+  void addPath(Path *path);
   void changed();
   /**
    * @brief Recharge resources to the maximum capacity according to the Node's population
