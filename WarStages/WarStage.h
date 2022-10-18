@@ -7,6 +7,7 @@ class WarStage
 {
 
   protected:
+  /// The Empire owner of the WarStage
   Empire *empire;
 
   public:
