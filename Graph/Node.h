@@ -40,7 +40,15 @@ class Node : Aggregate, Subject
   Node *prev = nullptr;
   Node();
   NodeIterator *createIterator();
+  /**
+   * @brief Form a connection between this Node and another
+   * @param node Node to connect to
+   */
   void addPathTo(Node *node);
+  /**
+   * @brief Add a path to the Node's paths vector
+   * @param path Path to be added
+   */
   void addPath(Path *path);
   void changed();
   /**
