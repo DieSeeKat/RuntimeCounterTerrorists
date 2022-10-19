@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "Observer.h"
+#include "Observer/Observer.h"
 
 class Node;
 class Empire;

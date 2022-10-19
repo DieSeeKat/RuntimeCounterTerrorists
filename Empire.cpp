@@ -1,9 +1,9 @@
 #include "Empire.h"
-#include "War.h"
+#include "Memento/War.h"
 
 #include <utility>
 
-#include "Attack.h"
+#include "Warstages/Attack.h"
 
 Empire::Empire(std::string name)
 {

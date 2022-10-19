@@ -2,7 +2,7 @@
 #include <cmath>
 #include <algorithm>
 
-#include "Empire.h"
+#include "../Empire.h"
 #include "Node.h"
 
 NodeIterator *Node::createIterator()

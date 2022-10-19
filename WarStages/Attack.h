@@ -3,7 +3,7 @@
 
 #include "WarStage.h"
 
-#include "Empire.h"
+#include "../Empire.h"
 
 class Attack : public WarStage
 {
