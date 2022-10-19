@@ -2,8 +2,7 @@
 
 void Army::update()
 {
-  // TODO - implement Army::update
-  throw "Not yet implemented";
+    moveToTown(subject);
 }
 
 void Army::attackTown(Node *town)
