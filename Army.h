@@ -2,8 +2,10 @@
 #define ARMY_H
 
 #include <string>
+#include <vector>
 
 #include "Observer.h"
+#include "Unit.h"
 
 class Node;
 class Empire;
@@ -17,15 +19,21 @@ class Army : Observer
   Node *position;
   int resources;
   Empire *empire;
-  //--------------------------------------------------ADDED BY DHARSHAN GOPAUL
-  int army_size;
 
+  //--------------------------------------------------ADDED BY DHARSHAN GOPAUL
+  std::vector<Unit> units;
+  int army_size;
+  //--------------------------------------------------
   public:
   void update();
 
   void attackTown(Node *town);
 
   void moveToTown(Node *town);
+
+  void defendTown(Node *town);
+
+  Node *getPosition();
 
   //--------------------------------------------------ADDED BY DHARSHAN GOPAUL
   int getResource();
@@ -35,9 +43,8 @@ class Army : Observer
   int getArmySize();
 
   void setArmySize(int new_size);
-  void defendTown(Node *town);
 
-  Node *getPosition();
+  void killRandomUnit(int deaths);
 };
 
 #endif

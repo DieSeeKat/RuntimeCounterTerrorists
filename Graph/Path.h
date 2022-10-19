@@ -14,10 +14,12 @@ class Path
 
   public:
   void calculate_losses(Army *army);
+  Node *getOppositeEnd(Node *);
   //-------------------------------------------------------------ADDED BY DHARSHAN GOPAUL
   Path();
   ~Path();
-  Node *getOppositeEnd(Node *);
+  virtual int determineNeededResources(int army_size)=0;
+
 };
 
 #endif

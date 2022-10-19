@@ -7,8 +7,9 @@ class Terrain
 {
   public:
   virtual void calculate_losses(Army *army) = 0;
-  Terrain(){};
-  ~Terrain(){};
+  Terrain();
+  ~Terrain();
+  virtual int determineNeededResources(int army_size)=0;
 };
 
 #endif
