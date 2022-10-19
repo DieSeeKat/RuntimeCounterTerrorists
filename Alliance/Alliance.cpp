@@ -23,6 +23,11 @@ void Alliance::remove(AllianceComponent* alliance_component)
 
 }
 
+std::vector<AllianceComponent*> Alliance::getChildren()
+{
+  return children;
+}
+
 AllianceComponent* Alliance::getChild(int index) {
   return children.at(index);
 }

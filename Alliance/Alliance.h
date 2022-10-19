@@ -14,6 +14,8 @@ class Alliance : AllianceComponent
 
   void remove(AllianceComponent *alliance_component);
 
+  std::vector<AllianceComponent *> getChildren();
+
   AllianceComponent *getChild(int index);
 };
 
