@@ -46,9 +46,15 @@ class Empire : public AllianceComponent
 
   public:
   Empire(std::string name);
+  ~Empire();
   void algorithm();
   void request();
   void action();
+  /**
+   * @brief Removes a Node from the Empire's owned_nodes array
+   * @param node Node to be removed
+   */
+  void removeNode(Node *node);
   /**
    * @brief A method to recruit armies from all qualifying Nodes that the Empire owns
    * This method loops through all owned Nodes and generates an ArmyRatio for each of them. It will then recruit an Army from each town and station that Army at the town.
@@ -113,6 +119,7 @@ class Empire : public AllianceComponent
    * @param state New state of the Empire
    */
   void setState(WarStage *state);
+  void unwindAlliances();
 };
 
 #endif

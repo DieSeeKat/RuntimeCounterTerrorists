@@ -20,7 +20,7 @@ class Empire;
 
 class Node : Aggregate, Subject
 {
-  private:
+  protected:
   Mediator *mediator;
   /// The number of resources a Node holds
   int resources;
@@ -29,7 +29,7 @@ class Node : Aggregate, Subject
   /// The original empire of population of the Node
   Empire *population_empire;
   /// The current controlling power
-  Empire *ownerEmpire;
+  Empire *owner_empire;
   /// All paths connecting to other Nodes
   std::vector<Path *> paths;
 
@@ -39,6 +39,8 @@ class Node : Aggregate, Subject
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm
   Node *prev = nullptr;
   Node();
+  ~Node();
+  void removePath(Path *path);
   NodeIterator *createIterator();
   /**
    * @brief Form a connection between this Node and another
@@ -107,6 +109,7 @@ class Node : Aggregate, Subject
    * @return Returns a vector of Nodes leading to the passed in node
    */
   bool connectedToCapital(std::vector<Node *> nodes, Node *capital);
+  void makeFreeCity();
 };
 
 #endif
