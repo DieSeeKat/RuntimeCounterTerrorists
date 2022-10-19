@@ -1,5 +1,5 @@
 #include "Capitol.h"
-#include "Empire.h"
+#include "../Empire.h"
 
 void Capitol::colonise(Empire *colonising_empire)
 {
