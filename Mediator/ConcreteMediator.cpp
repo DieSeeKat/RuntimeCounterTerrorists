@@ -7,7 +7,11 @@ void ConcreteMediator::notifyOfAttack(Node* node) {
 
   while(!town_it->isDone())
   {
-    current_town->onAttacked();
+    if(current_town->getOwnerEmpire() == node->getOwnerEmpire())
+    {
+      current_town->onAttacked();
+    }
+
     town_it->next();
     current_town = town_it->currentNode();
   }
