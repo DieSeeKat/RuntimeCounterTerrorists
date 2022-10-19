@@ -1,11 +1,13 @@
 #include "Subject.h"
 
-void Subject::attach(Observer* observer) {
-	// TODO - implement Subject::attach
-	throw "Not yet implemented";
+void Subject::attach(Observer* observer)
+{
+    this->observer.push_back(observer);
+
 }
 
-void Subject::detach(Observer* observer) {
+void Subject::detach(Observer* observer)
+{
 	// TODO - implement Subject::detach
 	throw "Not yet implemented";
 }
