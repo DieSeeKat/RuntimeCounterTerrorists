@@ -119,13 +119,14 @@ AllianceComponent *Empire::getChild(int index)
 {
   return nullptr;
 }
+
 bool Empire::isAlly(Empire *empire)
 {
-  std::vector<AllianceComponent *> empire_alliances = empire->alliances;
 
-  for (int i = 0; i < empire_alliances.size(); i++)
+
+  for (int i = 0; i < this->alliances.size(); i++)
   {
-    if(empire_alliances.at(i) == this)
+    if(this->alliances.at(i) == empire)
     {
       return true;
     }
