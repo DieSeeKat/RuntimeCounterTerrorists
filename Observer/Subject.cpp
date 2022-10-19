@@ -25,6 +25,10 @@ void Subject::detach(Observer* observer)
 
 void Subject::notify()
 {
-	// TODO - implement Subject::notify
-	throw "Not yet implemented";
+	vector<Observer*>::iterator it = this->observer.begin();
+
+    for (it = this->observer.begin(); it != this->observer.end(); ++it)
+    {
+        (*it)->update();
+    }
 }
