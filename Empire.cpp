@@ -10,7 +10,7 @@ Empire::Empire(std::string name)
   this->name      = name;
   this->war_stage = new Attack(this);
   this->armies    = std::vector<Army>();
-  this->alliances = std::vector<AllianceComponent*>(); //Create alliance with yourself
+  this->alliances = std::vector<AllianceComponent *>();//Create alliance with yourself
   this->alliances.push_back(this);
 }
 
@@ -121,6 +121,17 @@ AllianceComponent *Empire::getChild(int index)
 }
 bool Empire::isAlly(Empire *empire)
 {
+  std::vector<AllianceComponent *> empire_alliances = empire->alliances;
+
+  for (int i = 0; i < empire_alliances.size(); i++)
+  {
+    if(empire_alliances.at(i) == this)
+    {
+      return true;
+    }
+  }
+
+  return false;
 }
 Node *Empire::getCapital()
 {
