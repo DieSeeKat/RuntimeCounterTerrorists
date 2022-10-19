@@ -10,6 +10,8 @@ class AllianceComponent
   std::string alliance_name;
 
   public:
+  AllianceComponent();
+
   AllianceComponent(std::string name);
 
   virtual void add(AllianceComponent *alliance_component) = 0;
