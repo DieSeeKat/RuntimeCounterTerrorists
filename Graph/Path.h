@@ -14,6 +14,9 @@ class Path
 
   public:
   void calculate_losses(Army *army);
+  //-------------------------------------------------------------ADDED BY DHARSHAN GOPAUL
+  Path();
+  ~Path();
   Node *getOppositeEnd(Node *);
 };
 

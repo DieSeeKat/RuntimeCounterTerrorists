@@ -1,7 +1,14 @@
 #include "Plains.h"
+#include <iostream>
+using namespace std;
 
 void Plains::calculate_losses(Army *army)
 {
-  // TODO - implement Plains::calculate_losses
-  throw "Not yet implemented";
+  cout << "The Army has chosen the Plains path. More enemies but less resources is used" << endl;
+}
+Plains::Plains() : Terrain()
+{
+}
+Plains::~Plains()
+{
 }

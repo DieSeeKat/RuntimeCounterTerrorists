@@ -9,6 +9,8 @@ class Mountains : Terrain
 {
   public:
   void calculate_losses(Army *army);
+  Mountains();
+  ~Mountains();
 };
 
 #endif

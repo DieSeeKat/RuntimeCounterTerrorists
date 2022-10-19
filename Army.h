@@ -17,6 +17,8 @@ class Army : Observer
   Node *position;
   int resources;
   Empire *empire;
+  //--------------------------------------------------ADDED BY DHARSHAN GOPAUL
+  int army_size;
 
   public:
   void update();
@@ -25,6 +27,15 @@ class Army : Observer
 
   void moveToTown(Node *town);
 
+  void defendTown(Node *town);
+  //--------------------------------------------------ADDED BY DHARSHAN GOPAUL
+  int getResource();
+
+  void setResource(int new_resource);
+
+  int getArmySize();
+
+  void setArmySize(int new_size);
   void defendTown(Node *town);
 
   Node *getPosition();

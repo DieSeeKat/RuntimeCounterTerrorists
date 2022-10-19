@@ -23,6 +23,26 @@ void Army::defendTown(Node *town)
   // TODO - implement Army::defendTown
   throw "Not yet implemented";
 }
+//-------------------------------------------ADDED BY DHARSHAN GOPAUL
+int Army::getResource()
+{
+  return resources;
+}
+
+void Army::setResource(int new_resource)
+{
+  resources = new_resource;
+}
+
+int Army::getArmySize()
+{
+  return army_size;
+}
+
+void Army::setArmySize(int new_size)
+{
+  army_size = new_size;
+}
 Node *Army::getPosition()
 {
   return position;
