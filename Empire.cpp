@@ -101,8 +101,8 @@ void Empire::addTown(Node *town)
 
 void Empire::joinAlliance(Empire *empire)
 {
-  // TODO - implement Empire::joinAlliance
-  throw "Not yet implemented";
+  this->alliances = empire->alliances;
+  this->alliances.at(0)->add(this);
 }
 
 void Empire::add(AllianceComponent *alliance_component)
