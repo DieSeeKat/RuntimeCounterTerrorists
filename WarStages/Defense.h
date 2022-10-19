@@ -1,7 +1,7 @@
 #ifndef DEFENSE_H
 #define DEFENSE_H
 
-#include "Empire.h"
+#include "../Empire.h"
 
 #include "WarStage.h"
 

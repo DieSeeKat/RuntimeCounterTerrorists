@@ -1,5 +1,5 @@
 #include "NodeIterator.h"
-#include "Node.h"
+#include "../Graph/Node.h"
 
 int path_index = 0;
 

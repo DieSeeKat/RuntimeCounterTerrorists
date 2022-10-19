@@ -7,14 +7,14 @@
 #include "../Army.h"
 #include "../ArmyRatio.h"
 
-#include "Aggregate.h"
-#include "NodeIterator.h"
+#include "../Iterator/Aggregate.h"
+#include "../Iterator/NodeIterator.h"
 
 #include "Path.h"
 
-#include "Subject.h"
+#include "../Observer/Subject.h"
 
-#include "Mediator.h"
+#include "../Mediator/Mediator.h"
 
 class Empire;
 

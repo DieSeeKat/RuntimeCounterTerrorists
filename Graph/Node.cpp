@@ -5,7 +5,7 @@
 #include <deque>
 #include <vector>
 
-#include "Empire.h"
+#include "../Empire.h"
 #include "Node.h"
 
 NodeIterator *Node::createIterator()
