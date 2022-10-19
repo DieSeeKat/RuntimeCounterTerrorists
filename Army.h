@@ -27,7 +27,6 @@ class Army : Observer
 
   void moveToTown(Node *town);
 
-  void defendTown(Node *town);
   //--------------------------------------------------ADDED BY DHARSHAN GOPAUL
   int getResource();
 
