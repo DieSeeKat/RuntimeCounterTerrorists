@@ -109,7 +109,11 @@ class Node : Aggregate, Subject
    * @return Returns a vector of Nodes leading to the passed in node
    */
   bool connectedToCapital(std::vector<Node *> nodes, Node *capital);
+
+  void onAttacked(); //A method that gets triggered when a town get attacked
+
   void makeFreeCity();
+
 };
 
 #endif

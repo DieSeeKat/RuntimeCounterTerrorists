@@ -1,3 +1,5 @@
+#include <vector>
+#include <cmath>
 #include <algorithm>
 #include <cmath>
 #include <deque>
@@ -135,6 +137,12 @@ void Node::addPathTo(Node *node)
   Path *new_path = new Path(this, node);
   addPath(new_path);
   node->addPath(new_path);
+}
+
+void Node::onAttacked()
+{
+  // TODO - implement Node::onAttacked
+  throw "Not yet implemented";
 }
 Node::~Node()
 {
