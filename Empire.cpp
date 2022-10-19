@@ -142,3 +142,19 @@ void Empire::setPrevNumNodes(int num_nodes)
 {
   prev_num_nodes = num_nodes;
 }
+void Empire::removeNode(Node *node)
+{
+  std::remove(owned_nodes.begin(), owned_nodes.end(), node);
+}
+Empire::~Empire()
+{
+  for (auto node : owned_nodes)
+  {
+    node->makeFreeCity();
+    std::remove(owned_nodes.begin(), owned_nodes.end(), node);
+  }
+  unwindAlliances();
+}
+void Empire::unwindAlliances()
+{
+}

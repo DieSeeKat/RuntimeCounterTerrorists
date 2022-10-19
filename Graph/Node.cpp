@@ -83,7 +83,7 @@ std::vector<Node *> Node::findShortestPathTo(std::vector<Node *> nodes, Node *en
 }
 Empire *Node::getOwnerEmpire()
 {
-  return ownerEmpire;
+  return owner_empire;
 }
 bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 {
@@ -105,7 +105,7 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
     for (auto path : curr->paths)
     {
       int newDist = curr->dist + 1;
-      if (newDist < path->getOppositeEnd(curr)->dist && path->getOppositeEnd(curr)->getOwnerEmpire() == ownerEmpire)
+      if (newDist < path->getOppositeEnd(curr)->dist && path->getOppositeEnd(curr)->getOwnerEmpire() == owner_empire)
       {
         path->getOppositeEnd(curr)->dist = newDist;
         path->getOppositeEnd(curr)->prev = curr;
@@ -143,4 +143,21 @@ void Node::onAttacked()
 {
   // TODO - implement Node::onAttacked
   throw "Not yet implemented";
+}
+Node::~Node()
+{
+  for (auto path : paths)
+  {
+    remove(paths.begin(), paths.end(), path);
+    path->getOppositeEnd(this)->removePath(path);
+  }
+}
+void Node::removePath(Path *path)
+{
+  remove(paths.begin(), paths.end(), path);
+  delete path;
+}
+void Node::makeFreeCity()
+{
+  owner_empire = NULL;
 }
