@@ -5,10 +5,13 @@
 
 #include "WarStage.h"
 
-class Defense : WarStage
+class Defense : public WarStage
 {
   public:
   Defense(Empire *empire);
+  /**
+   * @brief Will determine what the Empire will do on its turn
+   */
   void takeTurn();
 };
 
