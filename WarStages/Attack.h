@@ -3,12 +3,13 @@
 
 #include "WarStage.h"
 
-#include "Empire.h"
+#include "../Empire.h"
 
 class Attack : public WarStage
 {
   public:
   Attack(Empire *empire);
+  ~Attack();
   /**
    * @brief Will determine what the Empire will do on its turn
    */

@@ -8,8 +8,6 @@
 class ConcreteMediator : Mediator {
 
 public:
-	Node** node_list;
-
 	void notifyOfAttack(Node* node);
 };
 

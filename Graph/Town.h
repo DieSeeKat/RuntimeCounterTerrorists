@@ -8,7 +8,8 @@
 class Town : public Node
 {
   public:
-  Town();
+  Town(Empire* empire, int population);
+  ~Town();
   void colonise(Empire *colonising_empire) override;
   std::string getState() override;
 };
