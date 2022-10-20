@@ -113,3 +113,12 @@ std::vector<Path*> Node::getPaths()
 {
   return paths;
 }
+
+void Node::removeObserver(Observer *observer)
+{
+    vector<Observer*> observerList = getObserverList();
+
+   observerList.erase(std::remove(observerList.begin(), observerList.end(),observer),observerList.end());
+
+
+}
