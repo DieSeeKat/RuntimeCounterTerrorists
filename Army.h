@@ -44,7 +44,7 @@ class Army : Observer
 
   void setArmySize(int new_size);
 
-  void killRandomUnit(int deaths);
+  void killRandomUnit();
 };
 
 #endif

@@ -47,6 +47,6 @@ Node *Army::getPosition()
 {
   return position;
 }
-void Army::killRandomUnit(int deaths)
+void Army::killRandomUnit()
 {
 }

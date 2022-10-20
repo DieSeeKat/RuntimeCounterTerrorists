@@ -21,10 +21,12 @@ void Path::calculate_losses(Army *army)
 
   if (army->getResource() <= 0)
   {
-    num_deaths = 5;
-    for (int i = 0; i < num_deaths; i++){
+    num_deaths = determineNumDeaths(army->getArmySize());
+    for (int i = 0; i < num_deaths; i++)
+    {
       //determine random index in army vector size
       //delete that index
+      army->killRandomUnit();
     }
   }
 
@@ -36,7 +38,14 @@ void Path::calculate_losses(Army *army)
   }
   else
   {
-    cout << "The Army has lost " << num_deaths << " units while on the path" << endl;
+    if (num_deaths == 0)
+    {
+      cout << "The Army has not lost a unit" << endl;
+    }
+    else
+    {
+      cout << "The Army has lost " << num_deaths << " units while on the path" << endl;
+    }
   }
 }
 
@@ -44,6 +53,8 @@ Path ::~Path()
 {
   cout << "The Army has reached its destination";
 }
+
+//------------------------------------------------------------------
 Node *Path::getOppositeEnd(Node *node)
 {
   if (end_points[0] == node)

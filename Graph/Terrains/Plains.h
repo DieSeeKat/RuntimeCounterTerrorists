@@ -8,11 +8,11 @@
 class Plains : Terrain
 {
   public:
-  void calculate_losses(Army *army);
   //------------------------------------------------------ADDED BY DHARSHAN GOPAUL
   Plains();
   ~Plains();
-  int determineNeededResources(int  army_size);
+  int determineNeededResources(int army_size) override;
+  int determineNumDeaths(int army_size) override;
 };
 
 #endif
