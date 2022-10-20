@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "Alliance/Alliance.h"
 #include "Alliance/AllianceComponent.h"
@@ -36,7 +37,7 @@ class Empire : public AllianceComponent
   WarStage *war_stage;
   Alliance **alliances;
   /// A vector of all controlled armies
-  std::vector<Army> armies;
+  std::vector<Army*> armies;
   /// A pointer to the War object, which hold information on all other entities in the war
   War *war;
   /// The Empire's capital Node
@@ -45,7 +46,7 @@ class Empire : public AllianceComponent
   int prev_num_nodes = 0;
 
   public:
-  Empire(std::string name);
+  Empire(std::string name, War* war);
   ~Empire();
   void algorithm();
   void request();
@@ -120,6 +121,9 @@ class Empire : public AllianceComponent
    */
   void setState(WarStage *state);
   void unwindAlliances();
+  War* getWar();
+  void setWar(War * war);
+  void removeArmy(Army *);
 };
 
 #endif

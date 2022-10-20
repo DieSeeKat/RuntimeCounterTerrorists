@@ -8,14 +8,15 @@
 
 #include "Warstages/Attack.h"
 
-Empire::Empire(std::string name)
+Empire::Empire(std::string name, War* war)
 {
   this->name      = name;
   this->war_stage = new Attack(this);
-  this->armies    = std::vector<Army>();
+  this->armies    = std::vector<Army*>();
   this->colony_policy = new Assimilate();
   this->recruitment_policy = new HeavyWar();
   this->war_style_policy = new GuerillaWarfare();
+  this->war = war;
 }
 
 void Empire::algorithm()
@@ -46,7 +47,7 @@ void Empire::recruit()
 
     Army army = owned_node->recruit(army_ratio, army_size);
 
-    armies.push_back(army);
+    armies.push_back(&army);
   }
 }
 
@@ -54,13 +55,13 @@ void Empire::advanceArmies()
 {
   for (int army_index = 0; army_index < armies.size(); army_index++)
   {
-    Node *current_town            = armies[army_index].getPosition();
+    Node *current_town            = armies[army_index]->getPosition();
     std::vector<Empire *> empires = war->getEmpires();
     for (auto empire : empires)
     {
       if (!isAlly(empire))
       {
-        armies[army_index].moveToTown(current_town->findShortestPathTo(war->getNodes(), empire->getCapital())[0]);
+        armies[army_index]->moveToTown(current_town->findShortestPathTo(war->getNodes(), empire->getCapital())[0]);
         break;
       }
     }
@@ -71,14 +72,14 @@ void Empire::retreatArmies()
 {
   for (int army_index = 0; army_index < armies.size(); army_index++)
   {
-    Node *current_town = armies[army_index].getPosition();
+    Node *current_town = armies[army_index]->getPosition();
     if (current_town->getOwnerEmpire() == this)
     {
-      armies[army_index].moveToTown(current_town);
+      armies[army_index]->moveToTown(current_town);
     }
     else
     {
-      armies[army_index].moveToTown(current_town->findShortestPathTo(war->getNodes(), capital)[0]);
+      armies[army_index]->moveToTown(current_town->findShortestPathTo(war->getNodes(), capital)[0]);
     }
   }
 }
@@ -167,4 +168,17 @@ Empire::~Empire()
 }
 void Empire::unwindAlliances()
 {
+}
+War *Empire::getWar()
+{
+  return war;
+}
+void Empire::setWar(War* war)
+{
+  this->war = war;
+}
+void Empire::removeArmy(Army * army)
+{
+  std::remove(armies.begin(), armies.end(), army);
+  delete army;
 }

@@ -165,3 +165,11 @@ void Node::makeFreeCity()
 {
   owner_empire = NULL;
 }
+std::vector<Army *> Node::getStationedArmies()
+{
+  return stationed_armies;
+}
+void Node::removeStationedArmy(Army* army)
+{
+  std::remove(stationed_armies.begin(),  stationed_armies.end(), army);
+}

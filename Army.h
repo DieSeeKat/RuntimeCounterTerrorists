@@ -47,6 +47,13 @@ class Army : Observer
      * @return Returns a Node pointer
      */
   Node *getPosition();
+
+  Empire* getOwnerEmpire();
+
+  int getNumUnits();
+
+  void killSelf();
+  void killRandomUnit();
 };
 
 #endif

@@ -32,6 +32,7 @@ class Node : Aggregate, Subject
   Empire *owner_empire;
   /// All paths connecting to other Nodes
   std::vector<Path *> paths;
+  std::vector<Army*> stationed_armies;
 
   public:
   /// The current distance from the start Node of the Label-Correcting Algorithm
@@ -110,9 +111,13 @@ class Node : Aggregate, Subject
    */
   bool connectedToCapital(std::vector<Node *> nodes, Node *capital);
 
-  void onAttacked(); //A method that gets triggered when a town get attacked
+  ///A method that gets triggered when a town get attacked
+  void onAttacked();
 
   void makeFreeCity();
+
+  std::vector<Army*> getStationedArmies();
+  void removeStationedArmy(Army* army);
 
 };
 
