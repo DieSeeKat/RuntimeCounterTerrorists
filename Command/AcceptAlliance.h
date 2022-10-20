@@ -13,6 +13,7 @@ class AcceptAlliance : Communication
   Empire *sender;
 
   public:
+    AcceptAlliance(Empire * _sender);
   void handleAlliance(Empire * empire);
 };
 
