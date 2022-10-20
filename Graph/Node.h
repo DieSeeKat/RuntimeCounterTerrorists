@@ -42,6 +42,7 @@ class Node : Aggregate, Subject
   int getPopulation();
 
   void removeObserver(Observer* observer);
+  void addObserver(Observer* observer);
 
 
   Node *nextStepTo(Node *node);

@@ -122,3 +122,8 @@ void Node::removeObserver(Observer *observer)
 
 
 }
+
+void Node::addObserver(Observer *observer)
+{
+
+}
