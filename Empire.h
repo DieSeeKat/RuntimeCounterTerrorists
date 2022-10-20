@@ -35,8 +35,8 @@ class Empire : public AllianceComponent
   RecruitmentPolicy *recruitment_policy;
   /// The current stage of war (Attacking or Defending)
   WarStage *war_stage;
-  /// A vector of all the alliances of the empire
-  std::vector<AllianceComponent *>alliances;
+  /// A pointer to the head of the alliance tree structure
+  AllianceComponent * alliance_tree;
   /// A vector of all controlled armies
   std::vector<Army*> armies;
   /// A pointer to the War object, which hold information on all other entities in the war
