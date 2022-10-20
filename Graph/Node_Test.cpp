@@ -10,17 +10,17 @@
 #include <vector>
 
 #include "../Empire.h"
+#include "../Memento/War.h"
 #include "Capital.h"
 #include "Node.h"
 #include "Town.h"
-#include "../Memento/War.h"
 
 TEST(Graph, ShortestPath_Test)
 {
-  War* war = new War();
+  War *war = new War();
 
-  Empire *e1                = new Empire("Rome");
-  Empire *e2                = new Empire("Greece");
+  Empire *e1 = new Empire("Rome");
+  Empire *e2 = new Empire("Greece");
 
   war->addEmpire(e1);
   war->addEmpire(e2);
@@ -64,11 +64,12 @@ TEST(Graph, ShortestPath_Test)
   ASSERT_EQ(expected, path);
 }
 
-TEST(Graph, ConnectedToCapital_TEST){
-  War* war = new War();
+TEST(Graph, ConnectedToCapital_TEST)
+{
+  War *war = new War();
 
-  Empire *e1                = new Empire("Rome");
-  Empire *e2                = new Empire("Greece");
+  Empire *e1 = new Empire("Rome");
+  Empire *e2 = new Empire("Greece");
 
   war->addEmpire(e1);
   war->addEmpire(e2);
@@ -110,4 +111,46 @@ TEST(Graph, ConnectedToCapital_TEST){
   EXPECT_TRUE(!(n7->connectedToCapital(war->getNodes(), c1)));
   EXPECT_TRUE(n6->connectedToCapital(war->getNodes(), c1));
   EXPECT_TRUE(!(n5->connectedToCapital(war->getNodes(), c2)));
+}
+
+TEST(Graph, Repopulate_TEST)
+{
+  War *war = new War();
+
+  Empire *e1 = new Empire("Rome");
+
+  war->addEmpire(e1);
+
+  Node *node = new Node(e1, 4, true);
+
+  int population = node->getPopulation();
+
+  node->repopulate();
+
+  ASSERT_TRUE(node->getPopulation() != population);
+}
+
+TEST(Graph, Recharge_TEST)
+{
+  War *war = new War();
+
+  Empire *e1 = new Empire("Rome");
+
+  war->addEmpire(e1);
+
+  Node *node = new Node(e1, 4, true);
+
+  node->setResources(1);
+
+  int resources = node->getResources();
+
+  node->rechargeResources();
+
+  ASSERT_TRUE(node->getResources() != resources);
+
+  resources = node->getResources();
+
+  node->rechargeResources();
+
+  ASSERT_TRUE(node->getResources() == resources);
 }

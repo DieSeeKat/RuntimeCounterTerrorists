@@ -154,6 +154,8 @@ class Node : Aggregate, Subject
   void setOwnerEmpire(Empire *empire);
   void setNodeType(NodeType *node_type);
   NodeType* getNodeType();
+  int getResources();
+  void setResources(int resources);
 };
 
 #endif

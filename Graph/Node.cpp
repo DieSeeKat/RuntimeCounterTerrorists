@@ -30,7 +30,7 @@ Army Node::recruit(ArmyRatio ratio, int num_recruits)
 
 void Node::repopulate()
 {
-  population = round(population * 1.1);
+  population = ceil(population * 1.1);
 }
 int Node::getPopulation()
 {
@@ -257,4 +257,12 @@ Node::Node(Empire *owner_empire, int population, bool capital)
 NodeType *Node::getNodeType()
 {
   return node_type;
+}
+int Node::getResources()
+{
+  return resources;
+}
+void Node::setResources(int resources)
+{
+  this->resources = resources;
 }
