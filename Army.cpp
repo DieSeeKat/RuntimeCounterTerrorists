@@ -1,4 +1,12 @@
 #include "Army.h"
+#include "Empire.h"
+#include "Memento/War.h"
+
+Army::Army(Node* current_position)
+{
+    position = current_position;
+
+}
 
 void Army::update()
 {
@@ -13,7 +21,7 @@ void Army::attackTown(Node *town)
 
 void Army::moveToTown(Node *town)
 {
-    if (position == town)
+    if (town == position)
     {
         std::cout << "Army is already in that town" << std::endl;
 
@@ -21,11 +29,14 @@ void Army::moveToTown(Node *town)
 
     else
     {
-        position = town;
+      town->removeObserver(this);
+      town = position;
+      town->addObserver(this);
 
-        std::cout << "Army has been moved to " << position << std::endl;
+      std::cout << "Army has been moved to " << position << std::endl;
     }
 }
+
 
 void Army::defendTown(Node *town)
 {

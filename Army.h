@@ -21,6 +21,9 @@ class Army : Observer
   Empire *empire;
 
   public:
+
+  Army(Node* current_position);
+
   void update();
 
   void attackTown(Node *town);
@@ -28,6 +31,7 @@ class Army : Observer
   void moveToTown(Node *town);
 
   void defendTown(Node *town);
+
 
   Node *getPosition();
 };
