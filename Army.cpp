@@ -29,11 +29,14 @@ void Army::moveToTown(Node *town)
 
     else
     {
-      town->removeObserver(this);
-      town = position;
-      town->addObserver(this);
+      subject->removeObserver(this);
+      subject = position;
+      subject->addObserver(this);
+        
+      position = town;
 
-      std::cout << "Army has been moved to " << position << std::endl;
+      //TODO - Add position name to display below
+      std::cout << "Army has been moved to " << std::endl;
     }
 }
 
