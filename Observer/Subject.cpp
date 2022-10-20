@@ -32,3 +32,9 @@ void Subject::notify()
         (*it)->update();
     }
 }
+
+std::vector<Observer*> Subject::getObserverList()
+{
+
+    return observer;
+}
