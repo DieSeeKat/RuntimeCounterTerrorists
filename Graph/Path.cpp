@@ -21,6 +21,11 @@ void Path::calculate_losses(Army *army)
 
   if (army->getResource() <= 0)
   {
+    num_deaths = 5;
+    for (int i = 0; i < num_deaths; i++){
+      //determine random index in army vector size
+      //delete that index
+    }
   }
 
   army->setArmySize(army->getArmySize() - num_deaths);
@@ -31,7 +36,7 @@ void Path::calculate_losses(Army *army)
   }
   else
   {
-    cout << "The Army has lost " << num_deaths << " units whilst along the path" << endl;
+    cout << "The Army has lost " << num_deaths << " units while on the path" << endl;
   }
 }
 
