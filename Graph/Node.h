@@ -76,7 +76,7 @@ class Node : Aggregate, Subject
    */
   Army recruit(ArmyRatio ratio, int num_recruits);
   /**
-   * @brief A pure virtual function that will be implemented in Town
+   * @brief A pure virtual function that will be implemented in Town and Capital
    * @param colonising_empire
    */
   virtual void colonise(Empire *colonising_empire) = 0;

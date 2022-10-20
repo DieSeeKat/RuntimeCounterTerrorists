@@ -9,12 +9,12 @@ class Capital : public Node
   public:
   Capital(Empire* empire, int population);
   ~Capital();
-  std::string getState();
+  std::string getState() override;
   /**
    * @brief Colonise the current Node to be part of the colonising_empire
    * @param colonising_empire The Empire colonising this
    */
-  void colonise(Empire *colonising_empire);
+  void colonise(Empire *colonising_empire) override;
 };
 
 #endif

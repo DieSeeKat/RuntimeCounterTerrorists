@@ -47,15 +47,15 @@ void Empire::recruit()
 
 void Empire::advanceArmies()
 {
-  for (int army_index = 0; army_index < armies.size(); army_index++)
+  for (auto army : armies)
   {
-    Node *current_town            = armies[army_index]->getPosition();
+    Node *current_town            = army->getPosition();
     std::vector<Empire *> empires = war->getEmpires();
     for (auto empire : empires)
     {
       if (!isAlly(empire))
       {
-        armies[army_index]->moveToTown(current_town->findShortestPathTo(war->getNodes(), empire->getCapital())[0]);
+        army->moveToTown(current_town->findShortestPathTo(war->getNodes(), empire->getCapital())[0]);
         break;
       }
     }
@@ -145,6 +145,10 @@ AllianceComponent *Empire::getChild(int index)
 
 bool Empire::isAlly(Empire *empire)
 {
+    if (empire == this) {
+      return true;
+    }
+
     if(this->alliances.empty())
     {
         return false;
@@ -243,6 +247,24 @@ Empire* Empire::clone(){
 }
 Empire::Empire(std::string name)
 {
-  this->name = name;
+  this->name      = name;
+  this->war_stage = new Attack(this);
+  this->armies    = std::vector<Army*>();
+  this->colony_policy = new Assimilate();
+  this->recruitment_policy = new HeavyWar();
+  this->war_style_policy = new GuerillaWarfare();
   this->war = nullptr;
+}
+void Empire::setCapital(Node* capital)
+{
+  this->capital = capital;
+}
+void Empire::dieOff()
+{
+  for (auto node : owned_nodes){
+    node->makeFreeCity();
+    owned_nodes.erase(std::remove(owned_nodes.begin(), owned_nodes.end(), node), owned_nodes.end());
+  }
+  capital = nullptr;
+  armies.clear();
 }

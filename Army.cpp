@@ -2,10 +2,10 @@
 #include "Empire.h"
 #include "Memento/War.h"
 
-Army::Army(Node* current_position, Empire* owner_empire)
+Army::Army(Node *current_position, Empire *owner_empire)
 {
   position = current_position;
-  empire = owner_empire;
+  empire   = owner_empire;
 }
 
 void Army::update()
@@ -16,15 +16,16 @@ void Army::update()
 
 void Army::attackTown(Node *town)
 {
-  if (!(empire->isAlly(town->getOwnerEmpire()))){
+  if (!(empire->isAlly(town->getOwnerEmpire())))
+  {
     town->getAttacked(this);
   }
 }
 
 void Army::moveToTown(Node *town)
 {
-  // TODO - implement Army::moveToTown
-  throw "Not yet implemented";
+  position = town;
+  attackTown(town);
 }
 Node *Army::getPosition()
 {
@@ -49,8 +50,10 @@ void Army::killRandomUnit()
 {
   //TODO - Random Removal
   units.pop_back();
-  if (units.size() == 0) {
-    if (position != nullptr) {
+  if (units.size() == 0)
+  {
+    if (position != nullptr)
+    {
       position->removeStationedArmy(this);
     }
     killSelf();

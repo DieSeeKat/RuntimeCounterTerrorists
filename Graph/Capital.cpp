@@ -9,7 +9,7 @@ void Capital::colonise(Empire *colonising_empire)
   colonising_empire->addTown(this);
   old_owner_empire->removeNode(this);
 
-  delete old_owner_empire;
+  old_owner_empire->dieOff();
 }
 Capital::~Capital()
 {

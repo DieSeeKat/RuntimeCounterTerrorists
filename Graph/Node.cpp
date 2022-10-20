@@ -52,7 +52,6 @@ std::vector<Node *> Node::findShortestPathTo(std::vector<Node *> nodes, Node *en
 
   while (!to_be_checked.empty())
   {
-
     Node *curr = to_be_checked.front();
     to_be_checked.pop_front();
     for (auto path : curr->paths)
@@ -199,7 +198,7 @@ void Node::getAttacked(Army *attacking_army)
     for (int i = 0; i < friendly_units_in_footmen; i++) {
       attacking_army->killRandomUnit();
     }
-    colonise(attacking_army->getOwnerEmpire());
+    this->colonise(attacking_army->getOwnerEmpire());
   }else {
     for (int i = 0; i < enemy_units_in_footmen; i++) {
       if (!getStationedArmies().empty())

@@ -1,9 +1,9 @@
 #ifndef EMPIRE_H
 #define EMPIRE_H
 
+#include <algorithm>
 #include <string>
 #include <vector>
-#include <algorithm>
 
 #include "Alliance/Alliance.h"
 #include "Alliance/AllianceComponent.h"
@@ -47,10 +47,11 @@ class Empire : public AllianceComponent
   int prev_num_nodes = 0;
 
   public:
-      std::vector<Army*> armies;
-  Empire(std::string name, War* war);
+  std::vector<Army *> armies;
+  Empire(std::string name, War *war);
   Empire(std::string name);
   ~Empire();
+  void dieOff();
   void algorithm();
   void request();
   void action();
@@ -68,7 +69,7 @@ class Empire : public AllianceComponent
    * @brief Recruit an Army from the specific Node
    * @param node Node to be recruited from
    */
-  void recruitArmy(Node* node);
+  void recruitArmy(Node *node);
   /**
    * @brief Calls the takeTurn() method of the active WarStage
    */
@@ -117,6 +118,7 @@ class Empire : public AllianceComponent
    * @return Return a Node pointer
    */
   Node *getCapital();
+  void setCapital(Node* capital);
   /**
    * @brief A getter for the prev_num_nodes attribute
    * @return Return an int
@@ -140,12 +142,12 @@ class Empire : public AllianceComponent
    * @brief Get the War attribute
    * @return Return a War pointer
    */
-  War* getWar();
+  War *getWar();
   /**
    * @brief Set the War attribute
    * @param war New War
    */
-  void setWar(War * war);
+  void setWar(War *war);
   /**
    * @brief Remove and delete Army from the armies vector.
    */
@@ -157,8 +159,8 @@ class Empire : public AllianceComponent
    */
   std::vector<Empire *> getAlliances();
 
-  void addArmy(Army * army);
-  Empire* clone();
+  void addArmy(Army *army);
+  Empire *clone();
 };
 
 #endif
