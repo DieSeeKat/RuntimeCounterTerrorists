@@ -2,7 +2,7 @@
 #define PATH_H
 
 #include "../Army.h"
-#include "Terrain.h"
+
 class Node;
 
 class Path
@@ -18,9 +18,8 @@ class Path
   //-------------------------------------------------------------ADDED BY DHARSHAN GOPAUL
   Path();
   ~Path();
-  virtual int determineNeededResources(int army_size)=0;
-  virtual int determineNumDeaths(int army_size)=0;
-
+  virtual int determineNeededResources(int army_size) = 0;
+  virtual int determineNumDeaths(int army_size)       = 0;
 };
 
 #endif

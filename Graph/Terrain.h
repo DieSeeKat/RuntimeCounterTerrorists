@@ -2,7 +2,7 @@
 #define TERRAIN_H
 
 #include "../Army.h"
-
+#include "Path.h"
 class Terrain
 {
   public:

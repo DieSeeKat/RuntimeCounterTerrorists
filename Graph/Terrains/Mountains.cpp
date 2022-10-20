@@ -5,7 +5,7 @@ using namespace std;
 
 Mountains::Mountains() : Terrain()
 {
-  cout << "The Army has chosen to take the Mountain path." << endl;
+  cout << "The Army has chosen to take the Mountain path" << endl;
 }
 Mountains::~Mountains()
 {
@@ -13,7 +13,7 @@ Mountains::~Mountains()
 int Mountains::determineNeededResources(int army_size)
 {
   int return_resource = 0;
-  int min_range = 20, max_range = 40;
+  int min_range = 20, max_range = 80;
 
   int random_num = rand() % (max_range - min_range) + min_range;
 

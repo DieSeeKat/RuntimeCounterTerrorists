@@ -49,4 +49,7 @@ Node *Army::getPosition()
 }
 void Army::killRandomUnit()
 {
+  int random_num                 = rand() % (units.size() - 1) + 1;
+  std::vector<Unit>::iterator it = units.begin() + random_num;
+  units.erase(it);
 }
