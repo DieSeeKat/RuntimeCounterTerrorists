@@ -197,3 +197,8 @@ void Empire::recruitArmy(Node* node)
 Empire* Empire::clone(){
   return NULL;
 }
+Empire::Empire(std::string name)
+{
+  this->name = name;
+  this->war = nullptr;
+}

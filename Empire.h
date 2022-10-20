@@ -47,6 +47,7 @@ class Empire : public AllianceComponent
 
   public:
   Empire(std::string name, War* war);
+  Empire(std::string name);
   ~Empire();
   void algorithm();
   void request();

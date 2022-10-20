@@ -199,7 +199,7 @@ void Node::getAttacked(Army *attacking_army)
     colonise(attacking_army->getOwnerEmpire());
   }else {
     for (int i = 0; i < ally_units_in_footmen; i++) {
-      if (getStationedArmies().size() > 0)
+      if (!getStationedArmies().empty())
       {
         getStationedArmies()[0]->killRandomUnit();
       }

@@ -17,3 +17,8 @@ Capital::~Capital()
 Capital::Capital(Empire *empire, int population) : Node(empire, population)
 {
 }
+std::string Capital::getState()
+{
+  // TODO - See if getState is needed
+  return "...";
+}
