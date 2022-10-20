@@ -46,6 +46,10 @@ class Node : Aggregate, Subject
    * @param path Path to be removed
    */
   void removePath(Path *path);
+    /**
+   * @brief Remove a path between this Node and another
+   * @return Iterator to iterate through the adjacent towns
+   */
   NodeIterator *createIterator();
   /**
    * @brief Form a connection between this Node and another
