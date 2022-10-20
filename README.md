@@ -83,15 +83,14 @@ else
   - `bazel test //...` (runs all tests in project)
 ---
 ## Writing you own tests
-`#include "gtest/gtest.h"`
+```
+#include "gtest/gtest.h"
 
-`TEST(TestName, TestDescription) {`
-
-  `EXPECT_STRNE("hello", "world");`
-
-  `EXPECT_EQ(7 * 6, 42);`
-
-`}`
+TEST(TestName, TestDescription) {
+  EXPECT_STRNE("hello", "world");
+  EXPECT_EQ(7 * 6, 42);
+}
+```
 
 For further documentation, refer to:
 > http://google.github.io/googletest/primer.html
