@@ -13,6 +13,7 @@ class RequestAlliance : Communication
   Empire *sender;
 
   public:
+    RequestAlliance(Empire * _sender);
     void handleAlliance(Empire * empire);
 };
 
