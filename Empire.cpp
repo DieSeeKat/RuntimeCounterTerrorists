@@ -4,6 +4,9 @@
 #include <utility>
 
 #include "Attack.h"
+#include "Policies/Assimilate.h"
+#include "Policies/HeavyWar.h"
+#include "Policies/GuerillaWarfare.h"
 
 Empire::Empire(std::string name)
 {
