@@ -2,6 +2,5 @@
 
 void RequestAlliance::handleAlliance(Empire * empire)
 {
-  // TODO - implement RequestAlliance::requestAlliance
-  throw "Not yet implemented";
+    empire->considerAlliance();
 }

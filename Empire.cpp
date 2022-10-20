@@ -8,6 +8,8 @@
 #include "Policies/HeavyWar.h"
 #include "Policies/GuerillaWarfare.h"
 #include "Command/Communication.h"
+#include "Command/RequestAlliance.h"
+#include "Command/AcceptAlliance.h"
 
 Empire::Empire(std::string name, War* war)
 {
@@ -103,7 +105,8 @@ void Empire::addTown(Node *town)
 
 void Empire::requestAlliance(Empire *empire)
 {
-
+    RequestAlliance * request = new RequestAlliance();
+    request->handleAlliance(empire);
 }
 
 void Empire::joinAlliance(Empire *empire)
