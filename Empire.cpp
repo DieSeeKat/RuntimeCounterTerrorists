@@ -1,12 +1,12 @@
 #include "Empire.h"
-#include "Memento/War.h"
-#include "Policies/Assimilate.h"
-#include "Policies/GuerillaWarfare.h"
-#include "Policies/HeavyWar.h"
+#include "War.h"
 
 #include <utility>
 
-#include "WarStages/Attack.h"
+#include "Attack.h"
+#include "Policies/Assimilate.h"
+#include "Policies/HeavyWar.h"
+#include "Policies/GuerillaWarfare.h"
 
 Empire::Empire(std::string name, War* war)
 {
@@ -102,8 +102,32 @@ void Empire::addTown(Node *town)
 
 void Empire::joinAlliance(Empire *empire)
 {
-  // TODO - implement Empire::joinAlliance
-  throw "Not yet implemented";
+    if(empire != NULL)
+    {
+        if(empire->alliances.empty())
+        {
+            this->alliances.push_back(empire);
+        }
+        else
+        {
+            for(int i = 0; i < empire->alliances.size(); i++)
+            {
+                this->alliances.push_back(empire->alliances.at(i));
+            }
+        }
+
+        if(this->alliances.empty())
+        {
+            empire->alliances.push_back(this);
+        }
+        else
+        {
+            for(int i = 0; i < this->alliances.size(); i++)
+            {
+                empire->alliances.push_back(this->alliances.at(i));
+            }
+        }
+    }
 }
 
 void Empire::add(AllianceComponent *alliance_component)
@@ -118,10 +142,25 @@ AllianceComponent *Empire::getChild(int index)
 {
   return nullptr;
 }
+
 bool Empire::isAlly(Empire *empire)
 {
-  // TODO - Determine if empire is an ally
-  return false;
+    if(this->alliances == NULL)
+    {
+        return false;
+    }
+    else
+    {
+        for(int i = 0; i < this->alliances.size(); i++)
+        {
+            if(this->alliances.at(i) == empire)
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 Node *Empire::getCapital()
 {
@@ -189,6 +228,11 @@ void Empire::recruitArmy(Node* node)
   Army army = node->recruit(army_ratio, army_size);
 
   armies.push_back(&army);
+}
+
+std::vector<Empire*> Empire::getAlliances()
+{
+    return this->alliances;
 }
 
 /**

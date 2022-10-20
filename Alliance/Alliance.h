@@ -2,17 +2,20 @@
 #define ALLIANCE_H
 
 #include "AllianceComponent.h"
+#include <vector>
 #include <iostream>
 
 class Alliance : AllianceComponent
 {
 
   public:
-  AllianceComponent *children;
+  std::vector<AllianceComponent *> children;
 
   void add(AllianceComponent *alliance_component);
 
   void remove(AllianceComponent *alliance_component);
+
+  std::vector<AllianceComponent *> getChildren();
 
   AllianceComponent *getChild(int index);
 
