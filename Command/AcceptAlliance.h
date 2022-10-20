@@ -5,7 +5,7 @@
 
 #include "../Empire.h"
 
-class PeaceOffer : Communication
+class AcceptAlliance : Communication
 {
 
   private:
