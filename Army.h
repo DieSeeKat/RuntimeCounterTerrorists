@@ -29,7 +29,6 @@ class Army : Observer
   ~Army();
 
   void update();
-
   /**
      * @brief A method to allow the Army to siege a Node
      * @param town The town which will be attacked
@@ -47,6 +46,27 @@ class Army : Observer
      * @return Returns a Node pointer
      */
   Node *getPosition();
+
+  /**
+   * @brief Get the empire that owns the current Army
+   * @return Return an Empire pointer
+   */
+  Empire* getOwnerEmpire();
+
+  /**
+   * @brief Calculate and return the number of Units in the Army
+   * @return Return an integer representing the number of Units
+   */
+  int getNumUnits();
+
+  /**
+   * @brief Will notify the owning Empire to delete and remove the current Army
+   */
+  void killSelf();
+  /**
+   * Kills a random Unit from the units vector
+   */
+  void killRandomUnit();
 };
 
 #endif

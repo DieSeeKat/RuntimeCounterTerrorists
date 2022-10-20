@@ -37,7 +37,7 @@ class Empire : public AllianceComponent
   WarStage *war_stage;
   std::vector<AllianceComponent *>alliances;
   /// A vector of all controlled armies
-  std::vector<Army> armies;
+  std::vector<Army*> armies;
   /// A pointer to the War object, which hold information on all other entities in the war
   War *war;
   /// The Empire's capital Node
@@ -46,7 +46,7 @@ class Empire : public AllianceComponent
   int prev_num_nodes = 0;
 
   public:
-  Empire(std::string name);
+  Empire(std::string name, War* war);
   ~Empire();
   void algorithm();
   void request();
@@ -61,6 +61,11 @@ class Empire : public AllianceComponent
    * This method loops through all owned Nodes and generates an ArmyRatio for each of them. It will then recruit an Army from each town and station that Army at the town.
    */
   void recruit();
+  /**
+   * @brief Recruit an Army from the specific Node
+   * @param node Node to be recruited from
+   */
+  void recruitArmy(Node* node);
   /**
    * @brief Calls the takeTurn() method of the active WarStage
    */
@@ -120,7 +125,26 @@ class Empire : public AllianceComponent
    * @param state New state of the Empire
    */
   void setState(WarStage *state);
+  /**
+   * @brief Remove and delete all unnecessary Alliance components in preparation to delete the current Empire
+   */
   void unwindAlliances();
+  /**
+   * @brief Get the War attribute
+   * @return Return a War pointer
+   */
+  War* getWar();
+  /**
+   * @brief Set the War attribute
+   * @param war New War
+   */
+  void setWar(War * war);
+  /**
+   * @brief Remove and delete Army from the armies vector.
+   */
+  void removeArmy(Army *);
+  void addArmy(Army * army);
+  Empire* clone();
 };
 
 #endif

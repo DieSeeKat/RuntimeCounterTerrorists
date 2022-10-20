@@ -9,6 +9,10 @@ class Capital : public Node
   public:
   Capital(Empire* empire, int population);
   ~Capital();
+  /**
+   * @brief Colonise the current Node to be part of the colonising_empire
+   * @param colonising_empire The Empire colonising this
+   */
   void colonise(Empire *colonising_empire);
 };
 

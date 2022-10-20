@@ -146,8 +146,7 @@ void Node::addPathTo(Node *node)
 
 void Node::onAttacked()
 {
-  // TODO - implement Node::onAttacked
-  throw "Not yet implemented";
+  owner_empire->recruitArmy(this);
 }
 Node::~Node()
 {
@@ -164,5 +163,54 @@ void Node::removePath(Path *path)
 }
 void Node::makeFreeCity()
 {
-  owner_empire = NULL;
+  owner_empire = nullptr;
+}
+std::vector<Army *> Node::getStationedArmies()
+{
+  return stationed_armies;
+}
+void Node::removeStationedArmy(Army* army)
+{
+  std::remove(stationed_armies.begin(),  stationed_armies.end(), army);
+}
+void Node::getAttacked(Army *attacking_army)
+{
+  int enemy_units_in_footmen = 0;
+  int ally_units_in_footmen = 0;
+
+  //Calculate enemy_units_in_footmen
+  std::vector<Army*> armies_on_node = std::vector<Army*>();
+  for (Army* army : getStationedArmies()){
+    if (getOwnerEmpire()->isAlly(army->getOwnerEmpire())){
+      enemy_units_in_footmen += army->getNumUnits();
+    }
+  }
+
+  //Calculate ally_units_in_footmen
+  ally_units_in_footmen += attacking_army->getNumUnits();
+
+  int difference = ally_units_in_footmen - enemy_units_in_footmen;
+
+  if (difference > 0) {
+    for (Army* army : getStationedArmies()) {
+      removeStationedArmy(army);
+      army->killSelf();
+    }
+    colonise(attacking_army->getOwnerEmpire());
+  }else {
+    for (int i = 0; i < ally_units_in_footmen; i++) {
+      if (getStationedArmies().size() > 0)
+      {
+        getStationedArmies()[0]->killRandomUnit();
+      }
+    }
+    attacking_army->killSelf();
+  }
+}
+
+/**
+ * @brief Implement this function in child classes
+*/
+Node* Node::clone(){
+  return NULL;
 }

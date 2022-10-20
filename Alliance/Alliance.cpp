@@ -31,3 +31,10 @@ std::vector<AllianceComponent*> Alliance::getChildren()
 AllianceComponent* Alliance::getChild(int index) {
   return children.at(index);
 }
+
+/**
+ * @todo Implement this clone
+*/
+Alliance* Alliance::clone(){
+	return NULL;
+}

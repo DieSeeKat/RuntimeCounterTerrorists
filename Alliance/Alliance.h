@@ -3,6 +3,7 @@
 
 #include "AllianceComponent.h"
 #include <vector>
+#include <iostream>
 
 class Alliance : AllianceComponent
 {
@@ -17,6 +18,8 @@ class Alliance : AllianceComponent
   std::vector<AllianceComponent *> getChildren();
 
   AllianceComponent *getChild(int index);
+
+  Alliance* clone();
 };
 
 #endif

@@ -32,6 +32,7 @@ class Node : Aggregate, Subject
   Empire *owner_empire;
   /// All paths connecting to other Nodes
   std::vector<Path *> paths;
+  std::vector<Army*> stationed_armies;
 
   public:
   /// The current distance from the start Node of the Label-Correcting Algorithm
@@ -40,6 +41,10 @@ class Node : Aggregate, Subject
   Node *prev = nullptr;
   Node(Empire* owner_empire, int population);
   ~Node();
+  /**
+   * @brief Remove a path between this Node and another
+   * @param path Path to be removed
+   */
   void removePath(Path *path);
   NodeIterator *createIterator();
   /**
@@ -82,6 +87,10 @@ class Node : Aggregate, Subject
   int getPopulation();
 
   Node *nextStepTo(Node *node);
+  /**
+   * @brief Get all paths origination from the Node
+   * @return Return a vector of Path pointers
+   */
   std::vector<Path *> getPaths();
   /**
    * @brief Return owner_empire
@@ -110,10 +119,32 @@ class Node : Aggregate, Subject
    */
   bool connectedToCapital(std::vector<Node *> nodes, Node *capital);
 
-  void onAttacked(); //A method that gets triggered when a town get attacked
-
+  /**
+   * @brief Handles the combat of when a Node gets attacked
+   * Will destroy or weaken armies depending on the result of the battle and will be colonised if it loses the battle.
+   * @param attacking_army The army performing the attack.
+   */
+  void onAttacked();
+  void getAttacked(Army* attacking_army);
+  /**
+   * @brief Make this Node a free city. Will change the owner_empire attribute to nullptr
+   */
   void makeFreeCity();
 
+  /**
+   * @brief Get armies stationed here.
+   * @return Return a vector of Army pointers
+   */
+  std::vector<Army*> getStationedArmies();
+  /**
+   * @brief Remove a specific army from being stationed here
+   * @param army Army to be removed
+   */
+  void removeStationedArmy(Army* army);
+  /**
+   * @todo Make clone method pure virtual after implementing clone() method in children classes.
+  */
+  virtual Node* clone();
 };
 
 #endif
