@@ -1,9 +1,9 @@
 #include "Empire.h"
-#include "War.h"
+#include "Memento/War.h"
 
 #include <utility>
 
-#include "Attack.h"
+#include "WarStages/Attack.h"
 #include "Policies/Assimilate.h"
 #include "Policies/HeavyWar.h"
 #include "Policies/GuerillaWarfare.h"
@@ -145,7 +145,7 @@ AllianceComponent *Empire::getChild(int index)
 
 bool Empire::isAlly(Empire *empire)
 {
-    if(this->alliances == NULL)
+    if(this->alliances.empty())
     {
         return false;
     }
