@@ -142,8 +142,22 @@ AllianceComponent *Empire::getChild(int index)
 
 bool Empire::isAlly(Empire *empire)
 {
-  // TODO - Determine if empire is an ally
-  return false;
+    if(this->alliances == NULL)
+    {
+        return false;
+    }
+    else
+    {
+        for(int i = 0; i < this->alliances.size(); i++)
+        {
+            if(this->alliances.at(i) == empire)
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 Node *Empire::getCapital()
 {
