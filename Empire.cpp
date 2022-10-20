@@ -190,3 +190,10 @@ void Empire::recruitArmy(Node* node)
 
   armies.push_back(&army);
 }
+
+/**
+ * @todo Implement this function
+*/
+Empire* Empire::clone(){
+  return NULL;
+}

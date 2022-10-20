@@ -207,3 +207,10 @@ void Node::getAttacked(Army *attacking_army)
     attacking_army->killSelf();
   }
 }
+
+/**
+ * @brief Implement this function in child classes
+*/
+Node* Node::clone(){
+  return NULL;
+}

@@ -144,6 +144,7 @@ class Empire : public AllianceComponent
    */
   void removeArmy(Army *);
   void addArmy(Army * army);
+  Empire* clone();
 };
 
 #endif

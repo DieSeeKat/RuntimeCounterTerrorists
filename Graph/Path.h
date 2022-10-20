@@ -26,6 +26,7 @@ class Path
     * @return Return a Node pointer
     */
   Node *getOppositeEnd(Node *node);
+  Path* clone();
 };
 
 #endif
