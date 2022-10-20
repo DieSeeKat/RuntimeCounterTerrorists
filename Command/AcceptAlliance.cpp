@@ -1,4 +1,4 @@
-#include "PeaceOffer.h"
+#include "AcceptAlliance.h"
 
 void PeaceOffer::request() {
 	// TODO - implement PeaceOffer::requestAlliance
