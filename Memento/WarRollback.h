@@ -7,31 +7,33 @@
 #include "../Graph/Node.h"
 #include "../Graph/Path.h"
 
+class War;
 class WarRollback
 {
 
+  friend War;
   private:
   std::vector<Node *> nodes;
-  Empire *empires;
-  Path *paths;
-  Alliance *alliances;
+  std::vector<Empire *> empires;
+  std::vector<Path *> paths;
+  std::vector<Alliance *> alliances;
 
   public:
-  Node *getNodes();
+  std::vector<Node *> getNodes();
 
-  void setNodes(Node *nodes);
+  void setNodes(std::vector<Node *> nodes);
 
-  Empire *getEmpires();
+  std::vector<Empire *> getEmpires();
 
-  void setEmpires(Empire *empires);
+  void setEmpires(std::vector<Empire *> empires);
 
-  Path *getPaths();
+  std::vector<Path *> getPaths();
 
-  void setPaths(Path *paths);
+  void setPaths(std::vector<Path *> paths);
 
-  Alliance *getAlliances();
+  std::vector<Alliance *> getAlliances();
 
-  void setAlliances(Alliance *alliances);
+  void setAlliances(std::vector<Alliance *> alliances);
 };
 
 #endif

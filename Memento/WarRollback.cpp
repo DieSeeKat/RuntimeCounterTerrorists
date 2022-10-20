@@ -1,35 +1,41 @@
 #include "WarRollback.h"
 
-Node* WarRollback::getNodes() {
-	// TODO - implement WarRollback::getNodes
-	throw "Not yet implemented";
+std::vector<Node *> WarRollback::getNodes()
+{
+	return nodes;
 }
 
-void WarRollback::setNodes(Node* nodes) {
-	// TODO - implement WarRollback::setNodes
-	throw "Not yet implemented";
+void WarRollback::setNodes(std::vector<Node *> nodes)
+{
+	this->nodes = nodes;
 }
 
-Empire* WarRollback::getEmpires() {
-	return this->empires;
+std::vector<Empire *> WarRollback::getEmpires()
+{
+	return empires;
 }
 
-void WarRollback::setEmpires(Empire* empires) {
+void WarRollback::setEmpires(std::vector<Empire *> empires)
+{
 	this->empires = empires;
 }
 
-Path* WarRollback::getPaths() {
-	return this->paths;
+std::vector<Path *> WarRollback::getPaths()
+{
+	return paths;
 }
 
-void WarRollback::setPaths(Path* paths) {
+void WarRollback::setPaths(std::vector<Path *> paths)
+{
 	this->paths = paths;
 }
 
-Alliance* WarRollback::getAlliances() {
-	return this->alliances;
+std::vector<Alliance *> WarRollback::getAlliances()
+{
+	return alliances;
 }
 
-void WarRollback::setAlliances(Alliance* alliances) {
+void WarRollback::setAlliances(std::vector<Alliance *> alliances)
+{
 	this->alliances = alliances;
 }

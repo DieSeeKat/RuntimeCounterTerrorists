@@ -1,5 +1,12 @@
 #include "Path.h"
 
+Path::Path(Node *first_node, Node *last_node)
+{
+  end_points    = new Node *[2];
+  end_points[0] = first_node;
+  end_points[1] = last_node;
+}
+
 void Path::calculate_losses(Army *army)
 {
   // TODO - implement Path::calculate_losses
@@ -17,3 +24,9 @@ Node *Path::getOppositeEnd(Node *node)
   }
 }
 
+/**
+ * @todo Implement this clone
+*/
+Path* Path::clone(){
+  return NULL;  
+}
