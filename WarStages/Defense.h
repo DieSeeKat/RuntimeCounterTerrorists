@@ -9,6 +9,7 @@ class Defense : public WarStage
 {
   public:
   Defense(Empire *empire);
+  ~Defense();
   /**
    * @brief Will determine what the Empire will do on its turn
    */

@@ -125,8 +125,12 @@ std::vector<Path *> Node::getPaths()
 {
   return paths;
 }
-Node::Node()
+Node::Node(Empire* owner_empire, int population)
 {
+  this->owner_empire = owner_empire;
+  this->population_empire = owner_empire;
+  this->population = population;
+  this->resources = population;
 }
 void Node::addPath(Path *path)
 {

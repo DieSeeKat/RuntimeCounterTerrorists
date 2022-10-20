@@ -14,6 +14,7 @@ class WarStage
   virtual void takeTurn() = 0;
 
   WarStage(Empire *empire);
+  ~WarStage();
 };
 
 #endif

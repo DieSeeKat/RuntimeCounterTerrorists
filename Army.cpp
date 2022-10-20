@@ -1,5 +1,11 @@
 #include "Army.h"
 
+Army::Army(Node* current_position, Empire* owner_empire)
+{
+  position = current_position;
+  empire = owner_empire;
+}
+
 void Army::update()
 {
   // TODO - implement Army::update
@@ -20,4 +26,7 @@ void Army::moveToTown(Node *town)
 Node *Army::getPosition()
 {
   return position;
+}
+Army::~Army()
+{
 }

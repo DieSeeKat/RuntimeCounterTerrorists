@@ -9,11 +9,13 @@ void Town::colonise(Empire *colonising_empire)
   old_owner_empire->removeNode(this);
 }
 
-Town::Town() : Node()
-{
-}
-
 std::string Town::getState()
 {
   return "NULL";
+}
+Town::Town(Empire *empire, int population) : Node(empire, population)
+{
+}
+Town::~Town()
+{
 }
