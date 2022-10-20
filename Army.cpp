@@ -13,8 +13,18 @@ void Army::attackTown(Node *town)
 
 void Army::moveToTown(Node *town)
 {
-  // TODO - implement Army::moveToTown
-  throw "Not yet implemented";
+    if (position == town)
+    {
+        std::cout << "Army is already in that town" << std::endl;
+
+    }
+
+    else
+    {
+        position = town;
+
+        std::cout << "Army has been moved to " << position << std::endl;
+    }
 }
 
 void Army::defendTown(Node *town)

@@ -2,8 +2,10 @@
 #define ARMY_H
 
 #include <string>
+#include <iostream>
 
 #include "Observer.h"
+
 
 class Node;
 class Empire;
