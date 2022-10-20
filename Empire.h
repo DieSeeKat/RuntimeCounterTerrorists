@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "Alliance/Alliance.h"
 #include "Alliance/AllianceComponent.h"

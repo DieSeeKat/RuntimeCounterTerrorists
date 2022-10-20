@@ -7,6 +7,7 @@
 #include <deque>
 #include <iostream>
 #include <vector>
+#include <climits>
 
 
 class Empire
