@@ -112,7 +112,7 @@ class Node : Aggregate, Subject
   bool connectedToCapital(std::vector<Node *> nodes, Node *capital);
 
   ///A method that gets triggered when a town get attacked
-  void onAttacked();
+  void onAttacked(Army* attacking_army);
 
   void makeFreeCity();
 
