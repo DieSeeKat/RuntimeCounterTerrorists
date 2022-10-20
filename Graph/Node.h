@@ -12,7 +12,7 @@
 
 #include "Path.h"
 
-#include "Subject.h"
+#include "../Observer/Subject.h"
 
 #include "Mediator.h"
 
@@ -40,6 +40,9 @@ class Node : Aggregate, Subject
   virtual void colonise(Empire *colonising_empire) = 0;
   void repopulate();
   int getPopulation();
+
+  void removeObserver(Observer* observer);
+
 
   Node *nextStepTo(Node *node);
   std::vector<Path *> getPaths();
