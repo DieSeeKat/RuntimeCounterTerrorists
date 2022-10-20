@@ -2,6 +2,7 @@
 #define ALLIANCE_H
 
 #include "AllianceComponent.h"
+#include <iostream>
 
 class Alliance : AllianceComponent
 {
@@ -14,6 +15,8 @@ class Alliance : AllianceComponent
   void remove(AllianceComponent *alliance_component);
 
   AllianceComponent *getChild(int index);
+
+  Alliance* clone();
 };
 
 #endif
