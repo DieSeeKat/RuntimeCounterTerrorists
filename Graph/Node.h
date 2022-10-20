@@ -124,8 +124,8 @@ class Node : Aggregate, Subject
    * Will destroy or weaken armies depending on the result of the battle and will be colonised if it loses the battle.
    * @param attacking_army The army performing the attack.
    */
-  void onAttacked(Army* attacking_army);
-
+  void onAttacked();
+  void getAttacked(Army* attacking_army);
   /**
    * @brief Make this Node a free city. Will change the owner_empire attribute to nullptr
    */

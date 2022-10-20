@@ -41,13 +41,7 @@ void Empire::recruit()
 {
   for (auto &owned_node : owned_nodes)
   {
-    int population       = owned_node->getPopulation();
-    ArmyRatio army_ratio = war_style_policy->createArmyRatio();
-    int army_size        = recruitment_policy->calculateRecruits(population);
-
-    Army army = owned_node->recruit(army_ratio, army_size);
-
-    armies.push_back(&army);
+    recruitArmy(owned_node);
   }
 }
 
@@ -181,4 +175,18 @@ void Empire::removeArmy(Army * army)
 {
   std::remove(armies.begin(), armies.end(), army);
   delete army;
+}
+void Empire::addArmy(Army *army)
+{
+  armies.push_back(army);
+}
+void Empire::recruitArmy(Node* node)
+{
+  int population       = node->getPopulation();
+  ArmyRatio army_ratio = war_style_policy->createArmyRatio();
+  int army_size        = recruitment_policy->calculateRecruits(population);
+
+  Army army = node->recruit(army_ratio, army_size);
+
+  armies.push_back(&army);
 }

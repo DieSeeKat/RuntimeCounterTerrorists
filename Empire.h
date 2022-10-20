@@ -62,6 +62,11 @@ class Empire : public AllianceComponent
    */
   void recruit();
   /**
+   * @brief Recruit an Army from the specific Node
+   * @param node Node to be recruited from
+   */
+  void recruitArmy(Node* node);
+  /**
    * @brief Calls the takeTurn() method of the active WarStage
    */
   void takeTurn();
@@ -138,6 +143,7 @@ class Empire : public AllianceComponent
    * @brief Remove and delete Army from the armies vector.
    */
   void removeArmy(Army *);
+  void addArmy(Army * army);
 };
 
 #endif

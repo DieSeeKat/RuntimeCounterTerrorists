@@ -144,7 +144,36 @@ void Node::addPathTo(Node *node)
   node->addPath(new_path);
 }
 
-void Node::onAttacked(Army* attacking_army)
+void Node::onAttacked()
+{
+  owner_empire->recruitArmy(this);
+}
+Node::~Node()
+{
+  for (auto path : paths)
+  {
+    remove(paths.begin(), paths.end(), path);
+    path->getOppositeEnd(this)->removePath(path);
+  }
+}
+void Node::removePath(Path *path)
+{
+  remove(paths.begin(), paths.end(), path);
+  delete path;
+}
+void Node::makeFreeCity()
+{
+  owner_empire = nullptr;
+}
+std::vector<Army *> Node::getStationedArmies()
+{
+  return stationed_armies;
+}
+void Node::removeStationedArmy(Army* army)
+{
+  std::remove(stationed_armies.begin(),  stationed_armies.end(), army);
+}
+void Node::getAttacked(Army *attacking_army)
 {
   int enemy_units_in_footmen = 0;
   int ally_units_in_footmen = 0;
@@ -177,29 +206,4 @@ void Node::onAttacked(Army* attacking_army)
     }
     attacking_army->killSelf();
   }
-}
-Node::~Node()
-{
-  for (auto path : paths)
-  {
-    remove(paths.begin(), paths.end(), path);
-    path->getOppositeEnd(this)->removePath(path);
-  }
-}
-void Node::removePath(Path *path)
-{
-  remove(paths.begin(), paths.end(), path);
-  delete path;
-}
-void Node::makeFreeCity()
-{
-  owner_empire = nullptr;
-}
-std::vector<Army *> Node::getStationedArmies()
-{
-  return stationed_armies;
-}
-void Node::removeStationedArmy(Army* army)
-{
-  std::remove(stationed_armies.begin(),  stationed_armies.end(), army);
 }

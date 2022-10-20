@@ -17,7 +17,7 @@ void Army::update()
 void Army::attackTown(Node *town)
 {
   if (!(empire->isAlly(town->getOwnerEmpire()))){
-    town->onAttacked(this);
+    town->getAttacked(this);
   }
 }
 
