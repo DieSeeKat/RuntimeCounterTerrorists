@@ -7,6 +7,5 @@ AcceptAlliance::AcceptAlliance(Empire *_sender)
 
 void AcceptAlliance::handleAlliance(Empire * empire)
 {
-	// TODO - implement PeaceOffer::requestAlliance
-	throw "Not yet implemented";
+    sender->joinAlliance(empire);
 }

@@ -28,12 +28,6 @@ void Empire::algorithm()
   throw "Not yet implemented";
 }
 
-void Empire::request()
-{
-  // TODO - implement Empire::request
-  throw "Not yet implemented";
-}
-
 void Empire::action()
 {
   // TODO - implement Empire::action
@@ -105,8 +99,20 @@ void Empire::addTown(Node *town)
 
 void Empire::requestAlliance(Empire *empire)
 {
-    RequestAlliance * request = new RequestAlliance();
+    RequestAlliance * request = new RequestAlliance(this);
     request->handleAlliance(empire);
+}
+
+void Empire::considerAlliance(Empire *empire)
+{
+    bool accepted = true;
+    //some calculations
+
+    if(accepted)
+    {
+        AcceptAlliance * accept = new AcceptAlliance(this);
+        accept->handleAlliance(empire);
+    }
 }
 
 void Empire::joinAlliance(Empire *empire)

@@ -7,5 +7,5 @@ RequestAlliance::RequestAlliance(Empire *_sender)
 
 void RequestAlliance::handleAlliance(Empire * empire)
 {
-    empire->considerAlliance();
+    empire->considerAlliance(sender);
 }
