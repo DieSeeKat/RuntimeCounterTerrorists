@@ -3,7 +3,6 @@
 
 #include <string>
 
-
 #include "../Army.h"
 #include "../ArmyRatio.h"
 
@@ -15,6 +14,7 @@
 #include "../Observer/Subject.h"
 
 #include "../Mediator/Mediator.h"
+#include "NodeType.h"
 
 class Empire;
 
@@ -32,21 +32,23 @@ class Node : Aggregate, Subject
   Empire *owner_empire;
   /// All paths connecting to other Nodes
   std::vector<Path *> paths;
-  std::vector<Army*> stationed_armies;
+  std::vector<Army *> stationed_armies;
+  NodeType *node_type;
 
   public:
   /// The current distance from the start Node of the Label-Correcting Algorithm
   int dist;
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm
   Node *prev = nullptr;
-  Node(Empire* owner_empire, int population);
+  Node(Empire *owner_empire, int population);
+  Node(Empire *owner_empire, int population, bool capital);
   ~Node();
   /**
    * @brief Remove a path between this Node and another
    * @param path Path to be removed
    */
   void removePath(Path *path);
-    /**
+  /**
    * @brief Remove a path between this Node and another
    * @return Iterator to iterate through the adjacent towns
    */
@@ -66,7 +68,6 @@ class Node : Aggregate, Subject
    * @brief Recharge resources to the maximum capacity according to the Node's population
    */
   void rechargeResources();
-  virtual std::string getState() = 0;
   /**
    * @brief Recruit an army from the Node depending on the ArmyRatio and the number of recruits wanted.
    *
@@ -79,7 +80,7 @@ class Node : Aggregate, Subject
    * @brief A pure virtual function that will be implemented in Town and Capital
    * @param colonising_empire
    */
-  virtual void colonise(Empire *colonising_empire) = 0;
+  void colonise(Empire *colonising_empire);
   /**
    * @brief Repopulate a town
    */
@@ -129,7 +130,7 @@ class Node : Aggregate, Subject
    * @param attacking_army The army performing the attack.
    */
   void onAttacked();
-  void getAttacked(Army* attacking_army);
+  void getAttacked(Army *attacking_army);
   /**
    * @brief Make this Node a free city. Will change the owner_empire attribute to nullptr
    */
@@ -139,17 +140,20 @@ class Node : Aggregate, Subject
    * @brief Get armies stationed here.
    * @return Return a vector of Army pointers
    */
-  std::vector<Army*> getStationedArmies();
+  std::vector<Army *> getStationedArmies();
   /**
    * @brief Remove a specific army from being stationed here
    * @param army Army to be removed
    */
-  void removeStationedArmy(Army* army);
-  void addStationedArmy(Army* army);
+  void removeStationedArmy(Army *army);
+  void addStationedArmy(Army *army);
   /**
    * @todo Make clone method pure virtual after implementing clone() method in children classes.
   */
-  virtual Node* clone();
+  virtual Node *clone();
+  void setOwnerEmpire(Empire *empire);
+  void setNodeType(NodeType *node_type);
+  NodeType* getNodeType();
 };
 
 #endif

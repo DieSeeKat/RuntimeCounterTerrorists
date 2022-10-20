@@ -15,8 +15,9 @@
 #include "Graph/Node.h"
 #include "Graph/Town.h"
 #include "Memento/War.h"
+#include "Graph/NodeType.h"
 
-TEST(System_Test, Empire_Test)
+TEST(System, ArmyAttack)
 {
   War *war = new War();
 
@@ -26,15 +27,15 @@ TEST(System_Test, Empire_Test)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Capital(e1, 4);
-  Node *n2 = new Town(e1, 4);
-  Node *n3 = new Town(e1, 4);
-  Node *n4 = new Town(e2, 4);
-  Node *n5 = new Town(e2, 4);
-  Node *n6 = new Town(e1, 4);
-  Node *n7 = new Town(e1, 4);
-  Node *n8 = new Town(e2, 4);
-  Node *c2 = new Capital(e2, 4);
+  Node *c1 = new Node(e1, 4, true);
+  Node *n2 = new Node(e1, 4);
+  Node *n3 = new Node(e1, 4);
+  Node *n4 = new Node(e2, 4);
+  Node *n5 = new Node(e2, 4);
+  Node *n6 = new Node(e1, 4);
+  Node *n7 = new Node(e1, 4);
+  Node *n8 = new Node(e2, 4);
+  Node *c2 = new Node(e2, 4, true);
 
   c1->addPathTo(n2);
   c1->addPathTo(n3);
@@ -85,15 +86,15 @@ TEST(System, AdvanceArmies_Test)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Capital(e1, 4);
-  Node *n2 = new Town(e1, 4);
-  Node *n3 = new Town(e1, 4);
-  Node *n4 = new Town(e2, 4);
-  Node *n5 = new Town(e2, 4);
-  Node *n6 = new Town(e1, 4);
-  Node *n7 = new Town(e1, 4);
-  Node *n8 = new Town(e2, 4);
-  Node *c2 = new Capital(e2, 4);
+  Node *c1 = new Node(e1, 4, true);
+  Node *n2 = new Node(e1, 4);
+  Node *n3 = new Node(e1, 4);
+  Node *n4 = new Node(e2, 4);
+  Node *n5 = new Node(e2, 4);
+  Node *n6 = new Node(e1, 4);
+  Node *n7 = new Node(e1, 4);
+  Node *n8 = new Node(e2, 4);
+  Node *c2 = new Node(e2, 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);
@@ -141,11 +142,13 @@ TEST(System, AdvanceArmies_Test)
   e1->advanceArmies();
 
   ASSERT_EQ(n7->getOwnerEmpire(), e1);
+  ASSERT_TRUE(dynamic_cast<Town*>(c2->getNodeType()) == nullptr);
 
   e1->advanceArmies();
 
   ASSERT_EQ(c2->getOwnerEmpire(), e1);
   ASSERT_EQ(e2->getNodes().size(), 0);
+  ASSERT_TRUE(dynamic_cast<Town*>(c2->getNodeType()) != nullptr);
 }
 
 TEST(System, RetreatArmies_Test)
@@ -158,15 +161,15 @@ TEST(System, RetreatArmies_Test)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Capital(e1, 4);
-  Node *n2 = new Town(e1, 4);
-  Node *n3 = new Town(e1, 4);
-  Node *n4 = new Town(e2, 4);
-  Node *n5 = new Town(e2, 4);
-  Node *n6 = new Town(e1, 4);
-  Node *n7 = new Town(e1, 4);
-  Node *n8 = new Town(e2, 4);
-  Node *c2 = new Capital(e2, 4);
+  Node *c1 = new Node(e1, 4, true);
+  Node *n2 = new Node(e1, 4);
+  Node *n3 = new Node(e1, 4);
+  Node *n4 = new Node(e2, 4);
+  Node *n5 = new Node(e2, 4);
+  Node *n6 = new Node(e1, 4);
+  Node *n7 = new Node(e1, 4);
+  Node *n8 = new Node(e2, 4);
+  Node *c2 = new Node(e2, 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);

@@ -1,19 +1,11 @@
 #include "Town.h"
+#include "Node.h"
 
-void Town::colonise(Empire *colonising_empire)
+void Town::colonise(Empire* empire)
 {
-  Empire *old_owner_empire = owner_empire;
-  owner_empire             = colonising_empire;
 
-  colonising_empire->addTown(this);
-  old_owner_empire->removeNode(this);
 }
-
-std::string Town::getState()
-{
-  return "NULL";
-}
-Town::Town(Empire *empire, int population) : Node(empire, population)
+Town::Town(Node* node) : NodeType(node)
 {
 }
 Town::~Town()

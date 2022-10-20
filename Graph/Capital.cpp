@@ -1,24 +1,17 @@
 #include "Capital.h"
 #include "../Empire.h"
+#include "Town.h"
+#include "Node.h"
 
-void Capital::colonise(Empire *colonising_empire)
+void Capital::colonise(Empire* empire)
 {
-  Empire *old_owner_empire = owner_empire;
-  owner_empire             = colonising_empire;
+  empire->dieOff();
 
-  colonising_empire->addTown(this);
-  old_owner_empire->removeNode(this);
-
-  old_owner_empire->dieOff();
+  node->setNodeType(new Town(node));
 }
 Capital::~Capital()
 {
 }
-Capital::Capital(Empire *empire, int population) : Node(empire, population)
+Capital::Capital(Node* node) : NodeType(node)
 {
-}
-std::string Capital::getState()
-{
-  // TODO - See if getState is needed
-  return "...";
 }

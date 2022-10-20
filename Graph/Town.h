@@ -1,21 +1,21 @@
 #ifndef TOWN_H
 #define TOWN_H
 
-#include "Node.h"
-
 #include "../Empire.h"
+#include "NodeType.h"
 
-class Town : public Node
+class Node;
+
+class Town : public NodeType
 {
   public:
-  Town(Empire* empire, int population);
+  Town(Node* node);
   ~Town();
   /**
    * @brief Colonise the current Node to be part of the colonising_empire
    * @param colonising_empire The Empire colonising this
    */
-  void colonise(Empire *colonising_empire) override;
-  std::string getState() override;
+  void colonise(Empire* empire) override;
 };
 
 #endif

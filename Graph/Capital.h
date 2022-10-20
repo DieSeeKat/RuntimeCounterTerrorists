@@ -2,19 +2,20 @@
 #define CAPITOL_H
 
 #include "../Empire.h"
-#include "Node.h"
+#include "NodeType.h"
 
-class Capital : public Node
+class Node;
+
+class Capital : public NodeType
 {
   public:
-  Capital(Empire* empire, int population);
+  Capital(Node* node);
   ~Capital();
-  std::string getState() override;
   /**
    * @brief Colonise the current Node to be part of the colonising_empire
    * @param colonising_empire The Empire colonising this
    */
-  void colonise(Empire *colonising_empire) override;
+  void colonise(Empire* empire) override;
 };
 
 #endif
