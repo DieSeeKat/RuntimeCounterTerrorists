@@ -58,6 +58,7 @@ std::vector<Alliance *> War::getAlliance()
 void War::setEmpires(std::vector<Empire *> new_empires)
 {
   empires = new_empires;
+  updateEmpires();
 }
 void War::setNodes(std::vector<Node *> new_nodes)
 {
@@ -75,6 +76,7 @@ void War::setAlliance(std::vector<Alliance *> new_alliances)
 void War::addEmpire(Empire *new_empire)
 {
   empires.push_back(new_empire);
+  updateEmpires();
 }
 void War::addNode(Node *new_node)
 {
@@ -104,4 +106,10 @@ void War::removePath(Path *to_remove)
 void War::removeAlliance(Alliance *to_remove)
 {
   std::remove(alliances.begin(), alliances.end(), to_remove);
+}
+
+void War::updateEmpires(){
+  for(std::vector<Empire*>::iterator it = empires.begin(); it != empires.end(); it++){
+    (*it)->setWar(this);
+  }
 }

@@ -42,6 +42,8 @@ public:
   void removeNode(Node *new_node);
   void removePath(Path *new_path);
   void removeAlliance(Alliance *new_alliance);
+
+  void updateEmpires();
 };
 
 #endif
