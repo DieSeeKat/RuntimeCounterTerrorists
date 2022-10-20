@@ -38,7 +38,7 @@ class Node : Aggregate, Subject
   int dist;
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm
   Node *prev = nullptr;
-  Node();
+  Node(Empire* owner_empire, int population);
   ~Node();
   void removePath(Path *path);
   NodeIterator *createIterator();

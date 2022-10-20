@@ -16,3 +16,6 @@ void Defense::takeTurn()
 Defense::Defense(Empire *empire) : WarStage(empire)
 {
 }
+Defense::~Defense()
+{
+}

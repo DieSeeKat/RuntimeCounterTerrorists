@@ -4,9 +4,11 @@
 #include "../Empire.h"
 #include "Node.h"
 
-class Capitol : public Node
+class Capital : public Node
 {
   public:
+  Capital(Empire* empire, int population);
+  ~Capital();
   void colonise(Empire *colonising_empire);
 };
 

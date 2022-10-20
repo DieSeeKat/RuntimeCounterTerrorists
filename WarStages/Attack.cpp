@@ -15,3 +15,6 @@ void Attack::takeTurn()
 Attack::Attack(Empire *empire) : WarStage(empire)
 {
 }
+Attack::~Attack()
+{
+}

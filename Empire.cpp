@@ -1,5 +1,8 @@
 #include "Empire.h"
 #include "Memento/War.h"
+#include "Policies/Assimilate.h"
+#include "Policies/GuerillaWarfare.h"
+#include "Policies/HeavyWar.h"
 
 #include <utility>
 
@@ -10,6 +13,9 @@ Empire::Empire(std::string name)
   this->name      = name;
   this->war_stage = new Attack(this);
   this->armies    = std::vector<Army>();
+  this->colony_policy = new Assimilate();
+  this->recruitment_policy = new HeavyWar();
+  this->war_style_policy = new GuerillaWarfare();
 }
 
 void Empire::algorithm()
@@ -153,6 +159,10 @@ Empire::~Empire()
     node->makeFreeCity();
     std::remove(owned_nodes.begin(), owned_nodes.end(), node);
   }
+  delete colony_policy;
+  delete war_style_policy;
+  delete recruitment_policy;
+  delete war_stage;
   unwindAlliances();
 }
 void Empire::unwindAlliances()

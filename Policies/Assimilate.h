@@ -5,7 +5,7 @@
 
 #include "ColonyPolicy.h"
 
-class Assimilate : ColonyPolicy {
+class Assimilate : public ColonyPolicy {
 public:
 	int handleColony(Node* colony_town);
 };

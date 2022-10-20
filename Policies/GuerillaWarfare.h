@@ -7,7 +7,7 @@
 
 #include "WarStylePolicy.h"
 
-class GuerillaWarfare : WarStylePolicy
+class GuerillaWarfare : public WarStylePolicy
 {
   public:
   ArmyRatio createArmyRatio();
