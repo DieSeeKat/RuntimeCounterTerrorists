@@ -162,9 +162,10 @@ void Node::onAttacked(Army* attacking_army)
 
   int difference = ally_units_in_footmen - enemy_units_in_footmen;
 
-  if (difference >= 0) {
+  if (difference > 0) {
     for (Army* army : getStationedArmies()) {
       removeStationedArmy(army);
+      army->killSelf();
     }
     colonise(attacking_army->getOwnerEmpire());
   }else {
@@ -192,7 +193,7 @@ void Node::removePath(Path *path)
 }
 void Node::makeFreeCity()
 {
-  owner_empire = NULL;
+  owner_empire = nullptr;
 }
 std::vector<Army *> Node::getStationedArmies()
 {

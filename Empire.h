@@ -120,9 +120,23 @@ class Empire : public AllianceComponent
    * @param state New state of the Empire
    */
   void setState(WarStage *state);
+  /**
+   * @brief Remove and delete all unnecessary Alliance components in preparation to delete the current Empire
+   */
   void unwindAlliances();
+  /**
+   * @brief Get the War attribute
+   * @return Return a War pointer
+   */
   War* getWar();
+  /**
+   * @brief Set the War attribute
+   * @param war New War
+   */
   void setWar(War * war);
+  /**
+   * @brief Remove and delete Army from the armies vector.
+   */
   void removeArmy(Army *);
 };
 
