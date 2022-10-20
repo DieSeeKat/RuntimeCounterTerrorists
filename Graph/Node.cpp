@@ -4,6 +4,7 @@
 #include <cmath>
 #include <deque>
 #include <vector>
+#include <climits>
 
 #include "../Empire.h"
 #include "Node.h"

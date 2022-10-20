@@ -6,7 +6,7 @@
 
 #include <utility>
 
-#include "Warstages/Attack.h"
+#include "WarStages/Attack.h"
 
 Empire::Empire(std::string name, War* war)
 {
