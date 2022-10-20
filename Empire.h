@@ -35,6 +35,7 @@ class Empire : public AllianceComponent
   RecruitmentPolicy *recruitment_policy;
   /// The current stage of war (Attacking or Defending)
   WarStage *war_stage;
+  /// A vector of all the alliances of the empire
   std::vector<AllianceComponent *>alliances;
   /// A vector of all controlled armies
   std::vector<Army*> armies;

@@ -102,8 +102,16 @@ void Empire::addTown(Node *town)
 
 void Empire::joinAlliance(Empire *empire)
 {
-  // TODO - implement Empire::joinAlliance
-  throw "Not yet implemented";
+    //Case 1: Not one of them in an alliance
+    if(empire->alliances.empty())
+    {
+        AllianceComponent * new_alliance = new Alliance();
+        new_alliance->add(this);
+        new_alliance->add(empire);
+
+        this->alliances.push_back(new_alliance);
+        empire->alliances.push_back(new_alliance);
+    }
 }
 
 void Empire::add(AllianceComponent *alliance_component)
