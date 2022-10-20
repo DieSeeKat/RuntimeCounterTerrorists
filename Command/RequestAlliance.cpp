@@ -1,6 +1,6 @@
 #include "RequestAlliance.h"
 
-void RequestAlliance::requestAlliance()
+void RequestAlliance::request()
 {
   // TODO - implement RequestAlliance::requestAlliance
   throw "Not yet implemented";

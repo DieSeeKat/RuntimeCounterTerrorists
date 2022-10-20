@@ -13,7 +13,7 @@ class PeaceOffer : Communication
   Empire *sender;
 
   public:
-  void requestAlliance();
+  void request();
 };
 
 #endif

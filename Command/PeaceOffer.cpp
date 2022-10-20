@@ -1,6 +1,6 @@
 #include "PeaceOffer.h"
 
-void PeaceOffer::requestAlliance() {
+void PeaceOffer::request() {
 	// TODO - implement PeaceOffer::requestAlliance
 	throw "Not yet implemented";
 }
