@@ -2,7 +2,7 @@
 #define PATH_H
 
 #include "../Army.h"
-
+#include "Terrain.h"
 class Node;
 
 class Path

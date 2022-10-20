@@ -5,7 +5,7 @@
 
 #include "../Terrain.h"
 
-class Plains : Terrain
+class Plains : public Terrain
 {
   public:
   //------------------------------------------------------ADDED BY DHARSHAN GOPAUL
