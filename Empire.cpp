@@ -7,6 +7,7 @@
 #include "Policies/Assimilate.h"
 #include "Policies/HeavyWar.h"
 #include "Policies/GuerillaWarfare.h"
+#include "Command/Communication.h"
 
 Empire::Empire(std::string name, War* war)
 {
@@ -98,6 +99,11 @@ void Empire::takeTurn()
 void Empire::addTown(Node *town)
 {
   owned_nodes.push_back(town);
+}
+
+void Empire::requestAlliance(Empire *empire)
+{
+
 }
 
 void Empire::joinAlliance(Empire *empire)
