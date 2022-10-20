@@ -17,7 +17,6 @@ Empire::Empire(std::string name, War* war)
   this->recruitment_policy = new HeavyWar();
   this->war_style_policy = new GuerillaWarfare();
   this->war = war;
-  this->alliance_tree = NULL;
 }
 
 void Empire::algorithm()
@@ -103,20 +102,28 @@ void Empire::addTown(Node *town)
 
 void Empire::joinAlliance(Empire *empire)
 {
-    //Case 1: Not one of them in an alliance
-    if(empire->alliances == NULL)
+    if(empire->alliances.empty())
     {
-        this->alliance_tree = new Alliance();
-        this->alliance_tree->add(this);
-        this->alliance_tree->add(empire);
-
-        empire->alliance_tree = new Alliance();
-        empire->alliance_tree->add(this);
-        empire->alliance_tree->add(empire);
+        this->alliances.push_back(empire);
     }
-    else if()
+    else
     {
+        for(int i = 0; i < empire->alliances.size(); i++)
+        {
+            this->alliances.push_back(empire->alliances.at(i));
+        }
+    }
 
+    if(this->alliances.empty())
+    {
+        empire->alliances.push_back(this);
+    }
+    else
+    {
+        for(int i = 0; i < this->alliances.size(); i++)
+        {
+            empire->alliances.push_back(this->alliances.at(i));
+        }
     }
 }
 
@@ -204,6 +211,11 @@ void Empire::recruitArmy(Node* node)
   Army army = node->recruit(army_ratio, army_size);
 
   armies.push_back(&army);
+}
+
+std::vector<Empire*> Empire::getAlliances()
+{
+    return this->alliances;
 }
 
 /**

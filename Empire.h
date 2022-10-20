@@ -35,8 +35,8 @@ class Empire : public AllianceComponent
   RecruitmentPolicy *recruitment_policy;
   /// The current stage of war (Attacking or Defending)
   WarStage *war_stage;
-  /// A pointer to the head of the alliance tree structure
-  AllianceComponent * alliance_tree;
+  /// A vector containing all the empires that is in an alliance
+  std::vector<Empire *> alliances;
   /// A vector of all controlled armies
   std::vector<Army*> armies;
   /// A pointer to the War object, which hold information on all other entities in the war
@@ -144,6 +144,13 @@ class Empire : public AllianceComponent
    * @brief Remove and delete Army from the armies vector.
    */
   void removeArmy(Army *);
+
+
+  /**
+   * @brief Return the current alliances of the empire
+   */
+  std::vector<Empire *> getAlliances();
+
   void addArmy(Army * army);
   Empire* clone();
 };
