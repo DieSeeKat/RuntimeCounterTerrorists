@@ -102,27 +102,30 @@ void Empire::addTown(Node *town)
 
 void Empire::joinAlliance(Empire *empire)
 {
-    if(empire->alliances.empty())
+    if(empire != NULL)
     {
-        this->alliances.push_back(empire);
-    }
-    else
-    {
-        for(int i = 0; i < empire->alliances.size(); i++)
+        if(empire->alliances.empty())
         {
-            this->alliances.push_back(empire->alliances.at(i));
+            this->alliances.push_back(empire);
         }
-    }
-
-    if(this->alliances.empty())
-    {
-        empire->alliances.push_back(this);
-    }
-    else
-    {
-        for(int i = 0; i < this->alliances.size(); i++)
+        else
         {
-            empire->alliances.push_back(this->alliances.at(i));
+            for(int i = 0; i < empire->alliances.size(); i++)
+            {
+                this->alliances.push_back(empire->alliances.at(i));
+            }
+        }
+
+        if(this->alliances.empty())
+        {
+            empire->alliances.push_back(this);
+        }
+        else
+        {
+            for(int i = 0; i < this->alliances.size(); i++)
+            {
+                empire->alliances.push_back(this->alliances.at(i));
+            }
         }
     }
 }
