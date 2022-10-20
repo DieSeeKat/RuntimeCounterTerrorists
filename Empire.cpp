@@ -64,16 +64,18 @@ void Empire::advanceArmies()
 
 void Empire::retreatArmies()
 {
-  for (int army_index = 0; army_index < armies.size(); army_index++)
+  for (auto army : armies)
   {
-    Node *current_town = armies[army_index]->getPosition();
-    if (current_town->getOwnerEmpire() == this)
-    {
-      armies[army_index]->moveToTown(current_town);
-    }
-    else
-    {
-      armies[army_index]->moveToTown(current_town->findShortestPathTo(war->getNodes(), capital)[0]);
+    if (army->getPosition()->getOwnerEmpire() != this) {
+      Node *current_town = army->getPosition();
+      if (current_town->getOwnerEmpire() == this)
+      {
+        army->moveToTown(current_town);
+      }
+      else
+      {
+        army->moveToTown(current_town->findShortestPathTo(war->getNodes(), capital)[0]);
+      }
     }
   }
 }
