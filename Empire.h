@@ -91,6 +91,10 @@ class Empire : public AllianceComponent
    * @param town The town that the Empire now owns
    */
   void addTown(Node *town);
+  /**
+    * @brief Join the alliance of the passed in empire. If the empire is not in an alliance it will create an alliance between the two empires
+    * @param empire The empire to form the alliance with
+    */
   void joinAlliance(Empire *empire);
   void add(AllianceComponent *alliance_component);
   void remove(AllianceComponent *alliance_component);
