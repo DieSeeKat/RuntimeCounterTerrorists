@@ -39,11 +39,7 @@ Empire *Army::getOwnerEmpire()
 }
 int Army::getNumUnits()
 {
-  int total_units = 0;
-  for (Unit unit : units){
-    total_units++;
-  }
-  return total_units;
+  return units.size();
 }
 void Army::killSelf()
 {
@@ -59,4 +55,8 @@ void Army::killRandomUnit()
     }
     killSelf();
   }
+}
+void Army::addUnit(Unit unit)
+{
+  units.push_back(unit);
 }

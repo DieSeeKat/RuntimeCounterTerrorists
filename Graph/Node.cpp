@@ -171,34 +171,37 @@ std::vector<Army *> Node::getStationedArmies()
 }
 void Node::removeStationedArmy(Army* army)
 {
-  std::remove(stationed_armies.begin(),  stationed_armies.end(), army);
+  stationed_armies.erase(std::remove(stationed_armies.begin(),  stationed_armies.end(), army), stationed_armies.end());
 }
 void Node::getAttacked(Army *attacking_army)
 {
-  int enemy_units_in_footmen = 0;
-  int ally_units_in_footmen = 0;
+  int friendly_units_in_footmen = 0;
+  int enemy_units_in_footmen    = 0;
 
-  //Calculate enemy_units_in_footmen
-  std::vector<Army*> armies_on_node = std::vector<Army*>();
+  //Calculate friendly_units_in_footmen
   for (Army* army : getStationedArmies()){
-    if (getOwnerEmpire()->isAlly(army->getOwnerEmpire())){
-      enemy_units_in_footmen += army->getNumUnits();
+    if (getOwnerEmpire() == army->getOwnerEmpire() || getOwnerEmpire()->isAlly(army->getOwnerEmpire())){
+      friendly_units_in_footmen += army->getNumUnits();
     }
   }
 
-  //Calculate ally_units_in_footmen
-  ally_units_in_footmen += attacking_army->getNumUnits();
+  //Calculate enemy_units_in_footmen
+  enemy_units_in_footmen += attacking_army->getNumUnits();
 
-  int difference = ally_units_in_footmen - enemy_units_in_footmen;
+  int difference = enemy_units_in_footmen - friendly_units_in_footmen;
 
   if (difference > 0) {
     for (Army* army : getStationedArmies()) {
       removeStationedArmy(army);
       army->killSelf();
     }
+
+    for (int i = 0; i < friendly_units_in_footmen; i++) {
+      attacking_army->killRandomUnit();
+    }
     colonise(attacking_army->getOwnerEmpire());
   }else {
-    for (int i = 0; i < ally_units_in_footmen; i++) {
+    for (int i = 0; i < enemy_units_in_footmen; i++) {
       if (!getStationedArmies().empty())
       {
         getStationedArmies()[0]->killRandomUnit();
@@ -213,4 +216,8 @@ void Node::getAttacked(Army *attacking_army)
 */
 Node* Node::clone(){
   return NULL;
+}
+void Node::addStationedArmy(Army* army)
+{
+  stationed_armies.push_back(army);
 }

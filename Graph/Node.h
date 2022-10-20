@@ -141,6 +141,7 @@ class Node : Aggregate, Subject
    * @param army Army to be removed
    */
   void removeStationedArmy(Army* army);
+  void addStationedArmy(Army* army);
   /**
    * @todo Make clone method pure virtual after implementing clone() method in children classes.
   */

@@ -93,19 +93,19 @@ void War::addAlliance(Alliance *new_alliance)
 
 void War::removeEmpire(Empire *to_remove)
 {
-  std::remove(empires.begin(), empires.end(), to_remove);
+  empires.erase(std::remove(empires.begin(), empires.end(), to_remove), empires.end());
 }
 void War::removeNode(Node *to_remove)
 {
-  std::remove(nodes.begin(), nodes.end(), to_remove);
+  nodes.erase(std::remove(nodes.begin(), nodes.end(), to_remove), nodes.end());
 }
 void War::removePath(Path *to_remove)
 {
-  std::remove(paths.begin(), paths.end(), to_remove);
+  paths.erase(std::remove(paths.begin(), paths.end(), to_remove), paths.end());
 }
 void War::removeAlliance(Alliance *to_remove)
 {
-  std::remove(alliances.begin(), alliances.end(), to_remove);
+  alliances.erase(std::remove(alliances.begin(), alliances.end(), to_remove), alliances.end());
 }
 
 void War::updateEmpires(){

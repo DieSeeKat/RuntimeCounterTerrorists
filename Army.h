@@ -34,7 +34,7 @@ class Army : Observer
      * @param town The town which will be attacked
      */
   void attackTown(Node *town);
-
+  void addUnit(Unit unit);
   /**
      * @brief A method to move an Army to another Node
      * @param town The town which will be moved to

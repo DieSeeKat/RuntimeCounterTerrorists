@@ -38,7 +38,7 @@ class Empire : public AllianceComponent
   /// A vector containing all the empires that is in an alliance
   std::vector<Empire *> alliances;
   /// A vector of all controlled armies
-  std::vector<Army*> armies;
+
   /// A pointer to the War object, which hold information on all other entities in the war
   War *war;
   /// The Empire's capital Node
@@ -47,6 +47,7 @@ class Empire : public AllianceComponent
   int prev_num_nodes = 0;
 
   public:
+      std::vector<Army*> armies;
   Empire(std::string name, War* war);
   Empire(std::string name);
   ~Empire();
