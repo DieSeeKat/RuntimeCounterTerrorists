@@ -20,6 +20,9 @@ class Subject
   void detach(Observer *observer);
 
   void notify();
+
+  std::vector<Observer* > getObserverList();
+
 };
 
 #endif
