@@ -125,5 +125,8 @@ void Node::removeObserver(Observer *observer)
 
 void Node::addObserver(Observer *observer)
 {
+    vector<Observer*> observerList = getObserverList();
+
+    observerList.push_back(observer);
 
 }
