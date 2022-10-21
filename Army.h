@@ -25,7 +25,6 @@ class Army : Observer
   Empire *empire;
   /// The vector of all the Units in the Army
   std::vector<Unit> units;
-  int army_size;
   //--------------------------------------------------
   public:
   Army(Node* current_position, Empire* owner_empire);
@@ -77,8 +76,8 @@ class Army : Observer
   /**
    * @brief Kills a random Unit from the units vector
    */
-
   void killRandomUnit();
+  void rechargeResources();
 };
 
 #endif

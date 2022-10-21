@@ -1,7 +1,7 @@
 #ifndef SNOW_H
 #define SNOW_H
-#include "Army.h"
-#include "Terrain.h"
+#include "../../Army.h"
+#include "../Terrain.h"
 
 class Snow : public Terrain
 {

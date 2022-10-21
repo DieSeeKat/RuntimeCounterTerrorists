@@ -13,6 +13,8 @@ Path::Path(Node *first_node, Node *last_node)
   end_points    = new Node *[2];
   end_points[0] = first_node;
   end_points[1] = last_node;
+
+  this->terrain_type = new Plains();
 }
 
 void Path::calculate_losses(Army *army)
@@ -44,8 +46,12 @@ Node *Path::getOppositeEnd(Node *node)
 Path* Path::clone(){
   return NULL;  
 }
-Path::Path(std::string terrain_type)
+Path::Path(Node *first_node, Node *last_node, std::string terrain_type)
 {
+  end_points    = new Node *[2];
+  end_points[0] = first_node;
+  end_points[1] = last_node;
+
   if (terrain_type == "desert") {
     this->terrain_type = new Desert();
   }else if (terrain_type == "forest") {

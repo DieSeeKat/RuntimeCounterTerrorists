@@ -1,7 +1,7 @@
 #ifndef DESERT_H
 #define DESERT_H
-#include "Army.h"
-#include "Terrain.h"
+#include "../../Army.h"
+#include "../Terrain.h"
 
 class Desert : public Terrain
 {

@@ -1,7 +1,7 @@
 #ifndef COS214PROJECT_FOREST_H
 #define COS214PROJECT_FOREST_H
-#include "Army.h"
-#include "Terrain.h"
+#include "../../Army.h"
+#include "../Terrain.h"
 
 class Forest :public Terrain
 {

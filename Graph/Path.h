@@ -23,11 +23,11 @@ class Path
        * @param first_node The first end of the path
        * @param last_node The second end of the path
        */
-  Path(Node *first_node, Node *last_node);
+
   void calculate_losses(Army *army);
-  Node *getOppositeEnd(Node *);
   //-------------------------------------------------------------ADDED BY DHARSHAN GOPAUL
-  Path(std::string terrain_type);
+  Path(Node *first_node, Node *last_node, std::string terrain_type);
+  Path(Node *first_node, Node *last_node);
   ~Path();
 
   /**

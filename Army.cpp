@@ -79,3 +79,7 @@ void Army::addUnit(Unit unit)
 {
   units.push_back(unit);
 }
+void Army::rechargeResources()
+{
+  resources = getArmySize();
+}
