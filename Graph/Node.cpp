@@ -228,6 +228,8 @@ void Node::removeObserver(Observer *observer)
 
    observerList.erase(std::remove(observerList.begin(), observerList.end(),observer),observerList.end());
 
+   notify();
+
 
 }
 
@@ -236,5 +238,7 @@ void Node::addObserver(Observer *observer)
     vector<Observer*> observerList = getObserverList();
 
     observerList.push_back(observer);
+
+    notify();
 
 }
