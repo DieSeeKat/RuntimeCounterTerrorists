@@ -22,6 +22,13 @@ class Path
        */
   Path(Node *first_node, Node *last_node);
   void calculate_losses(Army *army);
+  Node *getOppositeEnd(Node *);
+  //-------------------------------------------------------------ADDED BY DHARSHAN GOPAUL
+  Path();
+  ~Path();
+  virtual int determineNeededResources(int army_size) = 0;
+  virtual int determineNumDeaths(int army_size)       = 0;
+
   /**
     * @brief Determines and returns the end of the path which is not the passed in Node
     * @param node The node of which the opposite end is calculated

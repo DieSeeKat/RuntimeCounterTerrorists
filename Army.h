@@ -23,7 +23,11 @@ class Army : Observer
   int resources;
   /// The controlling Empire of the Army
   Empire *empire;
+
+  //--------------------------------------------------ADDED BY DHARSHAN GOPAUL
   std::vector<Unit> units;
+  int army_size;
+  //--------------------------------------------------
   public:
   Army(Node* current_position, Empire* owner_empire);
   ~Army();
@@ -47,6 +51,15 @@ class Army : Observer
      */
   Node *getPosition();
 
+  //--------------------------------------------------ADDED BY DHARSHAN GOPAUL
+  int getResource();
+
+  void setResource(int new_resource);
+
+  int getArmySize();
+
+  void setArmySize(int new_size);
+
   /**
    * @brief Get the empire that owns the current Army
    * @return Return an Empire pointer
@@ -66,6 +79,7 @@ class Army : Observer
   /**
    * Kills a random Unit from the units vector
    */
+
   void killRandomUnit();
 };
 

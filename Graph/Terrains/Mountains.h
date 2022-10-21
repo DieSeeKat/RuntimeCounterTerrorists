@@ -5,10 +5,14 @@
 
 #include "../Terrain.h"
 
-class Mountains : Terrain
+class Mountains : public Terrain
 {
   public:
-  void calculate_losses(Army *army);
+  //------------------------------------------------------ADDED BY DHARSHAN GOPAUL
+  Mountains();
+  ~Mountains();
+  int determineNeededResources(int army_size) override;
+  int determineNumDeaths(int army_size) override;
 };
 
 #endif

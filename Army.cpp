@@ -27,6 +27,26 @@ void Army::moveToTown(Node *town)
   position = town;
   attackTown(town);
 }
+//-------------------------------------------ADDED BY DHARSHAN GOPAUL
+int Army::getResource()
+{
+  return resources;
+}
+
+void Army::setResource(int new_resource)
+{
+  resources = new_resource;
+}
+
+int Army::getArmySize()
+{
+  return army_size;
+}
+
+void Army::setArmySize(int new_size)
+{
+  army_size = new_size;
+}
 Node *Army::getPosition()
 {
   return position;
@@ -48,8 +68,9 @@ void Army::killSelf()
 }
 void Army::killRandomUnit()
 {
-  //TODO - Random Removal
-  units.pop_back();
+  int random_num                 = rand() % (units.size() - 1) + 1;
+  std::vector<Unit>::iterator it = units.begin() + random_num;
+  units.erase(it);
   if (units.size() == 0)
   {
     if (position != nullptr)
