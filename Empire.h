@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <map>
 
 #include "Army.h"
 
@@ -166,7 +167,7 @@ class Empire
    * @return Vector of Army pointers
    */
   std::vector<Army*> getArmies();
-  Empire *clone();
+  Empire* clone(std::map<void*, void*> &objmap);
 };
 
 #endif

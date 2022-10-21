@@ -15,6 +15,7 @@
 
 #include "../Mediator/Mediator.h"
 #include "NodeType.h"
+#include <map> 
 
 class Empire;
 
@@ -152,10 +153,7 @@ class Node : Aggregate, Subject
    */
   void removeStationedArmy(Army *army);
   void addStationedArmy(Army *army);
-  /**
-   * @todo Make clone method pure virtual after implementing clone() method in children classes.
-  */
-  virtual Node *clone();
+  Node *clone(std::map<void*, void*> &objmap);
   void setOwnerEmpire(Empire *empire);
   void setNodeType(NodeType *node_type);
   NodeType* getNodeType();

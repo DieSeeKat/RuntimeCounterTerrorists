@@ -5,6 +5,7 @@
 #include <deque>
 #include <vector>
 #include <climits>
+#include <iostream>
 
 #include "../Empire.h"
 #include "Node.h"
@@ -217,7 +218,7 @@ void Node::getAttacked(Army *attacking_army)
 /**
  * @brief Implement this function in child classes
 */
-Node* Node::clone(){
+Node* Node::clone(std::map<void*, void*> &objmap){
   return NULL;
 }
 void Node::addStationedArmy(Army* army)
