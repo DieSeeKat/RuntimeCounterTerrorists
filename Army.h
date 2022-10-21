@@ -23,8 +23,7 @@ class Army : Observer
   int resources;
   /// The controlling Empire of the Army
   Empire *empire;
-
-  //--------------------------------------------------ADDED BY DHARSHAN GOPAUL
+  /// The vector of all the Units in the Army
   std::vector<Unit> units;
   int army_size;
   //--------------------------------------------------
@@ -38,13 +37,16 @@ class Army : Observer
      * @param town The town which will be attacked
      */
   void attackTown(Node *town);
+  /**
+   * @brief Add a new Unit to the Army
+   * @param unit The unit to be added
+   */
   void addUnit(Unit unit);
   /**
      * @brief A method to move an Army to another Node
      * @param town The town which will be moved to
      */
   void moveToTown(Node *town);
-
   /**
      * @brief Return the current position of the Army
      * @return Returns a Node pointer
@@ -58,26 +60,22 @@ class Army : Observer
 
   int getArmySize();
 
-  void setArmySize(int new_size);
-
   /**
    * @brief Get the empire that owns the current Army
    * @return Return an Empire pointer
    */
   Empire* getOwnerEmpire();
-
   /**
    * @brief Calculate and return the number of Units in the Army
    * @return Return an integer representing the number of Units
    */
   int getNumUnits();
-
   /**
    * @brief Will notify the owning Empire to delete and remove the current Army
    */
   void killSelf();
   /**
-   * Kills a random Unit from the units vector
+   * @brief Kills a random Unit from the units vector
    */
 
   void killRandomUnit();

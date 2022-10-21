@@ -73,7 +73,7 @@ TEST(System, ArmyAttack)
 
   ASSERT_EQ(n8->getOwnerEmpire(), e1);
   ASSERT_EQ(attacking_army->getNumUnits(), 1);
-  ASSERT_EQ(e2->armies.size(), 0);
+  ASSERT_EQ(e2->getArmies().size(), 0);
 }
 
 TEST(System, AdvanceArmies_Test)
@@ -137,7 +137,7 @@ TEST(System, AdvanceArmies_Test)
 
   ASSERT_EQ(n4->getOwnerEmpire(), e1);
   ASSERT_EQ(attacking_army->getNumUnits(), 1);
-  ASSERT_EQ(e2->armies.size(), 0);
+  ASSERT_EQ(e2->getArmies().size(), 0);
 
   e1->advanceArmies();
 

@@ -32,7 +32,9 @@ class Node : Aggregate, Subject
   Empire *owner_empire;
   /// All paths connecting to other Nodes
   std::vector<Path *> paths;
+  /// All armies stationed at the Node
   std::vector<Army *> stationed_armies;
+  /// A pointer to the NodeType of the Node
   NodeType *node_type;
 
   public:
@@ -129,8 +131,11 @@ class Node : Aggregate, Subject
    * Will destroy or weaken armies depending on the result of the battle and will be colonised if it loses the battle.
    * @param attacking_army The army performing the attack.
    */
-  void onAttacked();
   void getAttacked(Army *attacking_army);
+  /**
+   * @brief Handles the Mediator method when the Node gets attacked
+   */
+  void onAttacked();
   /**
    * @brief Make this Node a free city. Will change the owner_empire attribute to nullptr
    */

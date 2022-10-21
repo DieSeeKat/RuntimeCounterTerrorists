@@ -38,7 +38,7 @@ class Empire : public AllianceComponent
   /// A vector containing all the empires that is in an alliance
   std::vector<Empire *> alliances;
   /// A vector of all controlled armies
-
+  std::vector<Army *> armies;
   /// A pointer to the War object, which hold information on all other entities in the war
   War *war;
   /// The Empire's capital Node
@@ -47,10 +47,12 @@ class Empire : public AllianceComponent
   int prev_num_nodes = 0;
 
   public:
-  std::vector<Army *> armies;
   Empire(std::string name, War *war);
   Empire(std::string name);
   ~Empire();
+  /**
+   * @brief A method called after an Empire's capital is colonised to make it invalid.
+   */
   void dieOff();
   void algorithm();
   void request();
@@ -118,6 +120,10 @@ class Empire : public AllianceComponent
    * @return Return a Node pointer
    */
   Node *getCapital();
+  /**
+   * @brief Set the capital Node of an Empire
+   * @param capital The capital Node
+   */
   void setCapital(Node* capital);
   /**
    * @brief A getter for the prev_num_nodes attribute
@@ -152,14 +158,20 @@ class Empire : public AllianceComponent
    * @brief Remove and delete Army from the armies vector.
    */
   void removeArmy(Army *);
-
-
   /**
    * @brief Return the current alliances of the empire
    */
   std::vector<Empire *> getAlliances();
-
+  /**
+   * @brief Add an Army to the Empire
+   * @param army
+   */
   void addArmy(Army *army);
+  /**
+   * @brief Return the vector of owned armies
+   * @return Vector of Army pointers
+   */
+  std::vector<Army*> getArmies();
   Empire *clone();
 };
 

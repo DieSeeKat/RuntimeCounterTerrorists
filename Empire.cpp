@@ -270,3 +270,7 @@ void Empire::dieOff()
   capital = nullptr;
   armies.clear();
 }
+std::vector<Army *> Empire::getArmies()
+{
+  return armies;
+}

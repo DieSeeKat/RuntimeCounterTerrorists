@@ -10,8 +10,11 @@ class Path
 {
 
   private:
+      ///An array of the different endpoints of a Path
   Node **end_points;
+  /// The distance between the endpoints of the Path
   int distance;
+  /// A pointer to the terrain type of a path
   Terrain* terrain_type;
 
   public:
@@ -26,8 +29,6 @@ class Path
   //-------------------------------------------------------------ADDED BY DHARSHAN GOPAUL
   Path();
   ~Path();
-  virtual int determineNeededResources(int army_size) = 0;
-  virtual int determineNumDeaths(int army_size)       = 0;
 
   /**
     * @brief Determines and returns the end of the path which is not the passed in Node
