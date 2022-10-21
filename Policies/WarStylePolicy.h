@@ -5,7 +5,9 @@
 
 class WarStylePolicy {
 public:
-	ArmyRatio createArmyRatio();
+	virtual ArmyRatio createArmyRatio()=0;
+    WarStylePolicy();
+    ~WarStylePolicy();
 };
 
 #endif

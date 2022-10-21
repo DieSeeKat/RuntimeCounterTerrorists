@@ -10,7 +10,9 @@
 class GuerillaWarfare : public WarStylePolicy
 {
   public:
-  ArmyRatio createArmyRatio();
+  ArmyRatio createArmyRatio() override;
+  GuerillaWarfare();
+  ~GuerillaWarfare();
 };
 
 #endif
