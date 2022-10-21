@@ -8,7 +8,9 @@
 class HeavyWar : public RecruitmentPolicy
 {
   public:
-  int calculateRecruits(int town_population);
+  int calculateRecruits(int town_population) override;
+  HeavyWar();
+  ~HeavyWar();
 };
 
 #endif

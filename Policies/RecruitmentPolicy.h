@@ -5,6 +5,8 @@ class RecruitmentPolicy
 {
   public:
   virtual int calculateRecruits(int town_population) = 0;
+  RecruitmentPolicy();
+  ~RecruitmentPolicy();
 };
 
 #endif
