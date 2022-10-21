@@ -27,7 +27,7 @@ class Path
   void calculate_losses(Army *army);
   Node *getOppositeEnd(Node *);
   //-------------------------------------------------------------ADDED BY DHARSHAN GOPAUL
-  Path();
+  Path(std::string terrain_type);
   ~Path();
 
   /**

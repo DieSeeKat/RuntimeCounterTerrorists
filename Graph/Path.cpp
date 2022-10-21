@@ -1,13 +1,12 @@
 #include "Path.h"
+#include "Terrains/Desert.h"
+#include "Terrains/Forest.h"
+#include "Terrains/Mountains.h"
+#include "Terrains/Plains.h"
+#include "Terrains/Snow.h"
 #include <iostream>
 #include <string>
 using namespace std;
-
-Path ::Path()
-{
-  cout << "The Army is travelling along a path. Some units may die" << endl;
-}
-
 
 Path::Path(Node *first_node, Node *last_node)
 {
@@ -23,7 +22,7 @@ void Path::calculate_losses(Army *army)
 
 Path ::~Path()
 {
-  cout << "The Army has reached its destination";
+  delete terrain_type;
 }
 
 //------------------------------------------------------------------
@@ -45,4 +44,17 @@ Node *Path::getOppositeEnd(Node *node)
 Path* Path::clone(){
   return NULL;  
 }
-
+Path::Path(std::string terrain_type)
+{
+  if (terrain_type == "desert") {
+    this->terrain_type = new Desert();
+  }else if (terrain_type == "forest") {
+    this->terrain_type = new Forest();
+  }else if (terrain_type == "mountains") {
+    this->terrain_type = new Mountains();
+  } else if (terrain_type == "snow") {
+    this->terrain_type = new Snow();
+  } else {
+    this->terrain_type = new Plains();
+  }
+}
