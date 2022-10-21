@@ -7,16 +7,14 @@ class Observer
 {
 
     public:
-        Observer(): subject(0)
-        {
+        Observer() : subject(0) {};
 
-        };
+        void registerSubject(Subject* subject);
 
-        void register(Subject* subject);
         virtual void update() = 0;
 
     protected:
-        Subject* subject
+        Subject* subject;
 
 
 };
