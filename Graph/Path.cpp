@@ -42,9 +42,10 @@ Node *Path::getOppositeEnd(Node *node)
 /**
  * @todo Implement this clone
 */
-Path* Path::clone(){
-  return NULL;  
+Path* Path::clone(std::map<void*, void*> &objmap){
+  return NULL;
 }
+
 Path::Path(Node *first_node, Node *last_node, std::string terrain_type)
 {
   end_points.push_back(first_node);

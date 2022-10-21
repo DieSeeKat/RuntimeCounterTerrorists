@@ -231,9 +231,6 @@ std::vector<Empire*> Empire::getAlliances()
 /**
  * @todo Implement this function
 */
-Empire* Empire::clone(){
-  return NULL;
-}
 Empire::Empire(std::string name)
 {
   this->name      = name;
@@ -260,4 +257,8 @@ void Empire::dieOff()
 std::vector<Army *> Empire::getArmies()
 {
   return armies;
+}
+
+Empire* Empire::clone(std::map<void*, void*> &objmap){
+  return NULL;
 }

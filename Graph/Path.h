@@ -3,6 +3,7 @@
 
 #include "../Army.h"
 #include "Terrain.h"
+#include <map>
 
 class Node;
 
@@ -36,7 +37,7 @@ class Path
     * @return Return a Node pointer
     */
   Node *getOppositeEnd(Node *node);
-  Path* clone();
+  Path* clone(std::map<void*, void*> &objmap);
 };
 
 #endif
