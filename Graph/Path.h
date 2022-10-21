@@ -2,6 +2,7 @@
 #define PATH_H
 
 #include "../Army.h"
+#include "Terrain.h"
 
 class Node;
 
@@ -11,6 +12,7 @@ class Path
   private:
   Node **end_points;
   int distance;
+  Terrain* terrain_type;
 
   public:
   /**
