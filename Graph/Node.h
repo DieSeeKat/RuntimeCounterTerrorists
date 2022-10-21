@@ -16,7 +16,7 @@
 #include "../Mediator/Mediator.h"
 #include "NodeType.h"
 #include <map> 
-
+#include <algorithm>
 class Empire;
 
 class Node : Aggregate, Subject
