@@ -27,23 +27,21 @@ WarRollback *War::createWarRollback()
 
 void War::setWarRollback(WarRollback *war_rollback)
 {
-  
+
   for(std::vector<Empire*>::iterator it = empires.begin(); it != empires.end(); it++){
     if(it!=empires.end())
       delete (*it);
   }
-
   for(std::vector<Path*>::iterator it = paths.begin(); it != paths.end(); it++){
       if(it!=paths.end())
         delete (*it);
   }
-
   for(std::vector<Node*>::iterator it = nodes.begin(); it != nodes.end(); it++){
-      if(it!=nodes.end() && it!=nodes.begin()){
-        delete (*it);
-      }
+    if(it!=nodes.end() && it!=nodes.begin()){
+      delete (*it);
+    }
   }
-  
+
   this->empires = war_rollback->empires;
   updateEmpires();
   this->paths = war_rollback->paths;
@@ -105,17 +103,17 @@ void War::addPath(Path *new_path)
 void War::removeEmpire(Empire *to_remove)
 {
   delete to_remove;
-  empires.erase(std::remove(empires.begin(), empires.end(), to_remove), empires.end());
+  empires.erase(std::find(empires.begin(), empires.end(), to_remove), empires.end());
 }
 void War::removeNode(Node *to_remove)
 {
   delete to_remove;
-  nodes.erase(std::remove(nodes.begin(), nodes.end(), to_remove), nodes.end());
+  nodes.erase(std::find(nodes.begin(), nodes.end(), to_remove), nodes.end());
 }
 void War::removePath(Path *to_remove)
 {
   delete to_remove;
-  paths.erase(std::remove(paths.begin(), paths.end(), to_remove), paths.end());
+  paths.erase(std::find(paths.begin(), paths.end(), to_remove), paths.end());
 }
 void War::updateEmpires(){
   for(std::vector<Empire*>::iterator it = empires.begin(); it != empires.end(); it++){

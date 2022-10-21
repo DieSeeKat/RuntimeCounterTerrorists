@@ -14,6 +14,7 @@ Path::Path(Node *first_node, Node *last_node)
   end_points.push_back(last_node);
 
   this->terrain_type = new Plains();
+
 }
 
 void Path::calculate_losses(Army *army)
@@ -29,13 +30,13 @@ Path ::~Path()
 //------------------------------------------------------------------
 Node *Path::getOppositeEnd(Node *node)
 {
-  if (end_points[0] == node)
+  if (end_points.at(0) == node)
   {
-    return end_points[1];
+    return end_points.at(1);
   }
   else
   {
-    return end_points[0];
+    return end_points.at(0);
   }
 }
 

@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <vector>
 
 #include "Army.h"
 #include "Empire.h"

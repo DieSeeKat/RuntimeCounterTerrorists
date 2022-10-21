@@ -1,7 +1,6 @@
 #ifndef EMPIRE_H
 #define EMPIRE_H
 
-#include <algorithm>
 #include <string>
 #include <vector>
 #include <map>

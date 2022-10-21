@@ -177,14 +177,14 @@ void Empire::setPrevNumNodes(int num_nodes)
 }
 void Empire::removeNode(Node *node)
 {
-  owned_nodes.erase(std::remove(owned_nodes.begin(), owned_nodes.end(), node), owned_nodes.end());
+  owned_nodes.erase(std::find(owned_nodes.begin(), owned_nodes.end(), node), owned_nodes.end());
 }
 Empire::~Empire()
 {
   for (auto node : owned_nodes)
   {
     node->makeFreeCity();
-    owned_nodes.erase(std::remove(owned_nodes.begin(), owned_nodes.end(), node), owned_nodes.end());
+    owned_nodes.erase(std::find(owned_nodes.begin(), owned_nodes.end(), node), owned_nodes.end());
   }
   delete colony_policy;
   delete war_style_policy;
@@ -205,7 +205,7 @@ void Empire::setWar(War* war)
 }
 void Empire::removeArmy(Army * army)
 {
-  armies.erase(std::remove(armies.begin(), armies.end(), army), armies.end());
+  armies.erase(std::find(armies.begin(), armies.end(), army), armies.end());
   delete army;
 }
 void Empire::addArmy(Army *army)
@@ -249,7 +249,7 @@ void Empire::dieOff()
 {
   for (auto node : owned_nodes){
     node->makeFreeCity();
-    owned_nodes.erase(std::remove(owned_nodes.begin(), owned_nodes.end(), node), owned_nodes.end());
+    owned_nodes.erase(std::find(owned_nodes.begin(), owned_nodes.end(), node), owned_nodes.end());
   }
   capital = nullptr;
   armies.clear();

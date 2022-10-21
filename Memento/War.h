@@ -6,7 +6,6 @@
 #include "../Empire.h"
 #include "../Graph/Node.h"
 #include "../Graph/Path.h"
-#include <algorithm>
 #include <map>
 #include <iostream>
 

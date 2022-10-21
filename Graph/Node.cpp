@@ -1,6 +1,5 @@
 #include <vector>
 #include <cmath>
-#include <algorithm>
 #include <cmath>
 #include <deque>
 #include <vector>
@@ -155,15 +154,14 @@ Node::~Node()
 {
   for (auto path : paths)
   {
-    paths.erase(remove(paths.begin(), paths.end(), path), paths.end());
     path->getOppositeEnd(this)->removePath(path);
+    paths.erase(std::find(paths.begin(), paths.end(), path), paths.end());
+    delete path;
   }
-  owner_empire->removeNode(this);
 }
 void Node::removePath(Path *path)
 {
-  paths.erase(remove(paths.begin(), paths.end(), path), paths.end());
-  delete path;
+  paths.erase(std::find(paths.begin(), paths.end(), path), paths.end());
 }
 void Node::makeFreeCity()
 {
@@ -175,7 +173,7 @@ std::vector<Army *> Node::getStationedArmies()
 }
 void Node::removeStationedArmy(Army* army)
 {
-  stationed_armies.erase(std::remove(stationed_armies.begin(),  stationed_armies.end(), army), stationed_armies.end());
+  stationed_armies.erase(std::find(stationed_armies.begin(),  stationed_armies.end(), army), stationed_armies.end());
 }
 void Node::getAttacked(Army *attacking_army)
 {
