@@ -59,13 +59,18 @@ int Army::getNumUnits()
 }
 void Army::killSelf()
 {
+  if (position != nullptr)
+  {
+    position->removeStationedArmy(this);
+  }
   empire->removeArmy(this);
 }
 void Army::killRandomUnit()
 {
-  int random_num                 = rand() % (units.size() - 1) + 1;
+  int random_num                 = rand() % (units.size());
   std::vector<Unit>::iterator it = units.begin() + random_num;
   units.erase(it);
+
   if (units.size() == 0)
   {
     if (position != nullptr)

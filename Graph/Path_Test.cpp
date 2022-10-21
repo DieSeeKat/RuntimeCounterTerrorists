@@ -6,32 +6,67 @@
 #include <iostream>
 
 #include "../Army.h"
-#include "Path.h"
+#include "../Empire.h"
 #include "../Units/Unit.h"
+#include "Path.h"
 
-TEST(Path, CalculateLosses_TEST) {
+TEST(Path, EnoughResources_TEST)
+{
+  Empire *e1 = new Empire("Rome");
 
-  Army* army_one = new Army(nullptr, nullptr);
-  for (int i = 0; i < 100; i++){
-    army_one->addUnit(Unit());
+  Army *army = new Army(nullptr, e1);
+  e1->addArmy(army);
+  for (int i = 0; i < 100; i++)
+  {
+    army->addUnit(Unit());
   }
-  army_one->rechargeResources();
+  army->rechargeResources();
 
-  Army* army_two = new Army(nullptr, nullptr);
-  for (int i = 0; i < 100; i++){
-    army_two->addUnit(Unit());
+  Path *path = new Path(nullptr, nullptr);
+
+  int previous_size = army->getArmySize();
+
+  path->calculate_losses(army);
+
+  ASSERT_TRUE(previous_size == army->getArmySize());
+}
+
+TEST(Path, SurvivePath_TEST)
+{
+  Empire *e1 = new Empire("Rome");
+
+  Army *army = new Army(nullptr, e1);
+  e1->addArmy(army);
+  for (int i = 0; i < 100; i++)
+  {
+    army->addUnit(Unit());
   }
-  army_two->setResource(0);
+  army->setResource(0);
 
-  Path* path = new Path(nullptr, nullptr);
+  Path *path = new Path(nullptr, nullptr);
 
-  int previous_size_one = army_one->getArmySize();
-  int previous_size_two = army_two->getArmySize();
+  int previous_size = army->getArmySize();
 
-  path->calculate_losses(army_one);
-  path->calculate_losses(army_two);
+  path->calculate_losses(army);
 
-  ASSERT_TRUE(previous_size_one == army_one->getArmySize());
-  ASSERT_TRUE(previous_size_two > army_two->getArmySize());
+  ASSERT_TRUE(previous_size > army->getArmySize());
+}
 
+TEST(Path, Die_TEST)
+{
+  Empire *e1 = new Empire("Rome");
+
+  Army *army = new Army(nullptr, e1);
+  e1->addArmy(army);
+  for (int i = 0; i < 5; i++)
+  {
+    army->addUnit(Unit());
+  }
+  army->setResource(0);
+
+  Path *path = new Path(nullptr, nullptr);
+
+  path->calculate_losses(army);
+
+  ASSERT_TRUE(e1->getArmies().size() == 0);
 }
