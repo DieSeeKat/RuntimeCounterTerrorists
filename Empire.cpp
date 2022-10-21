@@ -132,19 +132,6 @@ void Empire::joinAlliance(Empire *empire)
     }
 }
 
-void Empire::add(AllianceComponent *alliance_component)
-{
-}
-
-void Empire::remove(AllianceComponent *alliance_component)
-{
-}
-
-AllianceComponent *Empire::getChild(int index)
-{
-  return nullptr;
-}
-
 bool Empire::isAlly(Empire *empire)
 {
     if (empire == this) {

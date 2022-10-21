@@ -5,9 +5,6 @@
 #include <string>
 #include <vector>
 
-#include "Alliance/Alliance.h"
-#include "Alliance/AllianceComponent.h"
-
 #include "Army.h"
 
 #include "Graph/Node.h"
@@ -20,7 +17,7 @@
 
 class War;
 
-class Empire : public AllianceComponent
+class Empire
 {
   private:
   /// A vector of all Nodes controlled by the Empire
@@ -100,8 +97,6 @@ class Empire : public AllianceComponent
     * @param empire The empire to form the alliance with
     */
   void joinAlliance(Empire *empire);
-  void add(AllianceComponent *alliance_component);
-  void remove(AllianceComponent *alliance_component);
   /**
    * @brief Determine if an Empire is an ally
    *
@@ -114,7 +109,6 @@ class Empire : public AllianceComponent
    * @return Return a vector of Node pointers
    */
   std::vector<Node *> getNodes();
-  AllianceComponent *getChild(int index);
   /**
    * @brief A getter for the Capital Node of the Empire
    * @return Return a Node pointer
