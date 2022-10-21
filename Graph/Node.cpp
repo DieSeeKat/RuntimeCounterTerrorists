@@ -154,13 +154,13 @@ Node::~Node()
 {
   for (auto path : paths)
   {
-    remove(paths.begin(), paths.end(), path);
+    paths.erase(remove(paths.begin(), paths.end(), path), paths.end());
     path->getOppositeEnd(this)->removePath(path);
   }
 }
 void Node::removePath(Path *path)
 {
-  remove(paths.begin(), paths.end(), path);
+  paths.erase(remove(paths.begin(), paths.end(), path), paths.end());
   delete path;
 }
 void Node::makeFreeCity()
