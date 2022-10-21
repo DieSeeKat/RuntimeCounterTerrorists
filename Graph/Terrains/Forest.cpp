@@ -1,4 +1,5 @@
 #include "Forest.h"
+#include "../Terrain.h"
 #include <iostream>
 Forest::Forest()
 {

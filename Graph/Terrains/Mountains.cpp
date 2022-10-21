@@ -1,7 +1,7 @@
 #include "Mountains.h"
+#include "../Terrain.h"
 #include <iostream>
 using namespace std;
-
 
 Mountains::Mountains() : Terrain()
 {

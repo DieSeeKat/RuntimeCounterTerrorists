@@ -6,6 +6,8 @@ Army::Army(Node *current_position, Empire *owner_empire)
 {
   position = current_position;
   empire   = owner_empire;
+
+  position->addStationedArmy(this);
 }
 
 void Army::update()
@@ -48,6 +50,14 @@ Node *Army::getPosition()
 }
 Army::~Army()
 {
+  if (empire != nullptr)
+  {
+    empire->removeArmy(this);
+  }
+  if (position != nullptr)
+  {
+    position->removeStationedArmy(this);
+  }
 }
 Empire *Army::getOwnerEmpire()
 {
@@ -73,11 +83,7 @@ void Army::killRandomUnit()
 
   if (units.size() == 0)
   {
-    if (position != nullptr)
-    {
-      position->removeStationedArmy(this);
-    }
-    killSelf();
+    delete this;
   }
 }
 void Army::addUnit(Unit unit)

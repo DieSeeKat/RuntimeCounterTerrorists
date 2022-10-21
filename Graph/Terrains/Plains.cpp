@@ -1,4 +1,5 @@
 #include "Plains.h"
+#include "../Terrain.h"
 #include <iostream>
 using namespace std;
 

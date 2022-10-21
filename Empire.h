@@ -25,11 +25,11 @@ class Empire
   /// Name of the Empire
   std::string name;
   /// Policy determining what to do with captured towns
-  ColonyPolicy *colony_policy;
+  ColonyPolicy *colony_policy = nullptr;
   /// Policy determining the ratio of different troops in this Empire's armies
-  WarStylePolicy *war_style_policy;
+  WarStylePolicy *war_style_policy = nullptr;
   /// Policy determining the number of recruits based on a towns population
-  RecruitmentPolicy *recruitment_policy;
+  RecruitmentPolicy *recruitment_policy = nullptr;
   /// The current stage of war (Attacking or Defending)
   WarStage *war_stage;
   /// A vector containing all the empires that is in an alliance
@@ -167,6 +167,7 @@ class Empire
    */
   std::vector<Army*> getArmies();
   Empire* clone(std::map<void*, void*> &objmap);
+  void removeAlliance(Empire* empire);
 };
 
 #endif

@@ -64,10 +64,11 @@ TEST(System, ArmyAttack)
   e1->addArmy(attacking_army);
   attacking_army->addUnit(Unit());
   attacking_army->addUnit(Unit());
+
   Army *defending_army = new Army(n8, e2);
-  n8->addStationedArmy(defending_army);
   e2->addArmy(defending_army);
   defending_army->addUnit(Unit());
+
   attacking_army->attackTown(n8);
 
   ASSERT_EQ(n8->getOwnerEmpire(), e1);
@@ -128,7 +129,6 @@ TEST(System, AdvanceArmies_Test)
   attacking_army->addUnit(Unit());
 
   Army *defending_army = new Army(n4, e2);
-  n4->addStationedArmy(defending_army);
   e2->addArmy(defending_army);
   defending_army->addUnit(Unit());
 

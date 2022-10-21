@@ -177,20 +177,11 @@ void Empire::setPrevNumNodes(int num_nodes)
 }
 void Empire::removeNode(Node *node)
 {
-  owned_nodes.erase(std::find(owned_nodes.begin(), owned_nodes.end(), node), owned_nodes.end());
+  owned_nodes.erase(std::find(owned_nodes.begin(), owned_nodes.end(), node));
 }
 Empire::~Empire()
 {
-  for (auto node : owned_nodes)
-  {
-    node->makeFreeCity();
-    owned_nodes.erase(std::find(owned_nodes.begin(), owned_nodes.end(), node), owned_nodes.end());
-  }
-  delete colony_policy;
-  delete war_style_policy;
-  delete recruitment_policy;
-  delete war_stage;
-  unwindAlliances();
+  dieOff();
 }
 void Empire::unwindAlliances()
 {
@@ -205,8 +196,7 @@ void Empire::setWar(War* war)
 }
 void Empire::removeArmy(Army * army)
 {
-  armies.erase(std::find(armies.begin(), armies.end(), army), armies.end());
-  delete army;
+  armies.erase(std::find(armies.begin(), armies.end(), army));
 }
 void Empire::addArmy(Army *army)
 {
@@ -247,12 +237,39 @@ void Empire::setCapital(Node* capital)
 }
 void Empire::dieOff()
 {
-  for (auto node : owned_nodes){
-    node->makeFreeCity();
-    owned_nodes.erase(std::find(owned_nodes.begin(), owned_nodes.end(), node), owned_nodes.end());
+  for (auto empire : alliances){
+    empire->removeAlliance(this);
   }
+  alliances.clear();
+
+  for (auto node : owned_nodes)
+  {
+    node->makeFreeCity();
+  }
+  owned_nodes.clear();
   capital = nullptr;
+
+  for (auto army : armies) {
+    delete army;
+  }
   armies.clear();
+
+  if (colony_policy != nullptr)
+  {
+    delete colony_policy;
+  }
+  if (colony_policy != nullptr)
+  {
+    delete war_style_policy;
+  }
+  if (colony_policy != nullptr)
+  {
+    delete recruitment_policy;
+  }
+  if (colony_policy != nullptr)
+  {
+    delete war_stage;
+  }
 }
 std::vector<Army *> Empire::getArmies()
 {
@@ -261,4 +278,8 @@ std::vector<Army *> Empire::getArmies()
 
 Empire* Empire::clone(std::map<void*, void*> &objmap){
   return NULL;
+}
+void Empire::removeAlliance(Empire * empire)
+{
+  alliances.erase(std::find(alliances.begin(), alliances.end(), empire));
 }
