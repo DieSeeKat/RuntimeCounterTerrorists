@@ -157,6 +157,7 @@ Node::~Node()
     paths.erase(remove(paths.begin(), paths.end(), path), paths.end());
     path->getOppositeEnd(this)->removePath(path);
   }
+  owner_empire->removeNode(this);
 }
 void Node::removePath(Path *path)
 {

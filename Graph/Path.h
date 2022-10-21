@@ -11,7 +11,7 @@ class Path
 
   private:
       ///An array of the different endpoints of a Path
-  Node **end_points;
+  std::vector<Node*> end_points;
   /// The distance between the endpoints of the Path
   int distance;
   /// A pointer to the terrain type of a path
