@@ -9,6 +9,13 @@ Path ::Path()
 }
 
 
+Path::Path(Node *first_node, Node *last_node)
+{
+  end_points    = new Node *[2];
+  end_points[0] = first_node;
+  end_points[1] = last_node;
+}
+
 void Path::calculate_losses(Army *army)
 {
   int resources_needed = determineNeededResources(army->getArmySize());
@@ -66,3 +73,11 @@ Node *Path::getOppositeEnd(Node *node)
     return end_points[0];
   }
 }
+
+/**
+ * @todo Implement this clone
+*/
+Path* Path::clone(){
+  return NULL;  
+}
+

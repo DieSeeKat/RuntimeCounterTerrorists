@@ -1,16 +1,16 @@
-#ifndef TOWN_H
-#define TOWN_H
+#ifndef CAPITOL_H
+#define CAPITOL_H
 
 #include "../Empire.h"
 #include "NodeType.h"
 
 class Node;
 
-class Town : public NodeType
+class Capital : public NodeType
 {
   public:
-  Town(Node* node);
-  ~Town();
+  Capital(Node* node);
+  ~Capital();
   /**
    * @brief Colonise the current Node to be part of the colonising_empire
    * @param colonising_empire The Empire colonising this
