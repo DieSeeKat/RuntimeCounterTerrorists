@@ -3,6 +3,7 @@
 void Subject::attach(Observer* observer)
 {
     this->observer.push_back(observer);
+    observer->registerSubject(this);
 
 }
 
