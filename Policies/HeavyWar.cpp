@@ -3,7 +3,7 @@
 int HeavyWar::calculateRecruits(int town_population)
 {
   float percentage = 0.4;
-  float value  = percentage*town_population;
+  float value      = percentage * town_population;
   int return_value = static_cast<int>(value);
   return return_value;
 }

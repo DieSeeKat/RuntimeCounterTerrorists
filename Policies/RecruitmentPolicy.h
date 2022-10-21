@@ -8,5 +8,5 @@ class RecruitmentPolicy
   RecruitmentPolicy();
   ~RecruitmentPolicy();
 };
-
+//had problems with the git in regard to the Light, Heavy and Normal war
 #endif

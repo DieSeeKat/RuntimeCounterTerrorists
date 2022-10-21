@@ -1,5 +1,6 @@
 #ifndef NORMALWAR_H
 #define NORMALWAR_H
+
 #include "RecruitmentPolicy.h"
 #include "Node.h"
 

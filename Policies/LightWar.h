@@ -1,5 +1,6 @@
 #ifndef LIGHTWAR_H
 #define LIGHTWAR_H
+
 #include "RecruitmentPolicy.h"
 
 class LightWar : public RecruitmentPolicy

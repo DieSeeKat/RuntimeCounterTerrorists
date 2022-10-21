@@ -2,10 +2,9 @@
 #include <iostream>
 RecruitmentPolicy ::RecruitmentPolicy()
 {
-  std::cout<<"The Army is recruiting units"<<std::endl;
+  std::cout << "The Army is recruiting units" << std::endl;
 }
 
-RecruitmentPolicy :: ~RecruitmentPolicy()
+RecruitmentPolicy ::~RecruitmentPolicy()
 {
-
 }
