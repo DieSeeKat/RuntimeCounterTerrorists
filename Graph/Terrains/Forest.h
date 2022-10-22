@@ -10,6 +10,7 @@ class Forest :public Terrain
       ~Forest();
       int determineNeededResources(int army_size) override;
       int determineNumDeaths(int army_size) override;
+      Terrain* clone(std::map<void*,void*> &objmap);
 };
 
 

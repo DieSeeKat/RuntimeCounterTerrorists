@@ -7,3 +7,7 @@ NodeType::NodeType(Node *node)
 {
   this->node = node;
 }
+
+NodeType::NodeType(){
+
+}

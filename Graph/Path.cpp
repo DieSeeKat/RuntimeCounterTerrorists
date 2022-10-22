@@ -9,6 +9,10 @@
 #include <string>
 using namespace std;
 
+Path::Path(){
+
+}
+
 Path::Path(Node *first_node, Node *last_node)
 {
   nodeA = first_node;
@@ -47,7 +51,27 @@ Node *Path::getOppositeEnd(Node *node)
 */
 Path *Path::clone(std::map<void *, void *> &objmap)
 {
-  return NULL;
+  if(objmap.find(this) != objmap.end()){
+    return (Path*)((*objmap.find(this)).second);
+  }
+  else{
+    Path* temp = new Path();
+    objmap.insert(std::pair<void*,void*>(this, temp));
+    
+    if(nodeA == nullptr || nodeB == nullptr){
+      throw "Oops, there is a path being cloned of which either nodeA or nodeB is a nullptr";
+    }
+
+    if(nodeA)
+      temp->nodeA = nodeA->clone(objmap);
+    if(nodeB)
+      temp->nodeB = nodeB->clone(objmap);
+    temp->distance = distance;
+    if(terrain_type)
+      temp->terrain_type = terrain_type->clone(objmap);
+
+    return temp;
+  }
 }
 
 Path::Path(Node *first_node, Node *last_node, std::string terrain_type)

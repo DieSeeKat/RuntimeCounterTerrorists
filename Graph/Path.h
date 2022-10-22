@@ -11,8 +11,8 @@ class Path
 {
 
   private:
-      ///An array of the different endpoints of a Path
-  std::vector<Node*> end_points;
+  Path();
+  ///An array of the different endpoints of a Path
   Node* nodeA = nullptr;
   Node* nodeB = nullptr;
   /// The distance between the endpoints of the Path

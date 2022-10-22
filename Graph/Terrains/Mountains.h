@@ -13,6 +13,7 @@ class Mountains : public Terrain
   ~Mountains();
   int determineNeededResources(int army_size) override;
   int determineNumDeaths(int army_size) override;
+  Terrain* clone(std::map<void*,void*> &objmap);
 };
 
 #endif

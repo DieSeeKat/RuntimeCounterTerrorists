@@ -9,6 +9,7 @@ class ConcreteMediator : Mediator {
 
 public:
 	void notifyOfAttack(Node* node);
+	Mediator* clone(std::map<void*, void*> &objmap);
 };
 
 #endif

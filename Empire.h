@@ -20,6 +20,7 @@ class War;
 class Empire
 {
   private:
+  Empire();
   /// A vector of all Nodes controlled by the Empire
   std::vector<Node *> owned_nodes;
   /// Name of the Empire
@@ -43,7 +44,7 @@ class Empire
   /// The number of controlled nodes in the the previous round
   int prev_num_nodes = 0;
 
-  public:
+  public:  
   Empire(std::string name, War *war);
   Empire(std::string name);
   ~Empire();

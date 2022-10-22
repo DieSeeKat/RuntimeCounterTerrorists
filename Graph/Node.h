@@ -21,6 +21,8 @@ class Empire;
 
 class Node : Aggregate, Subject
 {
+  private:
+  Node();
   protected:
   Mediator *mediator;
   /// The number of resources a Node holds

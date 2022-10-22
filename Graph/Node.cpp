@@ -9,6 +9,10 @@
 #include "Node.h"
 #include "Town.h"
 
+Node::Node(){
+
+}
+
 NodeIterator *Node::createIterator()
 {
   return new NodeIterator(this);
@@ -221,7 +225,43 @@ void Node::getAttacked(Army *attacking_army)
 */
 Node *Node::clone(std::map<void *, void *> &objmap)
 {
-  return NULL;
+  if(objmap.find(this)!=objmap.end()){
+    return (Node*)((*objmap.find(this)).second);
+  }
+  else{
+    Node* temp = new Node();
+    objmap.insert(std::pair<void*,void*>(this, temp));
+
+    temp->dist = dist;
+    if(mediator)
+      temp->mediator = mediator->clone(objmap);
+    if(node_type)
+      temp->node_type = node_type->clone(objmap);
+    if(owner_empire)
+      temp->owner_empire = owner_empire->clone(objmap);
+    
+    std::vector<Path*> newpaths;
+    for(auto path : paths){
+      if(path)
+        newpaths.push_back(path->clone(objmap));
+    }
+    temp->paths = newpaths;
+    temp->population = population;
+    if(population_empire)
+      temp->population_empire = population_empire->clone(objmap);
+    if(prev)
+      temp->prev = prev->clone(objmap);
+    temp->resources = resources;
+
+    std::vector<Army*> newstationedarmies;
+    for(auto army: stationed_armies){
+      if(army)
+        newstationedarmies.push_back(army->clone(objmap));
+    }
+    temp->stationed_armies = newstationedarmies;
+
+    return temp;
+  }
 }
 void Node::addStationedArmy(Army *army)
 {

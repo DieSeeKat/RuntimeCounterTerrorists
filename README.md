@@ -91,7 +91,7 @@ else
 ### Using bazel
     - Ensure that your copy of the project is up to date with the master-branch
   
-  _Navigate to the directory that contains the WORKSPACE and BUILD files_
+  _Navigate to the directory that contains the WORKSPACE and BUILD files or the src folder_
   #### Building:
   -  `bazel build //:main`
   ### Testing:

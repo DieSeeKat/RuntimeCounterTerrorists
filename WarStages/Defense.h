@@ -4,9 +4,12 @@
 #include "../Empire.h"
 
 #include "WarStage.h"
+#include <map>
 
 class Defense : public WarStage
 {
+  private:
+  Defense();
   public:
   Defense(Empire *empire);
   ~Defense();
@@ -14,6 +17,7 @@ class Defense : public WarStage
    * @brief Will determine what the Empire will do on its turn
    */
   void takeTurn();
+  WarStage* clone(std::map<void*,void*> &objmap);
 };
 
 #endif
