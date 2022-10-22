@@ -151,10 +151,9 @@ void Node::onAttacked()
 }
 Node::~Node()
 {
-  int size = paths.size();
-  for (int i = size-1; i >= 0; i--)
-  {
-    delete paths.at(i);
+  std::vector<Path*> path_pointers = paths;
+  for (auto path : path_pointers) {
+    delete path;
   }
   paths.clear();
 }

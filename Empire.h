@@ -47,6 +47,7 @@ class Empire
   Empire(std::string name, War *war);
   Empire(std::string name);
   ~Empire();
+  std::string getName();
   /**
    * @brief A method called after an Empire's capital is colonised to make it invalid.
    */
