@@ -17,34 +17,6 @@ using namespace std;
 
 int main()
 {
-  map<void*,void*> l;
-  Empire* t;
-  // t = (Empire*)200;
-  if(t){
-    Empire* wow = t->clone(l);
-    cout << "Very cool kanye" << endl;
-  }
-  vector<int> test;
-  for(int i = 1; i < 10; i++){
-    test.push_back(i);
-  }
-  for(auto num : test){
-    cout << num << endl;
-    if(num == *test.end()){
-      cout << *test.end() << endl;
-      // throw "PANIIIIIIIIIIIIIC";
-    }
-  }
-  for(vector<int>::iterator it = test.begin(); it != test.end(); it++){
-    if(it == test.end())
-      // throw "PANIIIC";
-    cout << *it << endl;
-  }
-
-  if(!(find(test.begin(), test.end(), 10)==test.end())){
-    // throw "WHOOOOT";
-  }
-
   cout << "Hello, World!" << endl;
 
   if (true)
