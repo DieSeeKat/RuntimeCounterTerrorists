@@ -10,8 +10,17 @@
 class GuerillaWarfare : public WarStylePolicy
 {
   public:
-  ArmyRatio createArmyRatio();
+  /**
+   * @brief creates the ArmyRatio depending on the type of warfare
+   * @return ArmyRatio class
+   */
+  ArmyRatio createArmyRatio() override;
+  /// Constructor
+  GuerillaWarfare();
+  /// Destructor
+  ~GuerillaWarfare();
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
+
 };
 
 #endif

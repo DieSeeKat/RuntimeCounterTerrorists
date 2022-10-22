@@ -1,8 +1,12 @@
 #include "WarStylePolicy.h"
+#include <iostream>
 
-ArmyRatio WarStylePolicy::createArmyRatio() {
-	// TODO - implement WarStylePolicy::createArmyRatio
-	throw "Not yet implemented";
+WarStylePolicy::WarStylePolicy()
+{
+  std::cout<<"The Army is determining the ratio of units in the Army"<<std::endl;
+}
+WarStylePolicy::~WarStylePolicy()
+{
 }
 
 

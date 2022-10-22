@@ -1,10 +1,10 @@
-#ifndef HEAVYWAR_H
-#define HEAVYWAR_H
+#ifndef NORMALWAR_H
+#define NORMALWAR_H
 
-#include "../Graph/Node.h"
+#include "Node.h"
 #include "RecruitmentPolicy.h"
 
-class HeavyWar : public RecruitmentPolicy
+class NormalWar : public RecruitmentPolicy
 {
   public:
   /**
@@ -14,11 +14,10 @@ class HeavyWar : public RecruitmentPolicy
    */
   int calculateRecruits(int town_population) override;
   /// Constructor
-  HeavyWar();
+  NormalWar();
   /// Destructor
-  ~HeavyWar();
-  RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
-
+  ~NormalWar();
 };
 
-#endif
+
+#endif//NORMALWAR_H
