@@ -5,6 +5,14 @@ int ColonyPolicy::handleColony(Node* colony_town) {
 	throw "Not yet implemented";
 }
 
+
 ColonyPolicy* ColonyPolicy::clone(std::map<void*,void*> &objmap){
-	throw "Not yet implemented";
+  if(objmap.find(this)!=objmap.end()){
+		return (ColonyPolicy*)((*objmap.find(this)).second);
+	}
+	else{
+		ColonyPolicy* temp = new ColonyPolicy();
+		objmap.insert(std::pair<void*,void*>(this, temp));
+		return temp;
+	}
 }

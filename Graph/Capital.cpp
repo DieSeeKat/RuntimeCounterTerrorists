@@ -27,7 +27,8 @@ NodeType* Capital::clone(std::map<void*,void*> &objmap){
   else{
     Capital* temp = new Capital();
     objmap.insert(std::pair<void*,void*>(this, temp));
-    temp->node = node->clone(objmap);
+    if(node)
+      temp->node = node->clone(objmap);
     return temp;
   }
 }

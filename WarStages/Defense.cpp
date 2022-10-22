@@ -31,7 +31,8 @@ WarStage* Defense::clone(std::map<void*,void*> &objmap){
   else{
     Defense* temp = new Defense();
     objmap.insert(std::pair<void*,void*>(this, temp));
-    temp->empire = empire->clone(objmap);
+    if(empire)
+      temp->empire = empire->clone(objmap);
     return temp;
   }
 }

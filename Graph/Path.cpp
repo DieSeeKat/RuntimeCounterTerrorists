@@ -62,10 +62,13 @@ Path *Path::clone(std::map<void *, void *> &objmap)
       throw "Oops, there is a path being cloned of which either nodeA or nodeB is a nullptr";
     }
 
-    temp->nodeA = nodeA->clone(objmap);
-    temp->nodeB = nodeB->clone(objmap);
+    if(nodeA)
+      temp->nodeA = nodeA->clone(objmap);
+    if(nodeB)
+      temp->nodeB = nodeB->clone(objmap);
     temp->distance = distance;
-    temp->terrain_type = terrain_type->clone(objmap);
+    if(terrain_type)
+      temp->terrain_type = terrain_type->clone(objmap);
 
     return temp;
   }

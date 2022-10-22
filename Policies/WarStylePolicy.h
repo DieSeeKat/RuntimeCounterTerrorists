@@ -7,7 +7,7 @@
 class WarStylePolicy {
 public:
 	ArmyRatio createArmyRatio();
-	WarStylePolicy* clone(std::map<void*,void*> &objmap);
+	virtual WarStylePolicy* clone(std::map<void*,void*> &objmap);
 };
 
 #endif

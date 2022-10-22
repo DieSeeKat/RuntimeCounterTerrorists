@@ -107,16 +107,23 @@ Army* Army::clone(std::map<void*,void*> &objmap){
     Army* temp = new Army();
     objmap.insert(std::pair<void*,void*>(this, temp));
 
+    if(empire)
+      temp->empire = empire->clone(objmap);
     
-    temp->empire = empire->clone(objmap);
     temp->observer_state = observer_state;
-    temp->position = position->clone(objmap);
+    
+    if(position)
+      temp->position = position->clone(objmap);
+    
     temp->resources = resources;
-    temp->subject = subject->clone(objmap);
+    
+    if(subject)
+      temp->subject = subject->clone(objmap);
 
     std::vector<Unit> newunits;
     for(auto unit: units){
-      newunits.push_back(*unit.clone(objmap));
+      if(&unit)
+        newunits.push_back(*unit.clone(objmap));
     }
     temp->units = newunits;
     return temp;

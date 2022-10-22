@@ -8,6 +8,12 @@ int HeavyWar::calculateRecruits(int town_population)
 
 
 RecruitmentPolicy* HeavyWar::clone(std::map<void*, void*> &objmap){
-
-  throw "Not yet implemented";
+  if(objmap.find(this)!=objmap.end()){
+    return (RecruitmentPolicy*)((*objmap.find(this)).second);
+  }
+  else{
+    HeavyWar* temp = new HeavyWar();
+    objmap.insert(std::pair<void*, void*>(this, temp));
+    return temp;
+  }
 }

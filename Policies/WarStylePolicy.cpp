@@ -7,5 +7,12 @@ ArmyRatio WarStylePolicy::createArmyRatio() {
 
 
 WarStylePolicy* WarStylePolicy::clone(std::map<void*,void*> &objmap){
-	throw "Not yet implemented";
+	if(objmap.find(this)!=objmap.end()){
+		return (WarStylePolicy*)((*objmap.find(this)).second);
+	}
+	else{
+		WarStylePolicy* temp = new WarStylePolicy();
+		objmap.insert(std::pair<void*,void*>(this, temp));
+		return temp;
+	}
 }

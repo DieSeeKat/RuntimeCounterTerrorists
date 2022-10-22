@@ -243,17 +243,20 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     std::vector<Path*> newpaths;
     for(auto path : paths){
       if(path)
-      newpaths.push_back(path->clone(objmap));
+        newpaths.push_back(path->clone(objmap));
     }
     temp->paths = newpaths;
     temp->population = population;
-    temp->population_empire = population_empire->clone(objmap);
-    temp->prev = prev->clone(objmap);
+    if(population_empire)
+      temp->population_empire = population_empire->clone(objmap);
+    if(prev)
+      temp->prev = prev->clone(objmap);
     temp->resources = resources;
 
     std::vector<Army*> newstationedarmies;
     for(auto army: stationed_armies){
-      newstationedarmies.push_back(army->clone(objmap));
+      if(army)
+        newstationedarmies.push_back(army->clone(objmap));
     }
     temp->stationed_armies = newstationedarmies;
 

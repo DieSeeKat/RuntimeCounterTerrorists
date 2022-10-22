@@ -11,6 +11,7 @@ class GuerillaWarfare : public WarStylePolicy
 {
   public:
   ArmyRatio createArmyRatio();
+  WarStylePolicy* clone(std::map<void*,void*> &objmap);
 };
 
 #endif
