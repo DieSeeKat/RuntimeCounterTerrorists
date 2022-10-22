@@ -4,7 +4,7 @@
 #include "Node.h"
 
 Capital::Capital(){
-  
+  this->node = nullptr;
 }
 
 void Capital::colonise(Empire* empire)

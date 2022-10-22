@@ -235,31 +235,44 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     temp->dist = dist;
     if(mediator)
       temp->mediator = mediator->clone(objmap);
+    else
+      std::cout << "Mediator is null" << std:: endl;
     if(node_type)
       temp->node_type = node_type->clone(objmap);
+    else
+      std::cout << "node_type is null" << std:: endl;
+    
     if(owner_empire)
       temp->owner_empire = owner_empire->clone(objmap);
-    
+    else
+      std::cout << "owner_empire is null" << std:: endl;
     std::vector<Path*> newpaths;
     for(auto path : paths){
       if(path)
         newpaths.push_back(path->clone(objmap));
+      else
+        std::cout << "a path is null" << std:: endl;
     }
     temp->paths = newpaths;
     temp->population = population;
     if(population_empire)
       temp->population_empire = population_empire->clone(objmap);
+    else
+      std::cout << "population_empire is null" << std:: endl;
     if(prev)
       temp->prev = prev->clone(objmap);
+    else
+      std::cout << "prev is null" << std:: endl;
     temp->resources = resources;
 
     std::vector<Army*> newstationedarmies;
     for(auto army: stationed_armies){
       if(army)
         newstationedarmies.push_back(army->clone(objmap));
+      else
+        std::cout << "an army is null" << std:: endl;
     }
     temp->stationed_armies = newstationedarmies;
-
     return temp;
   }
 }

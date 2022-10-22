@@ -7,8 +7,8 @@ class Unit
 {
 
   protected:
-  int damage;
-  int health;
+  int damage = 0;
+  int health = 0;
 
   public:
   virtual Unit* clone(std::map<void*, void*> &objmap);

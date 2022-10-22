@@ -32,15 +32,15 @@ class Empire
   /// Policy determining the number of recruits based on a towns population
   RecruitmentPolicy *recruitment_policy = nullptr;
   /// The current stage of war (Attacking or Defending)
-  WarStage *war_stage;
+  WarStage *war_stage = nullptr;
   /// A vector containing all the empires that is in an alliance
   std::vector<Empire *> alliances;
   /// A vector of all controlled armies
   std::vector<Army *> armies;
   /// A pointer to the War object, which hold information on all other entities in the war
-  War *war;
+  War *war = nullptr;
   /// The Empire's capital Node
-  Node *capital;
+  Node *capital = nullptr;
   /// The number of controlled nodes in the the previous round
   int prev_num_nodes = 0;
 
