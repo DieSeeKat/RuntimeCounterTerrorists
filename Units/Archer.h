@@ -5,6 +5,7 @@
 
 class Archer : Unit
 {
+    Unit* clone(std::map<void*, void*> &objmap);
 };
 
 #endif
