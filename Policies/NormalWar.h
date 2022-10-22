@@ -18,6 +18,7 @@ class NormalWar : public RecruitmentPolicy
   NormalWar();
   /// Destructor
   ~NormalWar();
+  RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
 };
 
 

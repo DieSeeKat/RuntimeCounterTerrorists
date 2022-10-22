@@ -18,3 +18,14 @@ ArcherWarfare::ArcherWarfare() : WarStylePolicy()
 ArcherWarfare::~ArcherWarfare()
 {
 }
+
+WarStylePolicy* ArcherWarfare::clone(std::map<void*,void*> &objmap){
+  if(objmap.find(this)!=objmap.end()){
+    return (WarStylePolicy*)((*objmap.find(this)).second);
+  }
+  else{
+    ArcherWarfare* temp = new ArcherWarfare();
+    objmap.insert(std::pair<void*,void*>(this, temp));
+    return temp;
+  }
+}

@@ -14,3 +14,13 @@ NormalWar::NormalWar() : RecruitmentPolicy()
 NormalWar::~NormalWar()
 {
 }
+RecruitmentPolicy* NormalWar::clone(std::map<void*, void*> &objmap){
+  if(objmap.find(this)!=objmap.end()){
+    return (RecruitmentPolicy*)((*objmap.find(this)).second);
+  }
+  else{
+    NormalWar* temp = new NormalWar();
+    objmap.insert(std::pair<void*, void*>(this, temp));
+    return temp;
+  }
+}

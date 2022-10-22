@@ -16,6 +16,7 @@ class LightWar : public RecruitmentPolicy
   LightWar();
   /// Destructor
   ~LightWar();
+  RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
 };
 
 

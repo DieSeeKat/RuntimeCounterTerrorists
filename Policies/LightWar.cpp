@@ -14,3 +14,13 @@ LightWar::LightWar() : RecruitmentPolicy()
 LightWar::~LightWar()
 {
 }
+RecruitmentPolicy* LightWar::clone(std::map<void*, void*> &objmap){
+  if(objmap.find(this)!=objmap.end()){
+    return (RecruitmentPolicy*)((*objmap.find(this)).second);
+  }
+  else{
+    LightWar* temp = new LightWar();
+    objmap.insert(std::pair<void*, void*>(this, temp));
+    return temp;
+  }
+}

@@ -18,6 +18,7 @@ class LegionaryWarfare : public WarStylePolicy
   LegionaryWarfare();
   /// Destructor
   ~LegionaryWarfare();
+  WarStylePolicy* clone(std::map<void*,void*> &objmap);
 };
 
 

@@ -6,16 +6,16 @@
 
 class WarStylePolicy {
 public:
-    /**
-     * @brief creates the ArmyRatio depending on the type of warfare
-     * @return ArmyRatio class
-     */
-	virtual ArmyRatio createArmyRatio()=0;
-    /// Constructor
-    WarStylePolicy();
-    /// Destructor
-    ~WarStylePolicy();
-	virtual WarStylePolicy* clone(std::map<void*,void*> &objmap) = 0;
+  /**
+   * @brief creates the ArmyRatio depending on the type of warfare
+   * @return ArmyRatio class
+   */
+  virtual ArmyRatio createArmyRatio() = 0;
+  /// Constructor
+  WarStylePolicy();
+  /// Destructor
+  ~WarStylePolicy();
+  virtual WarStylePolicy *clone(std::map<void *, void *> &objmap) = 0;
 };
 
 #endif

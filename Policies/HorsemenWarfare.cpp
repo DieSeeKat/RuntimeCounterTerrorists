@@ -17,3 +17,13 @@ HorsemenWarfare::HorsemenWarfare() : WarStylePolicy()
 HorsemenWarfare::~HorsemenWarfare()
 {
 }
+WarStylePolicy* HorsemenWarfare::clone(std::map<void*,void*> &objmap){
+  if(objmap.find(this)!=objmap.end()){
+    return (WarStylePolicy*)((*objmap.find(this)).second);
+  }
+  else{
+    HorsemenWarfare* temp = new HorsemenWarfare();
+    objmap.insert(std::pair<void*,void*>(this, temp));
+    return temp;
+  }
+}

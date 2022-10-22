@@ -19,6 +19,7 @@ class ArcherWarfare : public WarStylePolicy
   ArcherWarfare();
   /// Destructor
   ~ArcherWarfare();
+  WarStylePolicy* clone(std::map<void*,void*> &objmap);
 };
 
 
