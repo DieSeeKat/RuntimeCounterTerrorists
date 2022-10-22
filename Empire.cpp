@@ -8,7 +8,11 @@
 #include "Policies/HeavyWar.h"
 #include "WarStages/Attack.h"
 
-Empire::Empire(std::string name, War *war)
+Empire::Empire(){
+
+}
+
+Empire::Empire(std::string name, War* war)
 {
   this->name               = name;
   this->war_stage          = new Attack(this);
@@ -275,9 +279,54 @@ std::vector<Army *> Empire::getArmies()
   return armies;
 }
 
-Empire *Empire::clone(std::map<void *, void *> &objmap)
-{
-  return NULL;
+Empire* Empire::clone(std::map<void*, void*> &objmap){
+  if(objmap.find(this)!=objmap.end()){
+    return (Empire*)((*objmap.find(this)).second);
+  }
+  else{
+    Empire* temp = new Empire();
+    objmap.insert(std::pair<void*,void*>(this,temp));
+
+    std::vector<Empire*> newalliancees;
+    for(auto al : alliances){
+      if(al)
+        newalliancees.push_back(al->clone(objmap));
+    }
+    temp->alliances = newalliancees;
+
+    std::vector<Army*> newarmies;
+    for(auto army: armies){
+      if(army)
+        newarmies.push_back(army->clone(objmap));
+    }
+    temp->armies = newarmies;
+
+    if(capital)
+      temp->capital = capital->clone(objmap);
+    
+    if(colony_policy)
+      temp->colony_policy = colony_policy->clone(objmap);
+
+    temp->name = name;
+    
+    std::vector<Node*> newownednodes;
+    for(auto node : owned_nodes){
+      if(node)
+        newownednodes.push_back(node->clone(objmap));
+    }
+    temp->owned_nodes = newownednodes;
+
+    temp->prev_num_nodes = prev_num_nodes;
+
+    if(recruitment_policy)
+      temp->recruitment_policy = recruitment_policy->clone(objmap);
+
+    if(war_stage)
+      temp->war_stage = war_stage->clone(objmap);
+
+    if(war_style_policy)
+      temp->war_style_policy = war_style_policy->clone(objmap);
+  }
 }
 void Empire::removeAlliance(Empire *empire)
 {

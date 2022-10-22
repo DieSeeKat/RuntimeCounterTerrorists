@@ -9,6 +9,7 @@ class HeavyWar : public RecruitmentPolicy
 {
   public:
   int calculateRecruits(int town_population);
+  RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
 };
 
 #endif

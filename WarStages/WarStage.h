@@ -1,12 +1,14 @@
 #ifndef WARSTAGE_H
 #define WARSTAGE_H
 
+#include <map>
 class Empire;
 
 class WarStage
 {
 
   protected:
+  WarStage();
   /// The Empire owner of the WarStage
   Empire *empire;
 
@@ -15,6 +17,7 @@ class WarStage
 
   WarStage(Empire *empire);
   ~WarStage();
+  virtual WarStage* clone(std::map<void*,void*> &objmap) = 0;
 };
 
 #endif

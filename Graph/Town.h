@@ -3,11 +3,14 @@
 
 #include "../Empire.h"
 #include "NodeType.h"
+#include <map>
 
 class Node;
 
 class Town : public NodeType
 {
+  private:
+  Town();
   public:
   Town(Node* node);
   ~Town();
@@ -16,6 +19,7 @@ class Town : public NodeType
    * @param colonising_empire The Empire colonising this
    */
   void colonise(Empire* empire) override;
+  NodeType* clone(std::map<void*,void*> &objmap);
 };
 
 #endif

@@ -4,7 +4,6 @@ WarRollback *War::createWarRollback()
 {
   WarRollback* temp = new WarRollback();
   std::map<void*, void*> objmap;
-
   std::vector<Empire*> temp_empires;
   for(std::vector<Empire*>::iterator it = empires.begin(); it != empires.end(); it++){
     temp_empires.push_back((*it)->clone(objmap));
@@ -22,6 +21,7 @@ WarRollback *War::createWarRollback()
     temp_nodes.push_back((*it)->clone(objmap));
   }
   temp->nodes = temp_nodes;
+
   return temp;
 }
 

@@ -2,6 +2,10 @@
 #include "Empire.h"
 #include "Memento/War.h"
 
+Army::Army(){
+
+}
+
 Army::Army(Node *current_position, Empire *owner_empire)
 {
   position = current_position;
@@ -93,4 +97,28 @@ void Army::addUnit(Unit unit)
 void Army::rechargeResources()
 {
   resources = getArmySize();
+}
+
+Army* Army::clone(std::map<void*,void*> &objmap){
+  if(objmap.find(this)!=objmap.end()){
+    return (Army*)((*objmap.find(this)).second);
+  }
+  else{
+    Army* temp = new Army();
+    objmap.insert(std::pair<void*,void*>(this, temp));
+
+    
+    temp->empire = empire->clone(objmap);
+    temp->observer_state = observer_state;
+    temp->position = position->clone(objmap);
+    temp->resources = resources;
+    temp->subject = subject->clone(objmap);
+
+    std::vector<Unit> newunits;
+    for(auto unit: units){
+      newunits.push_back(*unit.clone(objmap));
+    }
+    temp->units = newunits;
+    return temp;
+  }
 }

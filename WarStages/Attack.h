@@ -7,6 +7,8 @@
 
 class Attack : public WarStage
 {
+  private:
+  Attack();
   public:
   Attack(Empire *empire);
   ~Attack();
@@ -14,6 +16,7 @@ class Attack : public WarStage
    * @brief Will determine what the Empire will do on its turn
    */
   void takeTurn();
+  WarStage* clone(std::map<void*,void*> &objmap);
 };
 
 #endif

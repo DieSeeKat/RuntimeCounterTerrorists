@@ -15,6 +15,7 @@ class Army : Observer
 {
 
   private:
+  Army();
   std::string observer_state;
   Node *subject;
   /// The current Node at which the Army is stationed
@@ -78,6 +79,7 @@ class Army : Observer
    */
   void killRandomUnit();
   void rechargeResources();
+  Army* clone(std::map<void*,void*> &objmap);
 };
 
 #endif

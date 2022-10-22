@@ -8,6 +8,8 @@ class Node;
 
 class Capital : public NodeType
 {
+  private:
+  Capital();
   public:
   Capital(Node* node);
   ~Capital();
@@ -16,6 +18,7 @@ class Capital : public NodeType
    * @param colonising_empire The Empire colonising this
    */
   void colonise(Empire* empire) override;
+  NodeType* clone(std::map<void*,void*> &objmap);
 };
 
 #endif
