@@ -67,7 +67,7 @@ else
     
         The value of this variable should be set to the location of the VC folder where your Visual C++ Build Tools 2019 was installed. By default this should be 
 
-        C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC
+        C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC
 
 ## Important
      Bazel doesn't support spaces in the file path to your project at the time of writing this.
