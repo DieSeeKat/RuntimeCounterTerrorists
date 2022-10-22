@@ -9,7 +9,6 @@
 
 #include "Graph/Node.h"
 
-#include "Policies/ColonyPolicy.h"
 #include "Policies/RecruitmentPolicy.h"
 #include "Policies/WarStylePolicy.h"
 
@@ -25,8 +24,6 @@ class Empire
   std::vector<Node *> owned_nodes;
   /// Name of the Empire
   std::string name;
-  /// Policy determining what to do with captured towns
-  ColonyPolicy *colony_policy = nullptr;
   /// Policy determining the ratio of different troops in this Empire's armies
   WarStylePolicy *war_style_policy = nullptr;
   /// Policy determining the number of recruits based on a towns population

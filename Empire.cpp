@@ -3,7 +3,6 @@
 
 #include <utility>
 
-#include "Policies/Assimilate.h"
 #include "Policies/GuerillaWarfare.h"
 #include "Policies/HeavyWar.h"
 #include "WarStages/Attack.h"
@@ -17,7 +16,6 @@ Empire::Empire(std::string name, War *war)
   this->name = name;
   this->war_stage = new Attack(this);
   this->armies = std::vector<Army *>();
-  this->colony_policy = new Assimilate();
   this->recruitment_policy = new HeavyWar();
   this->war_style_policy = new GuerillaWarfare();
   this->war = war;
@@ -227,7 +225,6 @@ Empire::Empire(std::string name)
   this->name = name;
   this->war_stage = new Attack(this);
   this->armies = std::vector<Army *>();
-  this->colony_policy = new Assimilate();
   this->recruitment_policy = new HeavyWar();
   this->war_style_policy = new GuerillaWarfare();
   this->war = nullptr;
@@ -257,19 +254,15 @@ void Empire::dieOff()
   }
   armies.clear();
 
-  if (colony_policy != nullptr)
-  {
-    delete colony_policy;
-  }
-  if (colony_policy != nullptr)
+  if (war_style_policy != nullptr)
   {
     delete war_style_policy;
   }
-  if (colony_policy != nullptr)
+  if (recruitment_policy != nullptr)
   {
     delete recruitment_policy;
   }
-  if (colony_policy != nullptr)
+  if (war_stage != nullptr)
   {
     delete war_stage;
   }
@@ -308,9 +301,6 @@ Empire *Empire::clone(std::map<void *, void *> &objmap)
 
     if (capital)
       temp->capital = capital->clone(objmap);
-
-    if (colony_policy)
-      temp->colony_policy = colony_policy->clone(objmap);
 
     temp->name = name;
 
