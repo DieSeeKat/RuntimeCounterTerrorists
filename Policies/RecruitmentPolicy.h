@@ -1,6 +1,8 @@
 #ifndef RECRUITMENTPOLICY_H
 #define RECRUITMENTPOLICY_H
 
+#include <map>
+
 class RecruitmentPolicy
 {
   public:

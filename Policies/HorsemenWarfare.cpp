@@ -13,7 +13,6 @@ ArmyRatio HorsemenWarfare::createArmyRatio()
 }
 HorsemenWarfare::HorsemenWarfare() : WarStylePolicy()
 {
-  std::cout<<"The Army has chosen Horsemen Warfare"<<std::endl;
 }
 HorsemenWarfare::~HorsemenWarfare()
 {

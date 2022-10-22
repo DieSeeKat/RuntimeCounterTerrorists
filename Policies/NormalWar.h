@@ -1,7 +1,8 @@
 #ifndef NORMALWAR_H
 #define NORMALWAR_H
 
-#include "Node.h"
+#include <map>
+#include "../Graph/Node.h"
 #include "RecruitmentPolicy.h"
 
 class NormalWar : public RecruitmentPolicy

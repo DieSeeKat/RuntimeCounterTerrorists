@@ -1,5 +1,6 @@
 #include "ArcherWarfare.h"
 #include <iostream>
+#include <map>
 
 ArmyRatio ArcherWarfare::createArmyRatio()
 {
@@ -13,7 +14,6 @@ ArmyRatio ArcherWarfare::createArmyRatio()
 }
 ArcherWarfare::ArcherWarfare() : WarStylePolicy()
 {
-  std::cout<<"The Army has chosen Archer Warfare"<<std::endl;
 }
 ArcherWarfare::~ArcherWarfare()
 {

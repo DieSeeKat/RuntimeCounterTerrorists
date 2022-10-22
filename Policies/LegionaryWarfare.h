@@ -1,8 +1,10 @@
 #ifndef LEGIONARYWARFARE_H
 #define LEGIONARYWARFARE_H
-#include "ArmyRatio.h"
-#include "Node.h"
+#include "../ArmyRatio.h"
+#include "../Graph/Node.h"
 #include "WarStylePolicy.h"
+
+#include <map>
 
 class LegionaryWarfare : public WarStylePolicy
 {

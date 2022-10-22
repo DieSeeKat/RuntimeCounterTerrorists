@@ -10,7 +10,6 @@ int HeavyWar::calculateRecruits(int town_population)
 }
 HeavyWar::HeavyWar() : RecruitmentPolicy()
 {
-  std::cout << "The Army is in the Heavy War" << std::endl;
 }
 HeavyWar::~HeavyWar()
 {

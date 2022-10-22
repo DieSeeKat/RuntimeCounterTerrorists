@@ -10,7 +10,6 @@ int LightWar::calculateRecruits(int town_population)
 }
 LightWar::LightWar() : RecruitmentPolicy()
 {
-  std::cout << "The Army is in the Light War" << std::endl;
 }
 LightWar::~LightWar()
 {

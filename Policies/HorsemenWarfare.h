@@ -1,8 +1,9 @@
 #ifndef HORSEMENWARFARE_H
 #define HORSEMENWARFARE_H
-#include "ArmyRatio.h"
-#include "Node.h"
+#include "../ArmyRatio.h"
+#include "../Graph/Node.h"
 #include "WarStylePolicy.h"
+#include <map>
 
 class HorsemenWarfare : public WarStylePolicy
 {

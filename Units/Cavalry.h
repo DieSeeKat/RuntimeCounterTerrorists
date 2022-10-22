@@ -4,7 +4,7 @@
 #include "Unit.h"
 
 class Cavalry : Unit {
-    Unit* clone(std::map<void*, void*> &objmap);
+    Unit* clone(std::map<void*, void*> &objmap) override;
 };
 
 #endif

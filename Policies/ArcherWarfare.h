@@ -1,7 +1,10 @@
 #ifndef ARCHERWARFARE_H
 #define ARCHERWARFARE_H
-#include "ArmyRatio.h"
-#include "Node.h"
+
+#include <map>
+
+#include "../ArmyRatio.h"
+#include "../Graph/Node.h"
 #include "WarStylePolicy.h"
 
 class ArcherWarfare : public WarStylePolicy

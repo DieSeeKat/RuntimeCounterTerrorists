@@ -12,7 +12,6 @@ ArmyRatio GuerillaWarfare::createArmyRatio()
 }
 GuerillaWarfare::GuerillaWarfare() : WarStylePolicy()
 {
-  std::cout<<"The Army has chosen Guerilla Warfare"<<std::endl;
 }
 GuerillaWarfare::~GuerillaWarfare()
 {

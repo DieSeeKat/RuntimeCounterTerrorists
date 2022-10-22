@@ -13,7 +13,6 @@ ArmyRatio LegionaryWarfare::createArmyRatio()
 }
 LegionaryWarfare::LegionaryWarfare() : WarStylePolicy()
 {
-  std::cout<<"The Army has chosen Legionary Warfare"<<std::endl;
 }
 LegionaryWarfare::~LegionaryWarfare()
 {

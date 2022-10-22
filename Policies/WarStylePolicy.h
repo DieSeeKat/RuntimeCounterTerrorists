@@ -15,7 +15,7 @@ public:
     WarStylePolicy();
     /// Destructor
     ~WarStylePolicy();
-	virtual WarStylePolicy* clone(std::map<void*,void*> &objmap);
+	virtual WarStylePolicy* clone(std::map<void*,void*> &objmap) = 0;
 };
 
 #endif

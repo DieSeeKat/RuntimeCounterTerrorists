@@ -10,7 +10,6 @@ int NormalWar::calculateRecruits(int town_population)
 }
 NormalWar::NormalWar() : RecruitmentPolicy()
 {
-  std::cout << "The Army is in the Normal War" << std::endl;
 }
 NormalWar::~NormalWar()
 {
