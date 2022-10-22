@@ -1,5 +1,6 @@
 #include "HeavyWar.h"
 #include <iostream>
+
 int HeavyWar::calculateRecruits(int town_population)
 {
   float percentage = 0.4;

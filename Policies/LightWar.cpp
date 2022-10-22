@@ -1,5 +1,6 @@
 #include "LightWar.h"
 #include <iostream>
+
 int LightWar::calculateRecruits(int town_population)
 {
   float percentage = 0.1;

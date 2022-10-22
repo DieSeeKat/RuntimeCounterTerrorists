@@ -12,7 +12,7 @@ class ArmyRatio
   float footmen_ratio;
   /// The ratio of slingers in the Army
   float slinger_ratio;
-
+  /// Constructor for the ArmyRatio class
   ArmyRatio(float cavalry_ratio,
             float archer_ratio,
             float footmen_ratio,

@@ -1,5 +1,6 @@
 #include "NormalWar.h"
 #include <iostream>
+
 int NormalWar::calculateRecruits(int town_population)
 {
   float percentage = 0.2;
