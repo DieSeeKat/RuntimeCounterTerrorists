@@ -11,12 +11,14 @@ class Path
 {
 
   private:
-      ///An array of the different endpoints of a Path
-  std::vector<Node*> end_points;
+  Path();
+  ///An array of the different endpoints of a Path
+  Node* nodeA = nullptr;
+  Node* nodeB = nullptr;
   /// The distance between the endpoints of the Path
   int distance;
   /// A pointer to the terrain type of a path
-  Terrain* terrain_type;
+  Terrain* terrain_type = nullptr;
 
   public:
   /**

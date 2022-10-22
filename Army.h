@@ -15,14 +15,15 @@ class Army : Observer
 {
 
   private:
+  Army();
   std::string observer_state;
-  Node *subject;
+  Node *subject = nullptr;
   /// The current Node at which the Army is stationed
-  Node *position;
+  Node *position = nullptr;
   /// The number of resources that the Army has
-  int resources;
+  int resources = 0;
   /// The controlling Empire of the Army
-  Empire *empire;
+  Empire *empire = nullptr;
   /// The vector of all the Units in the Army
   std::vector<Unit> units;
   //--------------------------------------------------
@@ -78,6 +79,7 @@ class Army : Observer
    */
   void killRandomUnit();
   void rechargeResources();
+  Army* clone(std::map<void*,void*> &objmap);
 };
 
 #endif

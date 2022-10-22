@@ -2,7 +2,7 @@
 #define WAR_H
 
 #include <vector>
-
+#include <algorithm>
 #include "../Empire.h"
 #include "../Graph/Node.h"
 #include "../Graph/Path.h"

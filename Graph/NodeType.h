@@ -5,6 +5,8 @@
 #ifndef PROJECT_NODETYPE_H
 #define PROJECT_NODETYPE_H
 
+#include <map>
+
 class Empire;
 
 class Node;
@@ -12,11 +14,13 @@ class Node;
 class NodeType
 {
   protected:
-  Node *node;
+  Node *node = nullptr;
+  NodeType();
 
   public:
   NodeType(Node *node);
   virtual void colonise(Empire* empire) = 0;
+  virtual NodeType* clone(std::map<void*,void*> &objmap) = 0;;
 };
 
 

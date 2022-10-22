@@ -20,33 +20,35 @@ class War;
 class Empire
 {
   private:
+  Empire();
   /// A vector of all Nodes controlled by the Empire
   std::vector<Node *> owned_nodes;
   /// Name of the Empire
   std::string name;
   /// Policy determining what to do with captured towns
-  ColonyPolicy *colony_policy;
+  ColonyPolicy *colony_policy = nullptr;
   /// Policy determining the ratio of different troops in this Empire's armies
-  WarStylePolicy *war_style_policy;
+  WarStylePolicy *war_style_policy = nullptr;
   /// Policy determining the number of recruits based on a towns population
-  RecruitmentPolicy *recruitment_policy;
+  RecruitmentPolicy *recruitment_policy = nullptr;
   /// The current stage of war (Attacking or Defending)
-  WarStage *war_stage;
+  WarStage *war_stage = nullptr;
   /// A vector containing all the empires that is in an alliance
   std::vector<Empire *> alliances;
   /// A vector of all controlled armies
   std::vector<Army *> armies;
   /// A pointer to the War object, which hold information on all other entities in the war
-  War *war;
+  War *war = nullptr;
   /// The Empire's capital Node
-  Node *capital;
+  Node *capital = nullptr;
   /// The number of controlled nodes in the the previous round
   int prev_num_nodes = 0;
 
-  public:
+  public:  
   Empire(std::string name, War *war);
   Empire(std::string name);
   ~Empire();
+  std::string getName();
   /**
    * @brief A method called after an Empire's capital is colonised to make it invalid.
    */
@@ -167,6 +169,7 @@ class Empire
    */
   std::vector<Army*> getArmies();
   Empire* clone(std::map<void*, void*> &objmap);
+  void removeAlliance(Empire* empire);
 };
 
 #endif

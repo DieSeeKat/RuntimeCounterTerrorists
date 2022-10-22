@@ -1,15 +1,17 @@
-#include <vector>
-#include <cmath>
+#include <climits>
 #include <cmath>
 #include <deque>
-#include <vector>
-#include <climits>
 #include <iostream>
+#include <vector>
 
 #include "../Empire.h"
+#include "Capital.h"
 #include "Node.h"
 #include "Town.h"
-#include "Capital.h"
+
+Node::Node(){
+
+}
 
 NodeIterator *Node::createIterator()
 {
@@ -127,13 +129,15 @@ std::vector<Path *> Node::getPaths()
 {
   return paths;
 }
-Node::Node(Empire* owner_empire, int population)
+Node::Node(Empire *owner_empire, int population)
 {
-  this->owner_empire = owner_empire;
+  this->owner_empire      = owner_empire;
   this->population_empire = owner_empire;
-  this->population = population;
-  this->resources = population;
-  this->node_type = new Town(this);
+  this->population        = population;
+  this->resources         = population;
+  this->node_type         = new Town(this);
+
+  owner_empire->addTown(this);
 }
 void Node::addPath(Path *path)
 {
@@ -145,23 +149,21 @@ void Node::addPathTo(Node *node)
   addPath(new_path);
   node->addPath(new_path);
 }
-
 void Node::onAttacked()
 {
   owner_empire->recruitArmy(this);
 }
 Node::~Node()
 {
-  for (auto path : paths)
-  {
-    path->getOppositeEnd(this)->removePath(path);
-    paths.erase(std::find(paths.begin(), paths.end(), path), paths.end());
+  std::vector<Path*> path_pointers = paths;
+  for (auto path : path_pointers) {
     delete path;
   }
+  paths.clear();
 }
 void Node::removePath(Path *path)
 {
-  paths.erase(std::find(paths.begin(), paths.end(), path), paths.end());
+  paths.erase(std::find(paths.begin(), paths.end(), path));
 }
 void Node::makeFreeCity()
 {
@@ -171,9 +173,9 @@ std::vector<Army *> Node::getStationedArmies()
 {
   return stationed_armies;
 }
-void Node::removeStationedArmy(Army* army)
+void Node::removeStationedArmy(Army *army)
 {
-  stationed_armies.erase(std::find(stationed_armies.begin(),  stationed_armies.end(), army), stationed_armies.end());
+  stationed_armies.erase(std::find(stationed_armies.begin(), stationed_armies.end(), army));
 }
 void Node::getAttacked(Army *attacking_army)
 {
@@ -181,8 +183,10 @@ void Node::getAttacked(Army *attacking_army)
   int enemy_units_in_footmen    = 0;
 
   //Calculate friendly_units_in_footmen
-  for (Army* army : getStationedArmies()){
-    if (getOwnerEmpire() == army->getOwnerEmpire() || getOwnerEmpire()->isAlly(army->getOwnerEmpire())){
+  for (Army *army : getStationedArmies())
+  {
+    if (getOwnerEmpire() == army->getOwnerEmpire() || getOwnerEmpire()->isAlly(army->getOwnerEmpire()))
+    {
       friendly_units_in_footmen += army->getNumUnits();
     }
   }
@@ -190,40 +194,85 @@ void Node::getAttacked(Army *attacking_army)
   //Calculate enemy_units_in_footmen
   enemy_units_in_footmen += attacking_army->getNumUnits();
 
-  int difference = enemy_units_in_footmen - friendly_units_in_footmen;
-
-  if (difference > 0) {
-    for (Army* army : getStationedArmies()) {
-      removeStationedArmy(army);
-      army->killSelf();
+  if (enemy_units_in_footmen > friendly_units_in_footmen)
+  {
+    for (Army *army : getStationedArmies())
+    {
+      delete army;
     }
-
-    for (int i = 0; i < friendly_units_in_footmen; i++) {
+    stationed_armies.clear();
+    for (int i = 0; i < friendly_units_in_footmen; i++)
+    {
       attacking_army->killRandomUnit();
     }
     this->colonise(attacking_army->getOwnerEmpire());
-  }else {
-    for (int i = 0; i < enemy_units_in_footmen; i++) {
+  }
+  else
+  {
+    for (int i = 0; i < enemy_units_in_footmen; i++)
+    {
       if (!getStationedArmies().empty())
       {
-        getStationedArmies()[0]->killRandomUnit();
+        getStationedArmies().at(0)->killRandomUnit();
       }
     }
-    attacking_army->killSelf();
+    delete attacking_army;
   }
 }
 
 /**
  * @brief Implement this function in child classes
 */
-Node* Node::clone(std::map<void*, void*> &objmap){
-  return NULL;
+Node *Node::clone(std::map<void *, void *> &objmap)
+{
+  if(objmap.find(this)!=objmap.end()){
+    return (Node*)((*objmap.find(this)).second);
+  }
+  else{
+    Node* temp = new Node();
+    objmap.insert(std::pair<void*,void*>(this, temp));
+
+    temp->dist = dist;
+
+    if(mediator)
+      temp->mediator = mediator->clone(objmap);
+
+    if(node_type)
+      temp->node_type = node_type->clone(objmap);
+    
+    if(owner_empire)
+      temp->owner_empire = owner_empire->clone(objmap);
+
+    std::vector<Path*> newpaths;
+    for(auto path : paths){
+      if(path)
+        newpaths.push_back(path->clone(objmap));
+    }
+    temp->paths = newpaths;
+    temp->population = population;
+
+    if(population_empire)
+      temp->population_empire = population_empire->clone(objmap);
+
+    if(prev)
+      temp->prev = prev->clone(objmap);
+
+    temp->resources = resources;
+
+    std::vector<Army*> newstationedarmies;
+    for(auto army: stationed_armies){
+      if(army)
+        newstationedarmies.push_back(army->clone(objmap));
+    }
+    temp->stationed_armies = newstationedarmies;
+    return temp;
+  }
 }
-void Node::addStationedArmy(Army* army)
+void Node::addStationedArmy(Army *army)
 {
   stationed_armies.push_back(army);
 }
-void Node::setOwnerEmpire(Empire* empire)
+void Node::setOwnerEmpire(Empire *empire)
 {
   owner_empire = empire;
 }
@@ -234,7 +283,6 @@ void Node::colonise(Empire *colonising_empire)
 
   colonising_empire->addTown(this);
   old_owner_empire->removeNode(this);
-
   node_type->colonise(old_owner_empire);
 }
 void Node::setNodeType(NodeType *node_type)
@@ -243,14 +291,17 @@ void Node::setNodeType(NodeType *node_type)
 }
 Node::Node(Empire *owner_empire, int population, bool capital)
 {
-  this->owner_empire = owner_empire;
+  this->owner_empire      = owner_empire;
   this->population_empire = owner_empire;
-  this->population = population;
-  this->resources = population;
+  this->population        = population;
+  this->resources         = population;
+  owner_empire->addTown(this);
   if (capital)
   {
     this->node_type = new Capital(this);
-  }else {
+  }
+  else
+  {
     this->node_type = new Town(this);
   }
 }

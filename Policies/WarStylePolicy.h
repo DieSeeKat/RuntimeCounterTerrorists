@@ -2,6 +2,7 @@
 #define WARSTYLEPOLICY_H
 
 #include "../ArmyRatio.h"
+#include <map>
 
 class WarStylePolicy {
 public:
@@ -14,6 +15,7 @@ public:
     WarStylePolicy();
     /// Destructor
     ~WarStylePolicy();
+	virtual WarStylePolicy* clone(std::map<void*,void*> &objmap);
 };
 
 #endif

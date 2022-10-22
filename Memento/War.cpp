@@ -4,7 +4,6 @@ WarRollback *War::createWarRollback()
 {
   WarRollback* temp = new WarRollback();
   std::map<void*, void*> objmap;
-
   std::vector<Empire*> temp_empires;
   for(std::vector<Empire*>::iterator it = empires.begin(); it != empires.end(); it++){
     temp_empires.push_back((*it)->clone(objmap));
@@ -22,29 +21,23 @@ WarRollback *War::createWarRollback()
     temp_nodes.push_back((*it)->clone(objmap));
   }
   temp->nodes = temp_nodes;
+
   return temp;
 }
 
 void War::setWarRollback(WarRollback *war_rollback)
 {
-
-  for(std::vector<Empire*>::iterator it = empires.begin(); it != empires.end(); it++){
-    if(it!=empires.end())
-      delete (*it);
-  }
-  for(std::vector<Path*>::iterator it = paths.begin(); it != paths.end(); it++){
-      if(it!=paths.end())
-        delete (*it);
+  for(auto empire : empires){
+    delete empire;
   }
   for(std::vector<Node*>::iterator it = nodes.begin(); it != nodes.end(); it++){
-    if(it!=nodes.end() && it!=nodes.begin()){
+    if(it!=nodes.end()){
       delete (*it);
     }
   }
 
   this->empires = war_rollback->empires;
   updateEmpires();
-  this->paths = war_rollback->paths;
   this->nodes = war_rollback->nodes;
 }
 
@@ -103,17 +96,17 @@ void War::addPath(Path *new_path)
 void War::removeEmpire(Empire *to_remove)
 {
   delete to_remove;
-  empires.erase(std::find(empires.begin(), empires.end(), to_remove), empires.end());
+  empires.erase(std::find(empires.begin(), empires.end(), to_remove));
 }
 void War::removeNode(Node *to_remove)
 {
   delete to_remove;
-  nodes.erase(std::find(nodes.begin(), nodes.end(), to_remove), nodes.end());
+  nodes.erase(std::find(nodes.begin(), nodes.end(), to_remove));
 }
 void War::removePath(Path *to_remove)
 {
   delete to_remove;
-  paths.erase(std::find(paths.begin(), paths.end(), to_remove), paths.end());
+  paths.erase(std::find(paths.begin(), paths.end(), to_remove));
 }
 void War::updateEmpires(){
   for(std::vector<Empire*>::iterator it = empires.begin(); it != empires.end(); it++){

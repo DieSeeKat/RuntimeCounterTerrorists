@@ -19,6 +19,8 @@ class GuerillaWarfare : public WarStylePolicy
   GuerillaWarfare();
   /// Destructor
   ~GuerillaWarfare();
+  WarStylePolicy* clone(std::map<void*,void*> &objmap);
+
 };
 
 #endif
