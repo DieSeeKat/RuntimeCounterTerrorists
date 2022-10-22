@@ -3,20 +3,20 @@
 
 #include <utility>
 
-#include "WarStages/Attack.h"
 #include "Policies/Assimilate.h"
-#include "Policies/HeavyWar.h"
 #include "Policies/GuerillaWarfare.h"
+#include "Policies/HeavyWar.h"
+#include "WarStages/Attack.h"
 
-Empire::Empire(std::string name, War* war)
+Empire::Empire(std::string name, War *war)
 {
-  this->name      = name;
-  this->war_stage = new Attack(this);
-  this->armies    = std::vector<Army*>();
-  this->colony_policy = new Assimilate();
+  this->name               = name;
+  this->war_stage          = new Attack(this);
+  this->armies             = std::vector<Army *>();
+  this->colony_policy      = new Assimilate();
   this->recruitment_policy = new HeavyWar();
-  this->war_style_policy = new GuerillaWarfare();
-  this->war = war;
+  this->war_style_policy   = new GuerillaWarfare();
+  this->war                = war;
 }
 
 void Empire::algorithm()
@@ -66,7 +66,8 @@ void Empire::retreatArmies()
 {
   for (auto army : armies)
   {
-    if (army->getPosition()->getOwnerEmpire() != this) {
+    if (army->getPosition()->getOwnerEmpire() != this)
+    {
       Node *current_town = army->getPosition();
       if (current_town->getOwnerEmpire() == this)
       {
@@ -104,56 +105,52 @@ void Empire::addTown(Node *town)
 
 void Empire::joinAlliance(Empire *empire)
 {
-    if(empire != NULL)
-    {
-        if(empire->alliances.empty())
-        {
-            this->alliances.push_back(empire);
-        }
-        else
-        {
-            for(int i = 0; i < empire->alliances.size(); i++)
-            {
-                this->alliances.push_back(empire->alliances.at(i));
-            }
-        }
+  if (empire != nullptr)
+  {
+    empire->alliances.push_back(this);
+    alliances.push_back(empire);
 
-        if(this->alliances.empty())
-        {
-            empire->alliances.push_back(this);
-        }
-        else
-        {
-            for(int i = 0; i < this->alliances.size(); i++)
-            {
-                empire->alliances.push_back(this->alliances.at(i));
-            }
-        }
+    for (auto alliance : alliances)
+    {
+      if (!empire->isAlly(alliance))
+      {
+        alliance->joinAlliance(empire);
+      }
     }
+
+    for (auto alliance : empire->alliances)
+    {
+      if (!isAlly(alliance))
+      {
+        alliance->joinAlliance(empire);
+      }
+    }
+  }
 }
 
 bool Empire::isAlly(Empire *empire)
 {
-    if (empire == this) {
-      return true;
-    }
+  if (empire == this)
+  {
+    return true;
+  }
 
-    if(this->alliances.empty())
-    {
-        return false;
-    }
-    else
-    {
-        for(int i = 0; i < this->alliances.size(); i++)
-        {
-            if(this->alliances.at(i) == empire)
-            {
-                return true;
-            }
-        }
-    }
-
+  if (this->alliances.empty())
+  {
     return false;
+  }
+  else
+  {
+    for (auto & alliance : this->alliances)
+    {
+      if (alliance == empire)
+      {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 Node *Empire::getCapital()
 {
@@ -190,11 +187,11 @@ War *Empire::getWar()
 {
   return war;
 }
-void Empire::setWar(War* war)
+void Empire::setWar(War *war)
 {
   this->war = war;
 }
-void Empire::removeArmy(Army * army)
+void Empire::removeArmy(Army *army)
 {
   armies.erase(std::find(armies.begin(), armies.end(), army));
 }
@@ -202,7 +199,7 @@ void Empire::addArmy(Army *army)
 {
   armies.push_back(army);
 }
-void Empire::recruitArmy(Node* node)
+void Empire::recruitArmy(Node *node)
 {
   int population       = node->getPopulation();
   ArmyRatio army_ratio = war_style_policy->createArmyRatio();
@@ -213,9 +210,9 @@ void Empire::recruitArmy(Node* node)
   armies.push_back(&army);
 }
 
-std::vector<Empire*> Empire::getAlliances()
+std::vector<Empire *> Empire::getAlliances()
 {
-    return this->alliances;
+  return this->alliances;
 }
 
 /**
@@ -223,21 +220,22 @@ std::vector<Empire*> Empire::getAlliances()
 */
 Empire::Empire(std::string name)
 {
-  this->name      = name;
-  this->war_stage = new Attack(this);
-  this->armies    = std::vector<Army*>();
-  this->colony_policy = new Assimilate();
+  this->name               = name;
+  this->war_stage          = new Attack(this);
+  this->armies             = std::vector<Army *>();
+  this->colony_policy      = new Assimilate();
   this->recruitment_policy = new HeavyWar();
-  this->war_style_policy = new GuerillaWarfare();
-  this->war = nullptr;
+  this->war_style_policy   = new GuerillaWarfare();
+  this->war                = nullptr;
 }
-void Empire::setCapital(Node* capital)
+void Empire::setCapital(Node *capital)
 {
   this->capital = capital;
 }
 void Empire::dieOff()
 {
-  for (auto empire : alliances){
+  for (auto empire : alliances)
+  {
     empire->removeAlliance(this);
   }
   alliances.clear();
@@ -249,7 +247,8 @@ void Empire::dieOff()
   owned_nodes.clear();
   capital = nullptr;
 
-  for (auto army : armies) {
+  for (auto army : armies)
+  {
     delete army;
   }
   armies.clear();
@@ -276,10 +275,15 @@ std::vector<Army *> Empire::getArmies()
   return armies;
 }
 
-Empire* Empire::clone(std::map<void*, void*> &objmap){
+Empire *Empire::clone(std::map<void *, void *> &objmap)
+{
   return NULL;
 }
-void Empire::removeAlliance(Empire * empire)
+void Empire::removeAlliance(Empire *empire)
 {
   alliances.erase(std::find(alliances.begin(), alliances.end(), empire));
+}
+std::string Empire::getName()
+{
+  return name;
 }

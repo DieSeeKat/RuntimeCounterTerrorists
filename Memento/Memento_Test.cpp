@@ -20,9 +20,11 @@ TEST (Memento, Backup) {
 
   Empire *e1 = new Empire("Rome");
   Empire *e2 = new Empire("Greece");
+  Empire* e3 = new Empire("Israel");
 
   war->addEmpire(e1);
   war->addEmpire(e2);
+  war->addEmpire(e3);
 
   Node *c1 = new Node(e1, 4, true);
 //  std::cout << "c1 = " << c1 << std::endl;
@@ -51,8 +53,6 @@ TEST (Memento, Backup) {
   c1->addPathTo(n4);
   n2->addPathTo(n5);
 
-
-
   n3->addPathTo(n5);
   n3->addPathTo(n6);
   n4->addPathTo(n5);
@@ -77,10 +77,18 @@ TEST (Memento, Backup) {
   e1->addArmy(army_one);
   army_one->addUnit(Unit());
   army_one->addUnit(Unit());
+  Army *army_three = new Army(c1, e1);
+  e1->addArmy(army_three);
+  army_three->addUnit(Unit());
+  army_three->addUnit(Unit());
 
   Army *army_two = new Army(n2, e2);
   e2->addArmy(army_two);
   army_two->addUnit(Unit());
+
+  e1->joinAlliance(e2);
+
+  e1->joinAlliance(e3);
 
   WarCaretaker* caretaker = new WarCaretaker();
   caretaker->storeMemento(war->createWarRollback());
