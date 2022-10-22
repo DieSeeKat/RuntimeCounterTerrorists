@@ -11,7 +11,7 @@ ArmyRatio ArcherWarfare::createArmyRatio()
 
   return ratio;
 }
-ArcherWarfare::ArcherWarfare()
+ArcherWarfare::ArcherWarfare() : WarStylePolicy()
 {
   std::cout<<"The Army has chosen Archer Warfare"<<std::endl;
 }

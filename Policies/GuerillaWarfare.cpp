@@ -10,7 +10,7 @@ ArmyRatio GuerillaWarfare::createArmyRatio()
 
   return ratio;
 }
-GuerillaWarfare::GuerillaWarfare()
+GuerillaWarfare::GuerillaWarfare() : WarStylePolicy()
 {
   std::cout<<"The Army has chosen Guerilla Warfare"<<std::endl;
 }

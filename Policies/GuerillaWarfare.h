@@ -10,8 +10,14 @@
 class GuerillaWarfare : public WarStylePolicy
 {
   public:
+  /**
+   * @brief creates the ArmyRatio depending on the type of warfare
+   * @return ArmyRatio class
+   */
   ArmyRatio createArmyRatio() override;
+  /// Constructor
   GuerillaWarfare();
+  /// Destructor
   ~GuerillaWarfare();
 };
 

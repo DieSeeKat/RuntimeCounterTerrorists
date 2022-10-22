@@ -1,14 +1,20 @@
 #ifndef ARCHERWARFARE_H
 #define ARCHERWARFARE_H
-#include "WarStylePolicy.h"
 #include "ArmyRatio.h"
 #include "Node.h"
+#include "WarStylePolicy.h"
 
 class ArcherWarfare : public WarStylePolicy
 {
   public:
+  /**
+   * @brief creates the ArmyRatio depending on the type of warfare
+   * @return ArmyRatio class
+   */
   ArmyRatio createArmyRatio() override;
+  /// Constructor
   ArcherWarfare();
+  /// Destructor
   ~ArcherWarfare();
 };
 
