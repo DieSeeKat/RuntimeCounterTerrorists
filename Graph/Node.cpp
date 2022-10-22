@@ -233,13 +233,16 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     objmap.insert(std::pair<void*,void*>(this, temp));
 
     temp->dist = dist;
+
     if(mediator)
       temp->mediator = mediator->clone(objmap);
+
     if(node_type)
       temp->node_type = node_type->clone(objmap);
+    
     if(owner_empire)
       temp->owner_empire = owner_empire->clone(objmap);
-    
+
     std::vector<Path*> newpaths;
     for(auto path : paths){
       if(path)
@@ -247,10 +250,13 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     }
     temp->paths = newpaths;
     temp->population = population;
+
     if(population_empire)
       temp->population_empire = population_empire->clone(objmap);
+
     if(prev)
       temp->prev = prev->clone(objmap);
+
     temp->resources = resources;
 
     std::vector<Army*> newstationedarmies;
@@ -259,7 +265,6 @@ Node *Node::clone(std::map<void *, void *> &objmap)
         newstationedarmies.push_back(army->clone(objmap));
     }
     temp->stationed_armies = newstationedarmies;
-
     return temp;
   }
 }

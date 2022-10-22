@@ -14,7 +14,7 @@ class Node;
 class NodeType
 {
   protected:
-  Node *node;
+  Node *node = nullptr;
   NodeType();
 
   public:

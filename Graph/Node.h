@@ -24,25 +24,25 @@ class Node : Aggregate, Subject
   private:
   Node();
   protected:
-  Mediator *mediator;
+  Mediator *mediator = nullptr;
   /// The number of resources a Node holds
   int resources;
   /// The total population of a Node
   int population;
   /// The original empire of population of the Node
-  Empire *population_empire;
+  Empire *population_empire = nullptr;
   /// The current controlling power
-  Empire *owner_empire;
+  Empire *owner_empire = nullptr;
   /// All paths connecting to other Nodes
   std::vector<Path *> paths;
   /// All armies stationed at the Node
   std::vector<Army *> stationed_armies;
   /// A pointer to the NodeType of the Node
-  NodeType *node_type;
+  NodeType *node_type = nullptr;
 
   public:
   /// The current distance from the start Node of the Label-Correcting Algorithm
-  int dist;
+  int dist = 0;
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm
   Node *prev = nullptr;
   Node(Empire *owner_empire, int population);
