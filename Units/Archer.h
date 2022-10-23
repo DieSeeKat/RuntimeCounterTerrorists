@@ -3,9 +3,10 @@
 
 #include "Unit.h"
 
-class Archer : Unit
+class Archer : public Unit
 {
-    Archer();
+    public:
+        Archer();
 
 };
 

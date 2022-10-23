@@ -1,6 +1,6 @@
 #include "CavalryBarracks.h"
 
-Unit* CavalryBarracks::factoryMethod() {
+Unit* CavalryBarracks::factoryMethod(int numRecruits) {
 	// TODO - implement CavalryBarracks::factoryMethod
 	throw "Not yet implemented";
 }

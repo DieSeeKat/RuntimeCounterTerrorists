@@ -10,6 +10,7 @@ private:
     /* data */
 public:
     FootmenBarracks(/* args */);
+    Unit* factoryMethod(int numRecruits);
     
 };
 

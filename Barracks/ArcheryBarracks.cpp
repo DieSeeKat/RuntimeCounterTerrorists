@@ -1,7 +1,13 @@
 #include "ArcheryBarracks.h"
 
-Unit *ArcheryBarracks::factoryMethod()
+Unit *ArcheryBarracks::factoryMethod(int numRecruits)
 {
   // TODO - implement ArcheryBarracks::factoryMethod
-  throw "Not yet implemented";
+  Archer** archers=new Archer*[numRecruits];
+
+  for(int i=0;i<numRecruits;i++){
+    archers[i]=new Archer();
+  }
+
+  return *archers;
 }

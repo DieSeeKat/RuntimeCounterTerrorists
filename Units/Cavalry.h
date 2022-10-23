@@ -3,8 +3,9 @@
 
 #include "Unit.h"
 
-class Cavalry : Unit {
-    Cavalry();
+class Cavalry :public Unit {
+    public:
+        Cavalry();
 };
 
 #endif
