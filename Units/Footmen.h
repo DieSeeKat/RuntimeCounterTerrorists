@@ -5,7 +5,7 @@
 
 class Footmen :public Unit
 {
-
+    Footmen();
 };
 
 

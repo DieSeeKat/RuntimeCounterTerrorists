@@ -5,7 +5,7 @@
 
 class Slinger: public Unit
 {
-
+    Slinger();
 };
 
 

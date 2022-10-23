@@ -9,6 +9,7 @@ class SlingerBarracks:public Barracks
 private:
     /* data */
 public:
+    SlingerBarracks();
     SlingerBarracks(/* args */);
    
 };

@@ -4,6 +4,7 @@
 #include "Unit.h"
 
 class Cavalry : Unit {
+    Cavalry();
 };
 
 #endif
