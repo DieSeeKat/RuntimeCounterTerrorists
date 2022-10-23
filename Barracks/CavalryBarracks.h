@@ -4,6 +4,7 @@
 #include "Barracks.h"
 
 #include "../Units/Unit.h"
+#include "../Units/Cavalry.h"
 
 class CavalryBarracks : Barracks {
 

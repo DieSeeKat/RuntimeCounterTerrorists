@@ -5,20 +5,8 @@
 
 class Slinger: public Unit
 {
-private:
-    /* data */
-public:
-    Slinger(/* args */);
-    ~Slinger();
+
 };
-
-Slinger::Slinger(/* args */)
-{
-}
-
-Slinger::~Slinger()
-{
-}
 
 
 #endif

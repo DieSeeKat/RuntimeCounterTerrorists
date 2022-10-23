@@ -5,20 +5,8 @@
 
 class Footmen :public Unit
 {
-private:
-    /* data */
-public:
-    Footmen(/* args */);
-    ~Footmen();
+
 };
-
-Footmen::Footmen(/* args */)
-{
-}
-
-Footmen::~Footmen()
-{
-}
 
 
 #endif
