@@ -9,7 +9,6 @@ class FootmenBarracks:public Barracks
 private:
     /* data */
 public:
-    FootmenBarracks();
     FootmenBarracks(/* args */);
     
 };

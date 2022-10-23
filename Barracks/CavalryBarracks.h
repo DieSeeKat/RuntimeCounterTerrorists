@@ -9,7 +9,6 @@
 class CavalryBarracks : Barracks {
 
 public:
-	CavalryBarracks();
 	Unit* factoryMethod();
 };
 

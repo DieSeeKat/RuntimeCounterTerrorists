@@ -12,7 +12,6 @@ protected:
 	virtual Unit* factoryMethod() = 0;
 
 public:
-	Barracks();
 	void createUnits();
 };
 

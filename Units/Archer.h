@@ -6,6 +6,7 @@
 class Archer : Unit
 {
     Archer();
+
 };
 
 #endif

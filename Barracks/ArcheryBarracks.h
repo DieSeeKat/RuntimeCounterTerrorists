@@ -8,7 +8,7 @@
 
 class ArcheryBarracks : Barracks {
 public:
-	ArcheryBarracks();
+
 	Unit* factoryMethod();
 };
 
