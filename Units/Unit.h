@@ -3,7 +3,8 @@
 
 class Unit
 {
-
+  public:
+    Unit(int damage,int health);
   private:
   int damage;
   int health;

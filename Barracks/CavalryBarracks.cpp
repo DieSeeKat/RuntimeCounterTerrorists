@@ -2,5 +2,11 @@
 
 Unit* CavalryBarracks::factoryMethod(int numRecruits) {
 	// TODO - implement CavalryBarracks::factoryMethod
-	throw "Not yet implemented";
+	Cavalry** cavalry=new Cavalry*[numRecruits];
+
+	for(int i=0;i<numRecruits;i++){
+		cavalry[i]=new Cavalry();
+	}
+
+	return *cavalry;
 }
