@@ -222,20 +222,15 @@ void Node::addStationedArmy(Army* army)
   stationed_armies.push_back(army);
 }
 
-void Node::removeObserver(Observer *observer)
+void Node::removeObserver(Observer* army)
 {
-    vector<Observer*> observerList = getObserverList();
 
-   observerList.erase(std::remove(observerList.begin(), observerList.end(),observer),observerList.end());
-
-
+  detach(army);
 
 }
 
-void Node::addObserver(Observer *observer)
+void Node::addObserver(Observer* army)
 {
-    vector<Observer*> observerList = getObserverList();
-
-    observerList.push_back(observer);
-
+  attach(army);
 }
+
