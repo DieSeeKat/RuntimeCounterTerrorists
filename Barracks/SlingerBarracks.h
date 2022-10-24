@@ -10,7 +10,7 @@ private:
     /* data */
 public:
     SlingerBarracks(/* args */);
-    Unit* factoryMethod(int numRecruits);
+    Unit* factoryMethod();
 };
 
 

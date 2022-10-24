@@ -9,7 +9,7 @@ private:
 	Unit* units;
 
 protected:
-	virtual Unit* factoryMethod(int numRecruits) = 0;
+	virtual Unit* factoryMethod() = 0;
 
 public:
 	void createUnits();
