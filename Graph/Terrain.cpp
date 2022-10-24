@@ -1,6 +1,6 @@
 #include "Terrain.h"
 #include "Path.h"
-#include "Empire.h"
+#include "../Empire.h"
 #include <iostream>
 using namespace std;
 

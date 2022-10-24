@@ -1,6 +1,6 @@
 #include "Path.h"
 #include "Node.h"
-#include "Empire.h"
+#include "../Empire.h"
 #include "Terrains/Desert.h"
 #include "Terrains/Forest.h"
 #include "Terrains/Mountains.h"
