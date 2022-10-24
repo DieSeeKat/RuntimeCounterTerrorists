@@ -2,19 +2,29 @@
 #define CAPITOL_H
 
 #include "../Empire.h"
-#include "Node.h"
+#include "NodeType.h"
 
-class Capital : public Node
-{
-  public:
-  Capital(Empire* empire, int population);
+class Node;
+
+class Capital : public NodeType {
+private:
+  /// A private Constructor used for Cloning
+  Capital();
+
+public:
+  Capital(Node *node);
   ~Capital();
-  std::string getState();
   /**
    * @brief Colonise the current Node to be part of the colonising_empire
    * @param colonising_empire The Empire colonising this
    */
-  void colonise(Empire *colonising_empire);
+  void colonise(Empire *empire) override;
+  /**
+   * @brief Clone method for the Capital
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned Capital
+   */
+  NodeType *clone(std::map<void *, void *> &objmap);
 };
 
 #endif

@@ -16,3 +16,15 @@ void ConcreteMediator::notifyOfAttack(Node* node) {
     current_town = town_it->currentNode();
   }
 }
+
+Mediator* ConcreteMediator::clone(std::map<void*, void*> &objmap){
+  if(objmap.find(this)!=objmap.end()){
+    return (Mediator*)((*objmap.find(this)).second);
+  }
+  else{
+    ConcreteMediator* temp = new ConcreteMediator();
+    objmap.insert(std::pair<void*,void*>(this, temp));
+  
+    return temp;
+  }
+}

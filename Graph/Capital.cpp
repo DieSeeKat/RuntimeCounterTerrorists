@@ -1,24 +1,35 @@
 #include "Capital.h"
 #include "../Empire.h"
+#include "Node.h"
+#include "../Memento/War.h"
+#include "Town.h"
+#include <iostream>
 
-void Capital::colonise(Empire *colonising_empire)
-{
-  Empire *old_owner_empire = owner_empire;
-  owner_empire             = colonising_empire;
+Capital::Capital() { this->node = nullptr; }
 
-  colonising_empire->addTown(this);
-  old_owner_empire->removeNode(this);
+void Capital::colonise(Empire *empire) {
+#ifndef disable_output
+  std::cout << node->getOwnerEmpire()->getName() << "'s capital, "
+            << node->getName() << ", has been captured by " << empire->getName()
+            << ". " << node->getOwnerEmpire()->getName()
+            << " has collapsed due to the war effort." << std::endl;
+#endif
 
-  delete old_owner_empire;
+  node->getOwnerEmpire()->getWar()->removeEmpire(node->getOwnerEmpire());
+
+  node->setNodeType(new Town(node));
 }
-Capital::~Capital()
-{
-}
-Capital::Capital(Empire *empire, int population) : Node(empire, population)
-{
-}
-std::string Capital::getState()
-{
-  // TODO - See if getState is needed
-  return "...";
+Capital::~Capital() {}
+Capital::Capital(Node *node) : NodeType(node) {}
+
+NodeType *Capital::clone(std::map<void *, void *> &objmap) {
+  if (objmap.find(this) != objmap.end()) {
+    return (NodeType *)((*objmap.find(this)).second);
+  } else {
+    Capital *temp = new Capital();
+    objmap.insert(std::pair<void *, void *>(this, temp));
+    if (node)
+      temp->node = node->clone(objmap);
+    return temp;
+  }
 }

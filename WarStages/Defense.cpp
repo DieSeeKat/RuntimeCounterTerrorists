@@ -1,6 +1,10 @@
 #include "Defense.h"
 #include "Attack.h"
 
+Defense::Defense(){
+
+}
+
 void Defense::takeTurn()
 {
   empire->restoreTowns();
@@ -18,4 +22,17 @@ Defense::Defense(Empire *empire) : WarStage(empire)
 }
 Defense::~Defense()
 {
+}
+
+WarStage* Defense::clone(std::map<void*,void*> &objmap){
+  if(objmap.find(this)!=objmap.end()){
+    return (WarStage*)((*objmap.find(this)).second);
+  }
+  else{
+    Defense* temp = new Defense();
+    objmap.insert(std::pair<void*,void*>(this, temp));
+    if(empire)
+      temp->empire = empire->clone(objmap);
+    return temp;
+  }
 }

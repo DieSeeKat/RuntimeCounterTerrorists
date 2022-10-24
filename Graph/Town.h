@@ -1,21 +1,30 @@
 #ifndef TOWN_H
 #define TOWN_H
 
-#include "Node.h"
-
 #include "../Empire.h"
+#include "NodeType.h"
+#include <map>
 
-class Town : public Node
+class Node;
+
+class Town : public NodeType
 {
+  private:
+  Town();
   public:
-  Town(Empire* empire, int population);
+  Town(Node* node);
   ~Town();
   /**
    * @brief Colonise the current Node to be part of the colonising_empire
    * @param colonising_empire The Empire colonising this
    */
-  void colonise(Empire *colonising_empire) override;
-  std::string getState() override;
+  void colonise(Empire* empire) override;
+  /**
+   * @brief Clone method for the Town
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned Town
+   */
+  NodeType* clone(std::map<void*,void*> &objmap);
 };
 
 #endif

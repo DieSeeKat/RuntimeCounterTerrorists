@@ -2,13 +2,28 @@
 #define HEAVYWAR_H
 
 #include "../Graph/Node.h"
-
 #include "RecruitmentPolicy.h"
 
 class HeavyWar : public RecruitmentPolicy
 {
   public:
-  int calculateRecruits(int town_population);
+  /**
+   * @brief calculates the number of recruits needed depending  on the war
+   * @param town_population
+   * @return
+   */
+  int calculateRecruits(int town_population) override;
+  /// Constructor
+  HeavyWar();
+  /// Destructor
+  ~HeavyWar();
+  /**
+   * @brief Clone method for the HeavyWar Policy
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned HeavyWar Policy
+   */
+  RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
+
 };
 
 #endif
