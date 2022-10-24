@@ -4,29 +4,34 @@
 
 Army::Army() {}
 
-Army::Army(Node *current_position, Empire *owner_empire) {
+Army::Army(Node *current_position, Empire *owner_empire)
+{
   position = current_position;
-  empire = owner_empire;
+  empire   = owner_empire;
 
   position->addStationedArmy(this);
 }
 
-void Army::update() {
+void Army::update()
+{
   // TODO - implement Army::update
   throw "Not yet implemented";
 }
 
-void Army::attackTown(Node *town) {
+void Army::attackTown(Node *town)
+{
 #ifndef disable_output
   std::cout << "Army of " << empire->getName() << " is attacking "
             << town->getName() << std::endl;
 #endif
-  if (!(empire->isAlly(town->getOwnerEmpire()))) {
+  if (!(empire->isAlly(town->getOwnerEmpire())))
+  {
     town->getAttacked(this);
   }
 }
 
-void Army::moveToTown(Node *town) {
+void Army::moveToTown(Node *town)
+{
 #ifndef disable_output
   std::cout << "Army from " << empire->getName() << " is marching towards "
             << town->getName() << std::endl;
@@ -41,15 +46,16 @@ void Army::setResource(int new_resource) { resources = new_resource; }
 
 int Army::getArmySize() { return units.size(); }
 Node *Army::getPosition() { return position; }
-Army::~Army() {
-  if (empire != nullptr) {
-    empire->removeArmy(this);
-  }
-  if (position != nullptr) {
-    position->removeStationedArmy(this);
-  }
 Army::~Army()
 {
+  if (empire != nullptr)
+  {
+    empire->removeArmy(this);
+  }
+  if (position != nullptr)
+  {
+    position->removeStationedArmy(this);
+  }
 }
 Empire *Army::getOwnerEmpire()
 {
@@ -58,34 +64,33 @@ Empire *Army::getOwnerEmpire()
 
 int Army::getResources()
 {
-    return resources;
+  return resources;
 }
 int Army::getNumUnits()
 {
   int total_units = 0;
-  for (Unit unit : units){
+  for (Unit unit : units)
+  {
     total_units++;
   }
   return total_units;
 }
 void Army::killSelf()
 {
-  empire->removeArmy(this);
-}
-Empire *Army::getOwnerEmpire() { return empire; }
-int Army::getNumUnits() { return units.size(); }
-void Army::killSelf() {
-  if (position != nullptr) {
+  if (position != nullptr)
+  {
     position->removeStationedArmy(this);
   }
   empire->removeArmy(this);
 }
-void Army::killRandomUnit() {
-  int random_num = rand() % (units.size());
+void Army::killRandomUnit()
+{
+  int random_num                 = rand() % (units.size());
   std::vector<Unit>::iterator it = units.begin() + random_num;
   units.erase(it);
 
-  if (units.size() == 0) {
+  if (units.size() == 0)
+  {
 
 #ifndef disable_output
     std::cout << "Army " << empire->getName()
@@ -97,10 +102,14 @@ void Army::killRandomUnit() {
 void Army::addUnit(Unit unit) { units.push_back(unit); }
 void Army::rechargeResources() { resources = getArmySize(); }
 
-Army *Army::clone(std::map<void *, void *> &objmap) {
-  if (objmap.find(this) != objmap.end()) {
-    return (Army *)((*objmap.find(this)).second);
-  } else {
+Army *Army::clone(std::map<void *, void *> &objmap)
+{
+  if (objmap.find(this) != objmap.end())
+  {
+    return (Army *) ((*objmap.find(this)).second);
+  }
+  else
+  {
     Army *temp = new Army();
     objmap.insert(std::pair<void *, void *>(this, temp));
 
@@ -118,7 +127,8 @@ Army *Army::clone(std::map<void *, void *> &objmap) {
       temp->subject = subject->clone(objmap);
 
     std::vector<Unit> newunits;
-    for (auto unit : units) {
+    for (auto unit : units)
+    {
       if (&unit)
         newunits.push_back(*unit.clone(objmap));
     }

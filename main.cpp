@@ -20,7 +20,7 @@ War* romanPunicWars(){
 
   Empire *e1 = new Empire("Rome");
   Empire *e2 = new Empire("Greece");
-  Empire* e3 = new Empire("Israel");
+  Empire* e3 = new Empire("Germania");
 
   roman_punic_war->addEmpire(e1);
   roman_punic_war->addEmpire(e2);

@@ -75,8 +75,6 @@ class Node : Aggregate, Subject
    * @brief Recharge resources to the maximum capacity according to the Node's population
    */
   void rechargeResources();
-  int getResources();
-  virtual std::string getState() = 0;
   /**
    * @brief Recruit an army from the Node depending on the ArmyRatio and the number of recruits wanted.
    *
