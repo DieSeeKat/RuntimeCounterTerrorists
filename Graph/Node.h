@@ -18,7 +18,7 @@
 
 class Empire;
 
-class Node : Aggregate, Subject
+class Node : Aggregate, public Subject
 {
   protected:
   Mediator *mediator;
@@ -90,8 +90,8 @@ class Node : Aggregate, Subject
    */
   int getPopulation();
 
-  void removeObserver(Observer* observer);
-  void addObserver(Observer* observer);
+  void removeObserver(Observer* army);
+  void addObserver(Observer* army);
 
 
   Node *nextStepTo(Node *node);
