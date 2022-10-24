@@ -37,6 +37,11 @@ Empire *Army::getOwnerEmpire()
 {
   return empire;
 }
+
+int Army::getResources()
+{
+    return resources;
+}
 int Army::getNumUnits()
 {
   int total_units = 0;

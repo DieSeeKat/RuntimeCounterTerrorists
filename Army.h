@@ -57,6 +57,8 @@ class Army : Observer
    * @brief Calculate and return the number of Units in the Army
    * @return Return an integer representing the number of Units
    */
+
+  int getResources();
   int getNumUnits();
 
   /**

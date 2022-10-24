@@ -34,6 +34,11 @@ int Node::getPopulation()
 {
   return population;
 }
+
+int Node::getResources()
+{
+    return resources;
+}
 void Node::rechargeResources()
 {
   resources = population;

@@ -105,8 +105,38 @@ void Empire::requestAlliance(Empire *empire)
 
 void Empire::considerAlliance(Empire *empire)
 {
+    const int ARMY_RESOURCE_REQ = 3000;
+    const int ARMY_UNIT_REQ = 1500;
+    const int RESOURCE_REQ = 5000;
+    const int ALLIANCE_REQ = 5;
+
     bool accepted = true;
-    //some calculations
+    int alliance_count = this->alliances.size();
+
+    int resource_count = 0;
+
+    for(int i = 0; i < owned_nodes.size(); i++)
+    {
+        resource_count += owned_nodes.at(i)->getResources();
+    }
+
+    int army_resource_count = 0;
+    int army_unit_count = 0;
+
+    for(int i = 0; i < armies.size(); i++)
+    {
+        army_resource_count += armies.at(i)->getResources();
+        army_unit_count += armies.at(i)->getNumUnits();
+    }
+
+    if(army_resource_count < ARMY_RESOURCE_REQ || army_unit_count < ARMY_UNIT_REQ || resource_count < RESOURCE_REQ || alliance_count < ALLIANCE_REQ)
+    {
+        accepted = true;
+    }
+    else
+    {
+        accepted = false;
+    }
 
     if(accepted)
     {
