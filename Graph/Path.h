@@ -7,9 +7,10 @@
 
 class Node;
 
-class Path {
+class Path
+{
 
-private:
+  private:
   Path();
   /// Pointer to one of the endpoints of the Path
   Node *nodeA = nullptr;
@@ -20,18 +21,17 @@ private:
   /// A pointer to the terrain type of a path
   Terrain *terrain_type = nullptr;
 
-public:
+  public:
   /**
    * @brief Constructor of the path
    * @param first_node The first end of the path
    * @param last_node The second end of the path
    */
 
-  void calculate_losses(Army *army);
-  //-------------------------------------------------------------ADDED BY
-  //DHARSHAN GOPAUL
+
   Path(Node *first_node, Node *last_node, std::string terrain_type);
   Path(Node *first_node, Node *last_node);
+  /// Destructor for Path
   ~Path();
 
   /**
@@ -47,6 +47,12 @@ public:
    * @return A pointer to a new cloned Path
    */
   Path *clone(std::map<void *, void *> &objmap);
+  /**
+   * @brief Calculates the loss in the army whilst on the path
+   * @param army
+   */
+
+  void calculate_losses(Army *army);
 };
 
 #endif
