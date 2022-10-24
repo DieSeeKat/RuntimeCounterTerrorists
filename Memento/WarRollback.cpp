@@ -29,13 +29,3 @@ void WarRollback::setPaths(std::vector<Path *> paths)
 {
 	this->paths = paths;
 }
-
-std::vector<Alliance *> WarRollback::getAlliances()
-{
-	return alliances;
-}
-
-void WarRollback::setAlliances(std::vector<Alliance *> alliances)
-{
-	this->alliances = alliances;
-}
