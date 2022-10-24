@@ -18,6 +18,11 @@ class NormalWar : public RecruitmentPolicy
   NormalWar();
   /// Destructor
   ~NormalWar();
+  /**
+   * @brief Clone method for the NormalWar Policy
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned NormalWar Policy
+   */
   RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
 };
 

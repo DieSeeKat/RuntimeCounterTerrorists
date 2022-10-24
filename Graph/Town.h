@@ -19,6 +19,11 @@ class Town : public NodeType
    * @param colonising_empire The Empire colonising this
    */
   void colonise(Empire* empire) override;
+  /**
+   * @brief Clone method for the Town
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned Town
+   */
   NodeType* clone(std::map<void*,void*> &objmap);
 };
 

@@ -16,6 +16,11 @@ class LightWar : public RecruitmentPolicy
   LightWar();
   /// Destructor
   ~LightWar();
+  /**
+   * @brief Clone method for the LightWar Policy
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned LightWar Policy
+   */
   RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
 };
 

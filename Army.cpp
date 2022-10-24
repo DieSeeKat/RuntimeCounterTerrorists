@@ -8,6 +8,9 @@ Army::Army(){
 
 Army::Army(Node *current_position, Empire *owner_empire)
 {
+  #ifndef disable_output
+  std::cout << "Creating Army" << std::endl;
+  #endif
   position = current_position;
   empire   = owner_empire;
 

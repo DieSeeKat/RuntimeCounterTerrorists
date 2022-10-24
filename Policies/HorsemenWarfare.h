@@ -17,6 +17,11 @@ class HorsemenWarfare : public WarStylePolicy
   HorsemenWarfare();
   /// Destructor
   ~HorsemenWarfare();
+  /**
+   * @brief Clone method for the HorsemenWarfare Policy
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned HorsemenWarfare Policy
+   */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
 };
 

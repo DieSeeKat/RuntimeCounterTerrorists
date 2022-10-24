@@ -154,12 +154,41 @@ class Node : Aggregate, Subject
    * @param army Army to be removed
    */
   void removeStationedArmy(Army *army);
+  /**
+   * @brief Add a new Army to the stationed_armies vector
+   * @param army A pointer to the Army to be added
+   */
   void addStationedArmy(Army *army);
+  /**
+   * @brief Clone method for the Node
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned Node
+   */
   Node *clone(std::map<void*, void*> &objmap);
+  /**
+   * @brief Setter for the owner_empire attribute
+   * @param empire The new owner of the Node
+   */
   void setOwnerEmpire(Empire *empire);
+  /**
+   * @brief A setter for the node_type
+   * @param node_type A pointer to the new NodeType to be set
+   */
   void setNodeType(NodeType *node_type);
+  /**
+   * @brief A getter for the node_type
+   * @return Return a pointer to the node_type
+   */
   NodeType* getNodeType();
+  /**
+   * @brief Get the current amount of resources in the Node
+   * @return The current amount of resources in an Integer
+   */
   int getResources();
+  /**
+   * @brief A setter for the amount of resources available in the Node
+   * @param resources The new amount of resources
+   */
   void setResources(int resources);
 };
 

@@ -17,6 +17,11 @@ class RecruitmentPolicy
   RecruitmentPolicy();
   /// Destructor
   ~RecruitmentPolicy();
+  /**
+   * @brief Clone method for the RecruitmentPolicy
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned RecruitmentPolicy
+   */
   virtual RecruitmentPolicy* clone(std::map<void*, void*> &objmap) = 0;
 
 };

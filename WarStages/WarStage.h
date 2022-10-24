@@ -17,6 +17,11 @@ class WarStage
 
   WarStage(Empire *empire);
   ~WarStage();
+  /**
+   * @brief Clone method for the WarStage
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned WarStage
+   */
   virtual WarStage* clone(std::map<void*,void*> &objmap) = 0;
 };
 

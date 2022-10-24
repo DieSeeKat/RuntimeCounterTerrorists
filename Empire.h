@@ -45,6 +45,10 @@ class Empire
   Empire(std::string name, War *war);
   Empire(std::string name);
   ~Empire();
+  /**
+   * @brief A getter for the Empire's name
+   * @return Return a string
+   */
   std::string getName();
   /**
    * @brief A method called after an Empire's capital is colonised to make it invalid.
@@ -165,7 +169,16 @@ class Empire
    * @return Vector of Army pointers
    */
   std::vector<Army*> getArmies();
+  /**
+   * @brief Clone method for the Empire
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned Empire
+   */
   Empire* clone(std::map<void*, void*> &objmap);
+  /**
+   * @brief Remove an Empire from this Empire's alliance
+   * @param empire The Empire to be removed from the alliance.
+   */
   void removeAlliance(Empire* empire);
 };
 

@@ -1,7 +1,6 @@
 //
 // Created by Lukas Anthonissen on 2022/10/22.
 //
-
 #include "gtest/gtest.h"
 #include <climits>
 #include <deque>

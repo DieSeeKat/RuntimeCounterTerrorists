@@ -17,6 +17,11 @@ class HeavyWar : public RecruitmentPolicy
   HeavyWar();
   /// Destructor
   ~HeavyWar();
+  /**
+   * @brief Clone method for the HeavyWar Policy
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned HeavyWar Policy
+   */
   RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
 
 };

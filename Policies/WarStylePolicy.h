@@ -15,6 +15,11 @@ public:
   WarStylePolicy();
   /// Destructor
   ~WarStylePolicy();
+  /**
+   * @brief Clone method for the WarStylePolicy
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned WarStylePolicy
+   */
   virtual WarStylePolicy *clone(std::map<void *, void *> &objmap) = 0;
 };
 

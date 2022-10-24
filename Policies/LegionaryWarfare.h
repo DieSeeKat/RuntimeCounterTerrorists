@@ -18,6 +18,11 @@ class LegionaryWarfare : public WarStylePolicy
   LegionaryWarfare();
   /// Destructor
   ~LegionaryWarfare();
+  /**
+   * @brief Clone method for the LegionaryWarfare Policy
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned LegionaryWarfare Policy
+   */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
 };
 

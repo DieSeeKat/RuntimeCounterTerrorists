@@ -19,6 +19,11 @@ class GuerillaWarfare : public WarStylePolicy
   GuerillaWarfare();
   /// Destructor
   ~GuerillaWarfare();
+  /**
+   * @brief Clone method for the GuerillaWarfare Policy
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned GuerillaWarfare Policy
+   */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
 
 };

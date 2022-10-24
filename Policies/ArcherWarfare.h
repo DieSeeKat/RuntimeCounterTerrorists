@@ -19,6 +19,11 @@ class ArcherWarfare : public WarStylePolicy
   ArcherWarfare();
   /// Destructor
   ~ArcherWarfare();
+  /**
+   * @brief Clone method for the ArcherWarfare Policy
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned ArcherWarfare Policy
+   */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
 };
 

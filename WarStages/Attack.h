@@ -16,6 +16,11 @@ class Attack : public WarStage
    * @brief Will determine what the Empire will do on its turn
    */
   void takeTurn();
+  /**
+   * @brief Clone method for the Attack Stage
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned Attack Stage
+   */
   WarStage* clone(std::map<void*,void*> &objmap);
 };
 

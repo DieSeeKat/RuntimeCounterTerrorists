@@ -9,6 +9,11 @@ class Mediator
 {
   public:
   virtual void notifyOfAttack(Node *node) = 0;
+  /**
+   * @brief Clone method for the Mediator
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned Mediator
+   */
   virtual Mediator* clone(std::map<void*, void*> &objmap) = 0;
 };
 
