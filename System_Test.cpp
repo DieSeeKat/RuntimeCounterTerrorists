@@ -146,7 +146,7 @@ TEST(System, AdvanceArmies_Test)
   e1->advanceArmies();
 
   ASSERT_EQ(c2->getOwnerEmpire(), e1);
-  ASSERT_EQ(e2->getNodes().size(), 0);
+
   ASSERT_TRUE(dynamic_cast<Town*>(c2->getNodeType()) != nullptr);
 }
 
