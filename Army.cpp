@@ -7,15 +7,16 @@ Army::Army() {}
 Army::Army(Node *current_position, Empire *owner_empire)
 {
   position = current_position;
+
   empire   = owner_empire;
 
   position->addStationedArmy(this);
+
 }
 
 void Army::update()
 {
-  // TODO - implement Army::update
-  throw "Not yet implemented";
+    moveToTown(subject);
 }
 
 void Army::attackTown(Node *town)
@@ -32,12 +33,33 @@ void Army::attackTown(Node *town)
 
 void Army::moveToTown(Node *town)
 {
-#ifndef disable_output
+
+    if (town == position)
+    {
+        std::cout << "Army is already in that town" << std::endl;
+
+    }
+
+    else
+    {
+
+      position->removeObserver(this);
+
+      position = town;
+
+      position->addObserver(this);
+      
+      #ifndef disable_output
   std::cout << "Army from " << empire->getName() << " is marching towards "
             << town->getName() << std::endl;
 #endif
   position = town;
   attackTown(town);
+    }
+}
+Node *Army::getPosition()
+{
+  return position;
 }
 //-------------------------------------------ADDED BY DHARSHAN GOPAUL
 int Army::getResource() { return resources; }

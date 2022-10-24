@@ -20,7 +20,7 @@
 #include <algorithm>
 class Empire;
 
-class Node : Aggregate, Subject
+class Node : Aggregate, public Subject
 {
   private:
   Node();
@@ -97,6 +97,10 @@ class Node : Aggregate, Subject
    * @return Return population
    */
   int getPopulation();
+
+  void removeObserver(Observer* army);
+  void addObserver(Observer* army);
+
 
   Node *nextStepTo(Node *node);
   /**

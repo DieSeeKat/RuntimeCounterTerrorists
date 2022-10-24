@@ -2,16 +2,18 @@
 #define ARMY_H
 
 #include <string>
+#include <iostream>
 #include <vector>
 
 #include "Observer/Observer.h"
 #include "Units/Unit.h"
 
+
 class Node;
 
 class Empire;
 
-class Army : Observer
+class Army : public Observer
 {
 
   private:

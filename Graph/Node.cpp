@@ -278,7 +278,21 @@ Node::Node(Empire *owner_empire, std::string name, int population, bool capital)
     this->node_type = new Town(this);
   }
 }
+
+void Node::removeObserver(Observer* army)
+{
+
+  detach(army);
+
+}
+
+void Node::addObserver(Observer* army)
+{
+  attach(army);
+}
+
 NodeType *Node::getNodeType() { return node_type; }
 void Node::setResources(int resources) { this->resources = resources; }
 void Node::setName(std::string name) { this->name = name; }
 std::string Node::getName() { return name; }
+
