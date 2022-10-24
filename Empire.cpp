@@ -4,6 +4,9 @@
 #include <utility>
 
 #include "Policies/GuerillaWarfare.h"
+#include "Command/Communication.h"
+#include "Command/RequestAlliance.h"
+#include "Command/AcceptAlliance.h"
 #include "Policies/HeavyWar.h"
 #include "WarStages/Attack.h"
 
@@ -24,12 +27,6 @@ Empire::Empire(std::string name, War *war)
 void Empire::algorithm()
 {
   // TODO - implement Empire::algorithm
-  throw "Not yet implemented";
-}
-
-void Empire::request()
-{
-  // TODO - implement Empire::request
   throw "Not yet implemented";
 }
 
@@ -103,6 +100,54 @@ void Empire::takeTurn()
 void Empire::addTown(Node *town)
 {
   owned_nodes.push_back(town);
+}
+
+void Empire::requestAlliance(Empire *empire)
+{
+    RequestAlliance * request = new RequestAlliance(this);
+    request->handleAlliance(empire);
+}
+
+void Empire::considerAlliance(Empire *empire)
+{
+    const int ARMY_RESOURCE_REQ = 3000;
+    const int ARMY_UNIT_REQ = 1500;
+    const int RESOURCE_REQ = 5000;
+    const int ALLIANCE_REQ = 5;
+
+    bool accepted = true;
+    int alliance_count = this->alliances.size();
+
+    int resource_count = 0;
+
+    for(int i = 0; i < owned_nodes.size(); i++)
+    {
+        resource_count += owned_nodes.at(i)->getResources();
+    }
+
+    int army_resource_count = 0;
+    int army_unit_count = 0;
+
+    for(int i = 0; i < armies.size(); i++)
+    {
+        army_resource_count += armies.at(i)->getResources();
+        army_unit_count += armies.at(i)->getNumUnits();
+    }
+
+    if(army_resource_count < ARMY_RESOURCE_REQ || army_unit_count < ARMY_UNIT_REQ || resource_count < RESOURCE_REQ || alliance_count < ALLIANCE_REQ)
+    {
+        accepted = true;
+    }
+    else
+    {
+        accepted = false;
+    }
+
+    if(accepted)
+    {
+        AcceptAlliance * accept = new AcceptAlliance(this);
+        accept->handleAlliance(empire);
+    }
 }
 
 void Empire::joinAlliance(Empire *empire)

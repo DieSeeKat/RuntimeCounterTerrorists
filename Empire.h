@@ -55,7 +55,6 @@ class Empire
    */
   void dieOff();
   void algorithm();
-  void request();
   void action();
   /**
    * @brief Removes a Node from the Empire's owned_nodes array
@@ -95,6 +94,8 @@ class Empire
    * @param town The town that the Empire now owns
    */
   void addTown(Node *town);
+  void requestAlliance(Empire * empire);
+  void considerAlliance();
   /**
     * @brief Join the alliance of the passed in empire. If the empire is not in an alliance it will create an alliance between the two empires
     * @param empire The empire to form the alliance with

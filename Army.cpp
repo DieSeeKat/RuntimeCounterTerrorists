@@ -48,6 +48,29 @@ Army::~Army() {
   if (position != nullptr) {
     position->removeStationedArmy(this);
   }
+Army::~Army()
+{
+}
+Empire *Army::getOwnerEmpire()
+{
+  return empire;
+}
+
+int Army::getResources()
+{
+    return resources;
+}
+int Army::getNumUnits()
+{
+  int total_units = 0;
+  for (Unit unit : units){
+    total_units++;
+  }
+  return total_units;
+}
+void Army::killSelf()
+{
+  empire->removeArmy(this);
 }
 Empire *Army::getOwnerEmpire() { return empire; }
 int Army::getNumUnits() { return units.size(); }

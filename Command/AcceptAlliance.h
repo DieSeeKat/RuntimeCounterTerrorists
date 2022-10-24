@@ -5,7 +5,7 @@
 
 #include "../Empire.h"
 
-class PeaceOffer : Communication
+class AcceptAlliance : Communication
 {
 
   private:
@@ -13,7 +13,8 @@ class PeaceOffer : Communication
   Empire *sender;
 
   public:
-  void requestAlliance();
+    AcceptAlliance(Empire * _sender);
+  void handleAlliance(Empire * empire);
 };
 
 #endif

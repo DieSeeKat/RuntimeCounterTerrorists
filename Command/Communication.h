@@ -3,7 +3,7 @@
 
 class Communication {
 public:
-	virtual void requestAlliance() = 0;
+	virtual void handleAlliance(Empire * empire) = 0;
 };
 
 #endif

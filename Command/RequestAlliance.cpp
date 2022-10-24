@@ -1,7 +1,11 @@
 #include "RequestAlliance.h"
 
-void RequestAlliance::requestAlliance()
+RequestAlliance::RequestAlliance(Empire *_sender)
 {
-  // TODO - implement RequestAlliance::requestAlliance
-  throw "Not yet implemented";
+    sender = _sender;
+}
+
+void RequestAlliance::handleAlliance(Empire * empire)
+{
+    empire->considerAlliance(sender);
 }

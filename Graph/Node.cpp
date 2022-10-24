@@ -1,13 +1,11 @@
 #include <climits>
 #include <cmath>
 #include <deque>
-#include <iostream>
 #include <vector>
+#include <climits>
 
 #include "../Empire.h"
-#include "Capital.h"
 #include "Node.h"
-#include "Town.h"
 
 Node::Node() {}
 
@@ -22,7 +20,10 @@ Army Node::recruit(ArmyRatio ratio, int num_recruits) {
   // TODO - implement Node::recruit
   throw "Not yet implemented";
 }
-
+int Node::getResources()
+{
+    return resources;
+}
 void Node::repopulate() { population = ceil(population * 1.1); }
 int Node::getPopulation() { return population; }
 void Node::rechargeResources() { resources = population; }
