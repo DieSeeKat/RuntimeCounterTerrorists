@@ -14,8 +14,7 @@
 #include "Node.h"
 #include "Town.h"
 
-TEST(Graph, ShortestPath_Test)
-{
+TEST(Graph, ShortestPath_Test) {
   War *war = new War();
 
   Empire *e1 = new Empire("Rome");
@@ -24,15 +23,15 @@ TEST(Graph, ShortestPath_Test)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, 4, true);
-  Node *n2 = new Node(e1, 4);
-  Node *n3 = new Node(e1, 4);
-  Node *n4 = new Node(e2, 4);
-  Node *n5 = new Node(e2, 4);
-  Node *n6 = new Node(e1, 4);
-  Node *n7 = new Node(e1, 4);
-  Node *n8 = new Node(e2, 4);
-  Node *c2 = new Node(e2, 4, true);
+  Node *c1 = new Node(e1, "c1", 4, true);
+  Node *n2 = new Node(e1, "n2", 4);
+  Node *n3 = new Node(e1, "n3", 4);
+  Node *n4 = new Node(e2, "n4", 4);
+  Node *n5 = new Node(e2, "n5", 4);
+  Node *n6 = new Node(e1, "n6", 4);
+  Node *n7 = new Node(e1, "n7", 4);
+  Node *n8 = new Node(e2, "n8", 4);
+  Node *c2 = new Node(e2, "c2", 4, true);
 
   c1->addPathTo(n2);
   c1->addPathTo(n3);
@@ -59,12 +58,11 @@ TEST(Graph, ShortestPath_Test)
   war->addNode(c2);
 
   std::vector<Node *> expected = {n4, n7, c2};
-  std::vector<Node *> path     = c1->findShortestPathTo(war->getNodes(), c2);
+  std::vector<Node *> path = c1->findShortestPathTo(war->getNodes(), c2);
   ASSERT_EQ(expected, path);
 }
 
-TEST(Graph, ConnectedToCapital_TEST)
-{
+TEST(Graph, ConnectedToCapital_TEST) {
   War *war = new War();
 
   Empire *e1 = new Empire("Rome");
@@ -73,15 +71,15 @@ TEST(Graph, ConnectedToCapital_TEST)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, 4, true);
-  Node *n2 = new Node(e1, 4);
-  Node *n3 = new Node(e1, 4);
-  Node *n4 = new Node(e2, 4);
-  Node *n5 = new Node(e2, 4);
-  Node *n6 = new Node(e1, 4);
-  Node *n7 = new Node(e1, 4);
-  Node *n8 = new Node(e2, 4);
-  Node *c2 = new Node(e2, 4, true);
+  Node *c1 = new Node(e1, "c1", 4, true);
+  Node *n2 = new Node(e1, "n2", 4);
+  Node *n3 = new Node(e1, "n3", 4);
+  Node *n4 = new Node(e2, "n4", 4);
+  Node *n5 = new Node(e2, "n5", 4);
+  Node *n6 = new Node(e1, "n6", 4);
+  Node *n7 = new Node(e1, "n7", 4);
+  Node *n8 = new Node(e2, "n8", 4);
+  Node *c2 = new Node(e2, "c2", 4, true);
 
   c1->addPathTo(n2);
   c1->addPathTo(n3);
@@ -112,15 +110,14 @@ TEST(Graph, ConnectedToCapital_TEST)
   EXPECT_TRUE(!(n5->connectedToCapital(war->getNodes(), c2)));
 }
 
-TEST(Graph, Repopulate_TEST)
-{
+TEST(Graph, Repopulate_TEST) {
   War *war = new War();
 
   Empire *e1 = new Empire("Rome");
 
   war->addEmpire(e1);
 
-  Node *node = new Node(e1, 4, true);
+  Node *node = new Node(e1, "node", 4, true);
 
   int population = node->getPopulation();
 
@@ -129,15 +126,14 @@ TEST(Graph, Repopulate_TEST)
   ASSERT_TRUE(node->getPopulation() != population);
 }
 
-TEST(Graph, Recharge_TEST)
-{
+TEST(Graph, Recharge_TEST) {
   War *war = new War();
 
   Empire *e1 = new Empire("Rome");
 
   war->addEmpire(e1);
 
-  Node *node = new Node(e1, 4, true);
+  Node *node = new Node(e1, "node", 4, true);
 
   node->setResources(1);
 

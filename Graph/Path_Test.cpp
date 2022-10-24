@@ -14,7 +14,7 @@ TEST(Path, EnoughResources_TEST)
 {
   Empire *e1 = new Empire("Rome");
 
-  Node* node = new Node(e1, 4);
+  Node* node = new Node(e1, "Roma", 4);
 
   Army *army = new Army(node, e1);
   e1->addArmy(army);
@@ -37,7 +37,7 @@ TEST(Path, SurvivePath_TEST)
 {
   Empire *e1 = new Empire("Rome");
 
-  Node* node = new Node(e1, 4);
+  Node* node = new Node(e1, "Roma", 4);
 
   Army *army = new Army(node, e1);
   e1->addArmy(army);
@@ -60,7 +60,7 @@ TEST(Path, Die_TEST)
 {
   Empire *e1 = new Empire("Rome");
 
-  Node* node = new Node(e1, 4);
+  Node* node = new Node(e1, "Roma", 4);
 
   Army *army = new Army(node, e1);
   e1->addArmy(army);

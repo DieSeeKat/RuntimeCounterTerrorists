@@ -26,15 +26,15 @@ TEST(System, ArmyAttack)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, 4, true);
-  Node *n2 = new Node(e1, 4);
-  Node *n3 = new Node(e1, 4);
-  Node *n4 = new Node(e2, 4);
-  Node *n5 = new Node(e2, 4);
-  Node *n6 = new Node(e1, 4);
-  Node *n7 = new Node(e1, 4);
-  Node *n8 = new Node(e2, 4);
-  Node *c2 = new Node(e2, 4, true);
+  Node *c1 = new Node(e1, "c1", 4, true);
+  Node *n2 = new Node(e1, "n2", 4);
+  Node *n3 = new Node(e1, "n3", 4);
+  Node *n4 = new Node(e2, "n4", 4);
+  Node *n5 = new Node(e2, "n5", 4);
+  Node *n6 = new Node(e1, "n6", 4);
+  Node *n7 = new Node(e1, "n7", 4);
+  Node *n8 = new Node(e2, "n8", 4);
+  Node *c2 = new Node(e2, "c2", 4, true);
 
   c1->addPathTo(n2);
   c1->addPathTo(n3);
@@ -86,15 +86,15 @@ TEST(System, AdvanceArmies_Test)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, 4, true);
-  Node *n2 = new Node(e1, 4);
-  Node *n3 = new Node(e1, 4);
-  Node *n4 = new Node(e2, 4);
-  Node *n5 = new Node(e2, 4);
-  Node *n6 = new Node(e1, 4);
-  Node *n7 = new Node(e1, 4);
-  Node *n8 = new Node(e2, 4);
-  Node *c2 = new Node(e2, 4, true);
+  Node *c1 = new Node(e1, "c1", 4, true);
+  Node *n2 = new Node(e1, "n2", 4);
+  Node *n3 = new Node(e1, "n3", 4);
+  Node *n4 = new Node(e2, "n4", 4);
+  Node *n5 = new Node(e2, "n5", 4);
+  Node *n6 = new Node(e1, "n6", 4);
+  Node *n7 = new Node(e1, "n7", 4);
+  Node *n8 = new Node(e2, "n8", 4);
+  Node *c2 = new Node(e2, "c2", 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);
@@ -160,15 +160,15 @@ TEST(System, RetreatArmies_Test)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, 4, true);
-  Node *n2 = new Node(e1, 4);
-  Node *n3 = new Node(e1, 4);
-  Node *n4 = new Node(e2, 4);
-  Node *n5 = new Node(e2, 4);
-  Node *n6 = new Node(e1, 4);
-  Node *n7 = new Node(e1, 4);
-  Node *n8 = new Node(e2, 4);
-  Node *c2 = new Node(e2, 4, true);
+  Node *c1 = new Node(e1, "c1", 4, true);
+  Node *n2 = new Node(e1, "n2", 4);
+  Node *n3 = new Node(e1, "n3", 4);
+  Node *n4 = new Node(e2, "n4", 4);
+  Node *n5 = new Node(e2, "n5", 4);
+  Node *n6 = new Node(e1, "n6", 4);
+  Node *n7 = new Node(e1, "n7", 4);
+  Node *n8 = new Node(e2, "n8", 4);
+  Node *c2 = new Node(e2, "c2", 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);
@@ -222,24 +222,15 @@ TEST(System, Deletes) {
   war->addEmpire(e2);
   war->addEmpire(e3);
 
-  Node *c1 = new Node(e1, 4, true);
-  //  std::cout << "c1 = " << c1 << std::endl;
-  Node *n2 = new Node(e1, 4);
-  //  std::cout << "n2 = " << n2 << std::endl;
-  Node *n3 = new Node(e1, 4);
-  //  std::cout << "n3 = " << n3 << std::endl;
-  Node *n4 = new Node(e2, 4);
-  //  std::cout << "n4 = " << n4 << std::endl;
-  Node *n5 = new Node(e2, 4);
-  //  std::cout << "n5 = " << n5 << std::endl;
-  Node *n6 = new Node(e1, 4);
-  //  std::cout << "n6 = " << n6 << std::endl;
-  Node *n7 = new Node(e1, 4);
-  //  std::cout << "n7 = " << n7 << std::endl;
-  Node *n8 = new Node(e2, 4);
-  //  std::cout << "n8 = " << n8 << std::endl;
-  Node *c2 = new Node(e2, 4, true);
-  //  std::cout << "c2 = " << c2 << std::endl;
+  Node *c1 = new Node(e1, "c1", 4, true);
+  Node *n2 = new Node(e1, "n2", 4);
+  Node *n3 = new Node(e1, "n3", 4);
+  Node *n4 = new Node(e2, "n4", 4);
+  Node *n5 = new Node(e2, "n5", 4);
+  Node *n6 = new Node(e1, "n6", 4);
+  Node *n7 = new Node(e1, "n7", 4);
+  Node *n8 = new Node(e2, "n8", 4);
+  Node *c2 = new Node(e2, "c2", 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);

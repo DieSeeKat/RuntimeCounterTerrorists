@@ -39,14 +39,15 @@ class Node : Aggregate, Subject
   std::vector<Army *> stationed_armies;
   /// A pointer to the NodeType of the Node
   NodeType *node_type = nullptr;
+  std::string name = "";
 
   public:
   /// The current distance from the start Node of the Label-Correcting Algorithm
   int dist = 0;
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm
   Node *prev = nullptr;
-  Node(Empire *owner_empire, int population);
-  Node(Empire *owner_empire, int population, bool capital);
+  Node(Empire *owner_empire, std::string name, int population);
+  Node(Empire *owner_empire, std::string name, int population, bool capital);
   ~Node();
   /**
    * @brief Remove a path between this Node and another
@@ -190,6 +191,8 @@ class Node : Aggregate, Subject
    * @param resources The new amount of resources
    */
   void setResources(int resources);
+  std::string getName();
+  void setName(std::string name);
 };
 
 #endif
