@@ -95,7 +95,7 @@ class Empire
    */
   void addTown(Node *town);
   void requestAlliance(Empire * empire);
-  void Empire::considerAlliance(Empire *empire);
+  void considerAlliance(Empire *empire);
   /**
     * @brief Join the alliance of the passed in empire. If the empire is not in an alliance it will create an alliance between the two empires
     * @param empire The empire to form the alliance with
