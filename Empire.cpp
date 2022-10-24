@@ -164,12 +164,12 @@ void Empire::joinAlliance(Empire *empire)
         alliance->joinAlliance(empire);
       }
     }
-    std::cout << empire->getName() << std::endl;
+
     for (auto alliance : empire->alliances)
     {
       if (!isAlly(alliance))
       {
-        alliance->joinAlliance(empire);
+        alliance->joinAlliance(this);
       }
     }
   }
