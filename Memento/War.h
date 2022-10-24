@@ -18,6 +18,7 @@ private:
   std::vector<Node *> nodes;
   std::vector<Empire *> empires;
   std::vector<Path *> paths;
+  int index = 0;
 
 public:
   WarRollback *createWarRollback();
@@ -42,6 +43,8 @@ public:
   void removePath(Path *new_path);
 
   void updateEmpires();
+
+  void nextTurn();
 };
 
 #endif

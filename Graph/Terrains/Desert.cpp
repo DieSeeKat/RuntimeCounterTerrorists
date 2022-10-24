@@ -1,7 +1,7 @@
 #include "Desert.h"
 #include "../Terrain.h"
 #include <iostream>
-Desert::Desert()
+Desert::Desert() : Terrain()
 {
 }
 Desert::~Desert()

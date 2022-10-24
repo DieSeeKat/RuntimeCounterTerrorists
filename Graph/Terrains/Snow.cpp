@@ -1,7 +1,7 @@
 #include "Snow.h"
 #include "../Terrain.h"
 #include <iostream>
-Snow::Snow()
+Snow::Snow() : Terrain()
 {
 }
 Snow::~Snow()

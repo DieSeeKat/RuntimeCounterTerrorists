@@ -105,11 +105,12 @@ void War::addPath(Path *new_path)
 
 void War::removeEmpire(Empire *to_remove)
 {
-  if (std::find(empires.begin(), empires.end(), to_remove) == empires.end()) {
-    std::cout << "FOK MY" << std::endl;
-  }
   empires.erase(std::find(empires.begin(), empires.end(), to_remove));
   delete to_remove;
+
+  if (index != 0) {
+    index =- 1;
+  }
 }
 void War::removeNode(Node *to_remove)
 {
@@ -159,4 +160,9 @@ bool War::isFinished()
       }
     }
   }
+}
+void War::nextTurn()
+{
+  empires.at(index)->takeTurn();
+  index = (index + 1) % empires.size();
 }
