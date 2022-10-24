@@ -110,10 +110,10 @@ void Empire::requestAlliance(Empire *empire)
 
 void Empire::considerAlliance(Empire *empire)
 {
-    const int ARMY_RESOURCE_REQ = 3000;
-    const int ARMY_UNIT_REQ = 1500;
-    const int RESOURCE_REQ = 5000;
-    const int ALLIANCE_REQ = 5;
+    const int ARMY_RESOURCE_REQ = 0;
+    const int ARMY_UNIT_REQ = 0;
+    const int RESOURCE_REQ = 0;
+    const int ALLIANCE_REQ = 4;
 
     bool accepted = true;
     int alliance_count = this->alliances.size();
@@ -169,7 +169,7 @@ void Empire::joinAlliance(Empire *empire)
     {
       if (!isAlly(alliance))
       {
-        alliance->joinAlliance(empire);
+        alliance->joinAlliance(this);
       }
     }
   }
