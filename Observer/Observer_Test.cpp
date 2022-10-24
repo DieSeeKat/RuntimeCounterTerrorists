@@ -64,19 +64,63 @@ war->addNode(n7);
 war->addNode(n8);
 war->addNode(c2);
 
-
 Army * army = new Army(n2,e1);
 
-
+ASSERT_EQ(n2->getObserverList().size(), 1);
 
 army->moveToTown(n3);
+
+ASSERT_EQ(n2->getObserverList().size(), 0);
+
+ASSERT_EQ(n3->getObserverList().size(), 1);
+
+ASSERT_EQ(army->getPosition(), n3);
+
+army->moveToTown(n4);
+
+ASSERT_EQ(n3->getObserverList().size(), 0);
+
+ASSERT_EQ(n4->getObserverList().size(), 1);
+
+ASSERT_EQ(army->getPosition(), n4);
+
+army->moveToTown(n3);
+
+ASSERT_EQ(n4->getObserverList().size(), 0);
+
+ASSERT_EQ(n3->getObserverList().size(), 1);
 
 
 ASSERT_EQ(army->getPosition(), n3);
 
-army->moveToTown(n2);
 
-ASSERT_EQ(army->getPosition(), n2);
+
+Army *attacking_army = new Army(c1, e1);
+
+e1->addArmy(attacking_army);
+
+attacking_army->addUnit(Unit());
+
+attacking_army->addUnit(Unit());
+
+Army *defending_army1 = new Army(n5, e2);
+Army *defending_army2 = new Army(n8, e2);
+
+n5->addStationedArmy(defending_army1);
+n8->addStationedArmy(defending_army1);
+
+e2->addArmy(defending_army1);
+e2->addArmy(defending_army2);
+
+defending_army1->addUnit(Unit());
+defending_army2->addUnit(Unit());
+
+//attacking_army->attackTown(n8);
+
+e2->retreatArmies();
+
+ASSERT_EQ(defending_army1->getPosition(), n5);
+
 
 
 
