@@ -75,3 +75,22 @@ TEST(Command, Alliance_of_four)
     ASSERT_EQ(e4->getAlliances().at(1), e2);
     ASSERT_EQ(e4->getAlliances().at(2), e3);
 }
+
+TEST(Command, Alliance_not_accepted)
+{
+Empire *e1 = new Empire("Rome");
+Empire *e2 = new Empire("Greece");
+Empire *e3 = new Empire("England");
+Empire *e4 = new Empire("Scotland");
+Empire *e5 = new Empire("Norway");
+Empire *e6 = new Empire("Russia");
+
+e1->requestAlliance(e2);
+e1->requestAlliance(e3);
+e1->requestAlliance(e4);
+e1->requestAlliance(e5);
+
+e6->requestAlliance(e1);
+
+ASSERT_EQ(e1->getAlliances().size(), 4);
+}
