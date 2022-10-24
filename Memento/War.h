@@ -23,6 +23,8 @@ public:
   WarRollback *createWarRollback();
   void setWarRollback(WarRollback *war_rollback);
 
+  bool isFinished();
+
   std::vector<Empire *> getEmpires();
   std::vector<Node *> getNodes();
   std::vector<Path *> getPath();

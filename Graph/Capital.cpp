@@ -1,6 +1,7 @@
 #include "Capital.h"
 #include "../Empire.h"
 #include "Node.h"
+#include "../Memento/War.h"
 #include "Town.h"
 #include <iostream>
 
@@ -14,7 +15,7 @@ void Capital::colonise(Empire *empire) {
             << " has collapsed due to the war effort." << std::endl;
 #endif
 
-  empire->dieOff();
+  node->getOwnerEmpire()->getWar()->removeEmpire(node->getOwnerEmpire());
 
   node->setNodeType(new Town(node));
 }

@@ -212,12 +212,13 @@ Node *Node::clone(std::map<void *, void *> &objmap) {
 void Node::addStationedArmy(Army *army) { stationed_armies.push_back(army); }
 void Node::setOwnerEmpire(Empire *empire) { owner_empire = empire; }
 void Node::colonise(Empire *colonising_empire) {
+
+  owner_empire->removeNode(this);
+  node_type->colonise(owner_empire);
   Empire *old_owner_empire = owner_empire;
   owner_empire = colonising_empire;
 
   colonising_empire->addTown(this);
-  old_owner_empire->removeNode(this);
-  node_type->colonise(old_owner_empire);
 }
 void Node::setNodeType(NodeType *node_type) { this->node_type = node_type; }
 Node::Node(Empire *owner_empire, std::string name, int population, bool capital) {
