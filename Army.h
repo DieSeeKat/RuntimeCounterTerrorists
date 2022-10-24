@@ -13,7 +13,7 @@ class Node;
 
 class Empire;
 
-class Army : Observer
+class Army : public Observer
 {
 
   private:
