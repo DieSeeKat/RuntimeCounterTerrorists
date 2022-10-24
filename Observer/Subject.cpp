@@ -2,22 +2,19 @@
 
 void Subject::attach(Observer* observer)
 {
-    this->observer.push_back(observer);
+    this->observers.push_back(observer);
 
 }
 
 void Subject::detach(Observer* observer)
 {
-    bool found = false;
-
-	vector<Observer*>::iterator it = this->observer.begin();
-
-    while ((it != this->observer.end()) && (!found))
+	vector<Observer*>::iterator it = this->observers.begin();
+    while ((it != this->observers.end()))
     {
         if (*it == observer)
         {
-            found = true;
-            this->observer.erase(it);
+            this->observers.erase(it);
+            return;
         }
         ++it;
     }
@@ -25,9 +22,9 @@ void Subject::detach(Observer* observer)
 
 void Subject::notify()
 {
-	vector<Observer*>::iterator it = this->observer.begin();
+	vector<Observer*>::iterator it = this->observers.begin();
 
-    for (it = this->observer.begin(); it != this->observer.end(); ++it)
+    for (it = this->observers.begin(); it != this->observers.end(); ++it)
     {
         (*it)->update();
     }
@@ -35,6 +32,5 @@ void Subject::notify()
 
 std::vector<Observer*> Subject::getObserverList()
 {
-
-    return observer;
+    return observers;
 }

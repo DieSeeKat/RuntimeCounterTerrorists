@@ -101,7 +101,6 @@ class Node : Aggregate, public Subject
   void removeObserver(Observer* army);
   void addObserver(Observer* army);
 
-
   Node *nextStepTo(Node *node);
   /**
    * @brief Get all paths origination from the Node

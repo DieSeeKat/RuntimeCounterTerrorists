@@ -265,9 +265,6 @@ std::vector<Empire *> Empire::getAlliances()
   return this->alliances;
 }
 
-/**
- * @todo Implement this function
- */
 Empire::Empire(std::string name)
 {
   this->name = name;

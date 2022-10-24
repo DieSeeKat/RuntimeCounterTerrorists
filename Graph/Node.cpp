@@ -159,7 +159,7 @@ void Node::getAttacked(Army *attacking_army)
   int enemy_units_in_footmen    = 0;
 
   // Calculate friendly_units_in_footmen
-  for (Army *army : getStationedArmies())
+  for (Army *army : stationed_armies)
   {
     if (getOwnerEmpire() == army->getOwnerEmpire() ||
         getOwnerEmpire()->isAlly(army->getOwnerEmpire()))
@@ -175,9 +175,11 @@ void Node::getAttacked(Army *attacking_army)
   {
     for (Army *army : getStationedArmies())
     {
-      delete army;
+      if (army != attacking_army)
+      {
+        delete army;
+      }
     }
-    stationed_armies.clear();
     for (int i = 0; i < friendly_units_in_footmen; i++)
     {
       attacking_army->killRandomUnit();
@@ -252,9 +254,8 @@ void Node::addStationedArmy(Army *army) { stationed_armies.push_back(army); }
 void Node::setOwnerEmpire(Empire *empire) { owner_empire = empire; }
 void Node::colonise(Empire *colonising_empire)
 {
-
   owner_empire->removeNode(this);
-  node_type->colonise(owner_empire);
+  node_type->colonise(colonising_empire);
   Empire *old_owner_empire = owner_empire;
   owner_empire             = colonising_empire;
 
@@ -281,9 +282,7 @@ Node::Node(Empire *owner_empire, std::string name, int population, bool capital)
 
 void Node::removeObserver(Observer* army)
 {
-
   detach(army);
-
 }
 
 void Node::addObserver(Observer* army)

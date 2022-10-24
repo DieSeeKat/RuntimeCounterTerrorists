@@ -12,7 +12,7 @@ class Subject
 {
 
   private:
-  vector<Observer*> observer;
+  vector<Observer*> observers;
 
   public:
   void attach(Observer *observer);

@@ -8,66 +8,67 @@ Army::Army(Node *current_position, Empire *owner_empire)
 {
   position = current_position;
 
-  empire   = owner_empire;
+  empire = owner_empire;
 
   position->addStationedArmy(this);
-
 }
 
 void Army::update()
 {
-    moveToTown(subject);
+  moveToTown(subject);
 }
 
 void Army::attackTown(Node *town)
 {
-#ifndef disable_output
-  std::cout << "Army of " << empire->getName() << " is attacking "
-            << town->getName() << std::endl;
-#endif
   if (!(empire->isAlly(town->getOwnerEmpire())))
   {
+#ifndef disable_output
+    std::cout << "Army of " << empire->getName() << " is attacking "
+              << town->getName() << std::endl;
+#endif
     town->getAttacked(this);
   }
 }
 
 void Army::moveToTown(Node *town)
 {
+  if (town != position)
+  {
 
-    if (town == position)
+    position->removeStationedArmy(this);
+
+    if (subject != nullptr)
     {
-        std::cout << "Army is already in that town" << std::endl;
-
+      subject->removeObserver(this);
     }
 
-    else
-    {
+    subject = position;
 
-      position->removeObserver(this);
+    position = town;
 
-      position = town;
+    position->addStationedArmy(this);
 
-      position->addObserver(this);
-      
-      #ifndef disable_output
-  std::cout << "Army from " << empire->getName() << " is marching towards "
-            << town->getName() << std::endl;
+    subject->addObserver(this);
+
+#ifndef disable_output
+    std::cout << "Army from " << empire->getName() << " is marching towards "
+              << town->getName() << std::endl;
 #endif
-  position = town;
-  attackTown(town);
-    }
+
+    attackTown(position);
+
+  }
 }
 Node *Army::getPosition()
 {
   return position;
 }
-//-------------------------------------------ADDED BY DHARSHAN GOPAUL
+
 int Army::getResource() { return resources; }
 
 void Army::setResource(int new_resource) { resources = new_resource; }
 
 int Army::getArmySize() { return units.size(); }
-Node *Army::getPosition() { return position; }
 Army::~Army()
 {
   if (empire != nullptr)
@@ -77,6 +78,10 @@ Army::~Army()
   if (position != nullptr)
   {
     position->removeStationedArmy(this);
+  }
+  if (subject != nullptr)
+  {
+    subject->removeObserver(this);
   }
 }
 Empire *Army::getOwnerEmpire()
