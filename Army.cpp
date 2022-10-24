@@ -6,6 +6,8 @@ Army::Army(Node* current_position, Empire* owner_empire)
 {
   position = current_position;
   empire = owner_empire;
+
+  position->addObserver(this);
 }
 
 void Army::update()
@@ -30,11 +32,14 @@ void Army::moveToTown(Node *town)
 
     else
     {
-      subject->removeObserver(this);
-      subject = position;
-      subject->addObserver(this);
+
+      position->removeObserver(this);
 
       position = town;
+
+      position->addObserver(this);
+
+
 
       //TODO - Add position name to display below
       std::cout << "Army has been moved to " << std::endl;
