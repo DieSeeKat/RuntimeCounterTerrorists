@@ -203,6 +203,9 @@ void Empire::addArmy(Army *army)
 }
 void Empire::recruitArmy(Node *node)
 {
+#ifndef disable_output
+  std::cout << name << " recruits an Army from " << node->getName() << std::endl;
+#endif
   int population = node->getPopulation();
   ArmyRatio army_ratio = war_style_policy->createArmyRatio();
   int army_size = recruitment_policy->calculateRecruits(population);

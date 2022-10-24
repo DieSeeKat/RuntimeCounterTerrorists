@@ -1,5 +1,6 @@
 #include "Terrain.h"
 #include "Path.h"
+#include "Empire.h"
 #include <iostream>
 using namespace std;
 
@@ -23,7 +24,7 @@ void Terrain::calculate_losses(Army *army)
   {
     num_deaths = determineNumDeaths(army->getArmySize());
 
-    if (num_deaths > army->getArmySize())
+    if (num_deaths >= army->getArmySize())
     {
       num_deaths = army->getArmySize();
     }

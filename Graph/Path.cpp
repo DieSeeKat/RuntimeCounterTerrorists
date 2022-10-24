@@ -1,5 +1,6 @@
 #include "Path.h"
 #include "Node.h"
+#include "Empire.h"
 #include "Terrains/Desert.h"
 #include "Terrains/Forest.h"
 #include "Terrains/Mountains.h"
@@ -46,9 +47,6 @@ Node *Path::getOppositeEnd(Node *node)
   }
 }
 
-/**
- * @todo Implement this clone
-*/
 Path *Path::clone(std::map<void *, void *> &objmap)
 {
   if(objmap.find(this) != objmap.end()){

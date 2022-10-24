@@ -164,9 +164,6 @@ void Node::getAttacked(Army *attacking_army) {
   }
 }
 
-/**
- * @brief Implement this function in child classes
- */
 Node *Node::clone(std::map<void *, void *> &objmap) {
   if (objmap.find(this) != objmap.end()) {
     return (Node *)((*objmap.find(this)).second);
