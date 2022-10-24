@@ -91,6 +91,8 @@ TEST(Observer, MoveToTown_Test)
 
   army_two->moveToTown(n8);
 
+  cout << endl << "==============================================================================================================" << endl << endl;
+
   army_one->moveToTown(n5);
 
   ASSERT_EQ(n5->getOwnerEmpire(), e2);

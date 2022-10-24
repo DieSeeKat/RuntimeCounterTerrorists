@@ -58,6 +58,7 @@ void Army::moveToTown(Node *town)
     attackTown(position);
 
   }
+  cout << "rawr - " << empire->getName() << endl;
 }
 Node *Army::getPosition()
 {

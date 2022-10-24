@@ -185,6 +185,7 @@ void Node::getAttacked(Army *attacking_army)
       attacking_army->killRandomUnit();
     }
     this->colonise(attacking_army->getOwnerEmpire());
+    notify();
   }
   else
   {
@@ -256,7 +257,6 @@ void Node::colonise(Empire *colonising_empire)
 {
   owner_empire->removeNode(this);
   node_type->colonise(colonising_empire);
-  Empire *old_owner_empire = owner_empire;
   owner_empire             = colonising_empire;
 
   colonising_empire->addTown(this);
