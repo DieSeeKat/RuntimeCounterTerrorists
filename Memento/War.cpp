@@ -10,7 +10,7 @@ WarRollback *War::createWarRollback()
   {
     temp_empires.push_back((*it)->clone(objmap));
   }
-  temp->empires = empires;
+  temp->empires = temp_empires;
 
   std::vector<Path *> temp_paths;
   for (std::vector<Path *>::iterator it = paths.begin(); it != paths.end(); it++)
@@ -46,10 +46,12 @@ void War::setWarRollback(WarRollback *war_rollback)
   this->empires = war_rollback->empires;
   updateEmpires();
   this->nodes = war_rollback->nodes;
+  this->paths = war_rollback->paths;
 }
 
 std::vector<Empire *> War::getEmpires()
 {
+  // updateEmpires();
   return empires;
 }
 std::vector<Node *> War::getNodes()
@@ -124,9 +126,8 @@ void War::removePath(Path *to_remove)
 }
 void War::updateEmpires()
 {
-  for (std::vector<Empire *>::iterator it = empires.begin(); it != empires.end(); it++)
-  {
-    (*it)->setWar(this);
+  for(auto empire: empires){
+    empire->setWar(this);
   }
 }
 bool War::isFinished()
