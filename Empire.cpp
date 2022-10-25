@@ -82,12 +82,12 @@ void Empire::retreatArmies()
 
 void Empire::restoreTowns()
 {
-  for (int node_index = 0; node_index < owned_nodes.size(); node_index++)
+  for (auto & owned_node : owned_nodes)
   {
-    if (owned_nodes[node_index]->connectedToCapital(war->getNodes(), capital))
+    if (owned_node == capital || owned_node->connectedToCapital(war->getNodes(), capital))
     {
-      owned_nodes[node_index]->rechargeResources();
-      owned_nodes[node_index]->repopulate();
+      owned_node->rechargeResources();
+      owned_node->repopulate();
     }
   }
 }

@@ -109,6 +109,10 @@ std::vector<Node *> Node::findShortestPathTo(std::vector<Node *> nodes,
 Empire *Node::getOwnerEmpire() { return owner_empire; }
 bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 {
+  if (this == capital) {
+    return true;
+  }
+
   std::deque<Node *> to_be_checked;
 
   for (auto node : nodes)
@@ -121,7 +125,6 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 
   while (!to_be_checked.empty())
   {
-
     Node *curr = to_be_checked.front();
     to_be_checked.pop_front();
     for (auto path : curr->paths)
