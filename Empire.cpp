@@ -257,6 +257,8 @@ void Empire::recruitArmy(Node *node)
 
   Army* army = node->recruit(army_ratio, army_size);
 
+//  army->rechargeResources();
+
   armies.push_back(army);
 }
 

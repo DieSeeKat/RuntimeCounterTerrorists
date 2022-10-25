@@ -3,15 +3,15 @@
 #include <deque>
 #include <vector>
 
+#include "../Barracks/ArcheryBarracks.h"
+#include "../Barracks/Barracks.h"
+#include "../Barracks/CavalryBarracks.h"
+#include "../Barracks/FootmenBarracks.h"
+#include "../Barracks/SlingerBarracks.h"
 #include "../Empire.h"
 #include "Capital.h"
 #include "Node.h"
 #include "Town.h"
-#include "../Barracks/Barracks.h"
-#include "../Barracks/ArcheryBarracks.h"
-#include "../Barracks/CavalryBarracks.h"
-#include "../Barracks/FootmenBarracks.h"
-#include "../Barracks/SlingerBarracks.h"
 
 #include "../Units/Unit.h"
 
@@ -25,30 +25,34 @@ void Node::changed()
   throw "Not yet implemented";
 }
 
-Army* Node::recruit(ArmyRatio ratio, int num_recruits)
+Army *Node::recruit(ArmyRatio ratio, int num_recruits)
 {
-  Barracks* archer_barracks = new ArcheryBarracks();
-  Barracks* cavalry_barracks = new CavalryBarracks();
-  Barracks* footmen_barracks = new FootmenBarracks();
-  Barracks* slinger_barracks = new SlingerBarracks();
+  Barracks *archer_barracks  = new ArcheryBarracks();
+  Barracks *cavalry_barracks = new CavalryBarracks();
+  Barracks *footmen_barracks = new FootmenBarracks();
+  Barracks *slinger_barracks = new SlingerBarracks();
 
   archer_barracks->createUnits(ceil(ratio.archer_ratio * num_recruits));
   cavalry_barracks->createUnits(ceil(ratio.cavalry_ratio * num_recruits));
   footmen_barracks->createUnits(ceil(ratio.footmen_ratio * num_recruits));
   slinger_barracks->createUnits(ceil(ratio.slinger_ratio * num_recruits));
 
-  Army* new_army = new Army(this, owner_empire);
+  Army *new_army = new Army(this, owner_empire);
 
-  for (auto unit : archer_barracks->getUnits()) {
+  for (auto unit : archer_barracks->getUnits())
+  {
     new_army->addUnit(*unit);
   }
-  for (auto unit : cavalry_barracks->getUnits()) {
+  for (auto unit : cavalry_barracks->getUnits())
+  {
     new_army->addUnit(*unit);
   }
-  for (auto unit : footmen_barracks->getUnits()) {
+  for (auto unit : footmen_barracks->getUnits())
+  {
     new_army->addUnit(*unit);
   }
-  for (auto unit : slinger_barracks->getUnits()) {
+  for (auto unit : slinger_barracks->getUnits())
+  {
     new_army->addUnit(*unit);
   }
 
@@ -109,7 +113,8 @@ std::vector<Node *> Node::findShortestPathTo(std::vector<Node *> nodes,
 Empire *Node::getOwnerEmpire() { return owner_empire; }
 bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 {
-  if (this == capital) {
+  if (this == capital)
+  {
     return true;
   }
 
@@ -221,6 +226,17 @@ void Node::getAttacked(Army *attacking_army)
     this->colonise(attacking_army->getOwnerEmpire());
     notify();
   }
+  else if (enemy_units_in_footmen == friendly_units_in_footmen)
+  {
+    for (Army *army : getStationedArmies())
+    {
+      if (army != attacking_army)
+      {
+        delete army;
+      }
+    }
+    delete attacking_army;
+  }
   else
   {
     for (int i = 0; i < enemy_units_in_footmen; i++)
@@ -291,7 +307,7 @@ void Node::colonise(Empire *colonising_empire)
 {
   owner_empire->removeNode(this);
   node_type->colonise(colonising_empire);
-  owner_empire             = colonising_empire;
+  owner_empire = colonising_empire;
 
   colonising_empire->addTown(this);
 }
@@ -315,12 +331,12 @@ Node::Node(Empire *owner_empire, std::string name, int population, bool capital)
   }
 }
 
-void Node::removeObserver(Observer* army)
+void Node::removeObserver(Observer *army)
 {
   detach(army);
 }
 
-void Node::addObserver(Observer* army)
+void Node::addObserver(Observer *army)
 {
   attach(army);
 }
@@ -329,4 +345,3 @@ NodeType *Node::getNodeType() { return node_type; }
 void Node::setResources(int resources) { this->resources = resources; }
 void Node::setName(std::string name) { this->name = name; }
 std::string Node::getName() { return name; }
-

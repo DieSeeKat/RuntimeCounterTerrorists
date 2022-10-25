@@ -73,6 +73,9 @@ TEST(Path, Die_TEST)
   Path *path = new Path(nullptr, nullptr);
 
   path->calculate_losses(army);
+  if (army->getNumUnits() == 0) {
+    delete army;
+  }
 
   ASSERT_TRUE(e1->getArmies().size() == 0);
 }

@@ -69,11 +69,13 @@ TEST(Observer, MoveToTown_Test)
   Army *army_one = new Army(n2, e1);
   army_one->addUnit(Unit());
   e1->addArmy(army_one);
+  army_one->rechargeResources();
 
   Army *army_two = new Army(n5, e2);
   army_two->addUnit(Unit());
   army_two->addUnit(Unit());
   e2->addArmy(army_two);
+  army_two->rechargeResources();
 
   army_one->moveToTown(n3);
 

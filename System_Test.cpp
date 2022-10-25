@@ -127,10 +127,12 @@ TEST(System, AdvanceArmies_Test)
   e1->addArmy(attacking_army);
   attacking_army->addUnit(Unit());
   attacking_army->addUnit(Unit());
+  attacking_army->rechargeResources();
 
   Army *defending_army = new Army(n4, e2);
   e2->addArmy(defending_army);
   defending_army->addUnit(Unit());
+  defending_army->rechargeResources();
 
   e1->advanceArmies();
 
@@ -201,6 +203,7 @@ TEST(System, RetreatArmies_Test)
   e1->addArmy(attacking_army);
   attacking_army->addUnit(Unit());
   attacking_army->addUnit(Unit());
+  attacking_army->rechargeResources();
 
   e1->retreatArmies();
 

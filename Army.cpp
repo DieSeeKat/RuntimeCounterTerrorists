@@ -55,8 +55,23 @@ void Army::moveToTown(Node *town)
               << town->getName() << std::endl;
 #endif
 
-    attackTown(position);
+    for (auto path : subject->getPaths())
+    {
+      if (path->getOppositeEnd(subject) == position)
+      {
+        path->calculate_losses(this);
+        break;
+      }
+    }
 
+    if (units.size() == 0)
+    {
+      delete this;
+    }
+    else
+    {
+      attackTown(position);
+    }
   }
 }
 Node *Army::getPosition()
@@ -123,7 +138,6 @@ void Army::killRandomUnit()
     std::cout << "Army " << empire->getName()
               << " has lost all troops and disbanded" << std::endl;
 #endif
-    delete this;
   }
 }
 void Army::addUnit(Unit unit) { units.push_back(unit); }
