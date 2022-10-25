@@ -82,12 +82,12 @@ void Empire::retreatArmies()
 
 void Empire::restoreTowns()
 {
-  for (int node_index = 0; node_index < owned_nodes.size(); node_index++)
+  for (auto & owned_node : owned_nodes)
   {
-    if (owned_nodes[node_index]->connectedToCapital(war->getNodes(), capital))
+    if (owned_node == capital || owned_node->connectedToCapital(war->getNodes(), capital))
     {
-      owned_nodes[node_index]->rechargeResources();
-      owned_nodes[node_index]->repopulate();
+      owned_node->rechargeResources();
+      owned_node->repopulate();
     }
   }
 }
@@ -255,9 +255,9 @@ void Empire::recruitArmy(Node *node)
   ArmyRatio army_ratio = war_style_policy->createArmyRatio();
   int army_size = recruitment_policy->calculateRecruits(population);
 
-  Army army = node->recruit(army_ratio, army_size);
+  Army* army = node->recruit(army_ratio, army_size);
 
-  armies.push_back(&army);
+  armies.push_back(army);
 }
 
 std::vector<Empire *> Empire::getAlliances()

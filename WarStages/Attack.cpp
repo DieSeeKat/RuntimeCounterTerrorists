@@ -8,8 +8,11 @@ Attack::Attack(){
 void Attack::takeTurn()
 {
   empire->restoreTowns();
+
   empire->recruit();
+
   empire->advanceArmies();
+
   if (empire->getPrevNumNodes() - empire->getNodes().size() > 2 || empire->getNodes().size() < 5)
   {
     empire->setState(new Defense(empire));

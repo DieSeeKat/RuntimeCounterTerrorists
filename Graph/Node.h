@@ -82,7 +82,7 @@ class Node : Aggregate, public Subject
    * @param num_recruits
    * @return Army for the Empire to use
    */
-  Army recruit(ArmyRatio ratio, int num_recruits);
+  Army* recruit(ArmyRatio ratio, int num_recruits);
   /**
    * @brief A pure virtual function that will be implemented in Town and Capital
    * @param colonising_empire

@@ -7,6 +7,13 @@
 #include "Capital.h"
 #include "Node.h"
 #include "Town.h"
+#include "../Barracks/Barracks.h"
+#include "../Barracks/ArcheryBarracks.h"
+#include "../Barracks/CavalryBarracks.h"
+#include "../Barracks/FootmenBarracks.h"
+#include "../Barracks/SlingerBarracks.h"
+
+#include "../Units/Unit.h"
 
 Node::Node() {}
 
@@ -18,10 +25,34 @@ void Node::changed()
   throw "Not yet implemented";
 }
 
-Army Node::recruit(ArmyRatio ratio, int num_recruits)
+Army* Node::recruit(ArmyRatio ratio, int num_recruits)
 {
-  // TODO - implement Node::recruit
-  throw "Not yet implemented";
+  Barracks* archer_barracks = new ArcheryBarracks();
+  Barracks* cavalry_barracks = new CavalryBarracks();
+  Barracks* footmen_barracks = new FootmenBarracks();
+  Barracks* slinger_barracks = new SlingerBarracks();
+
+  archer_barracks->createUnits(ceil(ratio.archer_ratio * num_recruits));
+  cavalry_barracks->createUnits(ceil(ratio.cavalry_ratio * num_recruits));
+  footmen_barracks->createUnits(ceil(ratio.footmen_ratio * num_recruits));
+  slinger_barracks->createUnits(ceil(ratio.slinger_ratio * num_recruits));
+
+  Army* new_army = new Army(this, owner_empire);
+
+  for (auto unit : archer_barracks->getUnits()) {
+    new_army->addUnit(*unit);
+  }
+  for (auto unit : cavalry_barracks->getUnits()) {
+    new_army->addUnit(*unit);
+  }
+  for (auto unit : footmen_barracks->getUnits()) {
+    new_army->addUnit(*unit);
+  }
+  for (auto unit : slinger_barracks->getUnits()) {
+    new_army->addUnit(*unit);
+  }
+
+  return new_army;
 }
 int Node::getResources()
 {
@@ -78,6 +109,10 @@ std::vector<Node *> Node::findShortestPathTo(std::vector<Node *> nodes,
 Empire *Node::getOwnerEmpire() { return owner_empire; }
 bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 {
+  if (this == capital) {
+    return true;
+  }
+
   std::deque<Node *> to_be_checked;
 
   for (auto node : nodes)
@@ -90,7 +125,6 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 
   while (!to_be_checked.empty())
   {
-
     Node *curr = to_be_checked.front();
     to_be_checked.pop_front();
     for (auto path : curr->paths)
@@ -273,6 +307,7 @@ Node::Node(Empire *owner_empire, std::string name, int population, bool capital)
   if (capital)
   {
     this->node_type = new Capital(this);
+    owner_empire->setCapital(this);
   }
   else
   {
