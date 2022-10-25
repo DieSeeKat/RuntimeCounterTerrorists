@@ -46,6 +46,7 @@ void Empire::recruit()
 
 void Empire::advanceArmies()
 {
+  cout << "Jesse is moeite" << endl;
   for (auto army : armies)
   {
     Node *current_town = army->getPosition();
