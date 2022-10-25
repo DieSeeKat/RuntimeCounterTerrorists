@@ -255,9 +255,9 @@ void Empire::recruitArmy(Node *node)
   ArmyRatio army_ratio = war_style_policy->createArmyRatio();
   int army_size = recruitment_policy->calculateRecruits(population);
 
-  Army army = node->recruit(army_ratio, army_size);
+  Army* army = node->recruit(army_ratio, army_size);
 
-  armies.push_back(&army);
+  armies.push_back(army);
 }
 
 std::vector<Empire *> Empire::getAlliances()
