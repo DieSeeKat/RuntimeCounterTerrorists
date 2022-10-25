@@ -360,20 +360,27 @@ TEST(System, TakeTurn)
   war->addEmpire(rome);
   war->addEmpire(greece);
 
-  Node* roma = new Node(rome, "roma", 1000, true);
-  Node* athens = new Node(greece, "athens", 1000, true);
+  Node* roma = new Node(rome, "Roma", 1000, true);
+  Node* athens = new Node(greece, "Athens", 700, true);
+  Node* venice = new Node(greece, "Venice", 1000);
 
   rome->setCapital(roma);
   greece->setCapital(athens);
 
-  roma->addPathTo(athens);
+  roma->addPathTo(venice);
+  venice->addPathTo(athens);
 
   war->addNode(roma);
   war->addNode(athens);
+  war->addNode(venice);
 
-  rome->takeTurn();
+  int turn = 0;
+
+  while (!war->isFinished()) {
+    cout << ++turn << endl;
+    war->nextTurn();
+  }
 
   ASSERT_EQ(athens->getOwnerEmpire(), rome);
-  ASSERT_EQ(war->getEmpires().size(), 1);
   ASSERT_TRUE(war->isFinished());
 }

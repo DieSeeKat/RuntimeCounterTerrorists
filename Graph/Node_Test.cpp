@@ -60,6 +60,10 @@ TEST(Graph, ShortestPath_Test) {
   std::vector<Node *> expected = {n4, n7, c2};
   std::vector<Node *> path = c1->findShortestPathTo(war->getNodes(), c2);
   ASSERT_EQ(expected, path);
+
+  path = n7->findShortestPathTo(war->getNodes(), c2);
+  expected = {c2};
+  ASSERT_EQ(expected, path);
 }
 
 TEST(Graph, ConnectedToCapital_TEST) {
