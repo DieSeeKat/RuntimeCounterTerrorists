@@ -6,11 +6,9 @@
 
 class SlingerBarracks:public Barracks
 {
-private:
-    /* data */
 public:
-    SlingerBarracks(/* args */);
-    Unit* factoryMethod(int numRecruits);
+    SlingerBarracks();
+    Unit* factoryMethod();
 };
 
 

@@ -1,18 +1,21 @@
 #ifndef BARRACKS_H
 #define BARRACKS_H
 
+#include <vector>
 #include "../Units/Unit.h"
 
 class Barracks {
 
 private:
-	Unit* units;
+	std::vector<Unit*> units;
 
 protected:
-	virtual Unit* factoryMethod(int numRecruits) = 0;
+	virtual Unit* factoryMethod() = 0;
 
 public:
-	void createUnits();
+	void createUnits(int num_units);
+    std::vector<Unit*> getUnits();
+    void clearUnits();
 };
 
 #endif

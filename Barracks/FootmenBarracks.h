@@ -6,11 +6,9 @@
 
 class FootmenBarracks:public Barracks
 {
-private:
-    /* data */
 public:
-    FootmenBarracks(/* args */);
-    Unit* factoryMethod(int numRecruits);
+    FootmenBarracks();
+    Unit* factoryMethod();
     
 };
 

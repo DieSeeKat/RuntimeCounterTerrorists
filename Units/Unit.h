@@ -13,6 +13,7 @@ class Unit
   public:
   virtual Unit* clone(std::map<void*, void*> &objmap);
     Unit(int damage,int health);
+    Unit();
 
 };
 

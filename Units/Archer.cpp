@@ -13,3 +13,6 @@ Unit* Archer::clone(std::map<void*, void*> &objmap){
         return temp;
     }
 }
+
+Archer::Archer() : Unit(2, 1)
+{}

@@ -1,3 +1,3 @@
 #include "Footmen.h"
 
-Footmen::Footmen():Unit(1,1){}
+Footmen::Footmen() : Unit(1, 1) {}

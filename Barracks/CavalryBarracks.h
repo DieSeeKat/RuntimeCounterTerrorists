@@ -6,10 +6,11 @@
 #include "../Units/Unit.h"
 #include "../Units/Cavalry.h"
 
-class CavalryBarracks : Barracks {
+class CavalryBarracks : public Barracks {
 
 public:
-	Unit* factoryMethod(int numRecruits);
+    CavalryBarracks();
+	Unit* factoryMethod();
 };
 
 #endif
