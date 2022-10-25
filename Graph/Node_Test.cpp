@@ -1,277 +1,151 @@
 //
-// Created by Lukas Anthonissen on 2022/10/18.
+// Created by Lukas Anthonissen on 2022/10/20.
 //
 
 #include "gtest/gtest.h"
-#include <algorithm>
+#include <climits>
 #include <deque>
 #include <iostream>
 #include <vector>
-#include <climits>
 
+#include "../Empire.h"
+#include "../Memento/War.h"
+#include "Capital.h"
+#include "Node.h"
+#include "Town.h"
 
-class Empire
-{
-  public:
-  Empire(){};
-};
+TEST(Graph, ShortestPath_Test) {
+  War *war = new War();
 
-class Node;
+  Empire *e1 = new Empire("Rome");
+  Empire *e2 = new Empire("Greece");
 
-class Path
-{
-  public:
-  Node **end_points;
-  Path(Node *n1, Node *n2)
-  {
-    end_points    = new Node *[2];
-    end_points[0] = n1;
-    end_points[1] = n2;
-  };
-  Node *getOppositeEnd(Node *node)
-  {
-    if (end_points[0] == node)
-    {
-      return end_points[1];
-    }
-    else
-    {
-      return end_points[0];
-    }
-  };
-};
+  war->addEmpire(e1);
+  war->addEmpire(e2);
 
+  Node *c1 = new Node(e1, "c1", 4, true);
+  Node *n2 = new Node(e1, "n2", 4);
+  Node *n3 = new Node(e1, "n3", 4);
+  Node *n4 = new Node(e2, "n4", 4);
+  Node *n5 = new Node(e2, "n5", 4);
+  Node *n6 = new Node(e1, "n6", 4);
+  Node *n7 = new Node(e1, "n7", 4);
+  Node *n8 = new Node(e2, "n8", 4);
+  Node *c2 = new Node(e2, "c2", 4, true);
 
-class Node
-{
-  public:
-  Node(Empire *empire, int num)
-  {
-    owner_empire = empire;
-    this->num    = num;
-  }
-  int dist;
-  int num;
-  Node *prev;
-  Empire *owner_empire;
-  Empire *getOwnerEmpire()
-  {
-    return owner_empire;
-  };
-  std::vector<Path *> paths;
+  c1->addPathTo(n2);
+  c1->addPathTo(n3);
+  c1->addPathTo(n4);
+  n2->addPathTo(n5);
+  n3->addPathTo(n5);
+  n3->addPathTo(n6);
+  n4->addPathTo(n5);
+  n4->addPathTo(n7);
+  n5->addPathTo(n7);
+  n5->addPathTo(n8);
+  n6->addPathTo(n8);
+  n7->addPathTo(n8);
+  n7->addPathTo(c2);
 
-  void showdq(std::deque<Node *> g)
-  {
-    std::deque<Node *>::iterator it;
-    for (it = g.begin(); it != g.end(); ++it)
-      std::cout << '\t' << (*it)->num;
-    std::cout << '\n';
-  }
+  war->addNode(c1);
+  war->addNode(n2);
+  war->addNode(n3);
+  war->addNode(n4);
+  war->addNode(n5);
+  war->addNode(n6);
+  war->addNode(n7);
+  war->addNode(n8);
+  war->addNode(c2);
 
-  std::vector<Node *> findShortestPathTo(std::vector<Node *> nodes, Node *end_node)
-  {
-    std::deque<Node *> to_be_checked;
-
-    for (auto node : nodes)
-    {
-      node->dist = INT_MAX;
-      node->prev = nullptr;
-    }
-    this->dist = 0;
-    to_be_checked.push_back(this);
-
-    while (!to_be_checked.empty())
-    {
-
-      Node *curr = to_be_checked.front();
-      to_be_checked.pop_front();
-      for (auto path : curr->paths)
-      {
-        int newDist = curr->dist + 1;
-        if (newDist < path->getOppositeEnd(curr)->dist)
-        {
-          path->getOppositeEnd(curr)->dist = newDist;
-          path->getOppositeEnd(curr)->prev = curr;
-          if (std::find(to_be_checked.begin(), to_be_checked.end(), path->getOppositeEnd(curr)) == to_be_checked.end())
-          {
-            to_be_checked.push_back(path->getOppositeEnd(curr));
-          }
-        }
-      }
-    }
-
-    std::vector<Node *> return_vector;
-    Node *curr_node = end_node;
-    while (curr_node != this && curr_node != nullptr)
-    {
-      return_vector.push_back(curr_node);
-      curr_node = curr_node->prev;
-    }
-
-    std::reverse(return_vector.begin(), return_vector.end());
-
-    return return_vector;
-  };
-  bool connectedToCapital(std::vector<Node *> nodes, Node *capital)
-  {
-    std::deque<Node *> to_be_checked;
-
-    for (auto node : nodes)
-    {
-      node->dist = INT_MAX;
-      node->prev = nullptr;
-    }
-    this->dist = 0;
-    to_be_checked.push_back(this);
-
-    while (!to_be_checked.empty())
-    {
-
-      Node *curr = to_be_checked.front();
-      to_be_checked.pop_front();
-      for (auto path : curr->paths)
-      {
-        int newDist = curr->dist + 1;
-        if (newDist < path->getOppositeEnd(curr)->dist && path->getOppositeEnd(curr)->getOwnerEmpire() == owner_empire)
-        {
-          path->getOppositeEnd(curr)->dist = newDist;
-          path->getOppositeEnd(curr)->prev = curr;
-          if (std::find(to_be_checked.begin(), to_be_checked.end(), path->getOppositeEnd(curr)) == to_be_checked.end())
-          {
-            to_be_checked.push_back(path->getOppositeEnd(curr));
-          }
-        }
-      }
-    }
-
-    return capital->prev != nullptr;
-  };
-};
-
-TEST(NodeTest, PathFindingTest)
-{
-  Empire *e1                = new Empire();
-  Empire *e2                = new Empire();
-  Node *c1                  = new Node(e1, 1);
-  Node *n2                  = new Node(e1, 2);
-  Node *n3                  = new Node(e1, 3);
-  Node *n4                  = new Node(e2, 4);
-  Node *n5                  = new Node(e2, 5);
-  Node *n6                  = new Node(e1, 6);
-  Node *n7                  = new Node(e1, 7);
-  Node *n8                  = new Node(e2, 8);
-  Node *c2                  = new Node(e2, 9);
-  std::vector<Node *> nodes = {c1, n2, n3, n4, n5, n6, n7, n8, c2};
-
-  Path *p1  = new Path(c1, n2);
-  Path *p2  = new Path(c1, n3);
-  Path *p3  = new Path(c1, n4);
-  Path *p4  = new Path(n2, n5);
-  Path *p5  = new Path(n3, n5);
-  Path *p6  = new Path(n3, n6);
-  Path *p7  = new Path(n4, n5);
-  Path *p8  = new Path(n4, n7);
-  Path *p9  = new Path(n5, n7);
-  Path *p10 = new Path(n5, n8);
-  Path *p11 = new Path(n6, n8);
-  Path *p12 = new Path(n7, n8);
-  Path *p13 = new Path(n7, c2);
-
-  c1->paths.push_back(p1);
-  n2->paths.push_back(p1);
-  c1->paths.push_back(p2);
-  n3->paths.push_back(p2);
-  n2->paths.push_back(p4);
-  n5->paths.push_back(p4);
-  n3->paths.push_back(p5);
-  n5->paths.push_back(p5);
-  n3->paths.push_back(p6);
-  n6->paths.push_back(p6);
-  n4->paths.push_back(p7);
-  n5->paths.push_back(p7);
-  n4->paths.push_back(p8);
-  n7->paths.push_back(p8);
-  n5->paths.push_back(p9);
-  n7->paths.push_back(p9);
-  n5->paths.push_back(p10);
-  n8->paths.push_back(p10);
-  n6->paths.push_back(p11);
-  n8->paths.push_back(p11);
-  n7->paths.push_back(p12);
-  n8->paths.push_back(p12);
-  n7->paths.push_back(p13);
-  c2->paths.push_back(p13);
-
-
-  std::vector<Node *> expected = {n2, n5, n7, c2};
-  std::vector<Node *> path     = c1->findShortestPathTo(nodes, c2);
-  ASSERT_EQ(expected, path);
-
-  c1->paths.push_back(p3);
-  n4->paths.push_back(p3);
-
-  path     = c1->findShortestPathTo(nodes, c2);
-  expected = {n4, n7, c2};
+  std::vector<Node *> expected = {n4, n7, c2};
+  std::vector<Node *> path = c1->findShortestPathTo(war->getNodes(), c2);
   ASSERT_EQ(expected, path);
 }
 
-TEST(NodeTest, connectionTest)
-{
-  Empire *e1                = new Empire();
-  Empire *e2                = new Empire();
-  Node *c1                  = new Node(e1, 1);
-  Node *n2                  = new Node(e1, 2);
-  Node *n3                  = new Node(e1, 3);
-  Node *n4                  = new Node(e2, 4);
-  Node *n5                  = new Node(e2, 5);
-  Node *n6                  = new Node(e1, 6);
-  Node *n7                  = new Node(e1, 7);
-  Node *n8                  = new Node(e2, 8);
-  Node *c2                  = new Node(e2, 9);
-  std::vector<Node *> nodes = {c1, n2, n3, n4, n5, n6, n7, n8, c2};
+TEST(Graph, ConnectedToCapital_TEST) {
+  War *war = new War();
 
-  Path *p1  = new Path(c1, n2);
-  Path *p2  = new Path(c1, n3);
-  Path *p3  = new Path(c1, n4);
-  Path *p4  = new Path(n2, n5);
-  Path *p5  = new Path(n3, n5);
-  Path *p6  = new Path(n3, n6);
-  Path *p7  = new Path(n4, n5);
-  Path *p8  = new Path(n4, n7);
-  Path *p9  = new Path(n5, n7);
-  Path *p10 = new Path(n5, n8);
-  Path *p11 = new Path(n6, n8);
-  Path *p12 = new Path(n7, n8);
-  Path *p13 = new Path(n7, c2);
+  Empire *e1 = new Empire("Rome");
+  Empire *e2 = new Empire("Greece");
 
-  c1->paths.push_back(p1);
-  n2->paths.push_back(p1);
-  c1->paths.push_back(p2);
-  n3->paths.push_back(p2);
-  c1->paths.push_back(p3);
-  n4->paths.push_back(p3);
-  n2->paths.push_back(p4);
-  n5->paths.push_back(p4);
-  n3->paths.push_back(p5);
-  n5->paths.push_back(p5);
-  n3->paths.push_back(p6);
-  n6->paths.push_back(p6);
-  n4->paths.push_back(p7);
-  n5->paths.push_back(p7);
-  n4->paths.push_back(p8);
-  n7->paths.push_back(p8);
-  n5->paths.push_back(p9);
-  n7->paths.push_back(p9);
-  n5->paths.push_back(p10);
-  n8->paths.push_back(p10);
-  n6->paths.push_back(p11);
-  n8->paths.push_back(p11);
-  n7->paths.push_back(p12);
-  n8->paths.push_back(p12);
-  n7->paths.push_back(p13);
-  c2->paths.push_back(p13);
+  war->addEmpire(e1);
+  war->addEmpire(e2);
 
-  EXPECT_TRUE(!(n7->connectedToCapital(nodes, c1)));
-  EXPECT_TRUE(n6->connectedToCapital(nodes, c1));
-  EXPECT_TRUE(!(n5->connectedToCapital(nodes, c2)));
+  Node *c1 = new Node(e1, "c1", 4, true);
+  Node *n2 = new Node(e1, "n2", 4);
+  Node *n3 = new Node(e1, "n3", 4);
+  Node *n4 = new Node(e2, "n4", 4);
+  Node *n5 = new Node(e2, "n5", 4);
+  Node *n6 = new Node(e1, "n6", 4);
+  Node *n7 = new Node(e1, "n7", 4);
+  Node *n8 = new Node(e2, "n8", 4);
+  Node *c2 = new Node(e2, "c2", 4, true);
+
+  c1->addPathTo(n2);
+  c1->addPathTo(n3);
+  c1->addPathTo(n4);
+  n2->addPathTo(n5);
+  n3->addPathTo(n5);
+  n3->addPathTo(n6);
+  n4->addPathTo(n5);
+  n4->addPathTo(n7);
+  n5->addPathTo(n7);
+  n5->addPathTo(n8);
+  n6->addPathTo(n8);
+  n7->addPathTo(n8);
+  n7->addPathTo(c2);
+
+  war->addNode(c1);
+  war->addNode(n2);
+  war->addNode(n3);
+  war->addNode(n4);
+  war->addNode(n5);
+  war->addNode(n6);
+  war->addNode(n7);
+  war->addNode(n8);
+  war->addNode(c2);
+
+  EXPECT_TRUE(!(n7->connectedToCapital(war->getNodes(), c1)));
+  EXPECT_TRUE(n6->connectedToCapital(war->getNodes(), c1));
+  EXPECT_TRUE(!(n5->connectedToCapital(war->getNodes(), c2)));
+}
+
+TEST(Graph, Repopulate_TEST) {
+  War *war = new War();
+
+  Empire *e1 = new Empire("Rome");
+
+  war->addEmpire(e1);
+
+  Node *node = new Node(e1, "node", 4, true);
+
+  int population = node->getPopulation();
+
+  node->repopulate();
+
+  ASSERT_TRUE(node->getPopulation() != population);
+}
+
+TEST(Graph, Recharge_TEST) {
+  War *war = new War();
+
+  Empire *e1 = new Empire("Rome");
+
+  war->addEmpire(e1);
+
+  Node *node = new Node(e1, "node", 4, true);
+
+  node->setResources(1);
+
+  int resources = node->getResources();
+
+  node->rechargeResources();
+
+  ASSERT_TRUE(node->getResources() != resources);
+
+  resources = node->getResources();
+
+  node->rechargeResources();
+
+  ASSERT_TRUE(node->getResources() == resources);
 }

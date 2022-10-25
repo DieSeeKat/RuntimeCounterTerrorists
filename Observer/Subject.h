@@ -3,11 +3,16 @@
 
 #include "Observer.h"
 
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
 class Subject
 {
 
   private:
-  Observer *observer_list;
+  vector<Observer*> observers;
 
   public:
   void attach(Observer *observer);
@@ -15,6 +20,9 @@ class Subject
   void detach(Observer *observer);
 
   void notify();
+
+  std::vector<Observer* > getObserverList();
+
 };
 
 #endif

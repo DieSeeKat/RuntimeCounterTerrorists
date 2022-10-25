@@ -1,16 +1,33 @@
 #include "Subject.h"
 
-void Subject::attach(Observer* observer) {
-	// TODO - implement Subject::attach
-	throw "Not yet implemented";
+void Subject::attach(Observer *observer)
+{
+  this->observers.push_back(observer);
 }
 
-void Subject::detach(Observer* observer) {
-	// TODO - implement Subject::detach
-	throw "Not yet implemented";
+void Subject::detach(Observer *observer)
+{
+  vector<Observer *>::iterator it = this->observers.begin();
+  while ((it != this->observers.end()))
+  {
+    if (*it == observer)
+    {
+      this->observers.erase(it);
+      return;
+    }
+    ++it;
+  }
 }
 
-void Subject::notify() {
-	// TODO - implement Subject::notify
-	throw "Not yet implemented";
+void Subject::notify()
+{
+  for (auto army : observers)
+  {
+    army->update();
+  }
+}
+
+std::vector<Observer *> Subject::getObserverList()
+{
+  return observers;
 }

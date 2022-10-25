@@ -1,3 +1,15 @@
 #include "Cavalry.h"
 
-Cavalry::Cavalry():Unit(1,1){}
+Unit* Cavalry::clone(std::map<void*, void*> &objmap){
+    if(objmap.find(this)!=objmap.end()){
+        return (Unit*)((*objmap.find(this)).second);
+    }
+    else{
+        Cavalry* temp = new Cavalry();
+        objmap.insert(std::pair<void*,void*>(this, temp));
+
+        temp->health = health;
+        temp->damage = damage;
+        return temp;
+    }
+}

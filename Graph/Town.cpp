@@ -1,21 +1,34 @@
 #include "Town.h"
+#include "Node.h"
+#include <iostream>
 
-void Town::colonise(Empire *colonising_empire)
-{
-  Empire *old_owner_empire = owner_empire;
-  owner_empire             = colonising_empire;
+Town::Town(){
 
-  colonising_empire->addTown(this);
-  old_owner_empire->removeNode(this);
 }
 
-std::string Town::getState()
+void Town::colonise(Empire* empire)
 {
-  return "NULL";
+#ifndef disable_output
+  std::cout << node->getOwnerEmpire()->getName() << "'s city, " << node->getName()
+            << ", has been captured by " << empire->getName() << "." << std::endl;
+#endif
 }
-Town::Town(Empire *empire, int population) : Node(empire, population)
+Town::Town(Node* node) : NodeType(node)
 {
 }
 Town::~Town()
 {
+}
+
+NodeType* Town::clone(std::map<void*,void*> &objmap){
+    if(objmap.find(this)!=objmap.end()){
+        return (NodeType*)((*objmap.find(this)).second);
+    }
+    else{
+        Town* temp = new Town();
+        objmap.insert(std::pair<void*,void*>(this, temp));
+        if(node)
+            temp->node = node->clone(objmap);
+        return temp;
+    }
 }

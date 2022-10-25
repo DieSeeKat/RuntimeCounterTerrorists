@@ -15,37 +15,50 @@
 #include "../Observer/Subject.h"
 
 #include "../Mediator/Mediator.h"
-
+#include "NodeType.h"
+#include <map>
+#include <algorithm>
 class Empire;
 
-class Node : Aggregate, Subject
+class Node : Aggregate, public Subject
 {
+  private:
+  Node();
   protected:
-  Mediator *mediator;
+  Mediator *mediator = nullptr;
   /// The number of resources a Node holds
   int resources;
   /// The total population of a Node
   int population;
   /// The original empire of population of the Node
-  Empire *population_empire;
+  Empire *population_empire = nullptr;
   /// The current controlling power
-  Empire *owner_empire;
+  Empire *owner_empire = nullptr;
   /// All paths connecting to other Nodes
   std::vector<Path *> paths;
-  std::vector<Army*> stationed_armies;
+  /// All armies stationed at the Node
+  std::vector<Army *> stationed_armies;
+  /// A pointer to the NodeType of the Node
+  NodeType *node_type = nullptr;
+  std::string name = "";
 
   public:
   /// The current distance from the start Node of the Label-Correcting Algorithm
-  int dist;
+  int dist = 0;
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm
   Node *prev = nullptr;
-  Node(Empire* owner_empire, int population);
+  Node(Empire *owner_empire, std::string name, int population);
+  Node(Empire *owner_empire, std::string name, int population, bool capital);
   ~Node();
   /**
    * @brief Remove a path between this Node and another
    * @param path Path to be removed
    */
   void removePath(Path *path);
+  /**
+   * @brief Remove a path between this Node and another
+   * @return Iterator to iterate through the adjacent towns
+   */
   NodeIterator *createIterator();
   /**
    * @brief Form a connection between this Node and another
@@ -62,7 +75,6 @@ class Node : Aggregate, Subject
    * @brief Recharge resources to the maximum capacity according to the Node's population
    */
   void rechargeResources();
-  virtual std::string getState() = 0;
   /**
    * @brief Recruit an army from the Node depending on the ArmyRatio and the number of recruits wanted.
    *
@@ -72,10 +84,10 @@ class Node : Aggregate, Subject
    */
   Army recruit(ArmyRatio ratio, int num_recruits);
   /**
-   * @brief A pure virtual function that will be implemented in Town
+   * @brief A pure virtual function that will be implemented in Town and Capital
    * @param colonising_empire
    */
-  virtual void colonise(Empire *colonising_empire) = 0;
+  void colonise(Empire *colonising_empire);
   /**
    * @brief Repopulate a town
    */
@@ -85,6 +97,9 @@ class Node : Aggregate, Subject
    * @return Return population
    */
   int getPopulation();
+
+  void removeObserver(Observer* army);
+  void addObserver(Observer* army);
 
   Node *nextStepTo(Node *node);
   /**
@@ -124,8 +139,11 @@ class Node : Aggregate, Subject
    * Will destroy or weaken armies depending on the result of the battle and will be colonised if it loses the battle.
    * @param attacking_army The army performing the attack.
    */
+  void getAttacked(Army *attacking_army);
+  /**
+   * @brief Handles the Mediator method when the Node gets attacked
+   */
   void onAttacked();
-  void getAttacked(Army* attacking_army);
   /**
    * @brief Make this Node a free city. Will change the owner_empire attribute to nullptr
    */
@@ -135,16 +153,50 @@ class Node : Aggregate, Subject
    * @brief Get armies stationed here.
    * @return Return a vector of Army pointers
    */
-  std::vector<Army*> getStationedArmies();
+  std::vector<Army *> getStationedArmies();
   /**
    * @brief Remove a specific army from being stationed here
    * @param army Army to be removed
    */
-  void removeStationedArmy(Army* army);
+  void removeStationedArmy(Army *army);
   /**
-   * @todo Make clone method pure virtual after implementing clone() method in children classes.
-  */
-  virtual Node* clone();
+   * @brief Add a new Army to the stationed_armies vector
+   * @param army A pointer to the Army to be added
+   */
+  void addStationedArmy(Army *army);
+  /**
+   * @brief Clone method for the Node
+   * @param objmap A void to void pointer map
+   * @return A pointer to a new cloned Node
+   */
+  Node *clone(std::map<void*, void*> &objmap);
+  /**
+   * @brief Setter for the owner_empire attribute
+   * @param empire The new owner of the Node
+   */
+  void setOwnerEmpire(Empire *empire);
+  /**
+   * @brief A setter for the node_type
+   * @param node_type A pointer to the new NodeType to be set
+   */
+  void setNodeType(NodeType *node_type);
+  /**
+   * @brief A getter for the node_type
+   * @return Return a pointer to the node_type
+   */
+  NodeType* getNodeType();
+  /**
+   * @brief Get the current amount of resources in the Node
+   * @return The current amount of resources in an Integer
+   */
+  int getResources();
+  /**
+   * @brief A setter for the amount of resources available in the Node
+   * @param resources The new amount of resources
+   */
+  void setResources(int resources);
+  std::string getName();
+  void setName(std::string name);
 };
 
 #endif
