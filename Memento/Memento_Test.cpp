@@ -20,11 +20,9 @@ TEST (Memento, Backup) {
 
   Empire *e1 = new Empire("Rome");
   Empire *e2 = new Empire("Greece");
-  Empire* e3 = new Empire("Israel");
 
   war->addEmpire(e1);
   war->addEmpire(e2);
-  war->addEmpire(e3);
 
   Node *c1 = new Node(e1, "c1", 4, true);
   Node *n2 = new Node(e1, "n2", 4);
@@ -79,15 +77,52 @@ TEST (Memento, Backup) {
 
   e1->joinAlliance(e2);
 
-  e1->joinAlliance(e3);
-
   WarCaretaker* caretaker = new WarCaretaker();
   caretaker->storeMemento(war->createWarRollback());
 
   //Do stuff
 
-  war->setWarRollback(caretaker->getMemento());
+  War* backupWar = new War();
+  backupWar->setWarRollback(caretaker->getMemento());
 
   //Test if everything is the same again
+  std::vector<Empire* >::iterator it_empires = backupWar->getEmpires().begin();
+  for(auto empire:war->getEmpires()){
+    EXPECT_EQ(empire->getAlliances().size(), (*it_empires)->getAlliances().size());
+    EXPECT_STREQ(empire->getCapital()->getName().c_str(), (*it_empires)->getCapital()->getName().c_str());
+    EXPECT_EQ(empire->getCapital()->getPaths().size(), (*it_empires)->getCapital()->getPaths().size());
+    EXPECT_EQ(empire->getCapital()->getPopulation(), (*it_empires)->getCapital()->getPopulation());
+    EXPECT_EQ(empire->getCapital()->getResources(), (*it_empires)->getCapital()->getResources());
+    EXPECT_EQ(empire->getPrevNumNodes(), (*it_empires)->getPrevNumNodes());
+    EXPECT_EQ(empire->getWar(), (*it_empires)->getWar());
+    EXPECT_EQ(empire->getArmies().size(), (*it_empires)->getArmies().size());
+    EXPECT_EQ(empire->getNodes().size(), (*it_empires)->getNodes().size());
+
+    it_empires++;
+  }
+
+  std::vector<Node* >::iterator it_nodes = backupWar->getNodes().begin();
+  for(auto node:war->getNodes()){
+    EXPECT_EQ(node->getName(), (*it_nodes)->getName());
+    EXPECT_EQ(node->getResources(), (*it_nodes)->getResources());
+    EXPECT_EQ(node->getPopulation(), (*it_nodes)->getPopulation());
+    EXPECT_EQ(node->getStationedArmies().size(), (*it_nodes)->getStationedArmies().size());
+    auto two = (*it_nodes)->getStationedArmies().begin();
+    for(auto one: node->getStationedArmies()){
+      ASSERT_EQ(one->getArmySize(), (*two)->getArmySize());
+      ASSERT_EQ(one->getNumUnits(), (*two)->getNumUnits());
+      ASSERT_EQ(one->getResources(), (*two)->getResources());
+      two++;
+    }
+    
+    auto t1 = node->getNodeType();
+    auto t2 = (*it_nodes)->getNodeType();
+    ASSERT_TRUE(dynamic_cast<Town*>(t1) == dynamic_cast<Town*>(t2) || dynamic_cast<Capital*>(t1) == dynamic_cast<Capital*>(t2));
+
+    it_nodes++;
+  }
+
+  EXPECT_EQ(war->getPaths().size(), backupWar->getPaths().size());
+
 
 }

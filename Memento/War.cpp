@@ -56,7 +56,7 @@ std::vector<Node *> War::getNodes()
 {
   return nodes;
 }
-std::vector<Path *> War::getPath()
+std::vector<Path *> War::getPaths()
 {
   return paths;
 }
