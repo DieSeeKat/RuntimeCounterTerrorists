@@ -189,6 +189,7 @@ void Node::removeStationedArmy(Army *army)
 }
 void Node::getAttacked(Army *attacking_army)
 {
+    mediator->notifyOfAttack(this);
   int friendly_units_in_footmen = 0;
   int enemy_units_in_footmen    = 0;
 
