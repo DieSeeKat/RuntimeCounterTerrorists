@@ -21,6 +21,8 @@ private:
   int index = 0;
 
 public:
+  ~War();
+  std::map<void *, void *> objmap;
   WarRollback *createWarRollback();
   void setWarRollback(WarRollback *war_rollback);
 

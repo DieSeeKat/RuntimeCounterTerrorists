@@ -14,7 +14,8 @@
 #include "WarCaretaker.h"
 #include "WarRollback.h"
 
-TEST (Memento, Backup) {
+TEST(Memento, Backup)
+{
 
   War *war = new War();
 
@@ -77,52 +78,82 @@ TEST (Memento, Backup) {
 
   e1->joinAlliance(e2);
 
-  WarCaretaker* caretaker = new WarCaretaker();
+  WarCaretaker *caretaker = new WarCaretaker();
   caretaker->storeMemento(war->createWarRollback());
 
-  //Do stuff
+  // Do stuff
 
-  War* backupWar = new War();
+  War *backupWar = new War();
   backupWar->setWarRollback(caretaker->getMemento());
 
-  //Test if everything is the same again
-  std::vector<Empire* >::iterator it_empires = backupWar->getEmpires().begin();
-  for(auto empire:war->getEmpires()){
-    EXPECT_EQ(empire->getAlliances().size(), (*it_empires)->getAlliances().size());
-    EXPECT_STREQ(empire->getCapital()->getName().c_str(), (*it_empires)->getCapital()->getName().c_str());
-    EXPECT_EQ(empire->getCapital()->getPaths().size(), (*it_empires)->getCapital()->getPaths().size());
-    EXPECT_EQ(empire->getCapital()->getPopulation(), (*it_empires)->getCapital()->getPopulation());
-    EXPECT_EQ(empire->getCapital()->getResources(), (*it_empires)->getCapital()->getResources());
-    EXPECT_EQ(empire->getPrevNumNodes(), (*it_empires)->getPrevNumNodes());
-    EXPECT_EQ(empire->getWar(), (*it_empires)->getWar());
-    EXPECT_EQ(empire->getArmies().size(), (*it_empires)->getArmies().size());
-    EXPECT_EQ(empire->getNodes().size(), (*it_empires)->getNodes().size());
+  ASSERT_NE(war, backupWar);
+  ASSERT_NE(war->getEmpires(), backupWar->getEmpires());
+  ASSERT_NE(war->getEmpires().begin(), backupWar->getEmpires().begin());
+  ASSERT_NE(war->getEmpires(), backupWar->getEmpires());
+  ASSERT_NE(war->getNodes(), backupWar->getNodes());
+  ASSERT_STREQ(war->getEmpires().at(0)->getCapital()->getName().c_str(), backupWar->getEmpires().at(0)->getCapital()->getName().c_str());
+  ASSERT_NE(war->getEmpires().at(0)->getCapital(), backupWar->getEmpires().at(0)->getCapital());
 
-    it_empires++;
+  if (war->getPaths().size() == 0)
+  {
+    ASSERT_EQ(war->getPaths(), backupWar->getPaths());
+  }
+  else
+  {
+    ASSERT_NE(war->getPaths(), backupWar->getPaths());
   }
 
-  std::vector<Node* >::iterator it_nodes = backupWar->getNodes().begin();
-  for(auto node:war->getNodes()){
-    EXPECT_EQ(node->getName(), (*it_nodes)->getName());
-    EXPECT_EQ(node->getResources(), (*it_nodes)->getResources());
-    EXPECT_EQ(node->getPopulation(), (*it_nodes)->getPopulation());
-    EXPECT_EQ(node->getStationedArmies().size(), (*it_nodes)->getStationedArmies().size());
-    auto two = (*it_nodes)->getStationedArmies().begin();
-    for(auto one: node->getStationedArmies()){
-      ASSERT_EQ(one->getArmySize(), (*two)->getArmySize());
-      ASSERT_EQ(one->getNumUnits(), (*two)->getNumUnits());
-      ASSERT_EQ(one->getResources(), (*two)->getResources());
-      two++;
+  for (auto a : war->getEmpires())
+  {
+    for (auto b : backupWar->getEmpires())
+    {
+      ASSERT_NE(a, b);
+      if (war->objmap.find(a) != war->objmap.end() && b == (*war->objmap.find(a)).second)
+      {
+        ASSERT_STREQ(a->getName().c_str(), b->getName().c_str());
+
+        ASSERT_NE(a->getArmies(), b->getArmies());
+        ASSERT_EQ(a->getArmies().size(), b->getArmies().size());
+        ASSERT_NE(a->getCapital(), b->getCapital());
+        ASSERT_NE(a->getNodes(), b->getNodes());
+        ASSERT_EQ(a->getNodes().size(), b->getNodes().size());
+        ASSERT_NE(a->getWar(), b->getWar());
+
+        ASSERT_EQ(a->getPrevNumNodes(), b->getPrevNumNodes());
+        Node *a_c = a->getCapital(), *b_c = b->getCapital();
+        ASSERT_STREQ(a_c->getName().c_str(), b_c->getName().c_str());
+        ASSERT_TRUE(dynamic_cast<Town *>(a_c) == dynamic_cast<Town *>(b_c) || dynamic_cast<Capital *>(a_c) == dynamic_cast<Capital *>(b_c));
+      }
     }
-    
-    auto t1 = node->getNodeType();
-    auto t2 = (*it_nodes)->getNodeType();
-    ASSERT_TRUE(dynamic_cast<Town*>(t1) == dynamic_cast<Town*>(t2) || dynamic_cast<Capital*>(t1) == dynamic_cast<Capital*>(t2));
-
-    it_nodes++;
   }
 
-  EXPECT_EQ(war->getPaths().size(), backupWar->getPaths().size());
+  for (auto a : war->getNodes())
+  {
+    for (auto b : backupWar->getNodes())
+    {
+      ASSERT_NE(a, b);
+      if (war->objmap.find(a) != war->objmap.end() && b == (*war->objmap.find(a)).second)
+      {
+        ASSERT_STREQ(a->getName().c_str(), b->getName().c_str());
+        ASSERT_TRUE(dynamic_cast<Town *>(a->getNodeType()) == dynamic_cast<Town *>(b->getNodeType()) || dynamic_cast<Capital *>(a->getNodeType()) == dynamic_cast<Capital *>(b->getNodeType()));
+        if (a->getObserverList().size() > 0 && b->getObserverList().size() > 0)
+          ASSERT_NE(a->getObserverList(), b->getObserverList());
+        else
+          ASSERT_EQ(a->getObserverList(), b->getObserverList());
+        ASSERT_NE(a->getOwnerEmpire(), b->getOwnerEmpire());
+        ASSERT_NE(a->getPaths(), b->getPaths());
+        ASSERT_EQ(a->getPopulation(), b->getPopulation());
+        ASSERT_EQ(a->getResources(), b->getResources());
+        if (a->getStationedArmies().size() > 0 && b->getStationedArmies().size() > 0)
+          ASSERT_NE(a->getStationedArmies(), b->getStationedArmies());
+        else
+          ASSERT_EQ(a->getStationedArmies(), b->getStationedArmies());
+      }
+    }
+  }
 
-
+  //Show that backupWar can continue even if original war gets deleted.
+  delete war;
+  ASSERT_STREQ(backupWar->getEmpires().at(0)->getName().c_str(), "Rome");
+  ASSERT_STREQ(backupWar->getEmpires().at(1)->getName().c_str(), "Greece");
 }

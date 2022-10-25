@@ -1,14 +1,27 @@
 #include "War.h"
 #include <vector>
 
+War::~War(){
+  for (auto empire : empires)
+  {
+    delete empire;
+  }
+  for (std::vector<Node *>::iterator it = nodes.begin(); it != nodes.end(); it++)
+  {
+    if (it != nodes.end())
+    {
+      delete (*it);
+    }
+  }
+}
+
 WarRollback *War::createWarRollback()
 {
   WarRollback *temp = new WarRollback();
-  std::map<void *, void *> objmap;
   std::vector<Empire *> temp_empires;
-  for (std::vector<Empire *>::iterator it = empires.begin(); it != empires.end(); it++)
+  for (auto empire : empires)
   {
-    temp_empires.push_back((*it)->clone(objmap));
+    temp_empires.push_back(empire->clone(objmap));
   }
   temp->empires = temp_empires;
 
@@ -110,8 +123,9 @@ void War::removeEmpire(Empire *to_remove)
   empires.erase(std::find(empires.begin(), empires.end(), to_remove));
   delete to_remove;
 
-  if (index != 0) {
-    index =- 1;
+  if (index != 0)
+  {
+    index = -1;
   }
 }
 void War::removeNode(Node *to_remove)
@@ -126,7 +140,8 @@ void War::removePath(Path *to_remove)
 }
 void War::updateEmpires()
 {
-  for(auto empire: empires){
+  for (auto empire : empires)
+  {
     empire->setWar(this);
   }
 }
@@ -156,7 +171,8 @@ bool War::isFinished()
         }
       }
 
-      if (!flag) {
+      if (!flag)
+      {
         return flag;
       }
     }

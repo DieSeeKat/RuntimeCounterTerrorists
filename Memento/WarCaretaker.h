@@ -8,10 +8,11 @@
 class WarCaretaker
 {
 private:
-    std::stack<WarRollback*> mementos;
+    std::stack<WarRollback *> mementos;
+
 public:
-    void storeMemento(WarRollback* to_store);
-    WarRollback* getMemento();
+    void storeMemento(WarRollback *to_store);
+    WarRollback *getMemento();
 };
 
 #endif
