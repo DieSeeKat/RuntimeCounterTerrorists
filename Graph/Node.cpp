@@ -307,6 +307,7 @@ Node::Node(Empire *owner_empire, std::string name, int population, bool capital)
   if (capital)
   {
     this->node_type = new Capital(this);
+    owner_empire->setCapital(this);
   }
   else
   {
