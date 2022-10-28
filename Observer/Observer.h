@@ -7,8 +7,10 @@ class Observer
 {
 
     public:
-
-        virtual void update() = 0;
+    /**
+     * @brief A pure virtual method to change the status of the army and is implemented in the Army class
+     */
+   virtual void update() = 0;
 
 
 

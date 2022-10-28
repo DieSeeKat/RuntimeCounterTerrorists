@@ -33,11 +33,14 @@ class Army : public Observer
   Army(Node* current_position, Empire* owner_empire);
   ~Army();
 
+  /**
+   * @brief A method to to update the position of an army
+   */
   void update();
   /**
-     * @brief A method to allow the Army to siege a Node
-     * @param town The town which will be attacked
-     */
+   * @brief A method to allow the Army to siege a Node
+   * @param town The town which will be attacked
+   */
   void attackTown(Node *town);
   /**
    * @brief Add a new Unit to the Army
@@ -45,14 +48,14 @@ class Army : public Observer
    */
   void addUnit(Unit unit);
   /**
-     * @brief A method to move an Army to another Node
-     * @param town The town which will be moved to
-     */
+   * @brief A method to move an Army to another Node
+   * @param town The town which will be moved to
+   */
   void moveToTown(Node *town);
   /**
-     * @brief Return the current position of the Army
-     * @return Returns a Node pointer
-     */
+   * @brief Return the current position of the Army
+   * @return Returns a Node pointer
+   */
   Node *getPosition();
 
   /**
