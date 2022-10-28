@@ -8,6 +8,7 @@
 Capital::Capital() { this->node = nullptr; }
 
 void Capital::colonise(Empire *empire) {
+
 #ifndef disable_output
   std::cout << node->getOwnerEmpire()->getName() << "'s capital, "
             << node->getName() << ", has been captured by " << empire->getName()

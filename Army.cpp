@@ -120,8 +120,6 @@ int Army::getNumUnits()
 }
 void Army::killRandomUnit()
 {
-  std::cout << "getOwnerEmpire()->getName(): " << getOwnerEmpire()->getName() << endl;
-
   if (units.size() != 0)
   {
     int random_num                 = rand() % (units.size());

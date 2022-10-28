@@ -243,7 +243,6 @@ void Node::getAttacked(Army *attacking_army)
     this->colonise(attacking_army->getOwnerEmpire());
 
     notify();
-
   }
   else if (enemy_units_in_footmen == friendly_units_in_footmen)
   {
@@ -312,8 +311,6 @@ Node *Node::clone(std::map<void *, void *> &objmap)
 void Node::colonise(Empire *colonising_empire)
 {
   node_type->colonise(colonising_empire);
-
-  getOwnerEmpire()->removeNode(this);
 
   colonising_empire->addTown(this);
 }
