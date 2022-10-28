@@ -12,6 +12,8 @@
 
 #include "Path.h"
 
+#include "../Memento/War.h"
+
 #include "../Observer/Subject.h"
 
 #include "../Mediator/Mediator.h"
@@ -20,6 +22,8 @@
 #include <algorithm>
 class Empire;
 
+class War;
+
 class Node : Aggregate, public Subject
 {
   private:
@@ -27,6 +31,9 @@ class Node : Aggregate, public Subject
   protected:
   Mediator *mediator = nullptr;
   /// The number of resources a Node holds
+
+  War* war = nullptr;
+
   int resources;
   /// The total population of a Node
   int population;
@@ -36,8 +43,6 @@ class Node : Aggregate, public Subject
   Empire *owner_empire = nullptr;
   /// All paths connecting to other Nodes
   std::vector<Path *> paths;
-  /// All armies stationed at the Node
-  std::vector<Army *> stationed_armies;
   /// A pointer to the NodeType of the Node
   NodeType *node_type = nullptr;
   std::string name = "";
@@ -47,8 +52,8 @@ class Node : Aggregate, public Subject
   int dist = 0;
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm
   Node *prev = nullptr;
-  Node(Empire *owner_empire, std::string name, int population);
-  Node(Empire *owner_empire, std::string name, int population, bool capital);
+  Node(War* war, Empire *owner_empire, std::string name, int population);
+  Node(War* war, Empire *owner_empire, std::string name, int population, bool capital);
   ~Node();
   /**
    * @brief Remove a path between this Node and another

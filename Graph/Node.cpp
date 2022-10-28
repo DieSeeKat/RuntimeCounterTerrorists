@@ -37,7 +37,7 @@ Army *Node::recruit(ArmyRatio ratio, int num_recruits)
   footmen_barracks->createUnits(ceil(ratio.footmen_ratio * num_recruits));
   slinger_barracks->createUnits(ceil(ratio.slinger_ratio * num_recruits));
 
-  Army *new_army = new Army(this, owner_empire);
+  Army *new_army = new Army(war, this, owner_empire);
 
   for (auto unit : archer_barracks->getUnits())
   {
@@ -153,8 +153,9 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 }
 
 std::vector<Path *> Node::getPaths() { return paths; }
-Node::Node(Empire *owner_empire, std::string name, int population)
+Node::Node(War* war, Empire *owner_empire, std::string name, int population)
 {
+  this->war = war;
   this->owner_empire      = owner_empire;
   this->population_empire = owner_empire;
   this->population        = population;
@@ -186,19 +187,14 @@ void Node::removePath(Path *path)
   paths.erase(std::find(paths.begin(), paths.end(), path));
 }
 void Node::makeFreeCity() { owner_empire = nullptr; }
-std::vector<Army *> Node::getStationedArmies() { return stationed_armies; }
-void Node::removeStationedArmy(Army *army)
-{
-  stationed_armies.erase(
-          std::find(stationed_armies.begin(), stationed_armies.end(), army));
-}
+
 void Node::getAttacked(Army *attacking_army)
 {
   int friendly_units_in_footmen = 0;
   int enemy_units_in_footmen    = 0;
 
   // Calculate friendly_units_in_footmen
-  for (Army *army : stationed_armies)
+  for (Army *army : getStationedArmies())
   {
     if (getOwnerEmpire() == army->getOwnerEmpire() ||
         getOwnerEmpire()->isAlly(army->getOwnerEmpire()))
@@ -292,7 +288,7 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     temp->resources = resources;
 
     std::vector<Army *> newstationedarmies;
-    for (auto army : stationed_armies)
+    for (auto army : getStationedArmies())
     {
       if (army)
         newstationedarmies.push_back(army->clone(objmap));
@@ -301,7 +297,6 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     return temp;
   }
 }
-void Node::addStationedArmy(Army *army) { stationed_armies.push_back(army); }
 void Node::setOwnerEmpire(Empire *empire) { owner_empire = empire; }
 void Node::colonise(Empire *colonising_empire)
 {
@@ -312,7 +307,7 @@ void Node::colonise(Empire *colonising_empire)
   colonising_empire->addTown(this);
 }
 void Node::setNodeType(NodeType *node_type) { this->node_type = node_type; }
-Node::Node(Empire *owner_empire, std::string name, int population, bool capital)
+Node::Node(War* war, Empire *owner_empire, std::string name, int population, bool capital)
 {
   this->owner_empire      = owner_empire;
   this->population_empire = owner_empire;
