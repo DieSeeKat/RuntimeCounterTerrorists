@@ -24,6 +24,9 @@ class HeavyWar : public RecruitmentPolicy
    */
   RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
 
+
+  virtual string getRecuitmentPolicyName();
+
 };
 
 #endif

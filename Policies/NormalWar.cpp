@@ -24,3 +24,7 @@ RecruitmentPolicy* NormalWar::clone(std::map<void*, void*> &objmap){
     return temp;
   }
 }
+
+string NormalWar::getRecuitmentPolicyName(){
+  return "Normal war";
+}

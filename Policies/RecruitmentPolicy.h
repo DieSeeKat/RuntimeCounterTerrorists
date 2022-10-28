@@ -24,6 +24,8 @@ class RecruitmentPolicy
    */
   virtual RecruitmentPolicy* clone(std::map<void*, void*> &objmap) = 0;
 
+  virtual string getRecuitmentPolicyName()=0;
+
 };
 //had problems with the Git in regard to the Light, Heavy and Normal war - Dharshan Gopaul
 #endif

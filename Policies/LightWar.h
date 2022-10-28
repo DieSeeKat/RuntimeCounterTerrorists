@@ -2,6 +2,9 @@
 #define LIGHTWAR_H
 
 #include "RecruitmentPolicy.h"
+#include<string>
+
+using namespace std;
 
 class LightWar : public RecruitmentPolicy
 {
@@ -22,6 +25,8 @@ class LightWar : public RecruitmentPolicy
    * @return A pointer to a new cloned LightWar Policy
    */
   RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
+
+  virtual string getRecuitmentPolicyName();
 };
 
 
