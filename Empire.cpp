@@ -382,3 +382,17 @@ std::string Empire::getName()
 {
   return name;
 }
+RecruitmentPolicy *Empire::getRecruitmentPolicy()
+{
+  return nullptr;
+}
+void Empire::setRecruitmentPolicy(RecruitmentPolicy *policy)
+{
+}
+WarStylePolicy *Empire::getWarStylePolicy()
+{
+  return nullptr;
+}
+void Empire::setWarStylePolicy(WarStylePolicy *policy)
+{
+}

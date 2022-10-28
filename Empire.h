@@ -181,6 +181,15 @@ class Empire
    * @param empire The Empire to be removed from the alliance.
    */
   void removeAlliance(Empire* empire);
+
+  RecruitmentPolicy* getRecruitmentPolicy();
+
+  void setRecruitmentPolicy(RecruitmentPolicy* policy);
+
+  WarStylePolicy* getWarStylePolicy();
+
+  void setWarStylePolicy(WarStylePolicy* policy);
+
 };
 
 #endif

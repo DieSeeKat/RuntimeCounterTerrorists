@@ -13,6 +13,11 @@
 #include "Memento/WarRollback.h"
 #include <algorithm>
 
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
+
 using namespace std;
 
 War* romanPunicWars(){
@@ -20,11 +25,11 @@ War* romanPunicWars(){
 
   Empire *e1 = new Empire("Rome");
   Empire *e2 = new Empire("Greece");
-  Empire* e3 = new Empire("Germania");
+  //Empire* e3 = new Empire("Germania");
 
   roman_punic_war->addEmpire(e1);
   roman_punic_war->addEmpire(e2);
-  roman_punic_war->addEmpire(e3);
+  //roman_punic_war->addEmpire(e3);
 
   Node *c1 = new Node(e1, "c1", 4, true);
   Node *n2 = new Node(e1, "n2", 4);
@@ -35,6 +40,8 @@ War* romanPunicWars(){
   Node *n7 = new Node(e1, "n7", 4);
   Node *n8 = new Node(e2, "n8", 4);
   Node *c2 = new Node(e2, "c2", 4, true);
+
+
 
   e1->setCapital(c1);
   e2->setCapital(c2);
@@ -70,10 +77,123 @@ War* romanPunicWars(){
 int main()
 {
   War* war = romanPunicWars();
-
+  cout<<"WAR HAS BEGUN"<<endl;
   while (!war->isFinished()) {
 
     //Fancy things
+    vector<Empire *> empire1 = war->getEmpires();
+    int menu_choice = 0; //Yes=0
+
+    while(menu_choice == 0)
+    {
+
+
+      cout << "MENU" << endl;
+      cout << "Press 1 to SHOW EMPIRES" << endl;
+      cout << "Press 2 to ROLLBACK" << endl;
+
+      int choice = 0;
+      cin >> choice;
+
+      while (choice != 1 && choice != 2)
+      {
+        cout << "MENU" << endl;
+        cout << "Press 1 to SHOW EMPIRES" << endl;
+        cout << "Press 2 to ROLLBACK" << endl;
+        cin >> choice;
+      }
+
+      if (choice == 1)
+      {
+        cout << "CHOOSE EMPIRE" << endl;
+        cout << "Press 1 for " << empire1[0]->getName() << endl;
+        cout << "Press 2 for " << empire1[1]->getName() << endl;
+
+        int empire_choice = 0;
+        cin >> empire_choice;
+
+        while (empire_choice != 1 && empire_choice != 2)
+        {
+          cout << "CHOOSE EMPIRE" << endl;
+          cout << "1: " << empire1[0]->getName() << endl;
+          cout << "2: " << empire1[1]->getName() << endl;
+          cin >> empire_choice;
+        }
+
+        if (empire_choice == 1)
+        {
+          int policy_choice = 0;
+
+          cout<<"CHOOSE POLICIES TO CHANGE"<<endl;
+          cout<<"1: Recruitment Policy = "<<endl;
+          cout<<"2: War-style Policy = "<<endl;
+          cout<<"3: DO NOT CHANGE POLICY (BACK)"<<endl;
+          cin>>policy_choice;
+
+          while( policy_choice != 1 && policy_choice != 2 && policy_choice != 3)
+          {
+            cout<<"CHOOSE POLICIES TO CHANGE"<<endl;
+            cout<<"1: Recruitment Policy = "<<endl;
+            cout<<"2: War-style Policy = "<<endl;
+            cout<<"3: DO NOT CHANGE POLICY (BACK)"<<endl;
+            cin>>policy_choice;
+          }
+
+
+        }
+        else //if empire choice = 2
+        {
+
+        }
+
+      }
+      else
+      {
+        bool bRollBack = true;
+        while (bRollBack)
+        {
+          WarRollback *rollback = war->createWarRollback();
+          war->setWarRollback(rollback);
+          cout << "ROLLBACK has been called" << endl;
+          cout << "--------------------------------" << endl;
+          cout << "Continue rollback?(0=Yes/1=No)" << endl;
+          int rollbackChoice = 0;
+          cin >> rollbackChoice;
+          while (rollbackChoice != 1 && rollbackChoice != 2)
+          {
+            cout << "Continue rollback?(0=Yes/1=No)" << endl;
+            cin >> rollbackChoice;
+          }
+
+          if (rollbackChoice == 0)
+          {
+            WarRollback *rollback = war->createWarRollback();
+            war->setWarRollback(rollback);
+            cout << "ROLLBACK has been called" << endl;
+            cout << "--------------------------------" << endl;
+            cout << "Continue rollback?(0=Yes/1=No)" << endl;
+            cin >> rollbackChoice;
+          }
+        }
+      }
+
+      cout<<"Go back to MENU?(0=Yes/1=No)"<<endl;
+      cin>>menu_choice;
+
+      while(menu_choice != 0 && menu_choice != 1)
+      {
+        cout<<"Go back to MENU?(0=Yes/1=No)"<<endl;
+        cin>>menu_choice;
+      }
+
+    }
+
+    cout<<"TURN HAS ENDED"<<endl;
+
+
+
+
+
 
     war->nextTurn();
 
