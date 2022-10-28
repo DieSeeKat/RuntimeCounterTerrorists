@@ -27,7 +27,7 @@ class HeavyWar : public RecruitmentPolicy
   RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
 
 
-  std::string getRecuitmentPolicyName();
+  std::string getRecuitmentPolicyName() override;
 
 };
 

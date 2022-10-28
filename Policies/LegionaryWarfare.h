@@ -26,7 +26,7 @@ class LegionaryWarfare : public WarStylePolicy
    */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
 
-  std::string getWarStyleName();
+  std::string getWarStyleName() override;
 };
 
 

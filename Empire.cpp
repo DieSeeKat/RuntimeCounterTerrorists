@@ -2,6 +2,7 @@
 #include "Memento/War.h"
 
 #include <utility>
+#include <string>
 
 #include "Policies/GuerillaWarfare.h"
 #include "Command/Communication.h"
@@ -385,9 +386,9 @@ std::string Empire::getName()
   return name;
 }
 
-RecruitmentPolicy *Empire::getRecruitmentPolicy()
+std::string Empire::getRecruitmentPolicy()
 {
-  return recruitment_policy;
+  return recruitment_policy->getRecuitmentPolicyName();
 }
 
 void Empire::setRecruitmentPolicy(RecruitmentPolicy *policy)
@@ -395,9 +396,9 @@ void Empire::setRecruitmentPolicy(RecruitmentPolicy *policy)
   recruitment_policy=policy;
 }
 
-WarStylePolicy *Empire::getWarStylePolicy()
+std::string Empire::getWarStylePolicy()
 {
-  return war_style_policy;
+  return war_style_policy->getWarStyleName();
 }
 
 void Empire::setWarStylePolicy(WarStylePolicy *policy)

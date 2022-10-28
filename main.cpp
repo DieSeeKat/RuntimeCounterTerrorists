@@ -125,8 +125,8 @@ int main()
           int policy_choice = 0;
 
           cout<<"CHOOSE POLICIES TO CHANGE"<<endl;
-          cout<<"1: Recruitment Policy = "<<endl;
-          cout<<"2: War-style Policy = "<<endl;
+          cout<<"1: Recruitment Policy = "<<empire1[0]->getRecruitmentPolicy()<<endl;
+          cout<<"2: War-style Policy = "<<empire1[0]->getWarStylePolicy()<<endl;
           cout<<"3: DO NOT CHANGE POLICY (BACK)"<<endl;
           cin>>policy_choice;
 
@@ -134,10 +134,17 @@ int main()
           {
 
             cout<<"CHOOSE POLICIES TO CHANGE"<<endl;
-            cout<<"1: Recruitment Policy = "<<empire1[0]->getRecruitmentPolicy()->getRecuitmentPolicyName()<<endl;
-            cout<<"2: War-style Policy = "<<empire1[0]->getWarStylePolicy()->getWarStyleName()<<endl;
+            cout<<"1: Recruitment Policy = "<<empire1[0]->getRecruitmentPolicy()<<endl;
+            cout<<"2: War-style Policy = "<<empire1[0]->getWarStylePolicy()<<endl;
             cout<<"3: DO NOT CHANGE POLICY (BACK)"<<endl;
             cin>>policy_choice;
+          }
+
+          if(policy_choice==1){
+            cout<<"Recruitment policy types"<<endl;
+          }
+          else if(policy_choice==2){
+
           }
 
 

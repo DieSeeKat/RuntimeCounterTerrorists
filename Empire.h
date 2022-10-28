@@ -182,11 +182,11 @@ class Empire
    */
   void removeAlliance(Empire* empire);
 
-  RecruitmentPolicy* getRecruitmentPolicy();
+  std::string getRecruitmentPolicy();
 
   void setRecruitmentPolicy(RecruitmentPolicy* policy);
 
-  WarStylePolicy* getWarStylePolicy();
+  std::string getWarStylePolicy();
 
   void setWarStylePolicy(WarStylePolicy* policy);
 
