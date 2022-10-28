@@ -46,6 +46,7 @@ void Empire::recruit()
 
 void Empire::advanceArmies()
 {
+  cout << "Jesse is moeite" << endl;
   for (auto army : armies)
   {
     Node *current_town = army->getPosition();
@@ -82,12 +83,12 @@ void Empire::retreatArmies()
 
 void Empire::restoreTowns()
 {
-  for (int node_index = 0; node_index < owned_nodes.size(); node_index++)
+  for (auto & owned_node : owned_nodes)
   {
-    if (owned_nodes[node_index]->connectedToCapital(war->getNodes(), capital))
+    if (owned_node == capital || owned_node->connectedToCapital(war->getNodes(), capital))
     {
-      owned_nodes[node_index]->rechargeResources();
-      owned_nodes[node_index]->repopulate();
+      owned_node->rechargeResources();
+      owned_node->repopulate();
     }
   }
 }
@@ -110,10 +111,10 @@ void Empire::requestAlliance(Empire *empire)
 
 void Empire::considerAlliance(Empire *empire)
 {
-    const int ARMY_RESOURCE_REQ = 3000;
-    const int ARMY_UNIT_REQ = 1500;
-    const int RESOURCE_REQ = 5000;
-    const int ALLIANCE_REQ = 5;
+    const int ARMY_RESOURCE_REQ = 0;
+    const int ARMY_UNIT_REQ = 0;
+    const int RESOURCE_REQ = 0;
+    const int ALLIANCE_REQ = 4;
 
     bool accepted = true;
     int alliance_count = this->alliances.size();
@@ -169,7 +170,7 @@ void Empire::joinAlliance(Empire *empire)
     {
       if (!isAlly(alliance))
       {
-        alliance->joinAlliance(empire);
+        alliance->joinAlliance(this);
       }
     }
   }
@@ -255,9 +256,11 @@ void Empire::recruitArmy(Node *node)
   ArmyRatio army_ratio = war_style_policy->createArmyRatio();
   int army_size = recruitment_policy->calculateRecruits(population);
 
-  Army army = node->recruit(army_ratio, army_size);
+  Army* army = node->recruit(army_ratio, army_size);
 
-  armies.push_back(&army);
+//  army->rechargeResources();
+
+  armies.push_back(army);
 }
 
 std::vector<Empire *> Empire::getAlliances()
@@ -265,9 +268,6 @@ std::vector<Empire *> Empire::getAlliances()
   return this->alliances;
 }
 
-/**
- * @todo Implement this function
- */
 Empire::Empire(std::string name)
 {
   this->name = name;

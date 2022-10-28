@@ -21,6 +21,8 @@ private:
   int index = 0;
 
 public:
+  ~War();
+  std::map<void *, void *> objmap;
   WarRollback *createWarRollback();
   void setWarRollback(WarRollback *war_rollback);
 
@@ -28,7 +30,7 @@ public:
 
   std::vector<Empire *> getEmpires();
   std::vector<Node *> getNodes();
-  std::vector<Path *> getPath();
+  std::vector<Path *> getPaths();
 
   void setEmpires(std::vector<Empire *> new_empires);
   void setNodes(std::vector<Node *> new_nodes);

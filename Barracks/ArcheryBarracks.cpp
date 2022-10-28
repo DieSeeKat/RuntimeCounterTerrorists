@@ -2,6 +2,8 @@
 
 Unit *ArcheryBarracks::factoryMethod()
 {
-  // TODO - implement ArcheryBarracks::factoryMethod
-  throw "Not yet implemented";
+  return new Archer();
+}
+ArcheryBarracks::ArcheryBarracks()
+{
 }

@@ -1,40 +1,33 @@
 #include "Subject.h"
 
-void Subject::attach(Observer* observer)
+void Subject::attach(Observer *observer)
 {
-    this->observer.push_back(observer);
-
+  this->observers.push_back(observer);
 }
 
-void Subject::detach(Observer* observer)
+void Subject::detach(Observer *observer)
 {
-    bool found = false;
-
-	vector<Observer*>::iterator it = this->observer.begin();
-
-    while ((it != this->observer.end()) && (!found))
+  vector<Observer *>::iterator it = this->observers.begin();
+  while ((it != this->observers.end()))
+  {
+    if (*it == observer)
     {
-        if (*it == observer)
-        {
-            found = true;
-            this->observer.erase(it);
-        }
-        ++it;
+      this->observers.erase(it);
+      return;
     }
+    ++it;
+  }
 }
 
 void Subject::notify()
 {
-	vector<Observer*>::iterator it = this->observer.begin();
-
-    for (it = this->observer.begin(); it != this->observer.end(); ++it)
-    {
-        (*it)->update();
-    }
+  for (auto army : observers)
+  {
+    army->update();
+  }
 }
 
-std::vector<Observer*> Subject::getObserverList()
+std::vector<Observer *> Subject::getObserverList()
 {
-
-    return observer;
+  return observers;
 }

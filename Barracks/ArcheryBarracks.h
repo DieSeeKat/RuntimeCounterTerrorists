@@ -4,9 +4,11 @@
 #include "Barracks.h"
 
 #include "../Units/Unit.h"
+#include "../Units/Archer.h"
 
-class ArcheryBarracks : Barracks {
+class ArcheryBarracks : public Barracks {
 public:
+    ArcheryBarracks();
 	Unit* factoryMethod();
 };
 

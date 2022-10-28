@@ -13,6 +13,7 @@ class WarRollback
 
   friend War;
   private:
+  WarRollback();
   std::vector<Node *> nodes;
   std::vector<Empire *> empires;
   std::vector<Path *> paths;

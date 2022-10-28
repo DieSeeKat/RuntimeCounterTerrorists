@@ -1,16 +1,29 @@
 #include "War.h"
 #include <vector>
 
+War::~War(){
+  for (auto empire : empires)
+  {
+    delete empire;
+  }
+  for (std::vector<Node *>::iterator it = nodes.begin(); it != nodes.end(); it++)
+  {
+    if (it != nodes.end())
+    {
+      delete (*it);
+    }
+  }
+}
+
 WarRollback *War::createWarRollback()
 {
   WarRollback *temp = new WarRollback();
-  std::map<void *, void *> objmap;
   std::vector<Empire *> temp_empires;
-  for (std::vector<Empire *>::iterator it = empires.begin(); it != empires.end(); it++)
+  for (auto empire : empires)
   {
-    temp_empires.push_back((*it)->clone(objmap));
+    temp_empires.push_back(empire->clone(objmap));
   }
-  temp->empires = empires;
+  temp->empires = temp_empires;
 
   std::vector<Path *> temp_paths;
   for (std::vector<Path *>::iterator it = paths.begin(); it != paths.end(); it++)
@@ -46,17 +59,19 @@ void War::setWarRollback(WarRollback *war_rollback)
   this->empires = war_rollback->empires;
   updateEmpires();
   this->nodes = war_rollback->nodes;
+  this->paths = war_rollback->paths;
 }
 
 std::vector<Empire *> War::getEmpires()
 {
+  // updateEmpires();
   return empires;
 }
 std::vector<Node *> War::getNodes()
 {
   return nodes;
 }
-std::vector<Path *> War::getPath()
+std::vector<Path *> War::getPaths()
 {
   return paths;
 }
@@ -108,8 +123,9 @@ void War::removeEmpire(Empire *to_remove)
   empires.erase(std::find(empires.begin(), empires.end(), to_remove));
   delete to_remove;
 
-  if (index != 0) {
-    index =- 1;
+  if (index != 0)
+  {
+    index = -1;
   }
 }
 void War::removeNode(Node *to_remove)
@@ -124,9 +140,9 @@ void War::removePath(Path *to_remove)
 }
 void War::updateEmpires()
 {
-  for (std::vector<Empire *>::iterator it = empires.begin(); it != empires.end(); it++)
+  for (auto empire : empires)
   {
-    (*it)->setWar(this);
+    empire->setWar(this);
   }
 }
 bool War::isFinished()
@@ -155,7 +171,8 @@ bool War::isFinished()
         }
       }
 
-      if (!flag) {
+      if (!flag)
+      {
         return flag;
       }
     }

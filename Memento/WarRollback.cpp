@@ -1,5 +1,9 @@
 #include "WarRollback.h"
 
+WarRollback::WarRollback()
+{
+}
+
 std::vector<Node *> WarRollback::getNodes()
 {
 	return nodes;

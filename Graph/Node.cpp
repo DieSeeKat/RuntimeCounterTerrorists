@@ -3,10 +3,17 @@
 #include <deque>
 #include <vector>
 
+#include "../Barracks/ArcheryBarracks.h"
+#include "../Barracks/Barracks.h"
+#include "../Barracks/CavalryBarracks.h"
+#include "../Barracks/FootmenBarracks.h"
+#include "../Barracks/SlingerBarracks.h"
 #include "../Empire.h"
 #include "Capital.h"
 #include "Node.h"
 #include "Town.h"
+
+#include "../Units/Unit.h"
 
 Node::Node() {}
 
@@ -18,10 +25,38 @@ void Node::changed()
   throw "Not yet implemented";
 }
 
-Army Node::recruit(ArmyRatio ratio, int num_recruits)
+Army *Node::recruit(ArmyRatio ratio, int num_recruits)
 {
-  // TODO - implement Node::recruit
-  throw "Not yet implemented";
+  Barracks *archer_barracks  = new ArcheryBarracks();
+  Barracks *cavalry_barracks = new CavalryBarracks();
+  Barracks *footmen_barracks = new FootmenBarracks();
+  Barracks *slinger_barracks = new SlingerBarracks();
+
+  archer_barracks->createUnits(ceil(ratio.archer_ratio * num_recruits));
+  cavalry_barracks->createUnits(ceil(ratio.cavalry_ratio * num_recruits));
+  footmen_barracks->createUnits(ceil(ratio.footmen_ratio * num_recruits));
+  slinger_barracks->createUnits(ceil(ratio.slinger_ratio * num_recruits));
+
+  Army *new_army = new Army(this, owner_empire);
+
+  for (auto unit : archer_barracks->getUnits())
+  {
+    new_army->addUnit(*unit);
+  }
+  for (auto unit : cavalry_barracks->getUnits())
+  {
+    new_army->addUnit(*unit);
+  }
+  for (auto unit : footmen_barracks->getUnits())
+  {
+    new_army->addUnit(*unit);
+  }
+  for (auto unit : slinger_barracks->getUnits())
+  {
+    new_army->addUnit(*unit);
+  }
+
+  return new_army;
 }
 int Node::getResources()
 {
@@ -78,6 +113,11 @@ std::vector<Node *> Node::findShortestPathTo(std::vector<Node *> nodes,
 Empire *Node::getOwnerEmpire() { return owner_empire; }
 bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 {
+  if (this == capital)
+  {
+    return true;
+  }
+
   std::deque<Node *> to_be_checked;
 
   for (auto node : nodes)
@@ -90,7 +130,6 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 
   while (!to_be_checked.empty())
   {
-
     Node *curr = to_be_checked.front();
     to_be_checked.pop_front();
     for (auto path : curr->paths)
@@ -159,7 +198,7 @@ void Node::getAttacked(Army *attacking_army)
   int enemy_units_in_footmen    = 0;
 
   // Calculate friendly_units_in_footmen
-  for (Army *army : getStationedArmies())
+  for (Army *army : stationed_armies)
   {
     if (getOwnerEmpire() == army->getOwnerEmpire() ||
         getOwnerEmpire()->isAlly(army->getOwnerEmpire()))
@@ -175,14 +214,28 @@ void Node::getAttacked(Army *attacking_army)
   {
     for (Army *army : getStationedArmies())
     {
-      delete army;
+      if (army != attacking_army)
+      {
+        delete army;
+      }
     }
-    stationed_armies.clear();
     for (int i = 0; i < friendly_units_in_footmen; i++)
     {
       attacking_army->killRandomUnit();
     }
     this->colonise(attacking_army->getOwnerEmpire());
+    notify();
+  }
+  else if (enemy_units_in_footmen == friendly_units_in_footmen)
+  {
+    for (Army *army : getStationedArmies())
+    {
+      if (army != attacking_army)
+      {
+        delete army;
+      }
+    }
+    delete attacking_army;
   }
   else
   {
@@ -252,11 +305,9 @@ void Node::addStationedArmy(Army *army) { stationed_armies.push_back(army); }
 void Node::setOwnerEmpire(Empire *empire) { owner_empire = empire; }
 void Node::colonise(Empire *colonising_empire)
 {
-
   owner_empire->removeNode(this);
-  node_type->colonise(owner_empire);
-  Empire *old_owner_empire = owner_empire;
-  owner_empire             = colonising_empire;
+  node_type->colonise(colonising_empire);
+  owner_empire = colonising_empire;
 
   colonising_empire->addTown(this);
 }
@@ -272,6 +323,7 @@ Node::Node(Empire *owner_empire, std::string name, int population, bool capital)
   if (capital)
   {
     this->node_type = new Capital(this);
+    owner_empire->setCapital(this);
   }
   else
   {
@@ -279,14 +331,12 @@ Node::Node(Empire *owner_empire, std::string name, int population, bool capital)
   }
 }
 
-void Node::removeObserver(Observer* army)
+void Node::removeObserver(Observer *army)
 {
-
   detach(army);
-
 }
 
-void Node::addObserver(Observer* army)
+void Node::addObserver(Observer *army)
 {
   attach(army);
 }
@@ -295,4 +345,3 @@ NodeType *Node::getNodeType() { return node_type; }
 void Node::setResources(int resources) { this->resources = resources; }
 void Node::setName(std::string name) { this->name = name; }
 std::string Node::getName() { return name; }
-

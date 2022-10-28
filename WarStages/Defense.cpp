@@ -1,5 +1,6 @@
 #include "Defense.h"
 #include "Attack.h"
+#include "../Memento/War.h"
 
 Defense::Defense(){
 
@@ -9,7 +10,13 @@ void Defense::takeTurn()
 {
   empire->restoreTowns();
   empire->recruit();
-  // TODO - Peace offerings
+
+  for (auto other_empire : empire->getWar()->getEmpires()) {
+    if (!empire->isAlly(other_empire)){
+      empire->requestAlliance(other_empire);
+    }
+  }
+
   empire->retreatArmies();
   if (empire->getPrevNumNodes() <= empire->getNodes().size())
   {

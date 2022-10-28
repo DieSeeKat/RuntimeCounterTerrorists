@@ -12,9 +12,9 @@
 #include "Empire.h"
 #include "Graph/Capital.h"
 #include "Graph/Node.h"
+#include "Graph/NodeType.h"
 #include "Graph/Town.h"
 #include "Memento/War.h"
-#include "Graph/NodeType.h"
 
 TEST(System, ArmyAttack)
 {
@@ -127,10 +127,12 @@ TEST(System, AdvanceArmies_Test)
   e1->addArmy(attacking_army);
   attacking_army->addUnit(Unit());
   attacking_army->addUnit(Unit());
+  attacking_army->rechargeResources();
 
   Army *defending_army = new Army(n4, e2);
   e2->addArmy(defending_army);
   defending_army->addUnit(Unit());
+  defending_army->rechargeResources();
 
   e1->advanceArmies();
 
@@ -141,13 +143,13 @@ TEST(System, AdvanceArmies_Test)
   e1->advanceArmies();
 
   ASSERT_EQ(n7->getOwnerEmpire(), e1);
-  ASSERT_TRUE(dynamic_cast<Town*>(c2->getNodeType()) == nullptr);
+  ASSERT_TRUE(dynamic_cast<Town *>(c2->getNodeType()) == nullptr);
 
   e1->advanceArmies();
 
   ASSERT_EQ(c2->getOwnerEmpire(), e1);
-  ASSERT_EQ(e2->getNodes().size(), 0);
-  ASSERT_TRUE(dynamic_cast<Town*>(c2->getNodeType()) != nullptr);
+
+  ASSERT_TRUE(dynamic_cast<Town *>(c2->getNodeType()) != nullptr);
 }
 
 TEST(System, RetreatArmies_Test)
@@ -201,6 +203,7 @@ TEST(System, RetreatArmies_Test)
   e1->addArmy(attacking_army);
   attacking_army->addUnit(Unit());
   attacking_army->addUnit(Unit());
+  attacking_army->rechargeResources();
 
   e1->retreatArmies();
 
@@ -211,12 +214,13 @@ TEST(System, RetreatArmies_Test)
   ASSERT_TRUE(attacking_army->getPosition() == n7);
 }
 
-TEST(System, Deletes) {
+TEST(System, Deletes)
+{
   War *war = new War();
 
   Empire *e1 = new Empire("Rome");
   Empire *e2 = new Empire("Greece");
-  Empire* e3 = new Empire("Israel");
+  Empire *e3 = new Empire("Israel");
 
   war->addEmpire(e1);
   war->addEmpire(e2);
@@ -277,20 +281,23 @@ TEST(System, Deletes) {
 
   e1->joinAlliance(e3);
 
-  for(auto empire : war->getEmpires()){
+  for (auto empire : war->getEmpires())
+  {
     delete empire;
   }
-  for (auto node : war->getNodes()) {
+  for (auto node : war->getNodes())
+  {
     delete node;
   }
 }
 
-TEST(System, War_Is_Finished) {
+TEST(System, War_Is_Finished)
+{
   War *war = new War();
 
   Empire *e1 = new Empire("Rome");
   Empire *e2 = new Empire("Greece");
-  Empire* e3 = new Empire("Israel");
+  Empire *e3 = new Empire("Israel");
 
   war->addEmpire(e1);
   war->addEmpire(e2);
@@ -340,5 +347,40 @@ TEST(System, War_Is_Finished) {
 
   e1->joinAlliance(e3);
 
+  ASSERT_TRUE(war->isFinished());
+}
+
+TEST(System, TakeTurn)
+{
+  War* war = new War();
+
+  Empire* rome = new Empire("Rome");
+  Empire* greece = new Empire("Greece");
+
+  war->addEmpire(rome);
+  war->addEmpire(greece);
+
+  Node* roma = new Node(rome, "Roma", 1000, true);
+  Node* athens = new Node(greece, "Athens", 700, true);
+  Node* venice = new Node(greece, "Venice", 1000);
+
+  rome->setCapital(roma);
+  greece->setCapital(athens);
+
+  roma->addPathTo(venice);
+  venice->addPathTo(athens);
+
+  war->addNode(roma);
+  war->addNode(athens);
+  war->addNode(venice);
+
+  int turn = 0;
+
+  while (!war->isFinished()) {
+    cout << ++turn << endl;
+    war->nextTurn();
+  }
+
+  ASSERT_EQ(athens->getOwnerEmpire(), rome);
   ASSERT_TRUE(war->isFinished());
 }
