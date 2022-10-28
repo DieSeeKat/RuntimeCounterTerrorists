@@ -111,7 +111,17 @@ std::vector<Node *> Node::findShortestPathTo(std::vector<Node *> nodes,
 
   return return_vector;
 }
-Empire *Node::getOwnerEmpire() { return owner_empire; }
+Empire *Node::getOwnerEmpire() { 
+  for(auto e:war->getEmpires()){
+    for(auto n:e->getNodes()){
+      if(n == this){
+        return e;
+      }
+    }
+  }
+  return nullptr;
+  ///@todo Throw exception if this node no longer has an empire.
+}
 bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 {
   if (this == capital)
@@ -188,7 +198,18 @@ void Node::removePath(Path *path)
   paths.erase(std::find(paths.begin(), paths.end(), path));
 }
 void Node::makeFreeCity() { owner_empire = nullptr; }
-std::vector<Army *> Node::getStationedArmies() { return stationed_armies; }
+std::vector<Army *> Node::getStationedArmies() 
+{ 
+  std::vector<Army*> toreturn;
+  for(auto e:war->getEmpires()){
+    for(auto a:e->getArmies()){
+      if(a->getPosition() == this){
+        toreturn.push_back(a);
+      }
+    }
+  }
+  return toreturn;
+}
 void Node::getAttacked(Army *attacking_army)
 {
   int friendly_units_in_footmen = 0;

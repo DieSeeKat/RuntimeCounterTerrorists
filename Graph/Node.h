@@ -19,6 +19,8 @@
 
 #include "NodeType.h"
 
+#include "../Memento/War.h"
+
 #include <map>
 #include <algorithm>
 class Empire;
