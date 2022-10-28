@@ -12,6 +12,7 @@
 #include "Capital.h"
 #include "Node.h"
 #include "Town.h"
+#include "../Army.h"
 
 #include "../Units/Unit.h"
 
@@ -187,7 +188,7 @@ void Node::removePath(Path *path)
   paths.erase(std::find(paths.begin(), paths.end(), path));
 }
 void Node::makeFreeCity() { owner_empire = nullptr; }
-
+std::vector<Army *> Node::getStationedArmies() { return stationed_armies; }
 void Node::getAttacked(Army *attacking_army)
 {
   int friendly_units_in_footmen = 0;

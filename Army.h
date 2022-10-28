@@ -16,20 +16,15 @@ class Empire;
 
 class Army : public Observer
 {
-
   private:
   Army();
   std::string observer_state;
-
-  War* war = nullptr;
-
   Node *subject = nullptr;
   /// The current Node at which the Army is stationed
   Node *position = nullptr;
   /// The number of resources that the Army has
   int resources = 0;
-  /// The controlling Empire of the Army
-  Empire *empire = nullptr;
+  War* war = nullptr;
   /// The vector of all the Units in the Army
   std::vector<Unit> units;
   //--------------------------------------------------
@@ -92,10 +87,6 @@ class Army : public Observer
 
   int getResources();
   int getNumUnits();
-  /**
-   * @brief Will notify the owning Empire to delete and remove the current Army
-   */
-  void killSelf();
   /**
    * @brief Kills a random Unit from the units vector
    */
