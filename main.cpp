@@ -77,7 +77,7 @@ War* romanPunicWars(){
 int main()
 {
   War* war = romanPunicWars();
-  cout<<"WAR HAS BEGUN"<<endl;
+  cout<<"---------------------------WAR HAS BEGUN-----------------------------"<<endl;
   while (!war->isFinished()) {
 
     //Fancy things
@@ -132,9 +132,10 @@ int main()
 
           while( policy_choice != 1 && policy_choice != 2 && policy_choice != 3)
           {
+
             cout<<"CHOOSE POLICIES TO CHANGE"<<endl;
-            cout<<"1: Recruitment Policy = "<<endl;
-            cout<<"2: War-style Policy = "<<endl;
+            cout<<"1: Recruitment Policy = "<<empire1[0]->getRecruitmentPolicy()<<endl;
+            cout<<"2: War-style Policy = "<<empire1[0]->getWarStylePolicy()<<endl;
             cout<<"3: DO NOT CHANGE POLICY (BACK)"<<endl;
             cin>>policy_choice;
           }
@@ -159,20 +160,16 @@ int main()
           cout << "Continue rollback?(0=Yes/1=No)" << endl;
           int rollbackChoice = 0;
           cin >> rollbackChoice;
-          while (rollbackChoice != 1 && rollbackChoice != 2)
+
+          while (rollbackChoice != 0 && rollbackChoice != 1)
           {
             cout << "Continue rollback?(0=Yes/1=No)" << endl;
             cin >> rollbackChoice;
           }
 
-          if (rollbackChoice == 0)
+          if (rollbackChoice == 1)
           {
-            WarRollback *rollback = war->createWarRollback();
-            war->setWarRollback(rollback);
-            cout << "ROLLBACK has been called" << endl;
-            cout << "--------------------------------" << endl;
-            cout << "Continue rollback?(0=Yes/1=No)" << endl;
-            cin >> rollbackChoice;
+            bRollBack = false;
           }
         }
       }
@@ -188,7 +185,7 @@ int main()
 
     }
 
-    cout<<"TURN HAS ENDED"<<endl;
+    cout<<"---------------------------TURN HAS ENDED--------------------------"<<endl;
 
 
 

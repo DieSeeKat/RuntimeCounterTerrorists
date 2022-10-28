@@ -21,6 +21,8 @@ public:
    * @return A pointer to a new cloned WarStylePolicy
    */
   virtual WarStylePolicy *clone(std::map<void *, void *> &objmap) = 0;
+
+  virtual string getWarStyleName()=0;
 };
 
 #endif

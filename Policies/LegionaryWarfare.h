@@ -24,6 +24,8 @@ class LegionaryWarfare : public WarStylePolicy
    * @return A pointer to a new cloned LegionaryWarfare Policy
    */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
+
+  virtual string getWarStyleName();
 };
 
 

@@ -25,6 +25,8 @@ class ArcherWarfare : public WarStylePolicy
    * @return A pointer to a new cloned ArcherWarfare Policy
    */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
+
+  virtual string getWarStyleName();
 };
 
 
