@@ -38,7 +38,7 @@ Army *Node::recruit(ArmyRatio ratio, int num_recruits)
   footmen_barracks->createUnits(ceil(ratio.footmen_ratio * num_recruits));
   slinger_barracks->createUnits(ceil(ratio.slinger_ratio * num_recruits));
 
-  Army *new_army = new Army(war, this, owner_empire);
+  Army *new_army = new Army(war, this, getOwnerEmpire());
 
   for (auto unit : archer_barracks->getUnits())
   {
@@ -112,8 +112,8 @@ std::vector<Node *> Node::findShortestPathTo(std::vector<Node *> nodes,
   return return_vector;
 }
 Empire *Node::getOwnerEmpire() {
-  for(auto e:war->getEmpires()){
-    for(auto n:e->getNodes()){
+  for(auto e : war->getEmpires()){
+    for(auto n : e->getNodes()){
       if(n == this){
         return e;
       }
@@ -147,7 +147,7 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
     {
       int newDist = curr->dist + 1;
       if (newDist < path->getOppositeEnd(curr)->dist &&
-          path->getOppositeEnd(curr)->getOwnerEmpire() == owner_empire)
+          path->getOppositeEnd(curr)->getOwnerEmpire() == getOwnerEmpire())
       {
         path->getOppositeEnd(curr)->dist = newDist;
         path->getOppositeEnd(curr)->prev = curr;
@@ -167,8 +167,6 @@ std::vector<Path *> Node::getPaths() { return paths; }
 Node::Node(War* war, Empire *owner_empire, std::string name, int population)
 {
   this->war = war;
-  this->owner_empire      = owner_empire;
-  this->population_empire = owner_empire;
   this->population        = population;
   this->resources         = population;
   this->name              = name;
@@ -183,7 +181,7 @@ void Node::addPathTo(Node *node)
   addPath(new_path);
   node->addPath(new_path);
 }
-void Node::onAttacked() { owner_empire->recruitArmy(this); }
+void Node::onAttacked() { getOwnerEmpire()->recruitArmy(this); }
 Node::~Node()
 {
   std::vector<Path *> path_pointers = paths;
@@ -197,7 +195,6 @@ void Node::removePath(Path *path)
 {
   paths.erase(std::find(paths.begin(), paths.end(), path));
 }
-void Node::makeFreeCity() { owner_empire = nullptr; }
 std::vector<Army *> Node::getStationedArmies()
 {
   std::vector<Army*> toreturn;
@@ -291,9 +288,6 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     if (node_type)
       temp->node_type = node_type->clone(objmap);
 
-    if (owner_empire)
-      temp->owner_empire = owner_empire->clone(objmap);
-
     std::vector<Path *> newpaths;
     for (auto path : paths)
     {
@@ -303,9 +297,6 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     temp->paths      = newpaths;
     temp->population = population;
 
-    if (population_empire)
-      temp->population_empire = population_empire->clone(objmap);
-
     if (prev)
       temp->prev = prev->clone(objmap);
 
@@ -314,20 +305,17 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     return temp;
   }
 }
-void Node::setOwnerEmpire(Empire *empire) { owner_empire = empire; }
 void Node::colonise(Empire *colonising_empire)
 {
-  owner_empire->removeNode(this);
+  getOwnerEmpire()->removeNode(this);
   node_type->colonise(colonising_empire);
-  owner_empire = colonising_empire;
 
   colonising_empire->addTown(this);
 }
 void Node::setNodeType(NodeType *node_type) { this->node_type = node_type; }
 Node::Node(War* war, Empire *owner_empire, std::string name, int population, bool capital)
 {
-  this->owner_empire      = owner_empire;
-  this->population_empire = owner_empire;
+  this->war = war;
   this->population        = population;
   this->resources         = population;
   this->name              = name;

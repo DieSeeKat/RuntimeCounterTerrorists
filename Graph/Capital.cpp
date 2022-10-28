@@ -15,7 +15,7 @@ void Capital::colonise(Empire *empire) {
             << " has collapsed due to the war effort." << std::endl;
 #endif
 
-  node->getOwnerEmpire()->getWar()->removeEmpire(node->getOwnerEmpire());
+  empire->getWar()->removeEmpire(node->getOwnerEmpire());
 
   node->setNodeType(new Town(node));
 }

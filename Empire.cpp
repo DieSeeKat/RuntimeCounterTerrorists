@@ -288,10 +288,6 @@ void Empire::dieOff()
   }
   alliances.clear();
 
-  for (auto node : owned_nodes)
-  {
-    node->makeFreeCity();
-  }
   owned_nodes.clear();
   capital = nullptr;
 

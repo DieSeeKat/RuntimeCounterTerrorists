@@ -109,9 +109,13 @@ TEST(Graph, ConnectedToCapital_TEST) {
   war->addNode(n8);
   war->addNode(c2);
 
+  cout << "A" << endl;
   EXPECT_TRUE(!(n7->connectedToCapital(war->getNodes(), c1)));
+  cout << "B" << endl;
   EXPECT_TRUE(n6->connectedToCapital(war->getNodes(), c1));
+  cout << "C" << endl;
   EXPECT_TRUE(!(n5->connectedToCapital(war->getNodes(), c2)));
+  cout << "D" << endl;
 }
 
 TEST(Graph, Repopulate_TEST) {

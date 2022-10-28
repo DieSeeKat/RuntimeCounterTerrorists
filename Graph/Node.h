@@ -40,10 +40,6 @@ class Node : Aggregate, public Subject
   int resources;
   /// The total population of a Node
   int population;
-  /// The original empire of population of the Node
-  Empire *population_empire = nullptr;
-  /// The current controlling power
-  Empire *owner_empire = nullptr;
   /// All paths connecting to other Nodes
   std::vector<Path *> paths;
   /// A pointer to the NodeType of the Node
