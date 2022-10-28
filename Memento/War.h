@@ -47,6 +47,7 @@ public:
   void removePath(Path *new_path);
 
   void updateEmpires();
+  void updateNodes();
 
   void nextTurn();
 };

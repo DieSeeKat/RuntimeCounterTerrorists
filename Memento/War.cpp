@@ -59,12 +59,12 @@ void War::setWarRollback(WarRollback *war_rollback)
   this->empires = war_rollback->empires;
   updateEmpires();
   this->nodes = war_rollback->nodes;
+  updateNodes();
   this->paths = war_rollback->paths;
 }
 
 std::vector<Empire *> War::getEmpires()
 {
-  // updateEmpires();
   return empires;
 }
 std::vector<Node *> War::getNodes()
@@ -94,6 +94,7 @@ void War::setNodes(std::vector<Node *> new_nodes)
   }
 
   nodes = new_nodes;
+  updateNodes();
 }
 void War::setPaths(std::vector<Path *> new_paths)
 {
@@ -112,6 +113,7 @@ void War::addEmpire(Empire *new_empire)
 void War::addNode(Node *new_node)
 {
   nodes.push_back(new_node);
+  updateNodes();
 }
 void War::addPath(Path *new_path)
 {
@@ -143,6 +145,13 @@ void War::updateEmpires()
   for (auto empire : empires)
   {
     empire->setWar(this);
+  }
+}
+void War::updateNodes()
+{
+  for (auto node : nodes)
+  {
+    node->setWar(this);
   }
 }
 bool War::isFinished()

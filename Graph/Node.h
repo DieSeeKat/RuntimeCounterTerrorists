@@ -47,6 +47,7 @@ class Node : Aggregate, public Subject
   std::string name = "";
 
   public:
+  void setWar(War* w);
   /// The current distance from the start Node of the Label-Correcting Algorithm
   int dist = 0;
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm

@@ -20,6 +20,10 @@ Node::Node() {}
 
 NodeIterator *Node::createIterator() { return new NodeIterator(this); }
 
+void Node::setWar(War* w){
+  this->war = w;
+}
+
 void Node::changed()
 {
   // TODO - implement Node::changed
