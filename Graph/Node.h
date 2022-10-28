@@ -97,8 +97,15 @@ class Node : Aggregate, public Subject
    * @return Return population
    */
   int getPopulation();
-
+  /**
+   * @brief Remove an army observer from the Observer List from that specific node
+   * @param army is used to remove it from the Observer List
+   */
   void removeObserver(Observer* army);
+  /**
+   * @brief Add an army observer to the Observer List at that specific node
+   * @param army is used to add it to the Observer List
+   */
   void addObserver(Observer* army);
 
   Node *nextStepTo(Node *node);
