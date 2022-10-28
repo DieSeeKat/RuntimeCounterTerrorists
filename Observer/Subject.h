@@ -13,7 +13,7 @@ class Subject
 
   private:
   /// A vector holding the list of armies
-  vector<Observer*> observer;
+  vector<Observer*> observers;
 
   public:
   /**

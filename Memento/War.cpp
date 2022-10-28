@@ -147,36 +147,13 @@ void War::updateEmpires()
 }
 bool War::isFinished()
 {
-  std::vector<std::vector<Empire *>> alliances;
-  for (auto empire : empires)
-  {
-    if (alliances.empty())
-    {
-      std::vector<Empire *> new_alliance;
-      new_alliance.push_back(empire);
-      alliances.push_back(new_alliance);
-    }
-    else
-    {
-
-      bool flag = false;
-
-      for (auto alliance : alliances)
-      {
-        if (empire->isAlly(alliance.at(0)))
-        {
-          alliance.push_back(empire);
-          flag = true;
-          break;
-        }
-      }
-
-      if (!flag)
-      {
-        return flag;
-      }
+  Empire * firstEmpire = empires.at(0);
+  for (auto empire : empires) {
+    if (!firstEmpire->isAlly(empire)){
+      return false;
     }
   }
+  return true;
 }
 void War::nextTurn()
 {
