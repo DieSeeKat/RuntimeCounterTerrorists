@@ -374,25 +374,33 @@ Empire *Empire::clone(std::map<void *, void *> &objmap)
     return temp;
   }
 }
+
 void Empire::removeAlliance(Empire *empire)
 {
   alliances.erase(std::find(alliances.begin(), alliances.end(), empire));
 }
+
 std::string Empire::getName()
 {
   return name;
 }
+
 RecruitmentPolicy *Empire::getRecruitmentPolicy()
 {
-  return nullptr;
+  return recruitment_policy;
 }
+
 void Empire::setRecruitmentPolicy(RecruitmentPolicy *policy)
 {
+  recruitment_policy=policy;
 }
+
 WarStylePolicy *Empire::getWarStylePolicy()
 {
-  return nullptr;
+  return war_style_policy;
 }
+
 void Empire::setWarStylePolicy(WarStylePolicy *policy)
 {
+  war_style_policy=policy;
 }
