@@ -20,21 +20,21 @@ TEST(System, ArmyAttack)
 {
   War *war = new War();
 
-  Empire *e1 = new Empire("Rome");
-  Empire *e2 = new Empire("Greece");
+  Empire *e1 = new Empire("Rome", war);
+  Empire *e2 = new Empire("Greece", war);
 
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
   c1->addPathTo(n2);
   c1->addPathTo(n3);
@@ -60,12 +60,12 @@ TEST(System, ArmyAttack)
   war->addNode(n8);
   war->addNode(c2);
 
-  Army *attacking_army = new Army(c1, e1);
+  Army *attacking_army = new Army(war, c1, e1);
   e1->addArmy(attacking_army);
   attacking_army->addUnit(Unit());
   attacking_army->addUnit(Unit());
 
-  Army *defending_army = new Army(n8, e2);
+  Army *defending_army = new Army(war, n8, e2);
   e2->addArmy(defending_army);
   defending_army->addUnit(Unit());
 
@@ -80,21 +80,21 @@ TEST(System, AdvanceArmies_Test)
 {
   War *war = new War();
 
-  Empire *e1 = new Empire("Rome");
-  Empire *e2 = new Empire("Greece");
+  Empire *e1 = new Empire(war, "Rome");
+  Empire *e2 = new Empire(war, "Greece");
 
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);
@@ -123,13 +123,13 @@ TEST(System, AdvanceArmies_Test)
   war->addNode(n8);
   war->addNode(c2);
 
-  Army *attacking_army = new Army(c1, e1);
+  Army *attacking_army = new Army(war, c1, e1);
   e1->addArmy(attacking_army);
   attacking_army->addUnit(Unit());
   attacking_army->addUnit(Unit());
   attacking_army->rechargeResources();
 
-  Army *defending_army = new Army(n4, e2);
+  Army *defending_army = new Army(war, n4, e2);
   e2->addArmy(defending_army);
   defending_army->addUnit(Unit());
   defending_army->rechargeResources();
@@ -156,21 +156,21 @@ TEST(System, RetreatArmies_Test)
 {
   War *war = new War();
 
-  Empire *e1 = new Empire("Rome");
-  Empire *e2 = new Empire("Greece");
+  Empire *e1 = new Empire(war, "Rome");
+  Empire *e2 = new Empire(war, "Greece");
 
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);
@@ -199,7 +199,7 @@ TEST(System, RetreatArmies_Test)
   war->addNode(n8);
   war->addNode(c2);
 
-  Army *attacking_army = new Army(c2, e1);
+  Army *attacking_army = new Army(war, c2, e1);
   e1->addArmy(attacking_army);
   attacking_army->addUnit(Unit());
   attacking_army->addUnit(Unit());
@@ -218,23 +218,23 @@ TEST(System, Deletes)
 {
   War *war = new War();
 
-  Empire *e1 = new Empire("Rome");
-  Empire *e2 = new Empire("Greece");
-  Empire *e3 = new Empire("Israel");
+  Empire *e1 = new Empire(war, "Rome");
+  Empire *e2 = new Empire(war, "Greece");
+  Empire *e3 = new Empire(war, "Israel");
 
   war->addEmpire(e1);
   war->addEmpire(e2);
   war->addEmpire(e3);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);
@@ -264,16 +264,16 @@ TEST(System, Deletes)
   war->addNode(n8);
   war->addNode(c2);
 
-  Army *army_one = new Army(c1, e1);
+  Army *army_one = new Army(war, c1, e1);
   e1->addArmy(army_one);
   army_one->addUnit(Unit());
   army_one->addUnit(Unit());
-  Army *army_three = new Army(c1, e1);
+  Army *army_three = new Army(war, c1, e1);
   e1->addArmy(army_three);
   army_three->addUnit(Unit());
   army_three->addUnit(Unit());
 
-  Army *army_two = new Army(n2, e2);
+  Army *army_two = new Army(war, n2, e2);
   e2->addArmy(army_two);
   army_two->addUnit(Unit());
 
@@ -295,23 +295,23 @@ TEST(System, War_Is_Finished)
 {
   War *war = new War();
 
-  Empire *e1 = new Empire("Rome");
-  Empire *e2 = new Empire("Greece");
-  Empire *e3 = new Empire("Israel");
+  Empire *e1 = new Empire(war, "Rome");
+  Empire *e2 = new Empire(war, "Greece");
+  Empire *e3 = new Empire(war, "Israel");
 
   war->addEmpire(e1);
   war->addEmpire(e2);
   war->addEmpire(e3);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);
@@ -354,15 +354,15 @@ TEST(System, TakeTurn)
 {
   War* war = new War();
 
-  Empire* rome = new Empire("Rome");
-  Empire* greece = new Empire("Greece");
+  Empire* rome = new Empire(war, "Rome");
+  Empire* greece = new Empire(war, "Greece");
 
   war->addEmpire(rome);
   war->addEmpire(greece);
 
-  Node* roma = new Node(rome, "Roma", 1000, true);
-  Node* athens = new Node(greece, "Athens", 700, true);
-  Node* venice = new Node(greece, "Venice", 1000);
+  Node* roma = new Node(war, rome, "Roma", 1000, true);
+  Node* athens = new Node(war, greece, "Athens", 700, true);
+  Node* venice = new Node(war, greece, "Venice", 1000);
 
   rome->setCapital(roma);
   greece->setCapital(athens);
