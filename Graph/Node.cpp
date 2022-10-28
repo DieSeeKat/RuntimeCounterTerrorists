@@ -197,15 +197,15 @@ void Node::removePath(Path *path)
 }
 std::vector<Army *> Node::getStationedArmies()
 {
-  std::vector<Army*> toreturn;
+  std::vector<Army*> to_return;
   for(auto e:war->getEmpires()){
     for(auto a:e->getArmies()){
       if(a->getPosition() == this){
-        toreturn.push_back(a);
+        to_return.push_back(a);
       }
     }
   }
-  return toreturn;
+  return to_return;
 }
 void Node::getAttacked(Army *attacking_army)
 {
@@ -234,12 +234,16 @@ void Node::getAttacked(Army *attacking_army)
         delete army;
       }
     }
+
     for (int i = 0; i < friendly_units_in_footmen; i++)
     {
       attacking_army->killRandomUnit();
     }
+
     this->colonise(attacking_army->getOwnerEmpire());
+
     notify();
+
   }
   else if (enemy_units_in_footmen == friendly_units_in_footmen)
   {
@@ -307,8 +311,9 @@ Node *Node::clone(std::map<void *, void *> &objmap)
 }
 void Node::colonise(Empire *colonising_empire)
 {
-  getOwnerEmpire()->removeNode(this);
   node_type->colonise(colonising_empire);
+
+  getOwnerEmpire()->removeNode(this);
 
   colonising_empire->addTown(this);
 }

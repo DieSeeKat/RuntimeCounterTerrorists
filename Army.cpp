@@ -101,6 +101,8 @@ Empire *Army::getOwnerEmpire()
       }
     }
   }
+
+  return nullptr;
 }
 
 int Army::getResources()
@@ -118,9 +120,14 @@ int Army::getNumUnits()
 }
 void Army::killRandomUnit()
 {
-  int random_num                 = rand() % (units.size());
-  std::vector<Unit>::iterator it = units.begin() + random_num;
-  units.erase(it);
+  std::cout << "getOwnerEmpire()->getName(): " << getOwnerEmpire()->getName() << endl;
+
+  if (units.size() != 0)
+  {
+    int random_num                 = rand() % (units.size());
+    std::vector<Unit>::iterator it = units.begin() + random_num;
+    units.erase(it);
+  }
 
   if (units.size() == 0)
   {

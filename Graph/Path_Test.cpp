@@ -39,7 +39,9 @@ TEST(Path, SurvivePath_TEST)
 {
   War* war = new War();
 
-  Empire *e1 = new Empire("Rome");
+  Empire *e1 = new Empire("Rome", war);
+
+  war->addEmpire(e1);
 
   Node* node = new Node(war, e1, "Roma", 4);
 
@@ -64,7 +66,9 @@ TEST(Path, Die_TEST)
 {
   War* war = new War();
 
-  Empire *e1 = new Empire("Rome");
+  Empire *e1 = new Empire("Rome", war);
+
+  war->addEmpire(e1);
 
   Node* node = new Node(war, e1, "Roma", 4);
 
@@ -79,6 +83,7 @@ TEST(Path, Die_TEST)
   Path *path = new Path(nullptr, nullptr);
 
   path->calculate_losses(army);
+
   if (army->getNumUnits() == 0) {
     delete army;
   }
