@@ -4,8 +4,10 @@
 
 Army::Army() {}
 
-Army::Army(Node *current_position, Empire *owner_empire)
+Army::Army( War* war, Node *current_position, Empire *owner_empire)
 {
+  this->war = war;
+
   position = current_position;
 
   empire = owner_empire;

@@ -7,6 +7,7 @@
 
 #include "Observer/Observer.h"
 #include "Units/Unit.h"
+#include "Memento/War.h"
 
 
 class Node;
@@ -19,6 +20,9 @@ class Army : public Observer
   private:
   Army();
   std::string observer_state;
+
+  War* war = nullptr;
+
   Node *subject = nullptr;
   /// The current Node at which the Army is stationed
   Node *position = nullptr;
@@ -30,7 +34,7 @@ class Army : public Observer
   std::vector<Unit> units;
   //--------------------------------------------------
   public:
-  Army(Node* current_position, Empire* owner_empire);
+  Army(War* war, Node* current_position, Empire* owner_empire);
   ~Army();
 
   /**
