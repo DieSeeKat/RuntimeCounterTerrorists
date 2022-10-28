@@ -7,6 +7,8 @@
 
 #include "WarStylePolicy.h"
 
+#include<string>
+
 class GuerillaWarfare : public WarStylePolicy
 {
   public:
@@ -26,7 +28,7 @@ class GuerillaWarfare : public WarStylePolicy
    */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
 
-  virtual string getWarStyleName();
+  std::string getWarStyleName();
 
 };
 

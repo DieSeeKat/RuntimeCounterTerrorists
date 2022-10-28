@@ -29,6 +29,6 @@ WarStylePolicy* HorsemenWarfare::clone(std::map<void*,void*> &objmap){
 }
 
 
-string HorsemenWarfare::getWarStyleName(){
+std::string HorsemenWarfare::getWarStyleName(){
   return "Horsemen warfare";
 }

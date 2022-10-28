@@ -5,6 +5,7 @@
 #include "WarStylePolicy.h"
 
 #include <map>
+#include<string>
 
 class LegionaryWarfare : public WarStylePolicy
 {
@@ -25,7 +26,7 @@ class LegionaryWarfare : public WarStylePolicy
    */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
 
-  virtual string getWarStyleName();
+  std::string getWarStyleName();
 };
 
 

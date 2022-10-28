@@ -4,6 +4,8 @@
 #include "../Graph/Node.h"
 #include "RecruitmentPolicy.h"
 
+#include<string>
+
 class HeavyWar : public RecruitmentPolicy
 {
   public:
@@ -25,7 +27,7 @@ class HeavyWar : public RecruitmentPolicy
   RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
 
 
-  virtual string getRecuitmentPolicyName();
+  std::string getRecuitmentPolicyName();
 
 };
 

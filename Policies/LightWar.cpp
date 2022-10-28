@@ -25,6 +25,6 @@ RecruitmentPolicy* LightWar::clone(std::map<void*, void*> &objmap){
   }
 }
 
-string LightWar::getRecuitmentPolicyName(){
+std::string LightWar::getRecuitmentPolicyName(){
   return "Light war";
 }

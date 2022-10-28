@@ -2,6 +2,7 @@
 #define ARCHERWARFARE_H
 
 #include <map>
+#include<string>
 
 #include "../ArmyRatio.h"
 #include "../Graph/Node.h"
@@ -26,7 +27,7 @@ class ArcherWarfare : public WarStylePolicy
    */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
 
-  virtual string getWarStyleName();
+  std::string getWarStyleName();
 };
 
 

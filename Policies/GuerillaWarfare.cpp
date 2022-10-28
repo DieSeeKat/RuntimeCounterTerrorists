@@ -28,6 +28,6 @@ WarStylePolicy* GuerillaWarfare::clone(std::map<void*,void*> &objmap){
 	}
 }
 
-string GuerillaWarfare::getWarStyleName(){
+std::string GuerillaWarfare::getWarStyleName(){
   return "Guerilla warfare";
 }

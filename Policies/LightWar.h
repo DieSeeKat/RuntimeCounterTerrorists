@@ -26,7 +26,7 @@ class LightWar : public RecruitmentPolicy
    */
   RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
 
-  virtual string getRecuitmentPolicyName();
+  std::string getRecuitmentPolicyName();
 };
 
 

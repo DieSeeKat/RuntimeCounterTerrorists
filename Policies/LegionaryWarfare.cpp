@@ -29,6 +29,6 @@ WarStylePolicy* LegionaryWarfare::clone(std::map<void*,void*> &objmap){
 }
 
 
-string LegionaryWarfare::getWarStyleName(){
+std::string LegionaryWarfare::getWarStyleName(){
   return "Legionary warfare";
 }

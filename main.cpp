@@ -134,8 +134,8 @@ int main()
           {
 
             cout<<"CHOOSE POLICIES TO CHANGE"<<endl;
-            cout<<"1: Recruitment Policy = "<<empire1[0]->getRecruitmentPolicy()<<endl;
-            cout<<"2: War-style Policy = "<<empire1[0]->getWarStylePolicy()<<endl;
+            cout<<"1: Recruitment Policy = "<<empire1[0]->getRecruitmentPolicy()->getRecuitmentPolicyName()<<endl;
+            cout<<"2: War-style Policy = "<<empire1[0]->getWarStylePolicy()->getWarStyleName()<<endl;
             cout<<"3: DO NOT CHANGE POLICY (BACK)"<<endl;
             cin>>policy_choice;
           }

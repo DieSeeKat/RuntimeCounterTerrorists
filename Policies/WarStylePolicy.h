@@ -3,6 +3,7 @@
 
 #include "../ArmyRatio.h"
 #include <map>
+#include<string>
 
 class WarStylePolicy {
 public:
@@ -22,7 +23,7 @@ public:
    */
   virtual WarStylePolicy *clone(std::map<void *, void *> &objmap) = 0;
 
-  virtual string getWarStyleName()=0;
+  virtual std::string getWarStyleName() = 0;
 };
 
 #endif
