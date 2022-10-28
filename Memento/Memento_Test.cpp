@@ -25,18 +25,20 @@ TEST(Memento, Backup)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);
+
+  cout << "A" << endl;
 
   c1->addPathTo(n2);
   c1->addPathTo(n3);
@@ -63,28 +65,43 @@ TEST(Memento, Backup)
   war->addNode(n8);
   war->addNode(c2);
 
-  Army *army_one = new Army(c1, e1);
+  cout << "A" << endl;
+
+  Army *army_one = new Army(war, c1, e1);
   e1->addArmy(army_one);
   army_one->addUnit(Unit());
   army_one->addUnit(Unit());
-  Army *army_three = new Army(c1, e1);
+
+  cout << "A" << endl;
+
+  Army *army_three = new Army(war, c1, e1);
   e1->addArmy(army_three);
   army_three->addUnit(Unit());
   army_three->addUnit(Unit());
 
-  Army *army_two = new Army(n2, e2);
+  cout << "A" << endl;
+
+  Army *army_two = new Army(war, n2, e2);
   e2->addArmy(army_two);
   army_two->addUnit(Unit());
 
+  cout << "A" << endl;
+
   e1->joinAlliance(e2);
+
+  cout << "A" << endl;
 
   WarCaretaker *caretaker = new WarCaretaker();
   caretaker->storeMemento(war->createWarRollback());
+
+  cout << "A" << endl;
 
   // Do stuff
 
   War *backupWar = new War();
   backupWar->setWarRollback(caretaker->getMemento());
+
+  cout << "B" << endl;
 
   ASSERT_NE(war, backupWar);
   ASSERT_NE(war->getEmpires(), backupWar->getEmpires());
@@ -102,6 +119,8 @@ TEST(Memento, Backup)
   {
     ASSERT_NE(war->getPaths(), backupWar->getPaths());
   }
+
+  cout << "C" << endl;
 
   for (auto a : war->getEmpires())
   {
@@ -127,6 +146,8 @@ TEST(Memento, Backup)
     }
   }
 
+  cout << "D" << endl;
+
   for (auto a : war->getNodes())
   {
     for (auto b : backupWar->getNodes())
@@ -151,6 +172,8 @@ TEST(Memento, Backup)
       }
     }
   }
+
+  cout << "E" << endl;
 
   //Show that backupWar can continue even if original war gets deleted.
   delete war;

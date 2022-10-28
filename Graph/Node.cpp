@@ -188,7 +188,21 @@ void Node::removePath(Path *path)
   paths.erase(std::find(paths.begin(), paths.end(), path));
 }
 void Node::makeFreeCity() { owner_empire = nullptr; }
-std::vector<Army *> Node::getStationedArmies() { return stationed_armies; }
+std::vector<Army *> Node::getStationedArmies() {
+
+  vector<Army*> stationed_armies;
+
+  for (auto empire : war->getEmpires()) {
+    for (auto army : empire->getArmies()) {
+      if (army->getPosition() == this) {
+        stationed_armies.push_back(army);
+      }
+    }
+  }
+
+  return stationed_armies;
+}
+
 void Node::getAttacked(Army *attacking_army)
 {
   int friendly_units_in_footmen = 0;
@@ -258,6 +272,8 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     Node *temp = new Node();
     objmap.insert(std::pair<void *, void *>(this, temp));
 
+    temp->war = war;
+
     temp->name = this->name;
 
     temp->dist = dist;
@@ -288,13 +304,6 @@ Node *Node::clone(std::map<void *, void *> &objmap)
 
     temp->resources = resources;
 
-    std::vector<Army *> newstationedarmies;
-    for (auto army : getStationedArmies())
-    {
-      if (army)
-        newstationedarmies.push_back(army->clone(objmap));
-    }
-    temp->stationed_armies = newstationedarmies;
     return temp;
   }
 }

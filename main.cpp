@@ -26,15 +26,15 @@ War* romanPunicWars(){
   roman_punic_war->addEmpire(e2);
   roman_punic_war->addEmpire(e3);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(roman_punic_war, e1, "c1", 4, true);
+  Node *n2 = new Node(roman_punic_war, e1, "n2", 4);
+  Node *n3 = new Node(roman_punic_war, e1, "n3", 4);
+  Node *n4 = new Node(roman_punic_war, e2, "n4", 4);
+  Node *n5 = new Node(roman_punic_war, e2, "n5", 4);
+  Node *n6 = new Node(roman_punic_war, e1, "n6", 4);
+  Node *n7 = new Node(roman_punic_war, e1, "n7", 4);
+  Node *n8 = new Node(roman_punic_war, e2, "n8", 4);
+  Node *c2 = new Node(roman_punic_war, e2, "c2", 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);

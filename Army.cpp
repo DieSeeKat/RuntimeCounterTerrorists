@@ -33,8 +33,6 @@ void Army::moveToTown(Node *town)
   if (town != position)
   {
 
-    position->removeStationedArmy(this);
-
     if (subject != nullptr)
     {
       subject->removeObserver(this);
@@ -43,8 +41,6 @@ void Army::moveToTown(Node *town)
     subject = position;
 
     position = town;
-
-    position->addStationedArmy(this);
 
     subject->addObserver(this);
 
@@ -148,6 +144,8 @@ Army *Army::clone(std::map<void *, void *> &objmap)
   {
     Army *temp = new Army();
     objmap.insert(std::pair<void *, void *>(this, temp));
+
+    temp->war = war;
 
     temp->observer_state = observer_state;
 

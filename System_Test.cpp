@@ -80,8 +80,8 @@ TEST(System, AdvanceArmies_Test)
 {
   War *war = new War();
 
-  Empire *e1 = new Empire(war, "Rome");
-  Empire *e2 = new Empire(war, "Greece");
+  Empire *e1 = new Empire("Rome", war);
+  Empire *e2 = new Empire("Greece", war);
 
   war->addEmpire(e1);
   war->addEmpire(e2);
@@ -156,8 +156,8 @@ TEST(System, RetreatArmies_Test)
 {
   War *war = new War();
 
-  Empire *e1 = new Empire(war, "Rome");
-  Empire *e2 = new Empire(war, "Greece");
+  Empire *e1 = new Empire("Rome", war);
+  Empire *e2 = new Empire("Greece", war);
 
   war->addEmpire(e1);
   war->addEmpire(e2);
@@ -218,9 +218,9 @@ TEST(System, Deletes)
 {
   War *war = new War();
 
-  Empire *e1 = new Empire(war, "Rome");
-  Empire *e2 = new Empire(war, "Greece");
-  Empire *e3 = new Empire(war, "Israel");
+  Empire *e1 = new Empire("Rome", war);
+  Empire *e2 = new Empire("Greece", war);
+  Empire *e3 = new Empire("Israel", war);
 
   war->addEmpire(e1);
   war->addEmpire(e2);
@@ -295,9 +295,9 @@ TEST(System, War_Is_Finished)
 {
   War *war = new War();
 
-  Empire *e1 = new Empire(war, "Rome");
-  Empire *e2 = new Empire(war, "Greece");
-  Empire *e3 = new Empire(war, "Israel");
+  Empire *e1 = new Empire("Rome", war);
+  Empire *e2 = new Empire("Greece", war);
+  Empire *e3 = new Empire("Israel", war);
 
   war->addEmpire(e1);
   war->addEmpire(e2);
@@ -354,8 +354,8 @@ TEST(System, TakeTurn)
 {
   War* war = new War();
 
-  Empire* rome = new Empire(war, "Rome");
-  Empire* greece = new Empire(war, "Greece");
+  Empire* rome = new Empire("Rome", war);
+  Empire* greece = new Empire("Greece", war);
 
   war->addEmpire(rome);
   war->addEmpire(greece);

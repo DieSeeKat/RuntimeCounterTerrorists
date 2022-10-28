@@ -330,6 +330,8 @@ Empire *Empire::clone(std::map<void *, void *> &objmap)
     Empire *temp = new Empire();
     objmap.insert(std::pair<void *, void *>(this, temp));
 
+    temp->war = war;
+
     std::vector<Empire *> newalliancees;
     for (auto al : alliances)
     {

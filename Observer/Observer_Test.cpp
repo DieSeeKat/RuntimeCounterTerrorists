@@ -29,15 +29,15 @@ TEST(Observer, MoveToTown_Test)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);
@@ -66,12 +66,12 @@ TEST(Observer, MoveToTown_Test)
   war->addNode(n8);
   war->addNode(c2);
 
-  Army *army_one = new Army(n2, e1);
+  Army *army_one = new Army(war, n2, e1);
   army_one->addUnit(Unit());
   e1->addArmy(army_one);
   army_one->rechargeResources();
 
-  Army *army_two = new Army(n5, e2);
+  Army *army_two = new Army(war, n5, e2);
   army_two->addUnit(Unit());
   army_two->addUnit(Unit());
   e2->addArmy(army_two);
@@ -110,15 +110,15 @@ TEST(Observer, Attach_Test)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
 
   c1->addPathTo(n2);
@@ -146,7 +146,7 @@ TEST(Observer, Attach_Test)
   war->addNode(c2);
 
   Subject *subject = new Subject();
-  Observer *army   = new Army(n2, e1);
+  Observer *army   = new Army(war, n2, e1);
 
   subject->attach(army);
 
@@ -165,15 +165,15 @@ TEST(Observer, Detach_Test)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
   c1->addPathTo(n2);
   c1->addPathTo(n3);
@@ -200,7 +200,7 @@ TEST(Observer, Detach_Test)
   war->addNode(c2);
 
   Subject *subject = new Subject();
-  Observer *army   = new Army(n2, e1);
+  Observer *army   = new Army(war, n2, e1);
 
   subject->attach(army);
 

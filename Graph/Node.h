@@ -3,7 +3,6 @@
 
 #include <string>
 
-#include "../Army.h"
 #include "../ArmyRatio.h"
 
 #include "../Iterator/Aggregate.h"
@@ -18,6 +17,7 @@
 #include "../Mediator/Mediator.h"
 
 #include "NodeType.h"
+#include "../Army.h"
 
 #include <map>
 #include <algorithm>

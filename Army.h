@@ -7,8 +7,8 @@
 
 #include "Observer/Observer.h"
 #include "Units/Unit.h"
-#include "Memento/War.h"
 
+class War;
 
 class Node;
 

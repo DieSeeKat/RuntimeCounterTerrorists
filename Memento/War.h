@@ -11,6 +11,8 @@
 
 #include "WarRollback.h"
 
+class WarRollback;
+
 class War
 {
 

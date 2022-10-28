@@ -23,15 +23,15 @@ TEST(Graph, ShortestPath_Test) {
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
   c1->addPathTo(n2);
   c1->addPathTo(n3);
@@ -75,15 +75,15 @@ TEST(Graph, ConnectedToCapital_TEST) {
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
   c1->addPathTo(n2);
   c1->addPathTo(n3);
@@ -121,7 +121,7 @@ TEST(Graph, Repopulate_TEST) {
 
   war->addEmpire(e1);
 
-  Node *node = new Node(e1, "node", 4, true);
+  Node *node = new Node(war, e1, "node", 4, true);
 
   int population = node->getPopulation();
 
@@ -137,7 +137,7 @@ TEST(Graph, Recharge_TEST) {
 
   war->addEmpire(e1);
 
-  Node *node = new Node(e1, "node", 4, true);
+  Node *node = new Node(war, e1, "node", 4, true);
 
   node->setResources(1);
 
