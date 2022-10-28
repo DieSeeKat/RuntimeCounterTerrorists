@@ -4,13 +4,9 @@
 
 Army::Army() {}
 
-Army::Army(Node *current_position, Empire *owner_empire)
+Army::Army(Node *current_position)
 {
   position = current_position;
-
-  empire = owner_empire;
-
-  position->addStationedArmy(this);
 }
 
 void Army::update()
@@ -20,10 +16,10 @@ void Army::update()
 
 void Army::attackTown(Node *town)
 {
-  if (!(empire->isAlly(town->getOwnerEmpire())))
+  if (!(getOwnerEmpire()->isAlly(town->getOwnerEmpire())))
   {
 #ifndef disable_output
-    std::cout << "Army of " << empire->getName() << " is attacking "
+    std::cout << "Army of " << getOwnerEmpire()->getName() << " is attacking "
               << town->getName() << std::endl;
 #endif
     town->getAttacked(this);
@@ -51,7 +47,7 @@ void Army::moveToTown(Node *town)
     subject->addObserver(this);
 
 #ifndef disable_output
-    std::cout << "Army from " << empire->getName() << " is marching towards "
+    std::cout << "Army from " << getOwnerEmpire()->getName() << " is marching towards "
               << town->getName() << std::endl;
 #endif
 
@@ -86,13 +82,9 @@ void Army::setResource(int new_resource) { resources = new_resource; }
 int Army::getArmySize() { return units.size(); }
 Army::~Army()
 {
-  if (empire != nullptr)
+  if (getOwnerEmpire() != nullptr)
   {
-    empire->removeArmy(this);
-  }
-  if (position != nullptr)
-  {
-    position->removeStationedArmy(this);
+    getOwnerEmpire()->removeArmy(this);
   }
   if (subject != nullptr)
   {
@@ -101,7 +93,16 @@ Army::~Army()
 }
 Empire *Army::getOwnerEmpire()
 {
-  return empire;
+  for (auto empire : war->getEmpires())
+  {
+    for (auto army : empire->getArmies())
+    {
+      if (army == this)
+      {
+        return empire;
+      }
+    }
+  }
 }
 
 int Army::getResources()
@@ -117,14 +118,6 @@ int Army::getNumUnits()
   }
   return total_units;
 }
-void Army::killSelf()
-{
-  if (position != nullptr)
-  {
-    position->removeStationedArmy(this);
-  }
-  empire->removeArmy(this);
-}
 void Army::killRandomUnit()
 {
   int random_num                 = rand() % (units.size());
@@ -135,7 +128,7 @@ void Army::killRandomUnit()
   {
 
 #ifndef disable_output
-    std::cout << "Army " << empire->getName()
+    std::cout << "Army " << getOwnerEmpire()->getName()
               << " has lost all troops and disbanded" << std::endl;
 #endif
   }
@@ -153,9 +146,6 @@ Army *Army::clone(std::map<void *, void *> &objmap)
   {
     Army *temp = new Army();
     objmap.insert(std::pair<void *, void *>(this, temp));
-
-    if (empire)
-      temp->empire = empire->clone(objmap);
 
     temp->observer_state = observer_state;
 

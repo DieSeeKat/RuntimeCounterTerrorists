@@ -12,6 +12,7 @@
 #include "Capital.h"
 #include "Node.h"
 #include "Town.h"
+#include "../Army.h"
 
 #include "../Units/Unit.h"
 
@@ -187,11 +188,6 @@ void Node::removePath(Path *path)
 }
 void Node::makeFreeCity() { owner_empire = nullptr; }
 std::vector<Army *> Node::getStationedArmies() { return stationed_armies; }
-void Node::removeStationedArmy(Army *army)
-{
-  stationed_armies.erase(
-          std::find(stationed_armies.begin(), stationed_armies.end(), army));
-}
 void Node::getAttacked(Army *attacking_army)
 {
   int friendly_units_in_footmen = 0;
@@ -301,7 +297,6 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     return temp;
   }
 }
-void Node::addStationedArmy(Army *army) { stationed_armies.push_back(army); }
 void Node::setOwnerEmpire(Empire *empire) { owner_empire = empire; }
 void Node::colonise(Empire *colonising_empire)
 {

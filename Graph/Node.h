@@ -3,7 +3,6 @@
 
 #include <string>
 
-
 #include "../Army.h"
 #include "../ArmyRatio.h"
 
@@ -15,7 +14,9 @@
 #include "../Observer/Subject.h"
 
 #include "../Mediator/Mediator.h"
+
 #include "NodeType.h"
+
 #include <map>
 #include <algorithm>
 class Empire;
@@ -36,8 +37,6 @@ class Node : Aggregate, public Subject
   Empire *owner_empire = nullptr;
   /// All paths connecting to other Nodes
   std::vector<Path *> paths;
-  /// All armies stationed at the Node
-  std::vector<Army *> stationed_armies;
   /// A pointer to the NodeType of the Node
   NodeType *node_type = nullptr;
   std::string name = "";
@@ -160,17 +159,7 @@ class Node : Aggregate, public Subject
    * @brief Get armies stationed here.
    * @return Return a vector of Army pointers
    */
-  std::vector<Army *> getStationedArmies();
-  /**
-   * @brief Remove a specific army from being stationed here
-   * @param army Army to be removed
-   */
-  void removeStationedArmy(Army *army);
-  /**
-   * @brief Add a new Army to the stationed_armies vector
-   * @param army A pointer to the Army to be added
-   */
-  void addStationedArmy(Army *army);
+  std::vector<Army*> getStationedArmies();
   /**
    * @brief Clone method for the Node
    * @param objmap A void to void pointer map
