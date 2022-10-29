@@ -25,7 +25,7 @@ void NodeIterator::next()
 
 bool NodeIterator::isDone()
 {
-  if(path_index == this->path_count)
+  if(path_index  == this->path_count)
   {
     return true;
   }
