@@ -5,7 +5,7 @@
 
 #include "../Graph/Node.h"
 
-class ConcreteMediator : Mediator {
+class ConcreteMediator : public Mediator {
 
 public:
   void notifyOfAttack(Node *node);
