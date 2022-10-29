@@ -166,6 +166,6 @@ bool War::isFinished()
 }
 void War::nextTurn()
 {
-  empires.at(index)->takeTurn();
   index = (index + 1) % empires.size();
+  empires.at(index)->takeTurn();
 }

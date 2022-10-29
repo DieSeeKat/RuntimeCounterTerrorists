@@ -21,22 +21,22 @@ TEST(Mediator, NotifyAttack)
 {
     War *war = new War();
 
-    Empire *e1 = new Empire("Rome");
-    Empire *e2 = new Empire("Greece");
+    Empire *e1 = new Empire("Rome", war);
+    Empire *e2 = new Empire("Greece", war);
 
     war->addEmpire(e1);
     war->addEmpire(e2);
 
-    Node *c1 = new Node(e1, "c1", 4, true);
-    Node *n2 = new Node(e1, "n2", 4);
-    Node *n3 = new Node(e1, "n3", 4);
-    Node *n4 = new Node(e2, "n4", 4);
-    Node *n5 = new Node(e2, "n5", 4);
-    Node *n6 = new Node(e1, "n6", 4);
-    Node *n7 = new Node(e1, "n7", 4);
-    Node *n8 = new Node(e2, "n8", 4);
-    Node *n9 = new Node(e2, "n9", 4);
-    Node *c2 = new Node(e2, "c2", 4, true);
+    Node *c1 = new Node(war, e1, "c1", 4, true);
+    Node *n2 = new Node(war, e1, "n2", 4);
+    Node *n3 = new Node(war, e1, "n3", 4);
+    Node *n4 = new Node(war, e2, "n4", 4);
+    Node *n5 = new Node(war, e2, "n5", 4);
+    Node *n6 = new Node(war, e1, "n6", 4);
+    Node *n7 = new Node(war, e1, "n7", 4);
+    Node *n8 = new Node(war, e2, "n8", 4);
+    Node *n9 = new Node(war, e2, "n9", 4);
+    Node *c2 = new Node(war, e2, "c2", 4, true);
 
     c1->addPathTo(n2);
     c1->addPathTo(n3);
@@ -64,12 +64,12 @@ TEST(Mediator, NotifyAttack)
     war->addNode(c2);
     war->addNode(n9);
 
-    Army *attacking_army = new Army(c1, e1);
+    Army *attacking_army = new Army(war, c1, e1);
     e1->addArmy(attacking_army);
     attacking_army->addUnit(Unit());
     attacking_army->addUnit(Unit());
 
-    Army *defending_army = new Army(n8, e2);
+    Army *defending_army = new Army(war, n8, e2);
     e2->addArmy(defending_army);
     defending_army->addUnit(Unit());
 

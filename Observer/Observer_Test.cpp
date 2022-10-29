@@ -67,13 +67,16 @@ TEST(Observer, MoveToTown_Test)
   war->addNode(c2);
 
   Army *army_one = new Army(war, n2, e1);
-  army_one->addUnit(Unit());
+  for (int i = 0; i < 1000; i++) {
+    army_one->addUnit(Unit());
+  }
   e1->addArmy(army_one);
   army_one->rechargeResources();
 
   Army *army_two = new Army(war, n5, e2);
-  army_two->addUnit(Unit());
-  army_two->addUnit(Unit());
+  for (int i = 0; i < 1100; i++) {
+    army_two->addUnit(Unit());
+  }
   e2->addArmy(army_two);
   army_two->rechargeResources();
 

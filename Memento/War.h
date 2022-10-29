@@ -20,7 +20,7 @@ private:
   std::vector<Node *> nodes;
   std::vector<Empire *> empires;
   std::vector<Path *> paths;
-  int index = 0;
+  int index = -1;
 
 public:
   ~War();

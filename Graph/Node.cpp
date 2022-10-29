@@ -214,10 +214,14 @@ std::vector<Army *> Node::getStationedArmies()
 }
 void Node::getAttacked(Army *attacking_army)
 {
-    mediator = new ConcreteMediator();
-    mediator->notifyOfAttack(this);
+  cout << "B" << endl;
+  mediator = new ConcreteMediator();
+  cout << "C" << endl;
+  mediator->notifyOfAttack(this);
+  cout << "D" << endl;
   int friendly_units_in_footmen = 0;
   int enemy_units_in_footmen    = 0;
+  cout << "E" << endl;
 
   // Calculate friendly_units_in_footmen
   for (Army *army : getStationedArmies())

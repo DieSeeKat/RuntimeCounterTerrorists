@@ -24,7 +24,9 @@ void Army::attackTown(Node *town)
     std::cout << "Army of " << getOwnerEmpire()->getName() << " is attacking "
               << town->getName() << std::endl;
 #endif
+    cout << "A" << endl;
     town->getAttacked(this);
+    cout << "Z" << endl;
   }
 }
 
