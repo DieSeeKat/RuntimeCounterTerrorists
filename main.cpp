@@ -12,6 +12,13 @@
 #include "Memento/WarCaretaker.h"
 #include "Memento/WarRollback.h"
 #include <algorithm>
+#include "Policies/ArcherWarfare.h"
+#include "Policies/GuerillaWarfare.h"
+#include "Policies/HorsemenWarfare.h"
+#include "Policies/LegionaryWarfare.h"
+#include "Policies/HeavyWar.h"
+#include "Policies/LightWar.h"
+#include "Policies/NormalWar.h"
 
 #include <iostream>
 #include <string>
@@ -82,9 +89,9 @@ int main()
 
     //Fancy things
     vector<Empire *> empire1 = war->getEmpires();
-    int menu_choice = 0; //Yes=0
+    int menu_choice = 1; //Yes=0
 
-    while(menu_choice == 0)
+    while(menu_choice == 1)
     {
 
 
@@ -141,13 +148,26 @@ int main()
           }
 
           int policyTypeChange=0;
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
           if(policy_choice==1){
             cout<<"Recruitment policy types"<<endl;
             cout<<"1: Normal war"<<endl;
             cout<<"2: Light war"<<endl;
             cout<<"3: Heavy war"<<endl;
             cin>>policyTypeChange;
+
+            if(policyTypeChange==1){
+              empire1[0]->setRecruitmentPolicy(new NormalWar());
+            }
+            else if(policyTypeChange==2){
+              empire1[0]->setRecruitmentPolicy(new LightWar());
+            }
+            else{
+              empire1[0]->setRecruitmentPolicy(new HeavyWar());
+            }
+
+
           }
           else if(policy_choice==2){
             cout<<"Warstyle policy types"<<endl;
@@ -156,15 +176,31 @@ int main()
             cout<<"3: Horsemen warfare"<<endl;
             cout<<"4: Legionary warfare"<<endl;
             cin>>policyTypeChange;
+
+            if(policyTypeChange==1){
+              empire1[0]->setWarStylePolicy(new ArcherWarfare());
+            }
+            else if(policyTypeChange==2){
+              empire1[0]->setWarStylePolicy(new GuerillaWarfare());
+            }
+            else if(policyTypeChange==3){
+              empire1[0]->setWarStylePolicy(new HorsemenWarfare());
+            }
+            else{
+              empire1[0]->setWarStylePolicy(new LegionaryWarfare());
+            }
+
+
           }
 
 
         }
         else //if empire choice = 2
         {
-
+          
         }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
       }
       else
       {
@@ -197,7 +233,7 @@ int main()
 
       while(menu_choice != 0 && menu_choice != 1)
       {
-        cout<<"Go back to MENU?(0=Yes/1=No)"<<endl;
+        cout<<"Go back to MENU?(1=Yes/2=No)"<<endl;
         cin>>menu_choice;
       }
 
