@@ -14,22 +14,21 @@ class WarRollback
   friend War;
   private:
   WarRollback();
+  /**
+   * @brief Used to store War::nodes
+   * 
+   */
   std::vector<Node *> nodes;
+  /**
+   * @brief Used to store War::empires
+   * 
+   */
   std::vector<Empire *> empires;
+  /**
+   * @brief Used to store War::paths
+   * 
+   */
   std::vector<Path *> paths;
-
-  public:
-  std::vector<Node *> getNodes();
-
-  void setNodes(std::vector<Node *> nodes);
-
-  std::vector<Empire *> getEmpires();
-
-  void setEmpires(std::vector<Empire *> empires);
-
-  std::vector<Path *> getPaths();
-
-  void setPaths(std::vector<Path *> paths);
 };
 
 #endif
