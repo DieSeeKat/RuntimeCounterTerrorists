@@ -89,41 +89,53 @@ int main()
 
     //Fancy things
     vector<Empire *> empire1 = war->getEmpires();
-    int menu_choice = 1; //Yes=0
+    int menu_choice = 0; //Yes=0; No=1
 
-    while(menu_choice == 1)
+    while(menu_choice == 0)
     {
-
-
+      cout<<"----------------------------------"<<endl;
       cout << "MENU" << endl;
+      cout<<"----------------------------------"<<endl;
       cout << "Press 1 to SHOW EMPIRES" << endl;
       cout << "Press 2 to ROLLBACK" << endl;
+      cout << "Press 3 to END TURN" << endl;
+      cout<<"---------------ENTER BELOW------------------"<<endl;
 
       int choice = 0;
       cin >> choice;
 
-      while (choice != 1 && choice != 2)
+      while (choice != 1 && choice != 2 && choice !=3)
       {
+        cout<<"----------------------------------"<<endl;
         cout << "MENU" << endl;
+        cout<<"----------------------------------"<<endl;
         cout << "Press 1 to SHOW EMPIRES" << endl;
         cout << "Press 2 to ROLLBACK" << endl;
+        cout << "Press 3 to END TURN" << endl;
+        cout<<"---------------ENTER BELOW------------------"<<endl;
         cin >> choice;
       }
 
       if (choice == 1)
       {
+        cout<<"----------------------------------"<<endl;
         cout << "CHOOSE EMPIRE" << endl;
+        cout<<"----------------------------------"<<endl;
         cout << "Press 1 for " << empire1[0]->getName() << endl;
         cout << "Press 2 for " << empire1[1]->getName() << endl;
+        cout<<"---------------ENTER BELOW-----------------------"<<endl;
 
         int empire_choice = 0;
         cin >> empire_choice;
 
         while (empire_choice != 1 && empire_choice != 2)
         {
+          cout<<"----------------------------------"<<endl;
           cout << "CHOOSE EMPIRE" << endl;
-          cout << "1: " << empire1[0]->getName() << endl;
-          cout << "2: " << empire1[1]->getName() << endl;
+          cout<<"----------------------------------"<<endl;
+          cout << "Press 1 for " << empire1[0]->getName() << endl;
+          cout << "Press 2 for " << empire1[1]->getName() << endl;
+          cout<<"---------------ENTER BELOW-----------------------"<<endl;
           cin >> empire_choice;
         }
 
@@ -131,31 +143,51 @@ int main()
         {
           int policy_choice = 0;
 
+          cout<<"----------------------------------"<<endl;
           cout<<"CHOOSE POLICIES TO CHANGE"<<endl;
-          cout<<"1: Current Recruitment Policy is "<<empire1[0]->getRecruitmentPolicy()<<endl;
-          cout<<"2: Current War-style Policy is "<<empire1[0]->getWarStylePolicy()<<endl;
-          cout<<"3: DO NOT CHANGE POLICY (BACK)"<<endl;
+          cout<<"----------------------------------"<<endl;
+          cout<<"Press 1: Current Recruitment Policy is "<<empire1[0]->getRecruitmentPolicy()<<endl;
+          cout<<"Press 2: Current War-style Policy is "<<empire1[0]->getWarStylePolicy()<<endl;
+          cout<<"Press 3: DO NOT CHANGE POLICY (GO BACK)"<<endl;
+          cout<<"---------------ENTER BELOW-----------------------"<<endl;
           cin>>policy_choice;
 
           while( policy_choice != 1 && policy_choice != 2 && policy_choice != 3)
           {
 
+            cout<<"----------------------------------"<<endl;
             cout<<"CHOOSE POLICIES TO CHANGE"<<endl;
-            cout<<"1: Current Recruitment Policy is "<<empire1[0]->getRecruitmentPolicy()<<endl;
-            cout<<"2: Current War-style Policy is "<<empire1[0]->getWarStylePolicy()<<endl;
-            cout<<"3: DO NOT CHANGE POLICY (BACK)"<<endl;
+            cout<<"----------------------------------"<<endl;
+            cout<<"Press 1: Current Recruitment Policy is "<<empire1[0]->getRecruitmentPolicy()<<endl;
+            cout<<"Press 2: Current War-style Policy is "<<empire1[0]->getWarStylePolicy()<<endl;
+            cout<<"Press 3: DO NOT CHANGE POLICY (GO BACK)"<<endl;
+            cout<<"---------------ENTER BELOW-----------------------"<<endl;
             cin>>policy_choice;
           }
 
           int policyTypeChange=0;
-////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
+
           if(policy_choice==1){
-            cout<<"Recruitment policy types"<<endl;
-            cout<<"1: Normal war"<<endl;
-            cout<<"2: Light war"<<endl;
-            cout<<"3: Heavy war"<<endl;
+            cout<<"----------------------------------"<<endl;
+            cout<<"RECRUITMENT POLICIES TYPES"<<endl;
+            cout<<"----------------------------------"<<endl;
+            cout<<"Press 1 for Normal war"<<endl;
+            cout<<"Press 2 for Light war"<<endl;
+            cout<<"Press 3 for Heavy war"<<endl;
+            cout<<"---------------ENTER BELOW-----------------------"<<endl;
             cin>>policyTypeChange;
+
+            while( policyTypeChange != 1 && policyTypeChange != 2 && policyTypeChange != 3)
+            {
+              cout<<"----------------------------------"<<endl;
+              cout<<"RECRUITMENT POLICIES TYPES"<<endl;
+              cout<<"----------------------------------"<<endl;
+              cout<<"Press 1 for Normal war"<<endl;
+              cout<<"Press 2 for Light war"<<endl;
+              cout<<"Press 3 for Heavy war"<<endl;
+              cout<<"---------------ENTER BELOW-----------------------"<<endl;
+              cin>>policyTypeChange;
+            }
 
             if(policyTypeChange==1){
               empire1[0]->setRecruitmentPolicy(new NormalWar());
@@ -166,16 +198,36 @@ int main()
             else{
               empire1[0]->setRecruitmentPolicy(new HeavyWar());
             }
+            cout << "-----------------------------------------" << endl;
+            cout << "RECRUITMENT POLICY HAS BEEN CHANGED TO" << endl;
+            cout << empire1[0]->getRecruitmentPolicy()<< endl;
+            cout << "-----------------------------------------" << endl;
 
 
           }
           else if(policy_choice==2){
-            cout<<"Warstyle policy types"<<endl;
-            cout<<"1: Archer warfare"<<endl;
-            cout<<"2: Guerilla warfare"<<endl;
-            cout<<"3: Horsemen warfare"<<endl;
-            cout<<"4: Legionary warfare"<<endl;
+            cout<<"----------------------------------"<<endl;
+            cout<<"WAR-STYLE POLICIES TYPE"<<endl;
+            cout<<"----------------------------------"<<endl;
+            cout<<"Press 1 for Archer warfare"<<endl;
+            cout<<"Press 2 for Guerilla warfare"<<endl;
+            cout<<"Press 3 for Horsemen warfare"<<endl;
+            cout<<"Press 4 for Legionary warfare"<<endl;
+            cout<<"---------------ENTER BELOW-----------------------"<<endl;
             cin>>policyTypeChange;
+
+            while( policyTypeChange != 1 && policyTypeChange != 2 && policyTypeChange != 3 && policyTypeChange != 4)
+            {
+              cout<<"----------------------------------"<<endl;
+              cout<<"WAR-STYLE POLICIES TYPE"<<endl;
+              cout<<"----------------------------------"<<endl;
+              cout<<"Press 1 for Archer warfare"<<endl;
+              cout<<"Press 2 for Guerilla warfare"<<endl;
+              cout<<"Press 3 for Horsemen warfare"<<endl;
+              cout<<"Press 4 for Legionary warfare"<<endl;
+              cout<<"---------------ENTER BELOW-----------------------"<<endl;
+              cin>>policyTypeChange;
+            }
 
             if(policyTypeChange==1){
               empire1[0]->setWarStylePolicy(new ArcherWarfare());
@@ -190,27 +242,143 @@ int main()
               empire1[0]->setWarStylePolicy(new LegionaryWarfare());
             }
 
+            cout << "-----------------------------------------" << endl;
+            cout << "WAR-STYLE POLICY HAS BEEN CHANGED TO" << endl;
+            cout << empire1[0]->getWarStylePolicy()<< endl;
+            cout << "-----------------------------------------" << endl;
+
 
           }
 
 
         }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
         else //if empire choice = 2
         {
+          int policy_choice = 0;
+          cout<<"----------------------------------"<<endl;
+          cout<<"CHOOSE POLICIES TO CHANGE"<<endl;
+          cout<<"----------------------------------"<<endl;
+          cout<<"Press 1: Current Recruitment Policy is "<<empire1[1]->getRecruitmentPolicy()<<endl;
+          cout<<"Press 2: Current War-style Policy is "<<empire1[1]->getWarStylePolicy()<<endl;
+          cout<<"Press 3: DO NOT CHANGE POLICY (GO BACK)"<<endl;
+          cout<<"---------------ENTER BELOW-----------------------"<<endl;
+          cin>>policy_choice;
+
+          while( policy_choice != 1 && policy_choice != 2 && policy_choice != 3)
+          {
+
+            cout<<"----------------------------------"<<endl;
+            cout<<"CHOOSE POLICIES TO CHANGE"<<endl;
+            cout<<"----------------------------------"<<endl;
+            cout<<"Press 1: Current Recruitment Policy is "<<empire1[1]->getRecruitmentPolicy()<<endl;
+            cout<<"Press 2: Current War-style Policy is "<<empire1[1]->getWarStylePolicy()<<endl;
+            cout<<"Press 3: DO NOT CHANGE POLICY (GO BACK)"<<endl;
+            cout<<"---------------ENTER BELOW-----------------------"<<endl;
+            cin>>policy_choice;
+          }
+
+          int policyTypeChange=0;
+          ////////////////////////////////////////////////////////////////////////////////////////////////////
+          ///////////////////////////////////////////////////////////////////////////////////////////////////
+          if(policy_choice==1){
+            cout<<"----------------------------------"<<endl;
+            cout<<"RECRUITMENT POLICIES TYPES"<<endl;
+            cout<<"----------------------------------"<<endl;
+            cout<<"Press 1 for Normal war"<<endl;
+            cout<<"Press 2 for Light war"<<endl;
+            cout<<"Press 3 for Heavy war"<<endl;
+            cout<<"---------------ENTER BELOW-----------------------"<<endl;
+            cin>>policyTypeChange;
+
+            while( policyTypeChange != 1 && policyTypeChange != 2 && policyTypeChange != 3)
+            {
+              cout<<"----------------------------------"<<endl;
+              cout<<"RECRUITMENT POLICIES TYPES"<<endl;
+              cout<<"----------------------------------"<<endl;
+              cout<<"Press 1 for Normal war"<<endl;
+              cout<<"Press 2 for Light war"<<endl;
+              cout<<"Press 3 for Heavy war"<<endl;
+              cout<<"---------------ENTER BELOW-----------------------"<<endl;
+              cin>>policyTypeChange;
+            }
+
+            if(policyTypeChange==1){
+              empire1[1]->setRecruitmentPolicy(new NormalWar());
+            }
+            else if(policyTypeChange==2){
+              empire1[1]->setRecruitmentPolicy(new LightWar());
+            }
+            else{
+              empire1[1]->setRecruitmentPolicy(new HeavyWar());
+            }
+            cout << "-----------------------------------------" << endl;
+            cout << "RECRUITMENT POLICY HAS BEEN CHANGED TO" << endl;
+            cout << empire1[1]->getRecruitmentPolicy()<< endl;
+            cout << "-----------------------------------------" << endl;
+
+
+          }
+          else if(policy_choice==2){
+            cout<<"----------------------------------"<<endl;
+            cout<<"WAR-STYLE POLICIES TYPE"<<endl;
+            cout<<"----------------------------------"<<endl;
+            cout<<"Press 1 for Archer warfare"<<endl;
+            cout<<"Press 2 for Guerilla warfare"<<endl;
+            cout<<"Press 3 for Horsemen warfare"<<endl;
+            cout<<"Press 4 for Legionary warfare"<<endl;
+            cout<<"---------------ENTER BELOW-----------------------"<<endl;
+            cin>>policyTypeChange;
+
+            while( policyTypeChange != 1 && policyTypeChange != 2 && policyTypeChange != 3 && policyTypeChange != 4)
+            {
+              cout<<"----------------------------------"<<endl;
+              cout<<"WAR-STYLE POLICIES TYPE"<<endl;
+              cout<<"----------------------------------"<<endl;
+              cout<<"Press 1 for Archer warfare"<<endl;
+              cout<<"Press 2 for Guerilla warfare"<<endl;
+              cout<<"Press 3 for Horsemen warfare"<<endl;
+              cout<<"Press 4 for Legionary warfare"<<endl;
+              cout<<"---------------ENTER BELOW-----------------------"<<endl;
+              cin>>policyTypeChange;
+            }
+
+            if(policyTypeChange==1){
+              empire1[1]->setWarStylePolicy(new ArcherWarfare());
+            }
+            else if(policyTypeChange==2){
+              empire1[1]->setWarStylePolicy(new GuerillaWarfare());
+            }
+            else if(policyTypeChange==3){
+              empire1[1]->setWarStylePolicy(new HorsemenWarfare());
+            }
+            else{
+              empire1[1]->setWarStylePolicy(new LegionaryWarfare());
+            }
+
+            cout << "-----------------------------------------" << endl;
+            cout << "WAR-STYLE POLICY HAS BEEN CHANGED TO" << endl;
+            cout << empire1[1]->getWarStylePolicy()<< endl;
+            cout << "-----------------------------------------" << endl;
+
+
+          }
           
         }
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
       }
-      else
+      else if(choice==2)
       {
         bool bRollBack = true;
         while (bRollBack)
         {
           WarRollback *rollback = war->createWarRollback();
           war->setWarRollback(rollback);
+          cout << "-----------------------------------------" << endl;
           cout << "ROLLBACK has been called" << endl;
-          cout << "--------------------------------" << endl;
+          cout << "-----------------------------------------" << endl;
           cout << "Continue rollback?(0=Yes/1=No)" << endl;
           int rollbackChoice = 0;
           cin >> rollbackChoice;
@@ -233,7 +401,7 @@ int main()
 
       while(menu_choice != 0 && menu_choice != 1)
       {
-        cout<<"Go back to MENU?(1=Yes/2=No)"<<endl;
+        cout<<"Go back to MENU?(0=Yes/1=No)"<<endl;
         cin>>menu_choice;
       }
 
