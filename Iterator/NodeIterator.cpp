@@ -21,10 +21,8 @@ void NodeIterator::first()
 
 void NodeIterator::next()
 {
-  cout << "F" << endl;
   path_index++;
   current_node = paths.at(path_index % paths.size())->getOppositeEnd(start_node);
-  cout << "G" << endl;
 }
 
 bool NodeIterator::isDone()

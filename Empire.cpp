@@ -46,15 +46,24 @@ void Empire::recruit()
 
 void Empire::advanceArmies()
 {
-  for (auto army : armies)
+
+  vector<Army*> temp_armies = armies;
+
+  for (auto army : temp_armies)
   {
+
     Node *current_town = army->getPosition();
+
     std::vector<Empire *> empires = war->getEmpires();
+
     for (auto empire : empires)
     {
+
       if (!isAlly(empire))
       {
+
         army->moveToTown(current_town->findShortestPathTo(war->getNodes(), empire->getCapital())[0]);
+
         break;
       }
     }
@@ -240,7 +249,9 @@ void Empire::setWar(War *war)
 }
 void Empire::removeArmy(Army *army)
 {
+
   armies.erase(std::find(armies.begin(), armies.end(), army));
+
 }
 void Empire::addArmy(Army *army)
 {
@@ -378,4 +389,8 @@ void Empire::removeAlliance(Empire *empire)
 std::string Empire::getName()
 {
   return name;
+}
+void Empire::setRecruitmentPolicy(RecruitmentPolicy* recruitment)
+{
+  recruitment_policy = recruitment;
 }

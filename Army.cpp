@@ -24,9 +24,7 @@ void Army::attackTown(Node *town)
     std::cout << "Army of " << getOwnerEmpire()->getName() << " is attacking "
               << town->getName() << std::endl;
 #endif
-    cout << "A" << endl;
     town->getAttacked(this);
-    cout << "Z" << endl;
   }
 }
 
@@ -34,7 +32,6 @@ void Army::moveToTown(Node *town)
 {
   if (town != position)
   {
-
     if (subject != nullptr)
     {
       subject->removeObserver(this);
@@ -103,7 +100,6 @@ Empire *Army::getOwnerEmpire()
       }
     }
   }
-
   return nullptr;
 }
 
@@ -133,8 +129,8 @@ void Army::killRandomUnit()
   {
 
 #ifndef disable_output
-    std::cout << "Army " << getOwnerEmpire()->getName()
-              << " has lost all troops and disbanded" << std::endl;
+//    std::cout << "Army of " << getOwnerEmpire()->getName()
+//              << " has lost all troops and disbanded" << std::endl;
 #endif
   }
 }

@@ -2,9 +2,10 @@
 #define SLINGERBARRACKS_H
 
 #include "../Units/Slinger.h"
+#include "../Units/Unit.h"
 #include "Barracks.h"
 
-class SlingerBarracks:public Barracks
+class SlingerBarracks : public Barracks
 {
 public:
     SlingerBarracks();
