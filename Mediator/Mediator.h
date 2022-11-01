@@ -2,12 +2,15 @@
 #define MEDIATOR_H
 
 #include <map>
-//In my implementation I assume the capitol node will be the mediator. When an empire gets attacked its capitol is aware of this and notify all the surrounding towns.
 class Node;
 
 class Mediator
 {
   public:
+    /**
+     * @brief Method to notify the adjacent towns in the empire when it is under attack
+     * @param node A node pointer of the town that is under attack
+     */
   virtual void notifyOfAttack(Node *node) = 0;
   /**
    * @brief Clone method for the Mediator
