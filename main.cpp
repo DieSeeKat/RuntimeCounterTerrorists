@@ -121,8 +121,10 @@ int main()
         cout<<"----------------------------------"<<endl;
         cout << "CHOOSE EMPIRE" << endl;
         cout<<"----------------------------------"<<endl;
-        cout << "Press 1 for " << empire1[0]->getName() << endl;
-        cout << "Press 2 for " << empire1[1]->getName() << endl;
+        for (int i = 0; i < empire1.size(); ++i)
+        {
+          cout<<"Press "<<i+1<<" for "<<empire1[i]->getName()<<endl;
+        }
         cout<<"---------------ENTER BELOW-----------------------"<<endl;
 
         int empire_choice = 0;
@@ -133,8 +135,10 @@ int main()
           cout<<"----------------------------------"<<endl;
           cout << "CHOOSE EMPIRE" << endl;
           cout<<"----------------------------------"<<endl;
-          cout << "Press 1 for " << empire1[0]->getName() << endl;
-          cout << "Press 2 for " << empire1[1]->getName() << endl;
+          for (int i = 0; i < empire1.size(); ++i)
+          {
+            cout<<"Press "<<i+1<<" for "<<empire1[i]->getName()<<endl;
+          }
           cout<<"---------------ENTER BELOW-----------------------"<<endl;
           cin >> empire_choice;
         }
