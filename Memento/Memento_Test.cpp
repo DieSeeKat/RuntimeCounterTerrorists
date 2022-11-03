@@ -95,15 +95,6 @@ TEST(Memento, Backup)
   ASSERT_STREQ(war->getEmpires().at(0)->getCapital()->getName().c_str(), backupWar->getEmpires().at(0)->getCapital()->getName().c_str());
   ASSERT_NE(war->getEmpires().at(0)->getCapital(), backupWar->getEmpires().at(0)->getCapital());
 
-  if (war->getPaths().size() == 0)
-  {
-    ASSERT_EQ(war->getPaths(), backupWar->getPaths());
-  }
-  else
-  {
-    ASSERT_NE(war->getPaths(), backupWar->getPaths());
-  }
-
   for (auto a : war->getEmpires())
   {
     for (auto b : backupWar->getEmpires())

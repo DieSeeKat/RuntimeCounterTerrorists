@@ -25,12 +25,6 @@ void Node::setWar(War* w){
   this->war = w;
 }
 
-void Node::changed()
-{
-  // TODO - implement Node::changed
-  throw "Not yet implemented";
-}
-
 Army *Node::recruit(ArmyRatio ratio, int num_recruits)
 {
   Barracks *archer_barracks  = new ArcheryBarracks();

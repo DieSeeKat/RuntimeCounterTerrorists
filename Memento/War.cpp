@@ -34,13 +34,6 @@ WarRollback *War::createWarRollback()
   }
   temp->empires = temp_empires;
 
-  std::vector<Path *> temp_paths;
-  for (std::vector<Path *>::iterator it = paths.begin(); it != paths.end(); it++)
-  {
-    temp_paths.push_back((*it)->clone(objmap));
-  }
-  temp->paths = temp_paths;
-
   std::vector<Node *> temp_nodes;
   for (std::vector<Node *>::iterator it = nodes.begin(); it != nodes.end(); it++)
   {
@@ -74,7 +67,6 @@ void War::setWarRollback(WarRollback *war_rollback)
   updateEmpires();
   this->nodes = war_rollback->nodes;
   updateNodes();
-  this->paths = war_rollback->paths;
 }
 
 /**
@@ -94,15 +86,6 @@ std::vector<Empire *> War::getEmpires()
 std::vector<Node *> War::getNodes()
 {
   return nodes;
-}
-/**
- * @brief Return all paths between nodes currently in this war.
- * 
- * @return std::vector<Path *> 
- */
-std::vector<Path *> War::getPaths()
-{
-  return paths;
 }
 /**
  * @brief Setter for empires in this war.
@@ -135,19 +118,6 @@ void War::setNodes(std::vector<Node *> new_nodes)
   updateNodes();
 }
 /**
- * @brief Setter for paths in this war.
- * 
- * @param new_paths 
- */
-void War::setPaths(std::vector<Path *> new_paths)
-{
-  for (std::vector<Path *>::iterator it = paths.begin(); it != paths.end(); it++)
-  {
-    delete (*it);
-  }
-  paths = new_paths;
-}
-/**
  * @brief Add a single empire to this war.
  * 
  * @param new_empire 
@@ -166,15 +136,6 @@ void War::addNode(Node *new_node)
 {
   nodes.push_back(new_node);
   updateNodes();
-}
-/**
- * @brief Add a single path to this war.
- * 
- * @param new_path 
- */
-void War::addPath(Path *new_path)
-{
-  paths.push_back(new_path);
 }
 /**
  * @brief Remove a single empire from this war.
@@ -200,16 +161,6 @@ void War::removeNode(Node *to_remove)
 {
   delete to_remove;
   nodes.erase(std::find(nodes.begin(), nodes.end(), to_remove));
-}
-/**
- * @brief Remove a single path from this war.
- * 
- * @param to_remove 
- */
-void War::removePath(Path *to_remove)
-{
-  delete to_remove;
-  paths.erase(std::find(paths.begin(), paths.end(), to_remove));
 }
 /**
  * @brief This is a helper method used to update all Empire::war to this current war.

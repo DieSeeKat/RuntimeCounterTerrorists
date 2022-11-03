@@ -24,18 +24,6 @@ Empire::Empire(std::string name, War *war)
   this->war = war;
 }
 
-void Empire::algorithm()
-{
-  // TODO - implement Empire::algorithm
-  throw "Not yet implemented";
-}
-
-void Empire::action()
-{
-  // TODO - implement Empire::action
-  throw "Not yet implemented";
-}
-
 void Empire::recruit()
 {
   for (auto &owned_node : owned_nodes)
@@ -139,7 +127,7 @@ void Empire::considerAlliance(Empire *empire)
 
     for(int i = 0; i < armies.size(); i++)
     {
-        army_resource_count += armies.at(i)->getResources();
+        army_resource_count += armies.at(i)->getResource();
         army_unit_count += armies.at(i)->getNumUnits();
     }
 
@@ -235,9 +223,6 @@ void Empire::removeNode(Node *node)
 Empire::~Empire()
 {
   dieOff();
-}
-void Empire::unwindAlliances()
-{
 }
 War *Empire::getWar()
 {

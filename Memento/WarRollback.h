@@ -24,11 +24,6 @@ class WarRollback
    * 
    */
   std::vector<Empire *> empires;
-  /**
-   * @brief Used to store War::paths
-   * 
-   */
-  std::vector<Path *> paths;
 };
 
 #endif

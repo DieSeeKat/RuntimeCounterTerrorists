@@ -75,7 +75,6 @@ class Node : Aggregate, public Subject
    * @param path Path to be added
    */
   void addPath(Path *path);
-  void changed();
   /**
    * @brief Recharge resources to the maximum capacity according to the Node's population
    */
@@ -112,8 +111,6 @@ class Node : Aggregate, public Subject
    * @param army is used to add it to the Observer List
    */
   void addObserver(Observer* army);
-
-  Node *nextStepTo(Node *node);
   /**
    * @brief Get all paths origination from the Node
    * @return Return a vector of Path pointers
@@ -145,7 +142,6 @@ class Node : Aggregate, public Subject
    * @return Returns a vector of Nodes leading to the passed in node
    */
   bool connectedToCapital(std::vector<Node *> nodes, Node *capital);
-
   /**
    * @brief Handles the combat of when a Node gets attacked
    * Will destroy or weaken armies depending on the result of the battle and will be colonised if it loses the battle.
@@ -157,11 +153,6 @@ class Node : Aggregate, public Subject
    */
   void onAttacked();
   /**
-   * @brief Make this Node a free city. Will change the owner_empire attribute to nullptr
-   */
-  void makeFreeCity();
-
-  /**
    * @brief Get armies stationed here.
    * @return Return a vector of Army pointers
    */
@@ -172,11 +163,6 @@ class Node : Aggregate, public Subject
    * @return A pointer to a new cloned Node
    */
   Node *clone(std::map<void*, void*> &objmap);
-  /**
-   * @brief Setter for the owner_empire attribute
-   * @param empire The new owner of the Node
-   */
-  void setOwnerEmpire(Empire *empire);
   /**
    * @brief A setter for the node_type
    * @param node_type A pointer to the new NodeType to be set

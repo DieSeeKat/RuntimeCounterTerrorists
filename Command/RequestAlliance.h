@@ -7,9 +7,7 @@
 
 class RequestAlliance : Communication
 {
-
   private:
-  bool state;
   Empire *sender;
 
   public:

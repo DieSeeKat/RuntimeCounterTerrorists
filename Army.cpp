@@ -72,8 +72,6 @@ Node *Army::getPosition()
   return position;
 }
 
-int Army::getResource() { return resources; }
-
 void Army::setResource(int new_resource) { resources = new_resource; }
 
 int Army::getArmySize() { return units.size(); }
@@ -103,7 +101,7 @@ Empire *Army::getOwnerEmpire()
   return nullptr;
 }
 
-int Army::getResources()
+int Army::getResource()
 {
   return resources;
 }

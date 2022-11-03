@@ -84,8 +84,6 @@ class Army : public Observer
    * @brief Calculate and return the number of Units in the Army
    * @return Return an integer representing the number of Units
    */
-
-  int getResources();
   int getNumUnits();
   /**
    * @brief Kills a random Unit from the units vector

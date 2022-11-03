@@ -9,7 +9,6 @@ class AcceptAlliance : Communication
 {
 
   private:
-  bool state;
   Empire *sender;
 
   public:

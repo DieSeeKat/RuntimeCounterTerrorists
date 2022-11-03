@@ -64,7 +64,6 @@ Path *Path::clone(std::map<void *, void *> &objmap)
       temp->nodeA = nodeA->clone(objmap);
     if(nodeB)
       temp->nodeB = nodeB->clone(objmap);
-    temp->distance = distance;
     if(terrain_type)
       temp->terrain_type = terrain_type->clone(objmap);
 

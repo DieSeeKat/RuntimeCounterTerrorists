@@ -15,6 +15,7 @@
 #include "Graph/NodeType.h"
 #include "Graph/Town.h"
 #include "Memento/War.h"
+#include "Policies/LightWar.h"
 
 TEST(System, ArmyAttack)
 {
@@ -396,9 +397,12 @@ TEST (System, DemoBuild) {
   roman_punic_war->addEmpire(greece);
   roman_punic_war->addEmpire(germania);
 
-  Node* roma = new Node(roman_punic_war, rome, "Roma", 20000, true);
-  Node* athens = new Node(roman_punic_war, greece, "Athens", 20000, true);
-  Node* konigsberg = new Node(roman_punic_war, germania, "Königsberg", 20000, true);
+  greece->setRecruitmentPolicy(new LightWar());
+  germania->setRecruitmentPolicy(new LightWar());
+
+  Node* roma = new Node(roman_punic_war, rome, "Roma", 2000, true);
+  Node* athens = new Node(roman_punic_war, greece, "Athens", 2000, true);
+  Node* konigsberg = new Node(roman_punic_war, germania, "Konigsberg", 2000, true);
 
   Node* n1 = new Node(roman_punic_war, rome, "n1", 1000);
   Node* n2 = new Node(roman_punic_war, rome, "n2", 1000);
@@ -408,16 +412,16 @@ TEST (System, DemoBuild) {
   Node* n6 = new Node(roman_punic_war, rome, "n6", 1000);
   Node* n7 = new Node(roman_punic_war, rome, "n7", 1000);
 
-  Node* n8 = new Node(roman_punic_war, germania, "n8", 1000);
-  Node* n9 = new Node(roman_punic_war, germania, "n9", 1000);
-  Node* n15 = new Node(roman_punic_war, germania, "n15", 1000);
+  Node* n8 = new Node(roman_punic_war, germania, "n8", 100);
+  Node* n9 = new Node(roman_punic_war, germania, "n9", 100);
+  Node* n15 = new Node(roman_punic_war, germania, "n15", 100);
 
-  Node* n10 = new Node(roman_punic_war, greece, "n10", 1000);
-  Node* n11 = new Node(roman_punic_war, greece, "n11", 1000);
-  Node* n12 = new Node(roman_punic_war, greece, "n12", 1000);
-  Node* n13 = new Node(roman_punic_war, greece, "n13", 1000);
-  Node* n14 = new Node(roman_punic_war, greece, "n14", 1000);
-  Node* n16 = new Node(roman_punic_war, greece, "n16", 1000);
+  Node* n10 = new Node(roman_punic_war, greece, "n10", 100);
+  Node* n11 = new Node(roman_punic_war, greece, "n11", 100);
+  Node* n12 = new Node(roman_punic_war, greece, "n12", 100);
+  Node* n13 = new Node(roman_punic_war, greece, "n13", 100);
+  Node* n14 = new Node(roman_punic_war, greece, "n14", 100);
+  Node* n16 = new Node(roman_punic_war, greece, "n16", 100);
 
   roma->addPathTo(n1);
   konigsberg->addPathTo(n7);

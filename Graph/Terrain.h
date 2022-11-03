@@ -25,14 +25,12 @@ class Terrain
    * @param army_size
    * @return the number of resources needed
    */
-
   virtual int determineNeededResources(int army_size) = 0;
   /**
    * @brief determines the number of deaths once the resources has run out
    * @param army_size
    * @return the number of deaths
    */
-
   virtual int determineNumDeaths(int army_size)            = 0;
   virtual Terrain *clone(std::map<void *, void *> &objmap) = 0;
 };
