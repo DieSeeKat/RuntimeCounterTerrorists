@@ -160,3 +160,7 @@ void War::nextTurn()
   empires.at(index)->takeTurn();
   index = (index + 1) % empires.size();
 }
+Empire *War::currentTurn()
+{
+  return empires.at(index);
+}
