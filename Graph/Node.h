@@ -25,6 +25,7 @@ class Node : Aggregate, public Subject
   private:
   Node();
   protected:
+    /// A mediator object for the town
   Mediator *mediator = nullptr;
   /// The number of resources a Node holds
   int resources;
@@ -97,8 +98,15 @@ class Node : Aggregate, public Subject
    * @return Return population
    */
   int getPopulation();
-
+  /**
+   * @brief Remove an army observer from the Observer List from that specific node
+   * @param army is used to remove it from the Observer List
+   */
   void removeObserver(Observer* army);
+  /**
+   * @brief Add an army observer to the Observer List at that specific node
+   * @param army is used to add it to the Observer List
+   */
   void addObserver(Observer* army);
 
   Node *nextStepTo(Node *node);
@@ -141,7 +149,7 @@ class Node : Aggregate, public Subject
    */
   void getAttacked(Army *attacking_army);
   /**
-   * @brief Handles the Mediator method when the Node gets attacked
+   * @brief Response of the town when it is under attack
    */
   void onAttacked();
   /**

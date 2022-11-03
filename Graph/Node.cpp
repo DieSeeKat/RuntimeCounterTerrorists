@@ -14,6 +14,7 @@
 #include "Town.h"
 
 #include "../Units/Unit.h"
+#include "../Mediator/ConcreteMediator.h"
 
 Node::Node() {}
 
@@ -194,6 +195,8 @@ void Node::removeStationedArmy(Army *army)
 }
 void Node::getAttacked(Army *attacking_army)
 {
+    mediator = new ConcreteMediator();
+    mediator->notifyOfAttack(this);
   int friendly_units_in_footmen = 0;
   int enemy_units_in_footmen    = 0;
 

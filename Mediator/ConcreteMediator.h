@@ -5,9 +5,13 @@
 
 #include "../Graph/Node.h"
 
-class ConcreteMediator : Mediator {
+class ConcreteMediator : public Mediator {
 
 public:
+    /**
+ * @brief Method to notify the adjacent towns in the empire when it is under attack
+ * @param node A node pointer of the town that is under attack
+ */
   void notifyOfAttack(Node *node);
   /**
    * @brief Clone method for the ConcreteMediator

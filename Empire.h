@@ -94,7 +94,15 @@ class Empire
    * @param town The town that the Empire now owns
    */
   void addTown(Node *town);
+  /**
+   * @brief Request an alliance with the passed in empire
+   * @param empire Pointer to the empire that this empire want to form an alliance with
+   */
   void requestAlliance(Empire * empire);
+    /**
+   * @brief Consider to form an alliance with the passed in empire by checking if it will benefit from the alliance
+   * @param empire Pointer to the empire that this empire want to form an alliance with
+   */
   void considerAlliance(Empire *empire);
   /**
     * @brief Join the alliance of the passed in empire. If the empire is not in an alliance it will create an alliance between the two empires
