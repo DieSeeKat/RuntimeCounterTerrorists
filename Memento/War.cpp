@@ -5,7 +5,8 @@
  * @brief Destroy the War:: War object this will also delete all empires and nodes in this war.
  * 
  */
-War::~War(){
+War::~War()
+{
   for (auto empire : empires)
   {
     delete empire;
@@ -193,9 +194,11 @@ void War::updateNodes()
  */
 bool War::isFinished()
 {
-  Empire * firstEmpire = empires.at(0);
-  for (auto empire : empires) {
-    if (!firstEmpire->isAlly(empire)){
+  Empire *firstEmpire = empires.at(0);
+  for (auto empire : empires)
+  {
+    if (!firstEmpire->isAlly(empire))
+    {
       return false;
     }
   }
@@ -210,7 +213,7 @@ void War::nextTurn()
   index = (index + 1) % empires.size();
   empires.at(index)->takeTurn();
 }
-Empire *War::currentTurn()
+Empire *War::getNextTurn()
 {
-  return empires.at(index);
+  return empires.at((index + 1) % empires.size());
 }

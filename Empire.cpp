@@ -388,11 +388,6 @@ std::string Empire::getRecruitmentPolicy()
   return recruitment_policy->getRecuitmentPolicyName();
 }
 
-void Empire::setRecruitmentPolicy(RecruitmentPolicy *policy)
-{
-  recruitment_policy=policy;
-}
-
 std::string Empire::getWarStylePolicy()
 {
   return war_style_policy->getWarStyleName();

@@ -147,10 +147,6 @@ int main()
   cout << "---------------------------WAR HAS BEGUN-----------------------------" << endl;
   while (!war->isFinished())
   {
-
-    cout << "-----------------------------------------" << endl;
-    cout << war->currentTurn()->getName() << " is about to take its turn." << endl;
-    //Fancy things
     vector<Empire *> empire1 = war->getEmpires();
     int menu_choice          = 0;//Yes=0; No=1
 
@@ -363,9 +359,10 @@ int main()
       }
     }
 
-    cout << "---------------------------TURN HAS ENDED--------------------------" << endl;
-
-
+    cout << "-----------------------------------------" << endl;
+    cout << war->getNextTurn()->getName() << " is taking its turn." << endl;
+    cout << "-----------------------------------------" << endl;
     war->nextTurn();
+    cout << "---------------------------TURN HAS ENDED--------------------------" << endl;
   }
 }
