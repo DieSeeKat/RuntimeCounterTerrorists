@@ -141,9 +141,34 @@ War *romanPunicWars()
   return roman_punic_war;
 }
 
+void setFontColor(int r, int g, int b){
+  cout << "\033[38;2;" << r << ";" << g << ";" << b << "m";
+}
+
+void setYellow(){
+  setFontColor(220, 220, 0);
+}
+
+void setWhite() {
+  setFontColor(255, 255, 255);
+}
+
+void setGreen() {
+  setFontColor(0, 255, 0);
+}
+
+void setRed() {
+  setFontColor(255, 0, 1);
+}
+
+void setBlue() {
+  setFontColor(0, 0, 255);
+}
+
 int main()
 {
   War *war = romanPunicWars();
+  setYellow();
   cout << "---------------------------WAR HAS BEGUN-----------------------------" << endl;
   while (!war->isFinished())
   {
@@ -155,24 +180,34 @@ int main()
       cout << "----------------------------------" << endl;
       cout << "MENU" << endl;
       cout << "----------------------------------" << endl;
+      setBlue();
       cout << "Press 1 to SHOW EMPIRES" << endl;
       cout << "Press 2 to ROLLBACK" << endl;
+      setRed();
       cout << "Press 3 to END TURN" << endl;
+      setYellow();
       cout << "---------------ENTER BELOW------------------" << endl;
 
       int choice = 0;
+      setWhite();
       cin >> choice;
+      setYellow();
 
       while (choice != 1 && choice != 2 && choice != 3)
       {
         cout << "----------------------------------" << endl;
         cout << "MENU" << endl;
         cout << "----------------------------------" << endl;
+        setBlue();
         cout << "Press 1 to SHOW EMPIRES" << endl;
         cout << "Press 2 to ROLLBACK" << endl;
+        setRed();
         cout << "Press 3 to END TURN" << endl;
+        setYellow();
         cout << "---------------ENTER BELOW------------------" << endl;
+        setWhite();
         cin >> choice;
+        setYellow();
       }
 
       if (choice == 1)
@@ -180,26 +215,34 @@ int main()
         cout << "----------------------------------" << endl;
         cout << "CHOOSE EMPIRE" << endl;
         cout << "----------------------------------" << endl;
+        setBlue();
         for (int i = 0; i < empire1.size(); ++i)
         {
           cout << "Press " << i + 1 << " for " << empire1[i]->getName() << endl;
         }
+        setYellow();
         cout << "---------------ENTER BELOW-----------------------" << endl;
 
         int empire_choice = 0;
+        setWhite();
         cin >> empire_choice;
+        setYellow();
 
         while (empire_choice > empire1.size() || empire_choice <= 0)
         {
           cout << "----------------------------------" << endl;
           cout << "CHOOSE EMPIRE" << endl;
           cout << "----------------------------------" << endl;
+          setBlue();
           for (int i = 0; i < empire1.size(); ++i)
           {
             cout << "Press " << i + 1 << " for " << empire1[i]->getName() << endl;
           }
+          setYellow();
           cout << "---------------ENTER BELOW-----------------------" << endl;
+          setWhite();
           cin >> empire_choice;
+          setYellow();
         }
         for (int i = 0; i < empire1.size(); i++)
         {
@@ -210,11 +253,16 @@ int main()
             cout << "----------------------------------" << endl;
             cout << "CHOOSE POLICIES TO CHANGE" << endl;
             cout << "----------------------------------" << endl;
+            setBlue();
             cout << "Press 1: Current Recruitment Policy is " << empire1[i]->getRecruitmentPolicy() << endl;
             cout << "Press 2: Current War-style Policy is " << empire1[i]->getWarStylePolicy() << endl;
+            setRed();
             cout << "Press 3: DO NOT CHANGE POLICY (GO BACK)" << endl;
+            setYellow();
             cout << "---------------ENTER BELOW-----------------------" << endl;
+            setWhite();
             cin >> policy_choice;
+            setYellow();
 
             while (policy_choice != 1 && policy_choice != 2 && policy_choice != 3)
             {
@@ -222,11 +270,16 @@ int main()
               cout << "----------------------------------" << endl;
               cout << "CHOOSE POLICIES TO CHANGE" << endl;
               cout << "----------------------------------" << endl;
+              setBlue();
               cout << "Press 1: Current Recruitment Policy is " << empire1[i]->getRecruitmentPolicy() << endl;
               cout << "Press 2: Current War-style Policy is " << empire1[i]->getWarStylePolicy() << endl;
+              setRed();
               cout << "Press 3: DO NOT CHANGE POLICY (GO BACK)" << endl;
+              setYellow();
               cout << "---------------ENTER BELOW-----------------------" << endl;
+              setWhite();
               cin >> policy_choice;
+              setYellow();
             }
 
 
@@ -237,22 +290,30 @@ int main()
               cout << "----------------------------------" << endl;
               cout << "RECRUITMENT POLICIES TYPES" << endl;
               cout << "----------------------------------" << endl;
+              setBlue();
               cout << "Press 1 for Normal war" << endl;
               cout << "Press 2 for Light war" << endl;
               cout << "Press 3 for Heavy war" << endl;
+              setYellow();
               cout << "---------------ENTER BELOW-----------------------" << endl;
+              setWhite();
               cin >> policyTypeChange;
+              setYellow();
 
               while (policyTypeChange != 1 && policyTypeChange != 2 && policyTypeChange != 3)
               {
                 cout << "----------------------------------" << endl;
                 cout << "RECRUITMENT POLICIES TYPES" << endl;
                 cout << "----------------------------------" << endl;
+                setBlue();
                 cout << "Press 1 for Normal war" << endl;
                 cout << "Press 2 for Light war" << endl;
                 cout << "Press 3 for Heavy war" << endl;
+                setYellow();
                 cout << "---------------ENTER BELOW-----------------------" << endl;
+                setWhite();
                 cin >> policyTypeChange;
+                setYellow();
               }
 
               if (policyTypeChange == 1)
@@ -277,24 +338,32 @@ int main()
               cout << "----------------------------------" << endl;
               cout << "WAR-STYLE POLICIES TYPE" << endl;
               cout << "----------------------------------" << endl;
+              setBlue();
               cout << "Press 1 for Archer warfare" << endl;
               cout << "Press 2 for Guerilla warfare" << endl;
               cout << "Press 3 for Horsemen warfare" << endl;
               cout << "Press 4 for Legionary warfare" << endl;
+              setYellow();
               cout << "---------------ENTER BELOW-----------------------" << endl;
+              setWhite();
               cin >> policyTypeChange;
+              setYellow();
 
               while (policyTypeChange != 1 && policyTypeChange != 2 && policyTypeChange != 3 && policyTypeChange != 4)
               {
                 cout << "----------------------------------" << endl;
                 cout << "WAR-STYLE POLICIES TYPE" << endl;
                 cout << "----------------------------------" << endl;
+                setBlue();
                 cout << "Press 1 for Archer warfare" << endl;
                 cout << "Press 2 for Guerilla warfare" << endl;
                 cout << "Press 3 for Horsemen warfare" << endl;
                 cout << "Press 4 for Legionary warfare" << endl;
+                setYellow();
                 cout << "---------------ENTER BELOW-----------------------" << endl;
+                setWhite();
                 cin >> policyTypeChange;
+                setYellow();
               }
 
               if (policyTypeChange == 1)
@@ -362,7 +431,17 @@ int main()
     cout << "-----------------------------------------" << endl;
     cout << war->getNextTurn()->getName() << " is taking its turn." << endl;
     cout << "-----------------------------------------" << endl;
+    setWhite();
     war->nextTurn();
+    setYellow();
     cout << "---------------------------TURN HAS ENDED--------------------------" << endl;
   }
+
+  setGreen();
+  cout << "---------------------------THE WAR HAS BEEN WON BY--------------------------" << endl;
+  for (auto empire : war->getEmpires()){
+    cout << empire->getName() << endl;
+  }
+  cout << "-----------------------------------------" << endl;
+  setWhite();
 }
