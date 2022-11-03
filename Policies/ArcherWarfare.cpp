@@ -29,3 +29,8 @@ WarStylePolicy* ArcherWarfare::clone(std::map<void*,void*> &objmap){
     return temp;
   }
 }
+
+
+std::string ArcherWarfare::getWarStyleName(){
+  return "Archer warfare";
+}

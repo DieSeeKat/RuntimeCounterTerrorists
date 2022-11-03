@@ -25,3 +25,7 @@ RecruitmentPolicy* HeavyWar::clone(std::map<void*, void*> &objmap){
     return temp;
   }
 }
+
+std::string HeavyWar::getRecuitmentPolicyName(){
+  return "Heavy war";
+}

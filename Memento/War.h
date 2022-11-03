@@ -45,6 +45,7 @@ public:
   void updateNodes();
 
   void nextTurn();
+  Empire* currentTurn();
 };
 
 #endif

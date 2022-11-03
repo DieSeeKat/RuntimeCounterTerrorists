@@ -32,6 +32,7 @@ class Node : Aggregate, public Subject
   private:
   Node();
   protected:
+    /// A mediator object for the town
   Mediator *mediator = nullptr;
   /// The number of resources a Node holds
 
@@ -149,7 +150,7 @@ class Node : Aggregate, public Subject
    */
   void getAttacked(Army *attacking_army);
   /**
-   * @brief Handles the Mediator method when the Node gets attacked
+   * @brief Response of the town when it is under attack
    */
   void onAttacked();
   /**

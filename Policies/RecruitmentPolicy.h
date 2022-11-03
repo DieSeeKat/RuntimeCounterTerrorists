@@ -2,6 +2,7 @@
 #define RECRUITMENTPOLICY_H
 
 #include <map>
+#include<string>
 
 class RecruitmentPolicy
 {
@@ -23,6 +24,8 @@ class RecruitmentPolicy
    * @return A pointer to a new cloned RecruitmentPolicy
    */
   virtual RecruitmentPolicy* clone(std::map<void*, void*> &objmap) = 0;
+
+  virtual std::string getRecuitmentPolicyName() = 0;
 
 };
 //had problems with the Git in regard to the Light, Heavy and Normal war - Dharshan Gopaul

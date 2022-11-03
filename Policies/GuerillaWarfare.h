@@ -7,6 +7,8 @@
 
 #include "WarStylePolicy.h"
 
+#include<string>
+
 class GuerillaWarfare : public WarStylePolicy
 {
   public:
@@ -25,6 +27,8 @@ class GuerillaWarfare : public WarStylePolicy
    * @return A pointer to a new cloned GuerillaWarfare Policy
    */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
+
+  std::string getWarStyleName() override;
 
 };
 

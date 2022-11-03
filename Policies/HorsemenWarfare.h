@@ -4,6 +4,7 @@
 #include "../Graph/Node.h"
 #include "WarStylePolicy.h"
 #include <map>
+#include<string>
 
 class HorsemenWarfare : public WarStylePolicy
 {
@@ -23,6 +24,8 @@ class HorsemenWarfare : public WarStylePolicy
    * @return A pointer to a new cloned HorsemenWarfare Policy
    */
   WarStylePolicy* clone(std::map<void*,void*> &objmap);
+
+  std::string getWarStyleName() override;
 };
 
 

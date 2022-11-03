@@ -24,6 +24,8 @@ class NormalWar : public RecruitmentPolicy
    * @return A pointer to a new cloned NormalWar Policy
    */
   RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
+
+  std::string getRecuitmentPolicyName() override;
 };
 
 

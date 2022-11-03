@@ -4,6 +4,8 @@
 #include "../Graph/Node.h"
 #include "RecruitmentPolicy.h"
 
+#include<string>
+
 class HeavyWar : public RecruitmentPolicy
 {
   public:
@@ -23,6 +25,9 @@ class HeavyWar : public RecruitmentPolicy
    * @return A pointer to a new cloned HeavyWar Policy
    */
   RecruitmentPolicy* clone(std::map<void*, void*> &objmap);
+
+
+  std::string getRecuitmentPolicyName() override;
 
 };
 
