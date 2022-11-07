@@ -46,13 +46,13 @@ War *romanPunicWars()
   Node* athens = new Node(roman_punic_war, greece, "Athens", 2000, true);
   Node* konigsberg = new Node(roman_punic_war, germania, "Konigsberg", 2000, true);
 
-  Node* n1 = new Node(roman_punic_war, rome, "n1", 1000);
-  Node* n2 = new Node(roman_punic_war, rome, "n2", 1000);
-  Node* n3 = new Node(roman_punic_war, rome, "n3", 1000);
-  Node* n4 = new Node(roman_punic_war, rome, "n4", 1000);
-  Node* n5 = new Node(roman_punic_war, rome, "n5", 1000);
-  Node* n6 = new Node(roman_punic_war, rome, "n6", 1000);
-  Node* n7 = new Node(roman_punic_war, rome, "n7", 1000);
+  Node* n1 = new Node(roman_punic_war, rome, "n1", 5000);
+  Node* n2 = new Node(roman_punic_war, rome, "n2", 5000);
+  Node* n3 = new Node(roman_punic_war, rome, "n3", 5000);
+  Node* n4 = new Node(roman_punic_war, rome, "n4", 5000);
+  Node* n5 = new Node(roman_punic_war, rome, "n5", 5000);
+  Node* n6 = new Node(roman_punic_war, rome, "n6", 5000);
+  Node* n7 = new Node(roman_punic_war, rome, "n7", 5000);
 
   Node* n8 = new Node(roman_punic_war, germania, "n8", 100);
   Node* n9 = new Node(roman_punic_war, germania, "n9", 100);
@@ -169,6 +169,14 @@ int main()
 {
   War *war = romanPunicWars();
   setYellow();
+  cout << "______                             ______            _        _    _                " << endl <<
+          "| ___ \\                            | ___ \\          (_)      | |  | |               " << endl <<
+          "| |_/ /___  _ __ ___   __ _ _ __   | |_/ /   _ _ __  _  ___  | |  | | __ _ _ __ ___ " << endl <<
+          "|    // _ \\| '_ ` _ \\ / _` | '_ \\  |  __/ | | | '_ \\| |/ __| | |/\\| |/ _` | '__/ __|" << endl <<
+          "| |\\ \\ (_) | | | | | | (_| | | | | | |  | |_| | | | | | (__  \\  /\\  / (_| | |  \\__ \\" << endl <<
+          "\\_| \\_\\___/|_| |_| |_|\\__,_|_| |_| \\_|   \\__,_|_| |_|_|\\___|  \\/  \\/ \\__,_|_|  |___/" << endl;
+
+
   cout << "---------------------------WAR HAS BEGUN-----------------------------" << endl;
   while (!war->isFinished())
   {
