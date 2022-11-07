@@ -1,12 +1,18 @@
-on: push
+name: Doxygen GitHub Pages Deploy Action
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
-  docs:
-    name: Doxygenize
-    uses: langroodi/doxygenize@v1.7.0
-    with:
-      doxygenconf: Doxyfile
-      htmloutput: ./doc/html/
-      ghpagesbranch: doxygen
-      ghpagesdir: ./docs/
-      darkmode: true
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DenverCoder1/doxygen-github-pages-action@v1.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: doxygen
+          folder: docs/html
+          config_file: Doxyfile
