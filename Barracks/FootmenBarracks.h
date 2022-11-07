@@ -8,6 +8,11 @@ class FootmenBarracks:public Barracks
 {
 public:
     FootmenBarracks();
+    /**
+     * @brief Factory method to create troops
+     * 
+     * @return Unit* 
+     */
     Unit* factoryMethod();
     
 };
