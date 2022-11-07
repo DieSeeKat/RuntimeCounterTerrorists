@@ -1,9 +1,9 @@
 #ifndef EMPIRE_H
 #define EMPIRE_H
 
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 
 #include "Army.h"
 
@@ -41,7 +41,7 @@ class Empire
   /// The number of controlled nodes in the the previous round
   int prev_num_nodes = 0;
 
-  public:  
+  public:
   Empire(std::string name, War *war);
   Empire(std::string name);
   ~Empire();
@@ -96,8 +96,8 @@ class Empire
    * @brief Request an alliance with the passed in empire
    * @param empire Pointer to the empire that this empire want to form an alliance with
    */
-  void requestAlliance(Empire * empire);
-    /**
+  void requestAlliance(Empire *empire);
+  /**
    * @brief Consider to form an alliance with the passed in empire by checking if it will benefit from the alliance
    * @param empire Pointer to the empire that this empire want to form an alliance with
    */
@@ -128,7 +128,7 @@ class Empire
    * @brief Set the capital Node of an Empire
    * @param capital The capital Node
    */
-  void setCapital(Node* capital);
+  void setCapital(Node *capital);
   /**
    * @brief A getter for the prev_num_nodes attribute
    * @return Return an int
@@ -171,27 +171,34 @@ class Empire
    * @brief Return the vector of owned armies
    * @return Vector of Army pointers
    */
-  std::vector<Army*> getArmies();
+  std::vector<Army *> getArmies();
   /**
    * @brief Clone method for the Empire
    * @param objmap A void to void pointer map
    * @return A pointer to a new cloned Empire
    */
-  Empire* clone(std::map<void*, void*> &objmap);
+  Empire *clone(std::map<void *, void *> &objmap);
   /**
    * @brief Remove an Empire from this Empire's alliance
    * @param empire The Empire to be removed from the alliance.
    */
-  void removeAlliance(Empire* empire);
+  void removeAlliance(Empire *empire);
 
+  /**
+   * @brief A get for the recruitment_policy of the Empire
+   * @return A string corresponding to the name of the recruitment_policy class
+   */
   std::string getRecruitmentPolicy();
 
-  void setRecruitmentPolicy(RecruitmentPolicy* policy);
+  void setRecruitmentPolicy(RecruitmentPolicy *policy);
 
+  /**
+   * @brief A get for the recruitment_policy of the Empire
+   * @return A string corresponding to the name of the recruitment_policy class
+   */
   std::string getWarStylePolicy();
 
-  void setWarStylePolicy(WarStylePolicy* policy);
-
+  void setWarStylePolicy(WarStylePolicy *policy);
 };
 
 #endif
