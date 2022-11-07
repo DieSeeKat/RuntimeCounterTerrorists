@@ -41,8 +41,15 @@ class Empire
   /// The number of controlled nodes in the the previous round
   int prev_num_nodes = 0;
 
-  public:  
+  public:
+    /**
+     * @param name The Name of the empire
+     * @param war The war the empire is apart of
+     */
   Empire(std::string name, War *war);
+  /**
+   * @param name The Name of the empire
+   */
   Empire(std::string name);
   ~Empire();
   /**
