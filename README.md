@@ -15,6 +15,8 @@ Welcome to the RuntimeCounterTerrorist COS214 Project
 
 ![UML](https://user-images.githubusercontent.com/88578565/200355479-e56f8c21-8679-4320-a036-1853f0fbe2b2.jpg)
 
+## The makefile is available [here](https://drive.google.com/file/d/13ipaSk31NMd2V_mTd47VwDohCPgRUSqA/view?usp=share_link) Please use bazel if possible.
+
 # First (and recommended) installation method (Debian-based systems)
 Run the following script in order to do the setup for you. This will create all the files needed and install bazel for you. 
 
