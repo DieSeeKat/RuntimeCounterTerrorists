@@ -18,9 +18,13 @@ class NodeType
   NodeType();
 
   public:
+  /**
+   * @param node The Node to which it is attached
+   */
   NodeType(Node *node);
-  virtual void colonise(Empire* empire) = 0;
-  virtual NodeType* clone(std::map<void*,void*> &objmap) = 0;;
+  virtual void colonise(Empire *empire)                     = 0;
+  virtual NodeType *clone(std::map<void *, void *> &objmap) = 0;
+  ;
 };
 
 

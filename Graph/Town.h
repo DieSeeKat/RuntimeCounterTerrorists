@@ -11,20 +11,24 @@ class Town : public NodeType
 {
   private:
   Town();
+
   public:
-  Town(Node* node);
+  /**
+   * @param node The Node to which it is attached
+   */
+  Town(Node *node);
   ~Town();
   /**
    * @brief Colonise the current Node to be part of the colonising_empire
    * @param colonising_empire The Empire colonising this
    */
-  void colonise(Empire* empire) override;
+  void colonise(Empire *empire) override;
   /**
    * @brief Clone method for the Town
    * @param objmap A void to void pointer map
    * @return A pointer to a new cloned Town
    */
-  NodeType* clone(std::map<void*,void*> &objmap);
+  NodeType *clone(std::map<void *, void *> &objmap);
 };
 
 #endif
