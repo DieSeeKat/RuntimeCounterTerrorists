@@ -2,34 +2,16 @@
 
 Welcome to the RuntimeCounterTerrorist COS214 Project
 
-## Style Guide
+## Documentation
+[Doxygen](https://dieseekat.github.io/RuntimeCounterTerrorists/index.html) 
 
-### Naming
-- Variables & Parameters - Snake Case (snake_case)
-- Functions - Lower Camel Case (lowerCamelCase)
-- Classes - Upper Camel Case (UpperCamelCase)
-- Constant Variables - Upper Case (UPPER_CASE)
+[Google Docs](https://docs.google.com/document/d/1wPQdChdRe8x6-FHxGxEzU2a7WrWWuFxytirYL5Gymdk/edit#heading=h.m2bytxe04zha)
 
-Be descriptive when naming (E.g. instead of int x for a counter, rather have int student_counter)
 
-### Classes
-- Each class MUST have a .cpp and .h file (Pure virtual classes excluded)
-- Each class must be encapsulated by an IFNDEF, DEF, ENDIF clause.
-- Do not rely on transitive includes. Always include all external classes needed in the class where the externals are used.
-- When possible, always destruct right after an object's last usage.
+## UML
 
-### Formatting
-Braces, both open and close, go on their own lines (no "cuddled braces"). E.g.:
-```
-if (true)
-{
-  //Whatever
-}
-else 
-{
-  //Whatever
-}
-```
+![UML](https://user-images.githubusercontent.com/88578565/200355479-e56f8c21-8679-4320-a036-1853f0fbe2b2.jpg)
+
 # First (and recommended) installation method (Debian-based systems)
 Run the following script in order to do the setup for you. This will create all the files needed and install bazel for you. 
 
@@ -122,6 +104,3 @@ TEST(TestName, TestDescription) {
   EXPECT_EQ(7 * 6, 42);
 }
 ```
-
-For further documentation, refer to:
-> http://google.github.io/googletest/primer.html
