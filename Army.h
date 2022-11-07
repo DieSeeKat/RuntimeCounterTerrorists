@@ -29,6 +29,11 @@ class Army : public Observer
   std::vector<Unit> units;
   //--------------------------------------------------
   public:
+    /**
+     * @param war The war the army is apart of
+     * @param current_position The node where the army is stationed
+     * @param owner_empire The empire the army belong to
+     */
   Army(War* war, Node* current_position, Empire* owner_empire);
   ~Army();
 
