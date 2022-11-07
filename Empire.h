@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <map>
 
 #include "Army.h"
 
@@ -42,7 +43,15 @@ class Empire
   int prev_num_nodes = 0;
 
   public:
+    /**
+     * @param name The Name of the empire
+     * @param war The war the empire is apart of
+     */
+  public:
   Empire(std::string name, War *war);
+  /**
+   * @param name The Name of the empire
+   */
   Empire(std::string name);
   ~Empire();
   /**
