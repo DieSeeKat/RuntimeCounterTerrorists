@@ -41,6 +41,7 @@ class Node : Aggregate, public Subject
   std::vector<Army *> stationed_armies;
   /// A pointer to the NodeType of the Node
   NodeType *node_type = nullptr;
+  ///The name of the town
   std::string name = "";
 
   public:
@@ -48,7 +49,18 @@ class Node : Aggregate, public Subject
   int dist = 0;
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm
   Node *prev = nullptr;
+  /**
+   * @param owner_empire The empire that the node belongs to
+   * @param name The name of the town
+   * @param population The population of the town
+   */
   Node(Empire *owner_empire, std::string name, int population);
+  /**
+   * @param owner_empire The empire that the node belongs to
+   * @param name The name of the town
+   * @param population The population of the town
+   * @param capital A boolean value to indicate if this node is the capital
+   */
   Node(Empire *owner_empire, std::string name, int population, bool capital);
   ~Node();
   /**
@@ -203,7 +215,14 @@ class Node : Aggregate, public Subject
    * @param resources The new amount of resources
    */
   void setResources(int resources);
+  /**
+   * @brief Return the name of the town
+   */
   std::string getName();
+  /**
+   * @brief Set the name of the town
+   * @param name The new name of the town
+   */
   void setName(std::string name);
 };
 

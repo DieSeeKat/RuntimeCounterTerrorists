@@ -12,6 +12,9 @@ private:
   Capital();
 
 public:
+    /**
+     * @param node The node that will be declared as the empire's capital
+     */
   Capital(Node *node);
   ~Capital();
   /**
