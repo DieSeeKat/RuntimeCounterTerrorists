@@ -96,19 +96,30 @@ Formatting</h2>
 <div class="line">  //Whatever</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
-Installing g++ (MSYS2 MinGW)</h1>
+First (and recommended) installation method (Debian-based systems)</h1>
+<p>Run the following script in order to do the setup for you. This will create all the files needed and install bazel for you.</p>
+<p><b>Note:</b> This script does a <code>sudo apt ** -y</code> to update all existing and install needed packages. If you don't want this to happen, don't run the script. Read through it first and modify as you see fit.</p>
+<p>1) <a href="https://drive.google.com/file/d/1v0OU8vYQ9wNdssaHUvtPRzT3D3kuLXCe/view?usp=share_link">Download the script from here</a> 2) run <code>chmod +x setup.sh</code> 3) run <code>./setup.sh</code> 4) <code>cd RuntimeCounterTerrorists</code> 5) The project has been set up for you. You can now run the following commands</p><ul>
+<li>To run the main program: <code>bazel run main //:main</code></li>
+<li>To run the tests: <code>bazel test //...</code></li>
+<li>To run a specific test: <code>bazel test //:system-test</code> where system-test can be replaced with any other tests you want to run.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Windows. This has been tested, but is much more unpredictable and difficult to troubleshoot. Use Debian</h1>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Installing g++ (MSYS2 MinGW)</h2>
 <p>1) Navigate to <a href="https://www.msys2.org/">https://www.msys2.org/</a> and download the installer 2) Open MinGW64 terminal and run the following commands. (Type yes/y for all prompts)</p><ul>
 <li><code>pacman -Syu</code></li>
 <li><code>pacman -Su</code> </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md6"></a>
-64-Bit</h2>
+<h3><a class="anchor" id="autotoc_md8"></a>
+64-Bit</h3>
 <ul>
 <li><code>pacman -S mingw-w64-x86_64-gcc</code></li>
 <li><code>pacman -S mingw-w64-x86_64-gdb</code></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
-32-Bit (Only if you have a 32-Bit machine)</h2>
+<h3><a class="anchor" id="autotoc_md9"></a>
+32-Bit (Only if you have a 32-Bit machine)</h3>
 <ul>
 <li><code>pacman -S mingw-w64-i686-gcc</code></li>
 <li><code>pacman -S mingw-w64-i686-gdb</code></li>
@@ -116,16 +127,16 @@ Installing g++ (MSYS2 MinGW)</h1>
 <p>3) Add MinGW64 bin folder to path. If the default installation values were used, it should be located at &gt; <code>C:\msys64\mingw64\bin</code> </p><pre class="fragment">Change as needed with different install locations or if 32-bit installation 
 was used.
 </pre><hr  />
- <h1><a class="anchor" id="autotoc_md8"></a>
-Installing Bazel:</h1>
+ <h2><a class="anchor" id="autotoc_md10"></a>
+Installing Bazel:</h2>
 <p>1) Using choco (Can be installed using the NodeJS installer, remember to select optional tools)</p><ul>
 <li>Open cmd as administrator</li>
 <li>Run <code>choco install bazel</code></li>
 <li>When prompted, enter <code>a</code> for 'yes to all' 2) Using npm (untested)</li>
 <li>Run npm install -g bazel</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md9"></a>
-Visual C++ Build Tools 2019</h1>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Visual C++ Build Tools 2019</h2>
 <ul>
 <li>Install Visual C++ Built Tools 2019 using <a href="https://aka.ms/vs/16/release/vs_buildtools.exe">this</a></li>
 <li><p class="startli">Select <code>Desktop Development With C++</code></p>
@@ -136,13 +147,13 @@ The value of this variable should be set to the location of the VC folder where 
 C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC
 </pre></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md10"></a>
-Important</h1>
+<h2><a class="anchor" id="autotoc_md12"></a>
+Important</h2>
 <p>Bazel doesn't support spaces in the file path to your project at the time of writing this. </p>
-<h1><a class="anchor" id="autotoc_md11"></a>
-Place your project in a directory without any spaces.</h1>
-<h1><a class="anchor" id="autotoc_md12"></a>
-Setting up build environment:</h1>
+<h2><a class="anchor" id="autotoc_md13"></a>
+Place your project in a directory without any spaces.</h2>
+<h2><a class="anchor" id="autotoc_md14"></a>
+Setting up build environment:</h2>
 <p>Download bazel files needed from <a href="https://drive.google.com/file/d/1JE14Qsq-5ExL5Cbw_WdedO1KjBWxJeNS/view?usp=sharing">here</a></p>
 <p>Ensure that your project has the following folder-structure: </p><pre class="fragment">- src
     - Alliance
@@ -154,23 +165,23 @@ Setting up build environment:</h1>
 - BUILD
 - WORKSPACE
 </pre><hr  />
- <h2><a class="anchor" id="autotoc_md13"></a>
-Using bazel</h2>
+ <h3><a class="anchor" id="autotoc_md15"></a>
+Using bazel</h3>
 <ul>
 <li>Ensure that your copy of the project is up to date with the master-branch</li>
 </ul>
 <p><em>Navigate to the directory that contains the WORKSPACE and BUILD files or the src folder</em> </p>
-<h3><a class="anchor" id="autotoc_md14"></a>
-Building:</h3>
+<h4><a class="anchor" id="autotoc_md16"></a>
+Building:</h4>
 <ul>
 <li><code>bazel build //:main</code> </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md15"></a>
-Testing:</h2>
-<h1><a class="anchor" id="autotoc_md16"></a>
-- &lt;tt&gt;bazel test //...&lt;/tt&gt; (runs all tests in project)</h1>
-<h1><a class="anchor" id="autotoc_md17"></a>
-Writing you own tests</h1>
+<h3><a class="anchor" id="autotoc_md17"></a>
+Testing:</h3>
+<h2><a class="anchor" id="autotoc_md18"></a>
+- &lt;tt&gt;bazel test //...&lt;/tt&gt; (runs all tests in project)</h2>
+<h2><a class="anchor" id="autotoc_md19"></a>
+Writing you own tests</h2>
 <div class="fragment"><div class="line">#include &quot;gtest/gtest.h&quot;</div>
 <div class="line"> </div>
 <div class="line">TEST(TestName, TestDescription) {</div>
