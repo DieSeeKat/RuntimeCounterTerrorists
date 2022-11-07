@@ -7,7 +7,8 @@ Welcome to the RuntimeCounterTerrorist COS214 Project
 
 [Google Docs](https://docs.google.com/document/d/1wPQdChdRe8x6-FHxGxEzU2a7WrWWuFxytirYL5Gymdk/edit#heading=h.m2bytxe04zha)
 
-
+## Video
+[Open on Google Drive](https://drive.google.com/file/d/1_sU0letCtILbBXaK2ELVYmQi0-52LZpk/view?usp=share_link)
 ## UML
 
 ![UML](https://user-images.githubusercontent.com/88578565/200355479-e56f8c21-8679-4320-a036-1853f0fbe2b2.jpg)
