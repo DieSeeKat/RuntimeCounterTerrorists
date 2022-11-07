@@ -32,6 +32,12 @@ class Terrain
    * @return the number of deaths
    */
   virtual int determineNumDeaths(int army_size)            = 0;
+  /**
+   * @brief Pure virtual clone method
+   * 
+   * @param objmap map<void*,void*>
+   * @return Terrain* of the cloned object.
+   */
   virtual Terrain *clone(std::map<void *, void *> &objmap) = 0;
 };
 
