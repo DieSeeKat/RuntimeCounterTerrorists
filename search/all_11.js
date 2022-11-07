@@ -9,7 +9,7 @@ var searchData=
   ['setresource_132',['setResource',['../classArmy.html#a2670e03122eab6bed058398d7685c7fe',1,'Army']]],
   ['setresources_133',['setResources',['../classNode.html#aabc6aaca2f71d94c675ee53ed6d5eee6',1,'Node']]],
   ['setstate_134',['setState',['../classEmpire.html#a9220e11d0a878c3893c292156d8589df',1,'Empire']]],
-  ['setwar_135',['setWar',['../classEmpire.html#aa51bac3f3e97cfabaf16619a6d259fd2',1,'Empire']]],
+  ['setwar_135',['setWar',['../classEmpire.html#aa51bac3f3e97cfabaf16619a6d259fd2',1,'Empire::setWar()'],['../classNode.html#a4860a1f47b7307b9996f0882ea637dab',1,'Node::setWar()']]],
   ['setwarrollback_136',['setWarRollback',['../classWar.html#a7aa31144c655bb2edc6ea6817aae53af',1,'War']]],
   ['slinger_137',['Slinger',['../classSlinger.html',1,'']]],
   ['slinger_5fratio_138',['slinger_ratio',['../classArmyRatio.html#a181d56d42974ef59b7245678d19300c6',1,'ArmyRatio']]],
