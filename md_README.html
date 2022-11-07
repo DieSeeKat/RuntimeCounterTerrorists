@@ -67,35 +67,13 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p>Welcome to the RuntimeCounterTerrorist COS214 Project</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Style Guide</h1>
-<h2><a class="anchor" id="autotoc_md2"></a>
-Naming</h2>
-<ul>
-<li>Variables &amp; Parameters - Snake Case (snake_case)</li>
-<li>Functions - Lower Camel Case (lowerCamelCase)</li>
-<li>Classes - Upper Camel Case (UpperCamelCase)</li>
-<li>Constant Variables - Upper Case (UPPER_CASE)</li>
-</ul>
-<p>Be descriptive when naming (E.g. instead of int x for a counter, rather have int student_counter)</p>
-<h2><a class="anchor" id="autotoc_md3"></a>
-Classes</h2>
-<ul>
-<li>Each class MUST have a .cpp and .h file (Pure virtual classes excluded)</li>
-<li>Each class must be encapsulated by an IFNDEF, DEF, ENDIF clause.</li>
-<li>Do not rely on transitive includes. Always include all external classes needed in the class where the externals are used.</li>
-<li>When possible, always destruct right after an object's last usage.</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md4"></a>
-Formatting</h2>
-<p>Braces, both open and close, go on their own lines (no "cuddled braces"). E.g.: </p><div class="fragment"><div class="line">if (true)</div>
-<div class="line">{</div>
-<div class="line">  //Whatever</div>
-<div class="line">}</div>
-<div class="line">else </div>
-<div class="line">{</div>
-<div class="line">  //Whatever</div>
-<div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+Documentation</h1>
+<p><a href="https://dieseekat.github.io/RuntimeCounterTerrorists/index.html">Doxygen</a></p>
+<p><a href="https://docs.google.com/document/d/1wPQdChdRe8x6-FHxGxEzU2a7WrWWuFxytirYL5Gymdk/edit#heading=h.m2bytxe04zha">Google Docs</a></p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+UML</h1>
+<p><img src="https://user-images.githubusercontent.com/88578565/200355479-e56f8c21-8679-4320-a036-1853f0fbe2b2.jpg" alt="UML" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md3"></a>
 First (and recommended) installation method (Debian-based systems)</h1>
 <p>Run the following script in order to do the setup for you. This will create all the files needed and install bazel for you.</p>
 <p><b>Note:</b> This script does a <code>sudo apt ** -y</code> to update all existing and install needed packages. If you don't want this to happen, don't run the script. Read through it first and modify as you see fit.</p>
@@ -104,21 +82,21 @@ First (and recommended) installation method (Debian-based systems)</h1>
 <li>To run the tests: <code>bazel test //...</code></li>
 <li>To run a specific test: <code>bazel test //:system-test</code> where system-test can be replaced with any other tests you want to run.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Windows. This has been tested, but is much more unpredictable and difficult to troubleshoot. Use Debian</h1>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 Installing g++ (MSYS2 MinGW)</h2>
 <p>1) Navigate to <a href="https://www.msys2.org/">https://www.msys2.org/</a> and download the installer 2) Open MinGW64 terminal and run the following commands. (Type yes/y for all prompts)</p><ul>
 <li><code>pacman -Syu</code></li>
 <li><code>pacman -Su</code> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md8"></a>
+<h3><a class="anchor" id="autotoc_md6"></a>
 64-Bit</h3>
 <ul>
 <li><code>pacman -S mingw-w64-x86_64-gcc</code></li>
 <li><code>pacman -S mingw-w64-x86_64-gdb</code></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md9"></a>
+<h3><a class="anchor" id="autotoc_md7"></a>
 32-Bit (Only if you have a 32-Bit machine)</h3>
 <ul>
 <li><code>pacman -S mingw-w64-i686-gcc</code></li>
@@ -127,7 +105,7 @@ Installing g++ (MSYS2 MinGW)</h2>
 <p>3) Add MinGW64 bin folder to path. If the default installation values were used, it should be located at &gt; <code>C:\msys64\mingw64\bin</code> </p><pre class="fragment">Change as needed with different install locations or if 32-bit installation 
 was used.
 </pre><hr  />
- <h2><a class="anchor" id="autotoc_md10"></a>
+ <h2><a class="anchor" id="autotoc_md8"></a>
 Installing Bazel:</h2>
 <p>1) Using choco (Can be installed using the NodeJS installer, remember to select optional tools)</p><ul>
 <li>Open cmd as administrator</li>
@@ -135,7 +113,7 @@ Installing Bazel:</h2>
 <li>When prompted, enter <code>a</code> for 'yes to all' 2) Using npm (untested)</li>
 <li>Run npm install -g bazel</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Visual C++ Build Tools 2019</h2>
 <ul>
 <li>Install Visual C++ Built Tools 2019 using <a href="https://aka.ms/vs/16/release/vs_buildtools.exe">this</a></li>
@@ -147,12 +125,12 @@ The value of this variable should be set to the location of the VC folder where 
 C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC
 </pre></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Important</h2>
 <p>Bazel doesn't support spaces in the file path to your project at the time of writing this. </p>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Place your project in a directory without any spaces.</h2>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 Setting up build environment:</h2>
 <p>Download bazel files needed from <a href="https://drive.google.com/file/d/1JE14Qsq-5ExL5Cbw_WdedO1KjBWxJeNS/view?usp=sharing">here</a></p>
 <p>Ensure that your project has the following folder-structure: </p><pre class="fragment">- src
@@ -165,22 +143,22 @@ Setting up build environment:</h2>
 - BUILD
 - WORKSPACE
 </pre><hr  />
- <h3><a class="anchor" id="autotoc_md15"></a>
+ <h3><a class="anchor" id="autotoc_md13"></a>
 Using bazel</h3>
 <ul>
 <li>Ensure that your copy of the project is up to date with the master-branch</li>
 </ul>
 <p><em>Navigate to the directory that contains the WORKSPACE and BUILD files or the src folder</em> </p>
-<h4><a class="anchor" id="autotoc_md16"></a>
+<h4><a class="anchor" id="autotoc_md14"></a>
 Building:</h4>
 <ul>
 <li><code>bazel build //:main</code> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md17"></a>
+<h3><a class="anchor" id="autotoc_md15"></a>
 Testing:</h3>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 - &lt;tt&gt;bazel test //...&lt;/tt&gt; (runs all tests in project)</h2>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md17"></a>
 Writing you own tests</h2>
 <div class="fragment"><div class="line">#include &quot;gtest/gtest.h&quot;</div>
 <div class="line"> </div>
@@ -188,10 +166,7 @@ Writing you own tests</h2>
 <div class="line">  EXPECT_STRNE(&quot;hello&quot;, &quot;world&quot;);</div>
 <div class="line">  EXPECT_EQ(7 * 6, 42);</div>
 <div class="line">}</div>
-</div><!-- fragment --><p>For further documentation, refer to: </p><blockquote class="doxtable">
-<p><a href="http://google.github.io/googletest/primer.html">http://google.github.io/googletest/primer.html</a> </p>
-</blockquote>
-</div></div><!-- contents -->
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
