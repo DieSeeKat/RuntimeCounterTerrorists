@@ -16,8 +16,6 @@ class Path
   Node *nodeA = nullptr;
   /// Pointer to one of the endpoints of the Path
   Node *nodeB = nullptr;
-  /// The distance between the endpoints of the Path
-  int distance;
   /// A pointer to the terrain type of a path
   Terrain *terrain_type = nullptr;
 
@@ -27,13 +25,10 @@ class Path
    * @param first_node The first end of the path
    * @param last_node The second end of the path
    */
-
-
   Path(Node *first_node, Node *last_node, std::string terrain_type);
   Path(Node *first_node, Node *last_node);
   /// Destructor for Path
   ~Path();
-
   /**
    * @brief Determines and returns the end of the path which is not the passed
    * in Node
@@ -51,7 +46,6 @@ class Path
    * @brief Calculates the loss in the army whilst on the path
    * @param army
    */
-
   void calculate_losses(Army *army);
 };
 

@@ -12,6 +12,8 @@ void Town::colonise(Empire* empire)
   std::cout << node->getOwnerEmpire()->getName() << "'s city, " << node->getName()
             << ", has been captured by " << empire->getName() << "." << std::endl;
 #endif
+
+  node->getOwnerEmpire()->removeNode(node);
 }
 Town::Town(Node* node) : NodeType(node)
 {

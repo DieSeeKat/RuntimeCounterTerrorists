@@ -8,6 +8,7 @@
 Capital::Capital() { this->node = nullptr; }
 
 void Capital::colonise(Empire *empire) {
+
 #ifndef disable_output
   std::cout << node->getOwnerEmpire()->getName() << "'s capital, "
             << node->getName() << ", has been captured by " << empire->getName()
@@ -15,7 +16,7 @@ void Capital::colonise(Empire *empire) {
             << " has collapsed due to the war effort." << std::endl;
 #endif
 
-  node->getOwnerEmpire()->getWar()->removeEmpire(node->getOwnerEmpire());
+  empire->getWar()->removeEmpire(node->getOwnerEmpire());
 
   node->setNodeType(new Town(node));
 }

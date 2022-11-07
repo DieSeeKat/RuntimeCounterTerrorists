@@ -25,15 +25,15 @@ TEST(Memento, Backup)
   war->addEmpire(e1);
   war->addEmpire(e2);
 
-  Node *c1 = new Node(e1, "c1", 4, true);
-  Node *n2 = new Node(e1, "n2", 4);
-  Node *n3 = new Node(e1, "n3", 4);
-  Node *n4 = new Node(e2, "n4", 4);
-  Node *n5 = new Node(e2, "n5", 4);
-  Node *n6 = new Node(e1, "n6", 4);
-  Node *n7 = new Node(e1, "n7", 4);
-  Node *n8 = new Node(e2, "n8", 4);
-  Node *c2 = new Node(e2, "c2", 4, true);
+  Node *c1 = new Node(war, e1, "c1", 4, true);
+  Node *n2 = new Node(war, e1, "n2", 4);
+  Node *n3 = new Node(war, e1, "n3", 4);
+  Node *n4 = new Node(war, e2, "n4", 4);
+  Node *n5 = new Node(war, e2, "n5", 4);
+  Node *n6 = new Node(war, e1, "n6", 4);
+  Node *n7 = new Node(war, e1, "n7", 4);
+  Node *n8 = new Node(war, e2, "n8", 4);
+  Node *c2 = new Node(war, e2, "c2", 4, true);
 
   e1->setCapital(c1);
   e2->setCapital(c2);
@@ -63,16 +63,17 @@ TEST(Memento, Backup)
   war->addNode(n8);
   war->addNode(c2);
 
-  Army *army_one = new Army(c1, e1);
+  Army *army_one = new Army(war, c1, e1);
   e1->addArmy(army_one);
   army_one->addUnit(Unit());
   army_one->addUnit(Unit());
-  Army *army_three = new Army(c1, e1);
+
+  Army *army_three = new Army(war, c1, e1);
   e1->addArmy(army_three);
   army_three->addUnit(Unit());
   army_three->addUnit(Unit());
 
-  Army *army_two = new Army(n2, e2);
+  Army *army_two = new Army(war, n2, e2);
   e2->addArmy(army_two);
   army_two->addUnit(Unit());
 
@@ -93,15 +94,6 @@ TEST(Memento, Backup)
   ASSERT_NE(war->getNodes(), backupWar->getNodes());
   ASSERT_STREQ(war->getEmpires().at(0)->getCapital()->getName().c_str(), backupWar->getEmpires().at(0)->getCapital()->getName().c_str());
   ASSERT_NE(war->getEmpires().at(0)->getCapital(), backupWar->getEmpires().at(0)->getCapital());
-
-  if (war->getPaths().size() == 0)
-  {
-    ASSERT_EQ(war->getPaths(), backupWar->getPaths());
-  }
-  else
-  {
-    ASSERT_NE(war->getPaths(), backupWar->getPaths());
-  }
 
   for (auto a : war->getEmpires())
   {

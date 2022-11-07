@@ -7,7 +7,6 @@
 
 class RequestAlliance : Communication
 {
-
   private:
     ///Pointer to the empire that sent the command
   Empire *sender;

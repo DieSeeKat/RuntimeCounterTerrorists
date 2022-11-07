@@ -25,18 +25,6 @@ Empire::Empire(std::string name, War *war)
   this->war = war;
 }
 
-void Empire::algorithm()
-{
-  // TODO - implement Empire::algorithm
-  throw "Not yet implemented";
-}
-
-void Empire::action()
-{
-  // TODO - implement Empire::action
-  throw "Not yet implemented";
-}
-
 void Empire::recruit()
 {
   for (auto &owned_node : owned_nodes)
@@ -47,16 +35,24 @@ void Empire::recruit()
 
 void Empire::advanceArmies()
 {
-  cout << "Jesse is moeite" << endl;
-  for (auto army : armies)
+
+  vector<Army*> temp_armies = armies;
+
+  for (auto army : temp_armies)
   {
+
     Node *current_town = army->getPosition();
+
     std::vector<Empire *> empires = war->getEmpires();
+
     for (auto empire : empires)
     {
+
       if (!isAlly(empire))
       {
+
         army->moveToTown(current_town->findShortestPathTo(war->getNodes(), empire->getCapital())[0]);
+
         break;
       }
     }
@@ -132,7 +128,7 @@ void Empire::considerAlliance(Empire *empire)
 
     for(int i = 0; i < armies.size(); i++)
     {
-        army_resource_count += armies.at(i)->getResources();
+        army_resource_count += armies.at(i)->getResource();
         army_unit_count += armies.at(i)->getNumUnits();
     }
 
@@ -229,9 +225,6 @@ Empire::~Empire()
 {
   dieOff();
 }
-void Empire::unwindAlliances()
-{
-}
 War *Empire::getWar()
 {
   return war;
@@ -242,7 +235,9 @@ void Empire::setWar(War *war)
 }
 void Empire::removeArmy(Army *army)
 {
+
   armies.erase(std::find(armies.begin(), armies.end(), army));
+
 }
 void Empire::addArmy(Army *army)
 {
@@ -290,10 +285,6 @@ void Empire::dieOff()
   }
   alliances.clear();
 
-  for (auto node : owned_nodes)
-  {
-    node->makeFreeCity();
-  }
   owned_nodes.clear();
   capital = nullptr;
 
@@ -331,6 +322,8 @@ Empire *Empire::clone(std::map<void *, void *> &objmap)
   {
     Empire *temp = new Empire();
     objmap.insert(std::pair<void *, void *>(this, temp));
+
+    temp->war = war;
 
     std::vector<Empire *> newalliancees;
     for (auto al : alliances)
@@ -385,15 +378,14 @@ std::string Empire::getName()
 {
   return name;
 }
+void Empire::setRecruitmentPolicy(RecruitmentPolicy* recruitment)
+{
+  recruitment_policy = recruitment;
+}
 
 std::string Empire::getRecruitmentPolicy()
 {
   return recruitment_policy->getRecuitmentPolicyName();
-}
-
-void Empire::setRecruitmentPolicy(RecruitmentPolicy *policy)
-{
-  recruitment_policy=policy;
 }
 
 std::string Empire::getWarStylePolicy()

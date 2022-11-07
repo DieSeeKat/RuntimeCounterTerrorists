@@ -12,11 +12,13 @@
 
 TEST(Path, EnoughResources_TEST)
 {
+  War* war = new War();
+
   Empire *e1 = new Empire("Rome");
 
-  Node* node = new Node(e1, "Roma", 4);
+  Node* node = new Node(war, e1, "Roma", 4);
 
-  Army *army = new Army(node, e1);
+  Army *army = new Army(war, node, e1);
   e1->addArmy(army);
   for (int i = 0; i < 100; i++)
   {
@@ -35,11 +37,15 @@ TEST(Path, EnoughResources_TEST)
 
 TEST(Path, SurvivePath_TEST)
 {
-  Empire *e1 = new Empire("Rome");
+  War* war = new War();
 
-  Node* node = new Node(e1, "Roma", 4);
+  Empire *e1 = new Empire("Rome", war);
 
-  Army *army = new Army(node, e1);
+  war->addEmpire(e1);
+
+  Node* node = new Node(war, e1, "Roma", 4);
+
+  Army *army = new Army(war, node, e1);
   e1->addArmy(army);
   for (int i = 0; i < 100; i++)
   {
@@ -58,11 +64,15 @@ TEST(Path, SurvivePath_TEST)
 
 TEST(Path, Die_TEST)
 {
-  Empire *e1 = new Empire("Rome");
+  War* war = new War();
 
-  Node* node = new Node(e1, "Roma", 4);
+  Empire *e1 = new Empire("Rome", war);
 
-  Army *army = new Army(node, e1);
+  war->addEmpire(e1);
+
+  Node* node = new Node(war, e1, "Roma", 4);
+
+  Army *army = new Army(war, node, e1);
   e1->addArmy(army);
   for (int i = 0; i < 5; i++)
   {
@@ -73,6 +83,7 @@ TEST(Path, Die_TEST)
   Path *path = new Path(nullptr, nullptr);
 
   path->calculate_losses(army);
+
   if (army->getNumUnits() == 0) {
     delete army;
   }

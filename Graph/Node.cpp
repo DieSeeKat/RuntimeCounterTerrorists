@@ -12,6 +12,7 @@
 #include "Capital.h"
 #include "Node.h"
 #include "Town.h"
+#include "../Army.h"
 
 #include "../Units/Unit.h"
 #include "../Mediator/ConcreteMediator.h"
@@ -20,10 +21,8 @@ Node::Node() {}
 
 NodeIterator *Node::createIterator() { return new NodeIterator(this); }
 
-void Node::changed()
-{
-  // TODO - implement Node::changed
-  throw "Not yet implemented";
+void Node::setWar(War* w){
+  this->war = w;
 }
 
 Army *Node::recruit(ArmyRatio ratio, int num_recruits)
@@ -38,7 +37,7 @@ Army *Node::recruit(ArmyRatio ratio, int num_recruits)
   footmen_barracks->createUnits(ceil(ratio.footmen_ratio * num_recruits));
   slinger_barracks->createUnits(ceil(ratio.slinger_ratio * num_recruits));
 
-  Army *new_army = new Army(this, owner_empire);
+  Army *new_army = new Army(war, this, getOwnerEmpire());
 
   for (auto unit : archer_barracks->getUnits())
   {
@@ -111,7 +110,17 @@ std::vector<Node *> Node::findShortestPathTo(std::vector<Node *> nodes,
 
   return return_vector;
 }
-Empire *Node::getOwnerEmpire() { return owner_empire; }
+Empire *Node::getOwnerEmpire() {
+  for(auto e : war->getEmpires()){
+    for(auto n : e->getNodes()){
+      if(n == this){
+        return e;
+      }
+    }
+  }
+  return nullptr;
+  ///@todo Throw exception if this node no longer has an empire.
+}
 bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 {
   if (this == capital)
@@ -137,7 +146,7 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
     {
       int newDist = curr->dist + 1;
       if (newDist < path->getOppositeEnd(curr)->dist &&
-          path->getOppositeEnd(curr)->getOwnerEmpire() == owner_empire)
+          path->getOppositeEnd(curr)->getOwnerEmpire() == getOwnerEmpire())
       {
         path->getOppositeEnd(curr)->dist = newDist;
         path->getOppositeEnd(curr)->prev = curr;
@@ -154,10 +163,9 @@ bool Node::connectedToCapital(std::vector<Node *> nodes, Node *capital)
 }
 
 std::vector<Path *> Node::getPaths() { return paths; }
-Node::Node(Empire *owner_empire, std::string name, int population)
+Node::Node(War* war, Empire *owner_empire, std::string name, int population)
 {
-  this->owner_empire      = owner_empire;
-  this->population_empire = owner_empire;
+  this->war = war;
   this->population        = population;
   this->resources         = population;
   this->name              = name;
@@ -172,7 +180,7 @@ void Node::addPathTo(Node *node)
   addPath(new_path);
   node->addPath(new_path);
 }
-void Node::onAttacked() { owner_empire->recruitArmy(this); }
+void Node::onAttacked() { getOwnerEmpire()->recruitArmy(this); }
 Node::~Node()
 {
   std::vector<Path *> path_pointers = paths;
@@ -186,22 +194,29 @@ void Node::removePath(Path *path)
 {
   paths.erase(std::find(paths.begin(), paths.end(), path));
 }
-void Node::makeFreeCity() { owner_empire = nullptr; }
-std::vector<Army *> Node::getStationedArmies() { return stationed_armies; }
-void Node::removeStationedArmy(Army *army)
+std::vector<Army *> Node::getStationedArmies()
 {
-  stationed_armies.erase(
-          std::find(stationed_armies.begin(), stationed_armies.end(), army));
+  std::vector<Army*> to_return;
+  for(auto e:war->getEmpires()){
+    for(auto a:e->getArmies()){
+      if(a->getPosition() == this){
+        to_return.push_back(a);
+      }
+    }
+  }
+  return to_return;
 }
 void Node::getAttacked(Army *attacking_army)
 {
-    mediator = new ConcreteMediator();
-    mediator->notifyOfAttack(this);
+  mediator = new ConcreteMediator();
+
+  mediator->notifyOfAttack(this);
+
   int friendly_units_in_footmen = 0;
   int enemy_units_in_footmen    = 0;
 
   // Calculate friendly_units_in_footmen
-  for (Army *army : stationed_armies)
+  for (Army *army : getStationedArmies())
   {
     if (getOwnerEmpire() == army->getOwnerEmpire() ||
         getOwnerEmpire()->isAlly(army->getOwnerEmpire()))
@@ -222,11 +237,14 @@ void Node::getAttacked(Army *attacking_army)
         delete army;
       }
     }
+
     for (int i = 0; i < friendly_units_in_footmen; i++)
     {
       attacking_army->killRandomUnit();
     }
+
     this->colonise(attacking_army->getOwnerEmpire());
+
     notify();
   }
   else if (enemy_units_in_footmen == friendly_units_in_footmen)
@@ -264,6 +282,8 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     Node *temp = new Node();
     objmap.insert(std::pair<void *, void *>(this, temp));
 
+    temp->war = war;
+
     temp->name = this->name;
 
     temp->dist = dist;
@@ -274,9 +294,6 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     if (node_type)
       temp->node_type = node_type->clone(objmap);
 
-    if (owner_empire)
-      temp->owner_empire = owner_empire->clone(objmap);
-
     std::vector<Path *> newpaths;
     for (auto path : paths)
     {
@@ -286,39 +303,24 @@ Node *Node::clone(std::map<void *, void *> &objmap)
     temp->paths      = newpaths;
     temp->population = population;
 
-    if (population_empire)
-      temp->population_empire = population_empire->clone(objmap);
-
     if (prev)
       temp->prev = prev->clone(objmap);
 
     temp->resources = resources;
 
-    std::vector<Army *> newstationedarmies;
-    for (auto army : stationed_armies)
-    {
-      if (army)
-        newstationedarmies.push_back(army->clone(objmap));
-    }
-    temp->stationed_armies = newstationedarmies;
     return temp;
   }
 }
-void Node::addStationedArmy(Army *army) { stationed_armies.push_back(army); }
-void Node::setOwnerEmpire(Empire *empire) { owner_empire = empire; }
 void Node::colonise(Empire *colonising_empire)
 {
-  owner_empire->removeNode(this);
   node_type->colonise(colonising_empire);
-  owner_empire = colonising_empire;
 
   colonising_empire->addTown(this);
 }
 void Node::setNodeType(NodeType *node_type) { this->node_type = node_type; }
-Node::Node(Empire *owner_empire, std::string name, int population, bool capital)
+Node::Node(War* war, Empire *owner_empire, std::string name, int population, bool capital)
 {
-  this->owner_empire      = owner_empire;
-  this->population_empire = owner_empire;
+  this->war = war;
   this->population        = population;
   this->resources         = population;
   this->name              = name;

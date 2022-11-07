@@ -13,19 +13,21 @@ NodeIterator::NodeIterator(Node* start)
 
 void NodeIterator::first()
 {
-  current_node = paths.at(path_index)->getOppositeEnd(start_node);
-  path_index++;
+  if (paths.size() != 0)
+  {
+    current_node = paths.at(0)->getOppositeEnd(start_node);
+  }
 }
 
 void NodeIterator::next()
 {
-  current_node = paths.at(path_index)->getOppositeEnd(start_node);
   path_index++;
+  current_node = paths.at(path_index % paths.size())->getOppositeEnd(start_node);
 }
 
 bool NodeIterator::isDone()
 {
-  if(path_index  == this->path_count)
+  if(path_index >= this->path_count)
   {
     return true;
   }

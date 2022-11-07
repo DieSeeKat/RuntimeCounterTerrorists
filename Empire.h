@@ -54,8 +54,6 @@ class Empire
    * @brief A method called after an Empire's capital is colonised to make it invalid.
    */
   void dieOff();
-  void algorithm();
-  void action();
   /**
    * @brief Removes a Node from the Empire's owned_nodes array
    * @param node Node to be removed
@@ -146,10 +144,6 @@ class Empire
    * @param state New state of the Empire
    */
   void setState(WarStage *state);
-  /**
-   * @brief Remove and delete all unnecessary Alliance components in preparation to delete the current Empire
-   */
-  void unwindAlliances();
   /**
    * @brief Get the War attribute
    * @return Return a War pointer

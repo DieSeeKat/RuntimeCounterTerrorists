@@ -3,8 +3,6 @@
 
 #include <string>
 
-
-#include "../Army.h"
 #include "../ArmyRatio.h"
 
 #include "../Iterator/Aggregate.h"
@@ -12,13 +10,22 @@
 
 #include "Path.h"
 
+#include "../Memento/War.h"
+
 #include "../Observer/Subject.h"
 
 #include "../Mediator/Mediator.h"
+
 #include "NodeType.h"
+#include "../Army.h"
+
+#include "../Memento/War.h"
+
 #include <map>
 #include <algorithm>
 class Empire;
+
+class War;
 
 class Node : Aggregate, public Subject
 {
@@ -28,40 +35,27 @@ class Node : Aggregate, public Subject
     /// A mediator object for the town
   Mediator *mediator = nullptr;
   /// The number of resources a Node holds
+
+  War* war = nullptr;
+
   int resources;
   /// The total population of a Node
   int population;
-  /// The original empire of population of the Node
-  Empire *population_empire = nullptr;
-  /// The current controlling power
-  Empire *owner_empire = nullptr;
   /// All paths connecting to other Nodes
   std::vector<Path *> paths;
-  /// All armies stationed at the Node
-  std::vector<Army *> stationed_armies;
   /// A pointer to the NodeType of the Node
   NodeType *node_type = nullptr;
   ///The name of the town
   std::string name = "";
 
   public:
+  void setWar(War* w);
   /// The current distance from the start Node of the Label-Correcting Algorithm
   int dist = 0;
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm
   Node *prev = nullptr;
-  /**
-   * @param owner_empire The empire that the node belongs to
-   * @param name The name of the town
-   * @param population The population of the town
-   */
-  Node(Empire *owner_empire, std::string name, int population);
-  /**
-   * @param owner_empire The empire that the node belongs to
-   * @param name The name of the town
-   * @param population The population of the town
-   * @param capital A boolean value to indicate if this node is the capital
-   */
-  Node(Empire *owner_empire, std::string name, int population, bool capital);
+  Node(War* war, Empire *owner_empire, std::string name, int population);
+  Node(War* war, Empire *owner_empire, std::string name, int population, bool capital);
   ~Node();
   /**
    * @brief Remove a path between this Node and another
@@ -83,7 +77,6 @@ class Node : Aggregate, public Subject
    * @param path Path to be added
    */
   void addPath(Path *path);
-  void changed();
   /**
    * @brief Recharge resources to the maximum capacity according to the Node's population
    */
@@ -120,8 +113,6 @@ class Node : Aggregate, public Subject
    * @param army is used to add it to the Observer List
    */
   void addObserver(Observer* army);
-
-  Node *nextStepTo(Node *node);
   /**
    * @brief Get all paths origination from the Node
    * @return Return a vector of Path pointers
@@ -153,7 +144,6 @@ class Node : Aggregate, public Subject
    * @return Returns a vector of Nodes leading to the passed in node
    */
   bool connectedToCapital(std::vector<Node *> nodes, Node *capital);
-
   /**
    * @brief Handles the combat of when a Node gets attacked
    * Will destroy or weaken armies depending on the result of the battle and will be colonised if it loses the battle.
@@ -165,36 +155,16 @@ class Node : Aggregate, public Subject
    */
   void onAttacked();
   /**
-   * @brief Make this Node a free city. Will change the owner_empire attribute to nullptr
-   */
-  void makeFreeCity();
-
-  /**
    * @brief Get armies stationed here.
    * @return Return a vector of Army pointers
    */
-  std::vector<Army *> getStationedArmies();
-  /**
-   * @brief Remove a specific army from being stationed here
-   * @param army Army to be removed
-   */
-  void removeStationedArmy(Army *army);
-  /**
-   * @brief Add a new Army to the stationed_armies vector
-   * @param army A pointer to the Army to be added
-   */
-  void addStationedArmy(Army *army);
+  std::vector<Army*> getStationedArmies();
   /**
    * @brief Clone method for the Node
    * @param objmap A void to void pointer map
    * @return A pointer to a new cloned Node
    */
   Node *clone(std::map<void*, void*> &objmap);
-  /**
-   * @brief Setter for the owner_empire attribute
-   * @param empire The new owner of the Node
-   */
-  void setOwnerEmpire(Empire *empire);
   /**
    * @brief A setter for the node_type
    * @param node_type A pointer to the new NodeType to be set

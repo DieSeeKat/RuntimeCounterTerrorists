@@ -57,7 +57,7 @@ TEST(Barracks, NodeRecruit)
 
   Empire* empire = new Empire("Rome", war);
 
-  Node* node = new Node(empire, "Roma", 1000);
+  Node* node = new Node(war, empire, "Roma", 1000);
 
   Army* army = node->recruit(army_ratio, 501);
 
