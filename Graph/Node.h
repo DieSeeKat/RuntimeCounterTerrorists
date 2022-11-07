@@ -49,6 +49,9 @@ class Node : Aggregate, public Subject
   std::string name = "";
 
   public:
+    /**
+     * @param w The war to be set
+     */
   void setWar(War* w);
   /// The current distance from the start Node of the Label-Correcting Algorithm
   int dist = 0;
