@@ -1,0 +1,15 @@
+uses: actions/checkout@v3
+uses: langroodi/doxygenize@[v1.7]
+with:
+  # Doxygen configuration file path
+  doxygenconf: # default is ./Doxyfile
+  # Generated HTML documents output folder
+  htmloutput: # default is ./docs/
+  # GitHub Pages branch name
+  ghpagesbranch: doxygen # default is gh-pages
+  # GitHub Pages directory path
+  ghpagesdir: # default is ./
+  # Toggle dark mode CSS
+  darkmode: true # optional
+  # Custom Doxygen pages header HTML file URL
+  customheader: # optional, default is 
