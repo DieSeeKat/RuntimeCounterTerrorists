@@ -11,6 +11,12 @@ class Unit
   int health = 0;
 
   public:
+  /**
+   * @brief Virtual clone method for Unit. Can be overridden by subclasses.
+   * 
+   * @param objmap map<void*,void*>
+   * @return Unit* of the cloned unit.
+   */
   virtual Unit* clone(std::map<void*, void*> &objmap);
     Unit(int damage,int health);
     Unit();
