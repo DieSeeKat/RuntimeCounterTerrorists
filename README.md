@@ -30,6 +30,22 @@ else
   //Whatever
 }
 ```
+# First (and recommended) installation method (Debian-based systems)
+Run the following script in order to do the setup for you. This will create all the files needed and install bazel for you. 
+
+<b>Note:</b>  This script does a `sudo apt ** -y` to update all existing and install needed packages. If you don't want this to happen, don't run the script. Read through it first and modify as you see fit.
+
+1) [Download the script from here](https://drive.google.com/file/d/1v0OU8vYQ9wNdssaHUvtPRzT3D3kuLXCe/view?usp=share_link)
+2) run `chmod +x setup.sh`
+3) run `./setup.sh`
+4) `cd RuntimeCounterTerrorists`
+5) The project has been set up for you. You can now run the following commands
+  - To run the main program: `bazel run main //:main`
+  - To run the tests: `bazel test //...`
+  - To run a specific test: `bazel test //:system-test` where system-test can be replaced with any other tests you want to run.
+
+# Windows. This has been tested, but is much more unpredictable and difficult to troubleshoot. Use Debian
+
 ## Installing g++ (MSYS2 MinGW)
 1)  Navigate to https://www.msys2.org/ and download the installer
 2)  Open MinGW64 terminal and run the following commands. (Type yes/y for all prompts)
