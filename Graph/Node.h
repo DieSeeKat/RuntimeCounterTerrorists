@@ -54,7 +54,20 @@ class Node : Aggregate, public Subject
   int dist = 0;
   /// The previous node of the shortest path to the start Node of the Label-Correcting Algorithm
   Node *prev = nullptr;
+  /**
+   * @param war The war the node will be apart of
+   * @param owner_empire The empire this node will belong to
+   * @param name The name of the node
+   * @param population The population of the node
+   */
   Node(War* war, Empire *owner_empire, std::string name, int population);
+    /**
+   * @param war The war the node will be apart of
+   * @param owner_empire The empire this node will belong to
+   * @param name The name of the node
+   * @param population The population of the node
+     * @param capital A boolean value that indicate if the node is the capital or not
+   */
   Node(War* war, Empire *owner_empire, std::string name, int population, bool capital);
   ~Node();
   /**
